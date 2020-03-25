@@ -9,9 +9,7 @@ before_install:
   - npm install -g @lhci/cli@0.3.x
 
 
-cache:
-  directories:
-    - node_modules
+
 script:
   - npm test
   - npm run build
