@@ -20,7 +20,7 @@ function App() {
           Pipe Test
         </h1>
         <h1>
-          PWA App Test
+          PWA App Tes
         </h1>
         <a
           className="App-link"
