@@ -1,6 +1,7 @@
 {
   "name": "nokiamycampus",
   "version": "0.1.0",
+  "homepage": "https://arttujo.github.io/NokiaMyCampus/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
