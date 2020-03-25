@@ -19,6 +19,9 @@ function App() {
         <h1>
           Pipe Test
         </h1>
+        <h1>
+          PWA App Test
+        </h1>
         <a
           className="App-link"
           href="https://reactjs.org"
