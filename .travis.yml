@@ -15,4 +15,4 @@ cache:
 script:
   - npm test
   - npm run build
-
+  - lhci autorun
