@@ -10,18 +10,14 @@ const fetchPostUrl = async (url,data) => {
         },
         body: JSON.stringify(data)
     });
-    console.log("POST RESPONSE")
-    console.log(response)
-    return await response.json()
+    return response.json();
 };
 
 
 const API = () => {
 
-    const loginAsync = (loginData) =>{
-        fetchPostUrl(loginUrl,loginData).then((json)=>{
-            console.log(json)
-        })
+    const loginAsync = async (loginData,props) =>{
+        return await fetchPostUrl(loginUrl, loginData)
     };
 
     return {

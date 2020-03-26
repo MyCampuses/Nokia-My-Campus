@@ -1,26 +1,44 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/App.css';
 import {
     Button,
     FormControlLabel,
     Container,
     Typography,
-    CssBaseline,
-    Avatar,
     TextField, Checkbox,Grid,Link
 } from '@material-ui/core'
-import {LockOutlined} from '@material-ui/icons'
+
 import '../styles/loginForm.css';
 import strings from "../localization";
+import API from "../hooks/ApiHooks";
+
 
 const Login = (props) =>{
+    const { loginAsync } = API();
+    const [email,setEmail]= useState("");
+    const [password,setPassword]=useState("");
 
     const validateForm = () =>{
+
     };
 
-    const handleSubmit=()=>{
-
+    const handleSubmit=(evt)=>{
+        evt.preventDefault();
+        const loginData = {
+            email: email,
+            password:password
+        };
+        const json = loginAsync(loginData)
+        console.log("JSON")
+        json.then((result)=>{
+            console.log(result)
+            if (!result.errors){
+                alert("Signed In!")
+            } else {
+                alert("Failed to Sign In")
+            }
+        })
     };
 
     return(
@@ -30,7 +48,7 @@ const Login = (props) =>{
                 <Typography component="h1" variant="h5">
                     {strings.signIn}
                 </Typography>
-                <form className="form" noValidate>
+                <form className="form" noValidate onSubmit={handleSubmit}>
                     <TextField
                     variant="outlined"
                     margin="normal"
@@ -41,6 +59,8 @@ const Login = (props) =>{
                     name="email"
                     autoComplete="email"
                     autoFocus
+                    value={email}
+                    onChange={event => setEmail(event.target.value)}
                     />
                     <TextField
                     variant="outlined"
@@ -52,9 +72,11 @@ const Login = (props) =>{
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    value={password}
+                    onChange={event => setPassword(event.target.value)}
                     />
                     <FormControlLabel control={<Checkbox value="remember" color="primary"/>} label="Remember Me"/>
-                    <Button type="submit" fullWidth variant="contained" color="primary" className="submit" action={handleSubmit}>
+                    <Button type="submit" fullWidth variant="contained" color="primary" className="submit">
                         {strings.signIn}
                     </Button>
                     <Grid style={{padding: "1em"}}>
