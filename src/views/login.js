@@ -26,7 +26,7 @@ const Login = (props) =>{
     return(
      <Container component="main" maxWidth="xs">
             <div className="login">
-                <img src={require('../assets/logo_mycampus.png')} style={{width: "100%", height: "auto"}}/>
+                <img src={require('../assets/logo_mycampus.png')} style={{width: "100%", height: "auto"}} alt="testasadsadas"/>
                 <Typography component="h1" variant="h5">
                     {strings.signIn}
                 </Typography>
