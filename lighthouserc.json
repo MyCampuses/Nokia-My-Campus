@@ -8,7 +8,9 @@
       "assertions": {
         "offscreen-images": "off",
         "uses-webp-images": "off",
-        "first-contentful-paint": "off"
+        "first-contentful-paint": "off",
+        "uses-responsive-images": "off",
+        "max-potential-fid": "off"
       }
     },
     "upload": {
