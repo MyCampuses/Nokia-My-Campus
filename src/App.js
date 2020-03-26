@@ -3,6 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import API from "./hooks/ApiHooks";
 
+/* eslint-disable no-unused-vars */
+
+
+
+
+
 function App() {
   const { loginAsync } = API();
 
@@ -38,5 +44,5 @@ function App() {
     </div>
   );
 }
-
+/* eslint-enable no-unused-vars */
 export default App;
