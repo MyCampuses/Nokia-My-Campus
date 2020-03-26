@@ -5,7 +5,7 @@ import API from "./hooks/ApiHooks";
 
 function App() {
   const { loginAsync } = API();
-  loginAsync("test")
+
   return (
 
     <div className="App">
