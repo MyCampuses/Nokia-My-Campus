@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './styles/App.css';
 import API from "./hooks/ApiHooks";
 import Login from './views/login'
