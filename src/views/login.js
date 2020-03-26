@@ -57,8 +57,8 @@ const Login = (props) =>{
                     <Button type="submit" fullWidth variant="contained" color="primary" className="submit" action={handleSubmit}>
                         {strings.signIn}
                     </Button>
-                    <Grid container>
-                        <Grid item xs>
+                    <Grid style={{padding: "1em"}}>
+                        <Grid item xs style={{padding:"1em"}}>
                             <Link href="#">
                                 {strings.forgotPass}
                             </Link>
