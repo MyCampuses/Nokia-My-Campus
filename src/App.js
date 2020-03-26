@@ -1,9 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import API from "./hooks/ApiHooks";
 
 function App() {
+  const { loginAsync } = API();
+  loginAsync("test")
   return (
+
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
