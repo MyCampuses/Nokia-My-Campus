@@ -12,12 +12,13 @@ import {
 import '../styles/loginForm.css';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
-
+import LocalStorageOperations from "../hooks/LocalStorageOperations";
 
 const Login = (props) =>{
     const { loginAsync } = API();
     const [email,setEmail]= useState("");
     const [password,setPassword]=useState("");
+    const {create,read,clear,del} = LocalStorageOperations();
 
     const validateForm = () =>{
 
@@ -29,17 +30,21 @@ const Login = (props) =>{
             email: email,
             password:password
         };
-        const json = loginAsync(loginData)
-        console.log("JSON")
+        const json = loginAsync(loginData);
+        console.log("JSON");
         json.then((result)=>{
-            console.log(result)
+            console.log(result);
             if (!result.errors){
-                alert("Signed In!")
+                alert("Signed In!");
+                let json ={username: result.username, token: result.token};
+                create(JSON.stringify(json),"user")
+                //TODO Navigate to Home
             } else {
                 alert("Failed to Sign In")
             }
         })
     };
+
 
     return(
      <Container component="main" maxWidth="xs">
