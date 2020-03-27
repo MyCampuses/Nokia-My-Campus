@@ -19,7 +19,7 @@ const fetchPostUrl = async (url,data) => {
     return response.json();
 };
 const fetchGetUrl = async (url, userKey) => {
-
+    const userToken = getUserToken(userKey)
     const response = await fetch(url, {
         headers: {
             'x-access-token': userToken,
@@ -37,9 +37,8 @@ const API = () => {
     const loginAsync = async (loginData,props) =>{
         return await fetchPostUrl(loginUrl, loginData)
     };
-    const getUsageData = async (url, key, props) => {
-        const userToken = getUserToken(key)
-        return await fetchGetUrl(url, userToken)
+    const getUsageData = async (url, props) => {
+        return await fetchGetUrl(url, 'dummyKey')
     };
 
     return {
