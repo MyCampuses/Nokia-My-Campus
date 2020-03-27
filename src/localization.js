@@ -8,7 +8,8 @@ let strings = new LocalizedStrings({
         rememberMe: "Remember Me",
         forgotPass: "Forgot Password?",
         noAccount: "Don't have an account? Sign Up",
-        welcome: "Welcome to the progressive web application that provides information about current status of three most popular areas in Nokia HQ, Espoo"
+        welcome: "Welcome to the progressive web application that provides information about current status of three most popular areas in Nokia HQ, Espoo",
+        logoAlt: "MyCampus Logo"
     }
 });
 

@@ -18,6 +18,7 @@ const Login = (props) =>{
     const { loginAsync } = API();
     const [email,setEmail]= useState("");
     const [password,setPassword]=useState("");
+    const [remember,setRemember]=useState(false)
     const {create,read,clear,del} = LocalStorageOperations();
 
     const validateForm = () =>{
@@ -25,6 +26,7 @@ const Login = (props) =>{
     };
 
     const handleSubmit=(evt)=>{
+        console.log(`Remember: ${remember}`)
         evt.preventDefault();
         const loginData = {
             email: email,
@@ -36,9 +38,13 @@ const Login = (props) =>{
             console.log(result);
             if (!result.errors){
                 alert("Signed In!");
-                let json ={username: result.username, token: result.token};
-                create(JSON.stringify(json),"user")
-                //TODO Navigate to Home
+                if (remember){ // If Remember me is checked -> save users info to LocalStorage
+                    let json ={username: result.username, token: result.token};
+                    create(JSON.stringify(json),"user")
+                    //TODO Navigate to home
+                } else{
+                    //TODO Navigate to Home
+                }
             } else {
                 alert("Failed to Sign In")
             }
@@ -46,10 +52,11 @@ const Login = (props) =>{
     };
 
 
+
     return(
      <Container component="main" maxWidth="xs">
             <div className="login">
-                <img src={require('../assets/logo_mycampus.png')} style={{width: "100%", height: "auto"}} alt="testasadsadas"/>
+                <img src={require('../assets/logo_mycampus.png')} style={{width: "100%", height: "auto"}} alt={strings.logoAlt}/>
                 <Typography component="h1" variant="h5">
                     {strings.signIn}
                 </Typography>
@@ -80,7 +87,7 @@ const Login = (props) =>{
                     value={password}
                     onChange={event => setPassword(event.target.value)}
                     />
-                    <FormControlLabel control={<Checkbox value="remember" color="primary"/>} label="Remember Me"/>
+                    <FormControlLabel control={<Checkbox value={remember} color="primary" onChange={event => setRemember(event.target.checked)}/>} label="Remember Me"/>
                     <Button type="submit" fullWidth variant="contained" color="primary" className="submit">
                         {strings.signIn}
                     </Button>
