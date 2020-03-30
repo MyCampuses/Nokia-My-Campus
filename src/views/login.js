@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
 import {
     Button,
     FormControlLabel,
@@ -17,11 +16,13 @@ import LocalStorageOperations from "../hooks/LocalStorageOperations";
 import {blue} from "@material-ui/core/colors";
 
 const Login = (props) => {
+
     const {loginAsync} = API();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const remember = true
+    const [remember, setRemember] = useState(false)
     const {create, read, clear, del} = LocalStorageOperations();
+
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -47,8 +48,8 @@ const Login = (props) => {
             }
         })
     };
-
-    const StyledBody = styled.div`
+    /*
+    `
     background: url('loginBackground.png');
     background-size: cover;
     position: fixed;
@@ -59,10 +60,12 @@ const Login = (props) => {
     width: 100%;
     height: 100%;`;
 
+     */
+
     const FormTheme = createMuiTheme({
         palette: {
             primary: {
-                main: blue[700]
+                main: blue[500]
             },
             secondary: {
                 main: blue[50]
@@ -112,7 +115,6 @@ const Login = (props) => {
 
     return (
         <ThemeProvider theme={FormTheme}>
-            <StyledBody>
                 <Container component="main" maxWidth="xs">
                     <div className="login">
                         <img src={require('../assets/logo_mycampus.png')} style={{width: "100%", height: "auto"}}
@@ -134,9 +136,10 @@ const Login = (props) => {
                                 label={strings.emailAddress}
                                 name="email"
                                 autoComplete="email"
-                                autoFocus
+                                onChange={event => setEmail(event.target.value)}
                                 value={email}
-                                onChange={event => setEmail(event.target.value)}/>
+                                autoFocus
+                            />
                             <TextField
                                 color={"secondary"}
                                 variant="outlined"
@@ -148,8 +151,13 @@ const Login = (props) => {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={event => setPassword(event.target.value)}
                                 value={password}
-                                onChange={event => setPassword(event.target.value)}/>
+                            />
+                            <FormControlLabel
+                                control={<Checkbox value={remember} color="primary" onChange={event => setRemember(event.target.checked)}/>}
+                                label={strings.rememberMe}
+                            />
                             <Button type="submit" fullWidth variant="contained" color="primary">
                                 {strings.signIn}
                             </Button>
@@ -168,7 +176,6 @@ const Login = (props) => {
                         </form>
                     </div>
                 </Container>
-            </StyledBody>
         </ThemeProvider>
     )
 };
