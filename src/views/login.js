@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
 import {
   Button,
   FormControlLabel,
@@ -20,7 +19,7 @@ const Login = (props) => {
   const {loginAsync} = API();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const remember = true;
+  const [remember, setRemember] = useState(false);
   const {create, read, clear, del} = LocalStorageOperations();
 
   const handleSubmit = (evt) => {
@@ -112,80 +111,86 @@ const Login = (props) => {
     },
   });
 
-  return (
-      <ThemeProvider theme={backgroundTheme}>
-        <Container component="loginMain" maxWidth="100%">
-          <div className="loginMain" style={{
-            backgroundImage:
-                'url(loginBackground.png)',
-          }}>
-            <ThemeProvider theme={FormTheme}>
-              <Container component='form' maxWidth="xs">
-                <div className="login">
-                  <img src={require('../assets/logo_mycampus.png')}
-                       style={{
-                         width: '100%',
-                         height: 'auto',
-                         paddingTop: '20px',
-                       }}
-                       alt={strings.logoAlt}/>
-                  <Typography component="h5" color="secondary" className="typo">
-                    {strings.welcome}
-                  </Typography>
-                  <Typography component="h1" variant="h5" color={'secondary'}
-                              className="typo">
-                    {strings.signIn}
-                  </Typography>
-                  <form className="form" noValidate onSubmit={handleSubmit}>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        color={'secondary'}
-                        id="email"
-                        label={strings.emailAddress}
-                        name="email"
-                        autoComplete="email"
-                        value={email}
-                        onChange={event => setEmail(event.target.value)}/>
-                    <TextField
-                        color={'secondary'}
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label={strings.password}
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        value={password}
-                        onChange={event => setPassword(event.target.value)}/>
-                    <Button type="submit" fullWidth variant="contained"
-                            color="primary">
+    return (
+        <ThemeProvider theme={backgroundTheme}>
+          <Container component="loginMain" maxWidth="100%">
+            <div className="loginMain" style={{
+              backgroundImage:
+                  'url(loginBackground.png)',
+            }}>
+              <ThemeProvider theme={FormTheme}>
+                <Container component='form' maxWidth="xs">
+                  <div className="login">
+                    <img src={require('../assets/logo_mycampus.png')}
+                         style={{
+                           width: '100%',
+                           height: 'auto',
+                           paddingTop: '20px',
+                         }}
+                         alt={strings.logoAlt}/>
+                    <Typography component="h5" color="secondary" className="typo">
+                      {strings.welcome}
+                    </Typography>
+                    <Typography component="h1" variant="h5" color={'secondary'}
+                                className="typo">
                       {strings.signIn}
-                    </Button>
-                    <Grid style={{padding: '1em'}}>
-                      <Grid item xs style={{padding: '1em'}}>
-                        <Link href="#" color="primary">
-                          {strings.forgotPass}
-                        </Link>
-                      </Grid>
-                      <Grid item>
-                        <Link href="#">
-                          {strings.noAccount}
-                        </Link>
-                      </Grid>
-                    </Grid>
-                  </form>
-                </div>
-              </Container>
-            </ThemeProvider>
-          </div>
-        </Container>
-      </ThemeProvider>
-  );
+                    </Typography>
+                        <form className="form" noValidate onSubmit={handleSubmit}>
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                color={"secondary"}
+                                id="email"
+                                label={strings.emailAddress}
+                                name="email"
+                                autoComplete="email"
+                                onChange={event => setEmail(event.target.value)}
+                                value={email}
+                                autoFocus
+                            />
+                            <TextField
+                                color={"secondary"}
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label={strings.password}
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={event => setPassword(event.target.value)}
+                                value={password}
+                            />
+                            <FormControlLabel
+                                control={<Checkbox value={remember} color="primary" onChange={event => setRemember(event.target.checked)}/>}
+                                label={strings.rememberMe}
+                            />
+                            <Button type="submit" fullWidth variant="contained" color="primary">
+                                {strings.signIn}
+                            </Button>
+                            <Grid style={{padding: "1em"}}>
+                                <Grid item xs style={{padding: "1em"}}>
+                                    <Link href="#" color="primary">
+                                        {strings.forgotPass}
+                                    </Link>
+                                </Grid>
+                                <Grid item>
+                                    <Link href="#">
+                                        {strings.noAccount}
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </form>
+                  </div>
+                </Container>
+              </ThemeProvider>
+            </div>
+          </Container>
+        </ThemeProvider>
+    )
 };
 
 export default Login;
