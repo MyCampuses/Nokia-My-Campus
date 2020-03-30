@@ -62,7 +62,7 @@ const Login = (props) => {
     const FormTheme = createMuiTheme({
         palette: {
             primary: {
-                main: blue[300]
+                main: blue[700]
             },
             secondary: {
                 main: blue[50]
@@ -72,7 +72,6 @@ const Login = (props) => {
             fontSize: 12,
             button: {
                 fontSize: 16,
-                color: "#FFFFFF"
             }
         },
         overrides: {
@@ -151,7 +150,7 @@ const Login = (props) => {
                                 autoComplete="current-password"
                                 value={password}
                                 onChange={event => setPassword(event.target.value)}/>
-                            <Button type="submit" fullWidth variant="contained" color="primary" className="submitBtn">
+                            <Button type="submit" fullWidth variant="contained" color="primary">
                                 {strings.signIn}
                             </Button>
                             <Grid style={{padding: "1em"}}>
