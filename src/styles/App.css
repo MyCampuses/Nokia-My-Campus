@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.Test{
+  background-image: url("../assets/loginBackground.png");
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -27,6 +32,8 @@
 .App-link {
   color: #61dafb;
 }
+
+
 
 @keyframes App-logo-spin {
   from {

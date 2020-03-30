@@ -1,5 +1,5 @@
 import LocalStorageOperations from './LocalStorageOperations';
-
+/* eslint-disable no-unused-vars */
 const apiUrl = 'https://mycampus-server.karage.fi/api/';
 const loginUrl = "https://mycampus-server.karage.fi/auth/login";
 const restaurantUrl = apiUrl + 'common/restaurant';
