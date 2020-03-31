@@ -8,17 +8,34 @@
 .loginP{
     padding-top: 1rem;
     color: white;
+    font-size: 15px;
     font-family: sans-serif;
 }
+.formLinks{
+    color: #21a1ee;
+    text-decoration: underline;
+}
+
+
 .formBtn{
-padding-top: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 2rem;
+}
+.ui.input{
+    border: 1px solid white;
+    border-radius: 8px;
+    height: 3rem;
+    font-size: 2rem;
+    color: white;
+}
+.ui.form .field > label{
+    color: white !important;
+}
+.ui.form .field .ui.input input{
+    color: white;
+    text-align: center;
 }
 
-
-.formInput{
-    border-radius: 6px;
-    border-color: red;
-}
 /* For later use if we want to make this app scale better for desktop
 @media only screen and (min-width: 1200px) {
     .login{

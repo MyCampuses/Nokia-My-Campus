@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import API from '../hooks/ApiHooks';
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';

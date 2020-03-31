@@ -5,6 +5,9 @@ import strings from '../localization';
 import API from '../hooks/ApiHooks';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
 import {Checkbox,Form,Button,Select,Input,Container} from 'semantic-ui-react'
+
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 const Login = (props) => {
     const {loginAsync} = API();
     const [email, setEmail] = useState('');
@@ -67,6 +70,7 @@ const Login = (props) => {
                     control={Input}
                     label={strings.emailAddress}
                     placeholder={strings.emailAddress}
+                    transparent
                     onChange={event => setEmail(event.target.value)}
                 />
                 <Form.Input
@@ -74,13 +78,16 @@ const Login = (props) => {
                     control={Input}
                     label={strings.password}
                     placeholder={strings.password}
+                    transparent
                     type="password"
                     onChange={event => setPassword(event.target.value)}
                 />
                 <Form.Field className="formBtn">
                     <Button content={strings.signIn} primary onClick={handleSubmit}/>
                 </Form.Field>
+
             </Form>
+
             </Container>
         </div>
     )
