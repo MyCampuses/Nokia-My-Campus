@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import './styles/App.css';
 import API from "./hooks/ApiHooks";
@@ -11,7 +11,7 @@ import { useRoutes } from 'hookrouter';
 
 
 const App=()=> {
-  const { loginAsync } = API();
+  const { loginAsync, checkUserLogged } = API();
   const routeResult = useRoutes(routes);
 
   return (
