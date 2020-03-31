@@ -52,7 +52,6 @@ const Login = (props) => {
                 if (remember) { // If Remember me is checked -> save users info to LocalStorage
                     let json = {username: result.username, token: result.token};
                     create(JSON.stringify(json), 'user');
-
                 } else {
                     //TODO Navigate to Home
                 }

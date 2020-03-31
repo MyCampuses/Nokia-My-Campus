@@ -19,7 +19,7 @@ const fetchGetUrl = async (url, userKey) => {
     const response = await fetch(url, {
         method: 'GET',
         headers: {
-            authorization: userToken,
+            authorization: userToken.token,
         },
     });
     return await response.json();
