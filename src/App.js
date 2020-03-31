@@ -2,9 +2,8 @@ import React from 'react';
 
 import './styles/App.css';
 import API from "./hooks/ApiHooks";
-import Login from './views/login'
-//import Home from './views/home'
-
+import routes from './hooks/Routes';
+import { useRoutes } from 'hookrouter';
 /* eslint-disable no-unused-vars */
 
 
@@ -13,10 +12,11 @@ import Login from './views/login'
 
 const App=()=> {
   const { loginAsync } = API();
+  const routeResult = useRoutes(routes);
 
   return (
     <div className="App">
-      <Login/>
+      {routeResult}
     </div>
   );
 };

@@ -14,6 +14,7 @@ const Login = (props) => {
     const {create, read, clear, del} = LocalStorageOperations();
 
 
+
     const setBackground = () => {
         let root = document.getElementById('root-html');
         root.style.backgroundImage = "url(loginBackground.png)";
@@ -37,11 +38,12 @@ const Login = (props) => {
         json.then((result) => {
             console.log(result);
             if (!result.errors) { // Check if the result contains errors
+                window.location.href = '/home';
                 alert('Signed In!');
                 if (remember) { // If Remember me is checked -> save users info to LocalStorage
                     let json = {username: result.username, token: result.token};
                     create(JSON.stringify(json), 'user');
-                    //TODO Navigate to home
+
                 } else {
                     //TODO Navigate to Home
                 }
