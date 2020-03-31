@@ -10,7 +10,7 @@ const Login = (props) => {
     const {loginAsync} = API();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [remember, setRemember] = useState(false);
+    const remember = true;
     const {create, read, clear, del} = LocalStorageOperations();
 
 
@@ -43,7 +43,6 @@ const Login = (props) => {
                 if (remember) { // If Remember me is checked -> save users info to LocalStorage
                     let json = {username: result.username, token: result.token};
                     create(JSON.stringify(json), 'user');
-
                 } else {
                     //TODO Navigate to Home
                 }
@@ -64,24 +63,22 @@ const Login = (props) => {
                 {strings.welcome}
             </p>
             <Form>
-                <Form.Field
+                <Form.Input
                     className="formInput"
                     control={Input}
                     label={strings.emailAddress}
                     placeholder={strings.emailAddress}
-
+                    onChange={event => setEmail(event.target.value)}
                 />
-                <Form.Field
+                <Form.Input
                     className="formInput"
                     control={Input}
                     label={strings.password}
                     placeholder={strings.password}
                     type="password"
+                    onChange={event => setPassword(event.target.value)}
                 />
-                <Form.Field>
-                    <Checkbox label={strings.rememberMe} onChange={(event, data) => setRemember(data.checked)}/>
-                </Form.Field>
-                <Form.Field>
+                <Form.Field className="formBtn">
                     <Button content={strings.signIn} primary onClick={handleSubmit}/>
                 </Form.Field>
             </Form>

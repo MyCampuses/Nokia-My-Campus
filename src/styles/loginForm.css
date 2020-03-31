@@ -6,13 +6,18 @@
     height: auto;
 }
 .loginP{
+    padding-top: 1rem;
     color: white;
     font-family: sans-serif;
 }
+.formBtn{
+padding-top: 0.5rem;
+}
+
 .formInput{
 
 }
-/*
+/* For later use if we want to make this app scale better for desktop
 @media only screen and (min-width: 1200px) {
     .login{
         max-width: 45%;
