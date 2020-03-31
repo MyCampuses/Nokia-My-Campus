@@ -14,8 +14,10 @@
 padding-top: 0.5rem;
 }
 
-.formInput{
 
+.formInput{
+    border-radius: 6px;
+    border-color: red;
 }
 /* For later use if we want to make this app scale better for desktop
 @media only screen and (min-width: 1200px) {

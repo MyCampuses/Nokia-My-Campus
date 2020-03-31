@@ -5,7 +5,6 @@ import strings from '../localization';
 import API from '../hooks/ApiHooks';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
 import {Checkbox,Form,Button,Select,Input,Container} from 'semantic-ui-react'
-
 const Login = (props) => {
     const {loginAsync} = API();
     const [email, setEmail] = useState('');
@@ -53,7 +52,7 @@ const Login = (props) => {
     };
 
     const validateEmail=()=>{
-
+       let includes = email.includes("@nokia.com")
     };
     return (
         <div className="login">
