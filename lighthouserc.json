@@ -4,13 +4,15 @@
       "numberOfRuns": 3
     },
     "assert": {
-      "preset": "lighthouse:recommended",
+      "preset": "lighthouse:no-pwa",
       "assertions": {
         "offscreen-images": "off",
         "uses-webp-images": "off",
         "first-contentful-paint": "off",
         "uses-responsive-images": "off",
-        "max-potential-fid": "off"
+        "max-potential-fid": "off",
+        "color-contrast": "off",
+        "tap-targets": "off"
       }
     },
     "upload": {
