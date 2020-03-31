@@ -12,3 +12,4 @@ const routes = {
   '/p10': () => <P10/>,
   '/restaurant': () => <Restaurant/>,
 };
+export default routes;
