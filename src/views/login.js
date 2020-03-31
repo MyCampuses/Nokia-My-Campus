@@ -1,19 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
-import {
-    Button,
-    FormControlLabel,
-    Container,
-    ThemeProvider,
-    Typography,
-    TextField, Checkbox, Grid, Link, createMuiTheme,
-} from '@material-ui/core';
-
 import '../styles/loginForm.css';
 import strings from '../localization';
 import API from '../hooks/ApiHooks';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
-import {blue} from '@material-ui/core/colors';
+import {Checkbox,Form,Button,Select,Input,Container} from 'semantic-ui-react'
 
 const Login = (props) => {
     const {loginAsync} = API();
@@ -59,133 +50,41 @@ const Login = (props) => {
             }
         });
     };
-    const FormTheme = createMuiTheme({
-        palette: {
-            primary: {
-                main: blue[500],
-            },
-            secondary: {
-                main: blue[50],
-            },
-        },
-        typography: {
-            fontSize: 12,
-            button: {
-                fontSize: 16,
-            },
-        },
-        overrides: {
-            MuiOutlinedInput: {
-                root: {
-                    position: 'relative',
-                    '& $notchedOutline': {
-                        borderColor: blue[50],
-                    },
-                    '&:hover:not($disabled):not($focused):not($error) $notchedOutline': {
-                        borderColor: blue[50],
-                        // Reset on touch devices, it doesn't add specificity
-                        '@media (hover: none)': {
-                            borderColor: blue[50],
-                        },
-                    },
-                    '&$focused $notchedOutline': {
-                        borderColor: blue[50],
-                        borderWidth: 1,
-                    },
-                },
-            },
-            MuiFormLabel: {
-                root: {
-                    // "&$focused": {
-                    color: blue[50],
-                    // }
-                },
-            },
-            MuiButton: {
-                containedPrimary: {
-                    color: blue[50],
-                    marginTop: '0.5em',
-                },
-            },
-            MuiCheckbox:{
-                colorPrimary:{
-                    color:blue[50]
-                },
-            },
-        },
-    });
 
+    const validateEmail=()=>{
+
+    };
     return (
-        <ThemeProvider theme={FormTheme}>
-            <Container component='main' maxWidth="xs">
-                <div className="login">
-                    <img src={require('../assets/logo_mycampus.png')}
-                         style={{
-                             width: '100%',
-                             height: 'auto',
-                             paddingTop: '20px',
-                         }}
-                         alt={strings.logoAlt}/>
-                    <Typography component="h5" color="secondary" className="typo">
-                        {strings.welcome}
-                    </Typography>
-                    <Typography component="h1" variant="h5" color={'secondary'}
-                                className="typo">
-                        {strings.signIn}
-                    </Typography>
-                    <form className="form" noValidate onSubmit={handleSubmit}>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            color={"secondary"}
-                            id="email"
-                            label={strings.emailAddress}
-                            name="email"
-                            autoComplete="email"
-                            onChange={event => setEmail(event.target.value)}
-                            value={email}
-                            autoFocus
-                        />
-                        <TextField
-                            color={"secondary"}
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label={strings.password}
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            onChange={event => setPassword(event.target.value)}
-                            value={password}
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value={remember} color="primary"
-                                               onChange={event => setRemember(event.target.checked)}/>}
-                            label={strings.rememberMe}
-                        />
-                        <Button type="submit" fullWidth variant="contained" color="primary">
-                            {strings.signIn}
-                        </Button>
-                        <Grid style={{padding: "1em"}}>
-                            <Grid item xs style={{padding: "1em"}}>
-                                <Link href="#" color="primary">
-                                    {strings.forgotPass}
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#">
-                                    {strings.noAccount}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </form>
-                </div>
+        <div className="login">
+            <Container>
+            <img src={require('../assets/logo_mycampus.png')} alt={strings.logoAlt} className="logoImg"/>
+            <p className="loginP">
+                {strings.welcome}
+            </p>
+            <Form>
+                <Form.Field
+                    className="formInput"
+                    control={Input}
+                    label={strings.emailAddress}
+                    placeholder={strings.emailAddress}
+
+                />
+                <Form.Field
+                    className="formInput"
+                    control={Input}
+                    label={strings.password}
+                    placeholder={strings.password}
+                    type="password"
+                />
+                <Form.Field>
+                    <Checkbox label={strings.rememberMe} onChange={(event, data) => setRemember(data.checked)}/>
+                </Form.Field>
+                <Form.Field>
+                    <Button content={strings.signIn} primary onClick={handleSubmit}/>
+                </Form.Field>
+            </Form>
             </Container>
-        </ThemeProvider>
+        </div>
     )
 };
 

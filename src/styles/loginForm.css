@@ -1,29 +1,23 @@
 .login {
-    margin-top: 1em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    padding-top: 2rem;
 }
-.loginMain {
-    padding: 0;
-}
-
-
-.form{
+.logoImg{
     width: 100%;
+    height: auto;
 }
-
-.link{
+.loginP{
     color: white;
-
-}
-.label{
-    color: #fafafa !important;
-}
-.typo{
-    padding-top: 0.5em;
     font-family: sans-serif;
-    font-size: 5px;
+}
+.formInput{
+
+}
+/*
+@media only screen and (min-width: 1200px) {
+    .login{
+        max-width: 45%;
+    }
+
 }
 
+ */
