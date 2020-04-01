@@ -25,6 +25,12 @@ const fetchGetUrl = async (url, userKey) => {
     return await response.json();
 
 };
+const checkUserLogged = async (userKey) => {
+    const {read} = LocalStorageOperations();
+    console.log(userKey);
+    return await read(userKey);
+};
+
 
 const API = () => {
 
@@ -37,7 +43,8 @@ const API = () => {
 
     return {
         loginAsync,
-        getUsageData
+        getUsageData,
+        checkUserLogged
     }
 
 };
