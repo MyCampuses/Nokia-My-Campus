@@ -7,14 +7,7 @@ const commonStyles = makeStyles({
         width: "100%",
         background: "white",
     },
-    bottomTab: {
-        color: "white",
-        background: "#108EE9",
-    },
-    bottomTabSelected: {
-        background: "white",
-        color: "#008AFF",
-    },
+
 });
 
 export default commonStyles;

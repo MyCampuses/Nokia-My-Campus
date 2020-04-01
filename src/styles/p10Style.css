@@ -8,3 +8,16 @@
 #mainContainer {
     padding: 0;
 }
+
+.MuiTab-textColorInherit.Mui-selected {
+    color: white !important;
+    background: #108EE9;
+}
+
+.MuiTab-textColorInherit {
+    color: #108EE9 !important;
+}
+
+.MuiTab-root {
+    border: 1px solid #707070 !important;
+}

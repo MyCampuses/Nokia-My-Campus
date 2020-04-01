@@ -8,20 +8,32 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
+import Box from '@material-ui/core/Box';
+
+function TabFragment(props) {
+    const {children, value, index, ...other} = props;
+
+    return (
+        <Typography
+            component="div"
+            role="tabfragment"
+            hidden={value !== index}
+            id={`tabfragment-${index}`}
+            aria-labelledby={`tab-${index}`}
+            {...other}
+        >
+            {value === index && <Box p={5}>{children}</Box>}
+        </Typography>
+    );
+}
 
 const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
-    const [liveState, setLiveState] = React.useState(true);
-    const selectedLive = liveState ? commonClasses.bottomTab : commonClasses.bottomTabSelected;
-    const [historyState, setHistoryState] = React.useState(true);
-    const selectedHistory = historyState ? commonClasses.bottomTabSelected : commonClasses.bottomTab;
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        setLiveState(!liveState);
-        setHistoryState(!historyState);
     };
 
     return (
@@ -29,15 +41,21 @@ const P10 = () => {
             <div className="p10">
                 <Typography className={p10classes.p10title} component="h1" variant="h5">P10</Typography>
             </div>
+            <TabFragment value={value} index={0}>
+                Live
+            </TabFragment>
+            <TabFragment value={value} index={1}>
+                History
+            </TabFragment>
             <Tabs
                 value={value}
                 onChange={handleChange}
                 className={commonClasses.bottomTabs}
                 variant="fullWidth"
                 indicatorColor="#008AFF"
-                >
-                <Tab id="live" className={`${selectedLive}`} label="Live" />
-                <Tab id="history" className={`${selectedHistory}`} label="History"/>
+            >
+                <Tab id="live" label="Live"/>
+                <Tab id="history" label="History"/>
             </Tabs>
         </Container>
     );
