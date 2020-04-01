@@ -39,7 +39,9 @@ const Home = (props) => {
         .then(result => setParking10Data(result.percent));
     getUsageData(parkingP10TopUrl, props)
         .then(result => setParkingP10TopData(result.percent));
-  },[]);
+
+  },[]);// eslint-disable-line
+
 
   const homeTheme = createMuiTheme({
     flexGrow: 1,
