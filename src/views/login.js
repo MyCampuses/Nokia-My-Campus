@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
     Button,
     FormControlLabel,
@@ -26,14 +26,21 @@ const Login = (props) => {
     const setBackground = () => {
         let root = document.getElementById('root-html');
         root.style.backgroundImage = "url(loginBackground.png)";
+       // root.style.backgroundColor="#0d47a1"
         root.style.backgroundSize = "cover";
         root.style.backgroundRepeat = "no-repeat";
-        root.style.backgroundPosition = "center";
+        root.style.backgroundPosition = "fixed";
     };
+
 
     useEffect(() => {
        setBackground();
     });
+
+    const handleKeyboard = () =>{
+        window.scrollTo(0,0);
+        document.body.scrollTop = 0;
+    };
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -46,14 +53,13 @@ const Login = (props) => {
         json.then((result) => {
             console.log(result);
             if (!result.errors) { // Check if the result contains errors
-                window.location.href = '/home';
-                alert('Signed In!');
+                //alert('Signed In!');
                 if (remember) { // If Remember me is checked -> save users info to LocalStorage
                     let json = {username: result.username, token: result.token};
                     create(JSON.stringify(json), 'user');
-                    //TODO Navigate to home
+                    window.location.href = '/home';
                 } else {
-                    //TODO Navigate to Home
+                    window.location.href = '/home';
                 }
             } else {
                 alert('Failed to Sign In');
@@ -174,10 +180,8 @@ const Login = (props) => {
                             value={password}
                         />
                         <FormControlLabel
-                            control={<Checkbox value={remember} color="primary"
-                                               onChange={event => setRemember(event.target.checked)}/>}
-                            label={strings.rememberMe}
-                        />
+                            control={<Checkbox value={remember} color="primary" onChange={event => setRemember(event.target.checked)}/>}
+                            label={strings.rememberMe}/>
                         <Button type="submit" fullWidth variant="contained" color="primary">
                             {strings.signIn}
                         </Button>

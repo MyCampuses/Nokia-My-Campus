@@ -19,25 +19,28 @@ const Home = (props) => {
   const [parkingP10Data, setParking10Data] = useState(undefined);
   const {getUsageData} = API();
 
-  const parkingP5Usage = getUsageData(parkingP5Url, props);
-  parkingP5Usage.then(result => setParkingP5Data(result.count),
-  );
-  console.log(parkingP5Usage)
-  const restaurantUsage = getUsageData(restaurantUrl, props);
-  restaurantUsage.then(result => setRestaurantData(result.fill_percent),
-  );
-  console.log(restaurantUsage)
-  const parkingP10Usage = getUsageData(parkingP10Url, props);
-  parkingP10Usage.then(result => setParking10Data(result.count),
-  );
-  console.log(parkingP10Usage)
+  useEffect(()=>{
+    getUsageData(parkingP5Url, props).then((json)=>{
+      console.log(json);
+      setParkingP5Data(json.percent)
+    });
 
+    getUsageData(restaurantUrl, props).then((json)=>{
+      console.log(json);
+      setRestaurantData(json.fill_percent)
+    });
+
+    getUsageData(parkingP10Url, props).then((json)=>{
+      console.log(json);
+      setParking10Data(json.percent)
+    });
+  },[]);
 
   return (
       <Container>
-        <Button>{parkingP5Data}</Button>
-        <Button>{restaurantData}</Button>
-        <Button>{parkingP10Data}</Button>
+        <Button>{parkingP5Data}% P5</Button>
+        <Button>{restaurantData}% Rest</Button>
+        <Button>{parkingP10Data}% P10</Button>
       </Container>
 
   );
