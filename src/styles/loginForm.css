@@ -1,26 +1,35 @@
 .login {
-    margin-top: 8em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    padding-top: 1rem;
 }
-
-.background{
-    background-image: url("../assets/loginBackground.png");
-}
-
-.logo{
-    margin: 1em;
-    background-color: blue;
-}
-
-.form{
+.logoImg{
     width: 100%;
-    margin-top: 1em;
+    height: auto;
+}
+.loginP{
+    padding-top: 1rem;
+    color: white;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+.formLinks{
+    color: #21a1ee;
+    text-decoration: underline;
 }
 
-.submit{
-    margin: 3em;
+
+.formBtn{
+    padding-top: 0.5rem;
+    padding-bottom: 2rem;
+}
+
+
+
+/* For later use if we want to make this app scale better for desktop
+@media only screen and (min-width: 1200px) {
+    .login{
+        max-width: 45%;
+    }
 
 }
+
+ */
