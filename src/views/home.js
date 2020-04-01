@@ -30,18 +30,15 @@ const Home = (props) => {
     window.location.href = url
   };
 
-
-
-
   useEffect(() => {
-    getUsageData(parkingP5Url, props).
-        then(result => setParkingP5Data(result.percent));
-    getUsageData(restaurantUrl, props).
-        then(result => setRestaurantData(result.fill_percent));
-    getUsageData(parkingP10Url, props).
-        then(result => setParking10Data(result.percent));
-    getUsageData(parkingP10TopUrl, props).
-        then(result => setParkingP10TopData(result.percent));
+    getUsageData(parkingP5Url, props)
+        .then(result => setParkingP5Data(result.percent));
+    getUsageData(restaurantUrl, props)
+        .then(result => setRestaurantData(result.fill_percent));
+    getUsageData(parkingP10Url, props)
+        .then(result => setParking10Data(result.percent));
+    getUsageData(parkingP10TopUrl, props)
+        .then(result => setParkingP10TopData(result.percent));
   },[]);
 
   const homeTheme = createMuiTheme({
