@@ -69,7 +69,7 @@ const Home = (props) => {
     progressHeadLine: {
       position: 'absolute',
       width: '100%',
-      height: '100%',
+      height: '20px',
       marginLeft: '30px',
       textAlign: 'left',
       display: 'flex',
