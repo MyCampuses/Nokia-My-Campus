@@ -17,7 +17,7 @@ const App=()=> {
   return (
 
     <div className="App">
-      <P10/>
+      <Login/>
     </div>
   );
 };
