@@ -11,8 +11,10 @@ const fetchPostUrl = async (url,data) => {
         },
         body: JSON.stringify(data)
     });
-    return response.json();
+    return await response.json()
 };
+
+
 const fetchGetUrl = async (url, userKey) => {
     const {read} = LocalStorageOperations();
     const userToken = read(userKey);
@@ -22,23 +24,27 @@ const fetchGetUrl = async (url, userKey) => {
             authorization: userToken.token,
         },
     });
-    return await response.json();
-
+    return response.json()
 };
-const checkUserLogged = async (userKey) => {
+
+
+
+const checkUserLogged = (userKey) => {
     const {read} = LocalStorageOperations();
     console.log(userKey);
-    return await read(userKey);
+    return read(userKey);
 };
 
 
 const API = () => {
 
     const loginAsync = async (loginData,props) =>{
-        return await fetchPostUrl(loginUrl, loginData)
+        return fetchPostUrl(loginUrl, loginData)
     };
-    const getUsageData = async (url, props) => {
-        return await fetchGetUrl(url ,'user')
+    const getUsageData = (url, props) => {
+        return fetchGetUrl(url ,'user').then((json)=>{
+            return json
+        })
     };
 
     return {
