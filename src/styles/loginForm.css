@@ -1,5 +1,5 @@
 .login {
-    padding-top: 2rem;
+    padding-top: 1rem;
 }
 .logoImg{
     width: 100%;
@@ -21,20 +21,8 @@
     padding-top: 0.5rem;
     padding-bottom: 2rem;
 }
-.ui.input{
-    border: 1px solid white;
-    border-radius: 8px;
-    height: 3rem;
-    font-size: 2rem;
-    color: white;
-}
-.ui.form .field > label{
-    color: white !important;
-}
-.ui.form .field .ui.input input{
-    color: white;
-    text-align: center;
-}
+
+
 
 /* For later use if we want to make this app scale better for desktop
 @media only screen and (min-width: 1200px) {

@@ -46,6 +46,7 @@ const Login = (props) => {
         json.then((result) => {
             console.log(result);
             if (!result.errors) { // Check if the result contains errors
+                window.location.href = '/home';
                 alert('Signed In!');
                 if (remember) { // If Remember me is checked -> save users info to LocalStorage
                     let json = {username: result.username, token: result.token};
@@ -94,6 +95,11 @@ const Login = (props) => {
                     },
                 },
             },
+            MuiInputBase:{
+                input:{
+                    color:blue[50]
+                }
+            },
             MuiFormLabel: {
                 root: {
                     // "&$focused": {
@@ -112,6 +118,11 @@ const Login = (props) => {
                     color:blue[50]
                 },
             },
+            MuiTypography:{
+                body1:{
+                    color:blue[50]
+                }
+            }
         },
     });
 
