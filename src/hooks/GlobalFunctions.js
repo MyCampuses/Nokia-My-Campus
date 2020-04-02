@@ -5,6 +5,5 @@ const GlobalFunctions = () => {
   return {
     onItemClickNavigate
   };
-
 };
 export default GlobalFunctions;
