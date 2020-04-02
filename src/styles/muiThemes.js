@@ -1,5 +1,5 @@
 import {createMuiTheme} from "@material-ui/core";
-import {blue} from "@material-ui/core/colors";
+import {blue, red} from "@material-ui/core/colors";
 
 
 const MuiThemes = () => {

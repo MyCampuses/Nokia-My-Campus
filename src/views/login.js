@@ -94,11 +94,7 @@ const Login = (props) => {
                   onChange={event => setPassword(event.target.value)}
                   value={password}
               />
-              <FormControlLabel
-                  control={<Checkbox value={remember} color="primary"
-                                     onChange={event => setRemember(
-                                         event.target.checked)}/>}
-                  label={strings.rememberMe}/>
+
               <Button type="submit" fullWidth variant="contained"
                       color="primary">
                 {strings.signIn}

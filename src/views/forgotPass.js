@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core';
 import strings from "../localization";
 
-
 const ForgotPassword = (props) => {
     const {FormTheme,setBackgroundBlue} = MuiThemes();
     const [email, setEmail] = useState('');
@@ -21,7 +20,7 @@ const ForgotPassword = (props) => {
     });
 
     const handleSubmit = () =>{
-
+        //TODO FORGOT PASSWORD LOGIC
     };
 
     return(
@@ -29,7 +28,6 @@ const ForgotPassword = (props) => {
             <Container component="main" maxWidth="xs">
                 <div className="form">
                     <img src={require('../assets/logo_mycampus.png')}
-
                          alt={strings.logoAlt} className="logoImg"/>
                     <Typography component="h5" color="secondary" className="typo">
                         {strings.enterEmail}
@@ -47,8 +45,8 @@ const ForgotPassword = (props) => {
                             onChange={event => setEmail(event.target.value)}
                             value={email}
                             autoComplete={"email"}
-                            autoFocus
                         />
+
                         <Button type="submit" fullWidth variant="contained" color="primary">
                             {strings.send}
                         </Button>
@@ -56,7 +54,6 @@ const ForgotPassword = (props) => {
                 </div>
             </Container>
         </ThemeProvider>
-
     )
 };
 
