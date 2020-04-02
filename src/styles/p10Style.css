@@ -21,3 +21,7 @@
 .MuiTab-root {
     border: 1px solid #707070 !important;
 }
+
+.MuiLinearProgress-root {
+    border: 1px solid #707070;
+}

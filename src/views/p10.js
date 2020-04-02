@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import p10Styles from '../styles/p10Styles'
 import commonStyles from "../styles/commonStyles";
@@ -12,21 +12,46 @@ import Box from '@material-ui/core/Box';
 import withStyles from "@material-ui/core/styles/withStyles";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from "@material-ui/core/Grid";
+import {
+    MuiPickersUtilsProvider,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
+    const [selectedDate, setSelectedDate] = useState(new Date(2020, 4, 2));
+
+    const handleDateChange = date => {
+        setSelectedDate(date);
+    };
 
     return (
-        <Typography
+        <div
             component="div"
             role="tabfragment"
             hidden={value !== index}
             id={`tabfragment-${index}`}
             aria-labelledby={`tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box p={5}>{children}</Box>}
-        </Typography>
+            {...other}>
+            <Typography>
+                {value === index && <Box p={5}>{children}</Box>}
+            </Typography>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                    margin="normal"
+                    id="dialog date picker"
+                    label="Date picker"
+                    format="dd/MM/yyyy"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                        "aria-label": "change date"
+                    }}
+                />
+            </MuiPickersUtilsProvider>
+        </div>
     );
 }
 
@@ -64,7 +89,7 @@ function ProgeBar() {
                     <div className={classes.progressLabel}>
                         <span>Application</span>
                     </div>
-                    <UtilLinearProgress variant="determinate" />
+                    <UtilLinearProgress variant="determinate" value={50}/>
                 </Grid>
             </Grid>
         </div>
@@ -79,7 +104,11 @@ const UtilLinearProgress = withStyles({
         marginLeft: "5%",
         marginRight: "5%",
         marginBottom: "1em",
+        backgroundColor: "white",
     },
+    bar: {
+        backgroundColor: "#DAEDFB"
+    }
 })(LinearProgress);
 
 const P10 = () => {
