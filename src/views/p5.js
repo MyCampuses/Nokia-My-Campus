@@ -7,10 +7,10 @@ import {
   AppBar,
   Menu,
   makeStyles,
-  Typography,
   LinearProgress,
   withStyles,
-  MenuItem
+  MenuItem,
+  Typography
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
@@ -32,8 +32,6 @@ const useStyle = makeStyles((theme) => ({
   appBar: {
     position: "static",
     backgroundColor: "#108EE9",
-    maxWidth: "100%",
-    maxHeight: "100%"
   },
   iconButton: {
     color: "white",
@@ -49,8 +47,6 @@ const useStyle = makeStyles((theme) => ({
     flexGrow: 1,
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
-    width: '10%',
-    height: 'auto',
   },
   menu: {
     marginLeft: "",
@@ -101,6 +97,11 @@ const P5 = (props) =>{
     setAnchorEl(event.currentTarget);
   };
 
+  const onItemClick = (e, url) => {
+    e.preventDefault();
+    window.location.href = url
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -114,9 +115,9 @@ const P5 = (props) =>{
             <IconButton className={classes.homeButton} edge="start" color="inherit" >
               <HomeIcon />
             </IconButton>
-              <img src={require('../assets/logo_mycampus.png')}
-                   className={classes.logo}
-                   alt={strings.logoAlt}/>
+            <Typography variant="h5" className={classes.logo}>
+              Nokia My Campus
+            </Typography>
             <IconButton className={classes.menu}
                         aria-controls="simple-menu"
                         aria-haspopup="true"
@@ -130,10 +131,10 @@ const P5 = (props) =>{
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Home</MenuItem>
-              <MenuItem onClick={handleClose}>Restaurant</MenuItem>
-              <MenuItem onClick={handleClose}>Parking 5</MenuItem>
-              <MenuItem onClick={handleClose}>Parking 10</MenuItem>
+              <MenuItem onClick={e => onItemClick(e, 'home')}>Home</MenuItem>
+              <MenuItem onClick={e => onItemClick(e, 'restaurant')}>Restaurant</MenuItem>
+              <MenuItem onClick={e => onItemClick(e, 'p5')}>Parking 5</MenuItem>
+              <MenuItem onClick={e => onItemClick(e, 'p10')}>Parking 10</MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>
