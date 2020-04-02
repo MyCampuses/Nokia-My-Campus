@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import API from '../hooks/ApiHooks';
+import GlobalFunctions from '../hooks/GlobalFunctions';
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
 import {
@@ -10,6 +11,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+
 
 const apiUrl = 'https://mycampus-server.karage.fi/api/';
 const restaurantUrl = apiUrl + 'common/restaurant/Midpoint?select=fill_percent';
@@ -25,10 +27,7 @@ const Home = (props) => {
   const [parkingP10Data, setParking10Data] = useState(undefined);
   const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
   const {getUsageData} = API();
-  const onItemClick = (e, url) => {
-    e.preventDefault();
-    window.location.href = url
-  };
+  const {onItemClickNavigate} = GlobalFunctions();
 
   useEffect(() => {
     getUsageData(parkingP5Url, props)
@@ -107,7 +106,7 @@ const Home = (props) => {
             <div className={progressBarTheme.headLine}>Current campus statistics are:
             </div>
           </Grid>
-          <Grid item xs={12} spacing={0}  onClick={e => onItemClick(e, 'restaurant')}>
+          <Grid item xs={12} spacing={0}  onClick={() => onItemClickNavigate('restaurant')}>
             <div className={progressBarTheme.progressHeadLine}>
               <span>Restaurant</span>
             </div>
@@ -119,7 +118,7 @@ const Home = (props) => {
                             value={restaurantData}>restaurantData</LinearProgress>
           </Grid>
 
-          <Grid item xs={12} spacing={0} onClick={e => onItemClick(e, 'p5')}>
+          <Grid item xs={12} spacing={0} onClick={() => onItemClickNavigate('p5')}>
             <div className={progressBarTheme.progressHeadLine}>
               <span>P5</span>
             </div>
@@ -129,7 +128,7 @@ const Home = (props) => {
             <LinearProgress variant="determinate"
                             value={parkingP5Data}>P5</LinearProgress>
           </Grid>
-          <Grid item xs={12} spacing={0}  onClick={e => onItemClick(e, 'p10')}>
+          <Grid item xs={12} spacing={0}  onClick={() => onItemClickNavigate('p10')}>
             <div className={progressBarTheme.progressHeadLine}>
               <span>P10</span>
             </div>
@@ -139,7 +138,7 @@ const Home = (props) => {
             <LinearProgress variant="determinate"
                             value={parkingP10Data}>P10</LinearProgress>
           </Grid>
-          <Grid item xs={12} spacing={0}  onClick={e => onItemClick(e, 'p10')}>
+          <Grid item xs={12} spacing={0}  onClick={()=> onItemClickNavigate('p10')}>
             <div className={progressBarTheme.progressHeadLine}>
               <span>P10</span>
             </div>
