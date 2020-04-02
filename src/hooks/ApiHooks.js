@@ -1,7 +1,6 @@
 import LocalStorageOperations from './LocalStorageOperations';
-
-const loginUrl = "https://mycampus-server.karage.fi/auth/login";
-
+import ApiUrls from './ApiUrls'
+const { loginUrl } = ApiUrls();
 
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
