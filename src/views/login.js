@@ -58,12 +58,8 @@ const Login = (props) => {
             <Container component='main' maxWidth="xs">
                 <div className="form">
                     <img src={require('../assets/logo_mycampus.png')}
-                         style={{
-                             width: '100%',
-                             height: 'auto',
-                             paddingTop: '20px',
-                         }}
-                         alt={strings.logoAlt}/>
+
+                         alt={strings.logoAlt} className="logoImg"/>
                     <Typography component="h5" color="secondary" className="typo">
                         {strings.welcome}
                     </Typography>
@@ -71,7 +67,7 @@ const Login = (props) => {
                                 className="typo">
                         {strings.signIn}
                     </Typography>
-                    <form className="form" noValidate onSubmit={handleSubmit}>
+                    <form noValidate onSubmit={handleSubmit}>
                         <TextField
                             variant="outlined"
                             margin="normal"

@@ -5,24 +5,13 @@
 .logoImg{
     width: 100%;
     height: auto;
-}
-.loginP{
-    padding-top: 1rem;
-    color: white;
-    font-size: 15px;
-    font-family: sans-serif;
-}
-.formLinks{
-    color: #21a1ee;
-    text-decoration: underline;
+    padding-top: 2rem;
 }
 
 
-.formBtn{
-    padding-top: 0.5rem;
-    padding-bottom: 2rem;
+.forgotPassform{
+    padding-top: 3rem;
 }
-
 
 
 /* For later use if we want to make this app scale better for desktop

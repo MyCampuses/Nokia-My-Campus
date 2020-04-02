@@ -27,14 +27,8 @@ const Register = (props) =>{
             <Container component="main" maxWidth="xs">
                 <div className="form">
                     <img src={require('../assets/logo_mycampus.png')}
-                         style={{
-                             width: '100%',
-                             height: 'auto',
-                             paddingTop: '20px',
-                         }}
+                         className="logoImg"
                          alt={strings.logoAlt}/>
-
-
                 </div>
             </Container>
         </ThemeProvider>
