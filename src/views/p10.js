@@ -18,6 +18,7 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
+import Navibar from "../fragments/topNavigationbar";
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
@@ -54,22 +55,6 @@ function TabFragmentHistory(props) {
         </div>
     );
 }
-/* eslint-disable no-unused-vars */
-
-import React, {useState, useEffect} from 'react';
-import Navibar from "../fragments/topNavigationbar";
-
-const P10 = (props) => {
-  const {TopNavigationbar} = Navibar();
-
-  return (
-      <div>
-        {TopNavigationbar()}
-        <p>P10 Placeholder</p>
-      </div>
-  )
-
-};
 
 function TabFragmentLive(props) {
     const {children, value, index, ...other} = props;
@@ -131,6 +116,7 @@ const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
+    const {TopNavigationbar} = Navibar();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -138,6 +124,10 @@ const P10 = () => {
 
     return (
         <Container component="main" maxWidth="lg" id="mainContainer">
+            <div>
+                {TopNavigationbar()}
+                <p>P10 Placeholder</p>
+            </div>
             <div className="p10">
                 <Typography className={p10classes.p10title} component="h1" variant="h5">P10</Typography>
             </div>
