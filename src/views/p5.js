@@ -10,7 +10,7 @@ import {
     Typography,
     LinearProgress,
     withStyles,
-    lighten
+    MenuItem
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
@@ -18,6 +18,7 @@ import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import LocalStorageOperations from "../hooks/LocalStorageOperations";
 import {border} from "@material-ui/system";
+import {Restaurant} from "@material-ui/icons";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -38,6 +39,7 @@ const useStyle = makeStyles((theme) => ({
     },
     margin: {
         margin: theme.spacing(1),
+        border: 1
     },
     homeButton: {
         marginRight: theme.spacing(2),
@@ -81,7 +83,19 @@ const BorderLinearProgress = withStyles({
 
 
 
+
 const P5 = (props) =>{
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     const classes = useStyle();
 
     return(
@@ -94,9 +108,21 @@ const P5 = (props) =>{
                     <Typography className={classes.title} variant="h5">
                         MyCampus
                     </Typography>
-                    <IconButton  edge="end" color="inherit">
+                    <IconButton  edge="end" color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                         <MenuIcon />
                     </IconButton>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={handleClose}>Home</MenuItem>
+                        <MenuItem onClick={handleClose}>Restaurant</MenuItem>
+                        <MenuItem onClick={handleClose}>Parking 5</MenuItem>
+                        <MenuItem onClick={handleClose}>Parking 10</MenuItem>
+                    </Menu>
                 </Toolbar>
             </AppBar>
             <h1>Inside levels of P5</h1>
