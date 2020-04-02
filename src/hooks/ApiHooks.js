@@ -29,14 +29,15 @@ const fetchGetUrl = async (url, userKey) => {
 
 
 
-const checkUserLogged = (userKey) => {
-    const {read} = LocalStorageOperations();
-    console.log(userKey);
-    return read(userKey);
-};
 
 
 const API = () => {
+
+    const checkUserLogged = (userKey) => {
+        const {read} = LocalStorageOperations();
+        const logged = read("user")
+        return !!logged;
+    };
 
     const loginAsync = async (loginData,props) =>{
         return fetchPostUrl(loginUrl, loginData)

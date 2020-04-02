@@ -13,18 +13,25 @@ import '../styles/form.css';
 import strings from '../localization';
 import API from '../hooks/ApiHooks';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
-
+import GlobalFunctions from "../hooks/GlobalFunctions";
 
 const Login = (props) => {
-    const {loginAsync} = API();
+    const {loginAsync, checkUserLogged} = API();
     const {FormTheme,setBackgroundBlue} = MuiThemes()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [remember, setRemember] = useState(false);
+    const [remember, setRemember] = useState(true);
     const {create, read, clear, del} = LocalStorageOperations();
+    const {onItemClickNavigate} = GlobalFunctions();
 
     useEffect(() => {
-       setBackgroundBlue();
+        setBackgroundBlue();
+
+    });
+    useEffect(()=>{
+        if (checkUserLogged("user")){
+            onItemClickNavigate("/home")
+        }
     });
 
 
@@ -43,9 +50,9 @@ const Login = (props) => {
                 if (remember) { // If Remember me is checked -> save users info to LocalStorage
                     let json = {username: result.username, token: result.token};
                     create(JSON.stringify(json), 'user');
-                    window.location.href = '/home';
+                    onItemClickNavigate('/home')
                 } else {
-                    window.location.href = '/home';
+                    onItemClickNavigate('/home')
                 }
             } else {
                 alert('Failed to Sign In');
@@ -54,6 +61,7 @@ const Login = (props) => {
     };
 
     return (
+
         <ThemeProvider theme={FormTheme}>
             <Container component='main' maxWidth="xs">
                 <div className="form">
@@ -63,10 +71,7 @@ const Login = (props) => {
                     <Typography component="h5" color="secondary" className="typo">
                         {strings.welcome}
                     </Typography>
-                    <Typography component="h1" variant="h5" color={'secondary'}
-                                className="typo">
-                        {strings.signIn}
-                    </Typography>
+
                     <form noValidate onSubmit={handleSubmit}>
                         <TextField
                             variant="outlined"
@@ -80,7 +85,7 @@ const Login = (props) => {
                             onChange={event => setEmail(event.target.value)}
                             value={email}
                             autoComplete={"email"}
-                            autoFocus
+
                         />
                         <TextField
                             color={"secondary"}
@@ -95,20 +100,18 @@ const Login = (props) => {
                             onChange={event => setPassword(event.target.value)}
                             value={password}
                         />
-                        <FormControlLabel
-                            control={<Checkbox value={remember} color="primary" onChange={event => setRemember(event.target.checked)}/>}
-                            label={strings.rememberMe}/>
+
                         <Button type="submit" fullWidth variant="contained" color="primary">
                             {strings.signIn}
                         </Button>
                         <Grid style={{padding: "1em"}}>
                             <Grid item xs style={{padding: "1em"}}>
-                                <Link  onClick={()=>{window.location.href = '/forgot_password'}}>
+                                <Link  onClick={()=>{onItemClickNavigate('/forgot_password')}}>
                                     {strings.forgotPass}
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link onClick={()=>{window.location.href = '/register'}}>
+                                <Link onClick={()=>{onItemClickNavigate('/register')}}>
                                     {strings.noAccount}
                                 </Link>
                             </Grid>
