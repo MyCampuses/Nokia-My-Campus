@@ -15,7 +15,7 @@ cache:
 script:
   - npm test
   - npm run build
-  - lhci autorun
+
 
 before_deploy:
   - npm install netlify-cli -g

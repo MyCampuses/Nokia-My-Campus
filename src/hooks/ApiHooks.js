@@ -1,7 +1,6 @@
 import LocalStorageOperations from './LocalStorageOperations';
-
-const loginUrl = "https://mycampus-server.karage.fi/auth/login";
-
+import ApiUrls from './ApiUrls'
+const { loginUrl } = ApiUrls();
 
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
@@ -11,8 +10,10 @@ const fetchPostUrl = async (url,data) => {
         },
         body: JSON.stringify(data)
     });
-    return response.json();
+    return await response.json()
 };
+
+
 const fetchGetUrl = async (url, userKey) => {
     const {read} = LocalStorageOperations();
     const userToken = read(userKey);
@@ -22,29 +23,24 @@ const fetchGetUrl = async (url, userKey) => {
             authorization: userToken.token,
         },
     });
-    return await response.json();
-
+    return response.json()
 };
-const checkUserLogged = async (userKey) => {
-    const {read} = LocalStorageOperations();
-    console.log(userKey);
-    return await read(userKey);
-};
-
 
 const API = () => {
 
     const loginAsync = async (loginData,props) =>{
-        return await fetchPostUrl(loginUrl, loginData)
+        console.log(loginUrl);
+        return fetchPostUrl(loginUrl, loginData)
     };
-    const getUsageData = async (url, props) => {
-        return await fetchGetUrl(url ,'user')
+    const getUsageData = (url, props) => {
+        return fetchGetUrl(url ,'user').then((json)=>{
+            return json
+        })
     };
 
     return {
         loginAsync,
         getUsageData,
-        checkUserLogged
     }
 
 };
