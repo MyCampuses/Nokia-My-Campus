@@ -9,6 +9,7 @@ import Register from "../views/register";
 
 const routes = {
   '/': () => <Login/>,
+  '/login': () => <Login/>,
   '/home': () => <Home/>,
   '/p5': () => <P5/>,
   '/p10': () => <P10/>,

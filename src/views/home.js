@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-
 import API from '../hooks/ApiHooks';
+import ApiUrls from '../hooks/ApiUrls';
 import GlobalFunctions from '../hooks/GlobalFunctions';
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
@@ -12,15 +12,6 @@ import {
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
-
-const apiUrl = 'https://mycampus-server.karage.fi/api/';
-const restaurantUrl = apiUrl + 'common/restaurant/Midpoint?select=fill_percent';
-const parkingP5Url = apiUrl + 'common/parking/status/P5';
-const parkingP10Url = apiUrl + 'common/parking/status/P10';
-const parkingP10TopUrl = apiUrl + 'common/parking/status/P10TOP';
-const campusMapP5Url = 'https://mycampus-server.karage.fi/style/static/images/campus_map_P5.png';
-const campusMapP10Url = 'https://mycampus-server.karage.fi/style/static/images/campus_map_P10.png';
-
 const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
@@ -28,6 +19,7 @@ const Home = (props) => {
   const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
   const {getUsageData} = API();
   const {onItemClickNavigate} = GlobalFunctions();
+  const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
 
   useEffect(() => {
     getUsageData(parkingP5Url, props)

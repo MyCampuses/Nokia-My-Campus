@@ -1,7 +1,6 @@
 import LocalStorageOperations from './LocalStorageOperations';
-
-const loginUrl = "https://mycampus-server.karage.fi/auth/login";
-
+import ApiUrls from './ApiUrls'
+const { loginUrl } = ApiUrls();
 
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
@@ -27,19 +26,10 @@ const fetchGetUrl = async (url, userKey) => {
     return response.json()
 };
 
-
-
-
-
 const API = () => {
 
-    const checkUserLogged = (userKey) => {
-        const {read} = LocalStorageOperations();
-        const logged = read("user")
-        return !!logged;
-    };
-
     const loginAsync = async (loginData,props) =>{
+        console.log(loginUrl);
         return fetchPostUrl(loginUrl, loginData)
     };
     const getUsageData = (url, props) => {
@@ -51,7 +41,6 @@ const API = () => {
     return {
         loginAsync,
         getUsageData,
-        checkUserLogged
     }
 
 };
