@@ -6,41 +6,27 @@ import {
     Container,
     ThemeProvider,
     Typography,
-    TextField, Checkbox, Grid, Link, createMuiTheme,
+    TextField, Checkbox, Grid, Link,
 } from '@material-ui/core';
-
-import '../styles/loginForm.css';
+import MuiThemes from '../styles/muiThemes'
+import '../styles/form.css';
 import strings from '../localization';
 import API from '../hooks/ApiHooks';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
-import {blue} from '@material-ui/core/colors';
+
 
 const Login = (props) => {
     const {loginAsync} = API();
+    const {FormTheme,setBackgroundBlue} = MuiThemes()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
     const {create, read, clear, del} = LocalStorageOperations();
 
-
-    const setBackground = () => {
-        let root = document.getElementById('root-html');
-        root.style.backgroundImage = "url(loginBackground.png)";
-       // root.style.backgroundColor="#0d47a1"
-        root.style.backgroundSize = "cover";
-        root.style.backgroundRepeat = "no-repeat";
-        root.style.backgroundPosition = "fixed";
-    };
-
-
     useEffect(() => {
-       setBackground();
+       setBackgroundBlue();
     });
 
-    const handleKeyboard = () =>{
-        window.scrollTo(0,0);
-        document.body.scrollTop = 0;
-    };
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -66,76 +52,11 @@ const Login = (props) => {
             }
         });
     };
-    const FormTheme = createMuiTheme({
-        palette: {
-            primary: {
-                main: blue[500],
-            },
-            secondary: {
-                main: blue[50],
-            },
-        },
-        typography: {
-            fontSize: 12,
-            button: {
-                fontSize: 16,
-            },
-        },
-        overrides: {
-            MuiOutlinedInput: {
-                root: {
-                    position: 'relative',
-                    '& $notchedOutline': {
-                        borderColor: blue[50],
-                    },
-                    '&:hover:not($disabled):not($focused):not($error) $notchedOutline': {
-                        borderColor: blue[50],
-                        // Reset on touch devices, it doesn't add specificity
-                        '@media (hover: none)': {
-                            borderColor: blue[50],
-                        },
-                    },
-                    '&$focused $notchedOutline': {
-                        borderColor: blue[50],
-                        borderWidth: 1,
-                    },
-                },
-            },
-            MuiInputBase:{
-                input:{
-                    color:blue[50]
-                }
-            },
-            MuiFormLabel: {
-                root: {
-                    // "&$focused": {
-                    color: blue[50],
-                    // }
-                },
-            },
-            MuiButton: {
-                containedPrimary: {
-                    color: blue[50],
-                    marginTop: '0.5em',
-                },
-            },
-            MuiCheckbox:{
-                colorPrimary:{
-                    color:blue[50]
-                },
-            },
-            MuiTypography:{
-                body1:{
-                    color:blue[50]
-                }
-            }
-        },
-    });
 
     return (
         <ThemeProvider theme={FormTheme}>
             <Container component='main' maxWidth="xs">
-                <div className="login">
+                <div className="form">
                     <img src={require('../assets/logo_mycampus.png')}
                          style={{
                              width: '100%',
@@ -160,9 +81,9 @@ const Login = (props) => {
                             id="email"
                             label={strings.emailAddress}
                             name="email"
-                            autoComplete="email"
                             onChange={event => setEmail(event.target.value)}
                             value={email}
+                            autoComplete={"email"}
                             autoFocus
                         />
                         <TextField
@@ -175,7 +96,6 @@ const Login = (props) => {
                             label={strings.password}
                             type="password"
                             id="password"
-                            autoComplete="current-password"
                             onChange={event => setPassword(event.target.value)}
                             value={password}
                         />
@@ -187,12 +107,12 @@ const Login = (props) => {
                         </Button>
                         <Grid style={{padding: "1em"}}>
                             <Grid item xs style={{padding: "1em"}}>
-                                <Link href="#" color="primary">
+                                <Link  onClick={()=>{window.location.href = '/forgot_password'}}>
                                     {strings.forgotPass}
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#">
+                                <Link onClick={()=>{window.location.href = '/register'}}>
                                     {strings.noAccount}
                                 </Link>
                             </Grid>

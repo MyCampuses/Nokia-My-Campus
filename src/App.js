@@ -7,10 +7,6 @@ import routes from './hooks/Routes';
 import { useRoutes } from 'hookrouter';
 
 
-
-
-
-
 const App=()=> {
   const { loginAsync, checkUserLogged } = API();
   const routeResult = useRoutes(routes);
