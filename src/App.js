@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 
 import './styles/App.css';
 import routes from './hooks/Routes';
-import {useRoutes} from 'hookrouter';
+import {useRoutes, navigate} from 'hookrouter';
 import Authentication from './hooks/Authentication';
+import LocalStorageOperations from './hooks/LocalStorageOperations';
 
-const App = () => {
-  const {isLoggedIn} = Authentication();
+const App = (props) => {
   const routeResult = useRoutes(routes);
+  const [user, setUser] = useState(null);
 
   return (
       <div className="App">

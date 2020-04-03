@@ -1,15 +1,10 @@
 import LocalStorageOperations from './LocalStorageOperations';
 
-const Authentication = () => {
+const Authentication = (props) => {
   const {read} = LocalStorageOperations();
-  const isLoggedIn = () => {
-    let user = read('user');
-    return !!user
+  const user = read('user');
+  return !!user
 
-  };
-  return {
-    isLoggedIn,
-  };
 };
 
 export default Authentication;

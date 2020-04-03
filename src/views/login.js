@@ -23,9 +23,12 @@ const Login = (props) => {
   const [remember, setRemember] = useState(false);
   const {create, read, clear, del} = LocalStorageOperations();
 
+
   useEffect(() => {
       setBackgroundBlue();
   });
+  // Check if user is logged in to redirect to Home
+
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
