@@ -22,10 +22,6 @@ const Register = (props) =>{
     const [emailErrorMsg,setEmailErrorMsg]=useState("")
     const [passwordErrorMsg, setPasswordErrorMsg]=useState("")
 
-
-
-
-
     const [formData, setFormData] = useState({
         username: "",
         email:"",
@@ -73,7 +69,7 @@ const Register = (props) =>{
     };
 
     const validateEmail = () =>{
-        const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
         if (emailReqEx.test(formData.email)){
             setEmailError(false);
             setEmailErrorMsg("")
