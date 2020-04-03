@@ -18,14 +18,12 @@ const Register = (props) =>{
     const [usernameError, setUsernameError] = useState(false);
     const [emailError,setEmailError] = useState(false);
     const [passwordError, setPasswordError] =useState(false);
+    const [userErrorMsg,setUserErrorMsg]= useState("")
+    const [emailErrorMsg,setEmailErrorMsg]=useState("")
+    const [passwordErrorMsg, setPasswordErrorMsg]=useState("")
 
 
 
-    const [errorMsg,setErrorsMsg]= useState({
-        usernameErrorMsg: "",
-        emailErrorMsg:"",
-        passwordErrorMsg:""
-    });
 
 
     const [formData, setFormData] = useState({
@@ -64,10 +62,12 @@ const Register = (props) =>{
     const validateUsername = () =>{
         if (formData.username.length >= 2 && formData.username.length <= 20) {
             setUsernameError(false);
+            setUserErrorMsg("")
             enableSubmit()
         }
         else {
             setUsernameError(true);
+            setUserErrorMsg(strings.usernameError)
             enableSubmit()
         }
     };
@@ -76,19 +76,23 @@ const Register = (props) =>{
         const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         if (emailReqEx.test(formData.email)){
             setEmailError(false);
+            setEmailErrorMsg("")
             enableSubmit()
         } else {
             setEmailError(true);
+            setEmailErrorMsg(strings.pleaseEnterEmail)
             enableSubmit()
         }
     };
 
     const validatePasswords = () => {
-        if (formData.password === formData.confirmPassword && formData.password.length>0 && formData.confirmPassword.length>0){
+        if (formData.password === formData.confirmPassword && formData.password.length !==0 && formData.confirmPassword.length!==0){
             setPasswordError(false);
+            setPasswordErrorMsg("")
             enableSubmit()
         } else {
             setPasswordError(true);
+            setPasswordErrorMsg(strings.passwordError)
             enableSubmit()
         }
     };
@@ -116,7 +120,7 @@ const Register = (props) =>{
                             onChange={updateField}
                             onBlur={validateUsername}
                             error={usernameError}
-                            helperText={errorMsg.usernameErrorMsg}
+                            helperText={userErrorMsg}
                             value={formData.username}
                         />
                         <TextField
@@ -133,7 +137,7 @@ const Register = (props) =>{
                             value={formData.email}
                             autoComplete={"email"}
                             error={emailError}
-                            helperText={errorMsg.emailErrorMsg}
+                            helperText={emailErrorMsg}
                         />
                         <TextField
                             color={"secondary"}
@@ -148,7 +152,7 @@ const Register = (props) =>{
                             onChange={updateField}
                             onBlur={validatePasswords}
                             error={passwordError}
-                            helperText={errorMsg.passwordErrorMsg}
+                            helperText={passwordErrorMsg}
                             value={formData.password}
                         />
                         <TextField
@@ -165,7 +169,7 @@ const Register = (props) =>{
                             value={formData.confirmPassword}
                             error={passwordError}
                             onBlur={validatePasswords}
-                            helperText={errorMsg.passwordErrorMsg}
+                            helperText={passwordErrorMsg}
                         />
                         <Button type="submit" fullWidth variant="contained" color="primary" disabled={btnDisable}>
                             {strings.signUp}
