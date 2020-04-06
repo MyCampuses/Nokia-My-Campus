@@ -6,11 +6,11 @@ import P10 from '../views/p10';
 import Restaurant from '../views/restaurant';
 import ForgotPassword from '../views/forgotPass'
 import Register from "../views/register";
-
+import AuthLoading from "../views/authLoading";
 
 const routes = {
   '/home': () => <Home/>,
-  '/': () => <Login/>,
+  '/': () => <AuthLoading/>,
   '/login': () => <Login/>,
   '/p5': () => <P5/>,
   '/p10': () => <P10/>,

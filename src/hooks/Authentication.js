@@ -6,9 +6,9 @@ const Authentication = () => {
   const isLoggedIn = () => {
     let user = read('user');
     if (user!==null){
-      return false
-    } else{
       return true
+    } else{
+      return false
     }
   };
 
