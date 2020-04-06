@@ -7,14 +7,17 @@ import Restaurant from '../views/restaurant';
 import ForgotPassword from '../views/forgotPass'
 import Register from "../views/register";
 
+
 const routes = {
+  '/home': () => <Home/>,
   '/': () => <Login/>,
   '/login': () => <Login/>,
-  '/home': () => <Home/>,
   '/p5': () => <P5/>,
   '/p10': () => <P10/>,
   '/restaurant': () => <Restaurant/>,
   '/register': () => <Register/>,
   '/forgot_password': () => <ForgotPassword/>,
 };
+
+
 export default routes;

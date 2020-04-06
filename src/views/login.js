@@ -20,7 +20,7 @@ const Login = (props) => {
   const {FormTheme, setBackgroundBlue} = MuiThemes();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
+  const [remember, setRemember] = useState(true);
   const {create, read, clear, del} = LocalStorageOperations();
 
   useEffect(() => {
