@@ -26,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     zIndex: 1,
-    maxHeight: "50px", // borderlinearprogress root.height
+    maxHeight: "50px",
     textAlign: "center",
     textColor: "#000000",
     display: "flex",

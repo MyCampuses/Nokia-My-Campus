@@ -3,6 +3,7 @@ import {AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar, Typography} fro
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import GlobalFunctions from "../hooks/GlobalFunctions";
+import Logout from "../hooks/Logout";
 
 const useStyle = makeStyles((theme) => ({
     toolBar: {
@@ -38,6 +39,13 @@ const Navibar = () => {
 
         const [anchorEl, setAnchorEl] = useState(null);
         const {onItemClickNavigate} = GlobalFunctions();
+        const {removeToken} = Logout;
+
+        const logoutOnClick = () => {
+            removeToken();
+            console.log("user has been removed");
+            window.location.href = '/login';
+        };
 
         const handleClick = (event) => {
             setAnchorEl(event.currentTarget);
@@ -57,7 +65,7 @@ const Navibar = () => {
                             <HomeIcon/>
                         </IconButton>
                         <Typography variant="h5" className={classes.logo}>
-                            Nokia My Campus
+                            Nokia MyCampus
                         </Typography>
                         <IconButton className={classes.menu}
                                     aria-controls="simple-menu"
@@ -76,6 +84,7 @@ const Navibar = () => {
                             <MenuItem onClick={() => onItemClickNavigate('restaurant')}>Restaurant</MenuItem>
                             <MenuItem onClick={() => onItemClickNavigate('p5')}>Parking 5</MenuItem>
                             <MenuItem onClick={() => onItemClickNavigate('p10')}>Parking 10</MenuItem>
+                            <MenuItem onClick={() => logoutOnClick()}>Logout</MenuItem>
                         </Menu>
                     </Toolbar>
                 </AppBar>
