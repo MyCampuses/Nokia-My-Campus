@@ -13,7 +13,6 @@ const App = () => {
   const routeResult = useRoutes(routes);
   //useRedirect('/login','/home', );
 
-
   return (
       <div className="App">
           {routeResult}
