@@ -95,9 +95,6 @@ const Home = (props) => {
         <Grid container spacing={1} component='home' maxWidth='xs'
               justify="space-between">
           <Grid item xs={12} spacing={0}>
-            <div className={progressBarTheme.headLine}>Welcome to MyCampus</div>
-          </Grid>
-          <Grid item xs={12} spacing={0}>
             <div className={progressBarTheme.headLine}>Current campus statistics are:
             </div>
           </Grid>
