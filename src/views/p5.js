@@ -70,7 +70,7 @@ const P5 = (props) =>{
       <div className={classes.root}>
         {TopNavigationbar()}
         <h1>Inside levels of P5</h1>
-        <h3>Live Utilization</h3>
+        <h3 align="screenLeft">Live Utilization</h3>
         <div className={classes.progressLabel}>
           <span>{parkingP5Data}%</span>
         </div>

@@ -53,7 +53,7 @@ const Navibar = () => {
             <Fragment>
                 <AppBar className={classes.appBar}>
                     <Toolbar className={classes.toolBar}>
-                        <IconButton className={classes.homeButton} edge="start" color="inherit">
+                        <IconButton className={classes.homeButton} edge="start" color="inherit" onClick={() => onItemClickNavigate('home')}>
                             <HomeIcon/>
                         </IconButton>
                         <Typography variant="h5" className={classes.logo}>
