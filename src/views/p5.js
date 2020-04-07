@@ -10,9 +10,11 @@ import NaviBar from '../fragments/topNavigationbar';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import Authentication from '../hooks/Authentication';
-import {XYPlot, VerticalBarSeries} from 'react-vis';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import {
+  BarChart, XAxis,
+} from 'recharts';
+import YAxis from 'recharts/lib/cartesian/YAxis';
+import Bar from 'recharts/lib/cartesian/Bar';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -38,12 +40,11 @@ const useStyle = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  p5chart: {
+  p5Box: {
+    height: '200px',
     width: '100%',
-    height: '100%',
-    maxHeight: '200px',
-    margin: theme.spacing(1)
-  }
+  },
+
 }));
 
 const BorderLinearProgress = withStyles({
@@ -74,39 +75,45 @@ const P5 = (props) => {
   const thisDate = '02-04-2020';
   const {redirectToLogin} = Authentication();
 
-  useEffect(()=>{
-    redirectToLogin()
-  },[]); // eslint-disable-line
+  useEffect(() => {
+    redirectToLogin();
+  }, []); // eslint-disable-line
 
   useEffect(() => {
-    getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
+    getUsageData(parkingP5Url, props).
+        then(result => setParkingP5Data(result.percent));
   }, []);// eslint-disable-line
 
   const getChartData = () => {
-    getUsageData(selectDate(thisLoc, thisDate))
-      .then(result => dataToChart(result.samples)).then(result => setChartData(result));
+    getUsageData(selectDate(thisLoc, thisDate)).
+        then(result => dataToChart(result.samples)).
+        then(result => setChartData(result));
   };
 
   const dataToChart = (json) => {
     if (json !== undefined) {
       const chart = [];
       for (let key in json) {
-        console.log(key)
+        console.log(key);
         let xc = key;
-        const xcInt = parseInt(xc)
+        const xcInt = parseInt(xc);
         let yc = json[key].percent;
         let tempJson = {x: xcInt, y: yc};
         chart.push(tempJson);
       }
       console.log(chart);
-      return chart
+      return chart;
     }
   };
   useEffect(() => {
-    getChartData()
-  },[]);// eslint-disable-line
-
-  console.log("Chart:" + JSON.stringify(chartData))
+    getChartData();
+  }, []);// eslint-disable-line
+  console.log('Chart:' + JSON.stringify(chartData));
+  const renderBarChart = (<BarChart width={500} height={300} data={chartData}>
+    <XAxis/>
+    <Bar dataKey="y" fill="#0000FF"/>
+    <YAxis barSize={30} fill="#8884d8"/>
+  </BarChart>);
 
   return (
       <div className={classes.root}>
@@ -121,7 +128,7 @@ const P5 = (props) => {
             variant="determinate"
             value={parkingP5Data}
         />
-        <Box className={classes.p5chart}><XYPlot height={300} width={600}><VerticalBarSeries data={chartData} color="blue"/></XYPlot></Box>
+        <Box className={classes.p5Box}>{renderBarChart}</Box>
       </div>
   );
 };
