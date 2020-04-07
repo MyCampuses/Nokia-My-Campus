@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import React, {useEffect, useState} from 'react';
-import Navibar from "../fragments/topNavigationbar";
+import NaviBar from "../fragments/topNavigationbar";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -65,12 +65,12 @@ function ListContainer() {
 }
 
 const Restaurant = (props) => {
-    const {TopNavigationbar} = Navibar();
+    const {TopNavigationBar} = NaviBar();
 
     return (
         <div>
             <div>
-                {TopNavigationbar()}
+                {TopNavigationBar()}
                 <p>Queue Times</p>
             </div>
             <ListContainer/>

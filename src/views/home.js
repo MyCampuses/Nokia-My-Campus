@@ -11,7 +11,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import Navibar from "../fragments/topNavigationbar";
+import NaviBar from "../fragments/topNavigationbar";
 
 const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -88,11 +88,11 @@ const Home = (props) => {
     },
   }));
   const progressBarTheme = useStyles();
-  const {TopNavigationbar} = Navibar();
+  const {TopNavigationBar} = NaviBar();
 
   return (
       <ThemeProvider theme={homeTheme}>
-        {TopNavigationbar()}
+        {TopNavigationBar()}
         <Grid container spacing={1} component='home' maxWidth='xs'
               justify="space-between">
           <Grid item xs={12} spacing={0}>
