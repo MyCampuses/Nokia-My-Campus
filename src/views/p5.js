@@ -11,7 +11,7 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import Authentication from '../hooks/Authentication';
 import {
-  BarChart, XAxis,
+  BarChart, CartesianGrid, XAxis,
 } from 'recharts';
 import YAxis from 'recharts/lib/cartesian/YAxis';
 import Bar from 'recharts/lib/cartesian/Bar';
@@ -93,6 +93,8 @@ const P5 = (props) => {
   const dataToChart = (json) => {
     if (json !== undefined) {
       const chart = [];
+      let baseValue = {x: 0, y: 100};
+      chart.push(baseValue);
       for (let key in json) {
         console.log(key);
         let xc = key;
@@ -109,10 +111,12 @@ const P5 = (props) => {
     getChartData();
   }, []);// eslint-disable-line
   console.log('Chart:' + JSON.stringify(chartData));
+
   const renderBarChart = (<BarChart width={500} height={300} data={chartData}>
     <XAxis/>
+    <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
     <Bar dataKey="y" fill="#0000FF"/>
-    <YAxis barSize={30} fill="#8884d8"/>
+    <YAxis barSize={50} fill="#8884d8"/>
   </BarChart>);
 
   return (
