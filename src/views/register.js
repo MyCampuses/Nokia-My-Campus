@@ -174,7 +174,6 @@ const Register = (props) =>{
                 </div>
             </Container>
         </ThemeProvider>
-
     )
 };
 export default Register

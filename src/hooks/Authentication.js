@@ -5,11 +5,7 @@ const Authentication = () => {
 
   const isLoggedIn = () => {
     let user = read('user');
-    if (user!==null){
-      return true
-    } else{
-      return false
-    }
+    return user !== null;
   };
 
   const checkIfLogged = () =>{
@@ -21,10 +17,25 @@ const Authentication = () => {
     }
   };
 
+  const redirectToLogin = () =>{
+      const login = read("user");
+      if (login===null){
+        window.location.href = "/login"
+      }
+  };
+
+  const redirectFromLogin = () =>{
+    const login = read("user")
+    if (login !== null){
+      window.location.href = "/home"
+    }
+  };
 
   return {
     isLoggedIn,
-    checkIfLogged
+    checkIfLogged,
+    redirectToLogin,
+    redirectFromLogin
   };
 };
 

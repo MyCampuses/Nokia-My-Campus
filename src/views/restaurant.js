@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 
 import React, {useEffect, useState} from 'react';
-import Navibar from "../fragments/topNavigationbar";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import {Box} from "@material-ui/core";
 import API from "../hooks/ApiHooks";
 import ApiUrls from '../hooks/ApiUrls';
+import Authentication from '../hooks/Authentication';
+import Navibar from "../fragments/topNavigationbar";
+
 
 const lines = new Map([[1, "Favourites 1"], [2, "Favourites 2"],
     [3, "Pizza"], [4, "Round Table"], [5, "Bowl"],
@@ -31,6 +33,8 @@ function ListContainer() {
     useEffect(() => {
         getQueueTimes().then()
     }, []);// eslint-disable-line
+
+
 
     return (<Box>
             {[...lines.keys()].map(mapkey => (
@@ -65,12 +69,16 @@ function ListContainer() {
 }
 
 const Restaurant = (props) => {
-    const {TopNavigationbar} = Navibar();
+    const {redirectToLogin} = Authentication();
+    useEffect(()=>{
+        redirectToLogin()
+    },[]); // eslint-disable-line
+    const {TopNavigationBar} = Navibar();
 
     return (
         <div>
             <div>
-                {TopNavigationbar()}
+                {TopNavigationBar()}
                 <p>Queue Times</p>
             </div>
             <ListContainer/>

@@ -11,7 +11,8 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import Navibar from "../fragments/topNavigationbar";
+import Authentication from '../hooks/Authentication';
+import NaviBar from "../fragments/topNavigationbar";
 
 const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -21,20 +22,26 @@ const Home = (props) => {
   const {getUsageData} = API();
   const {onItemClickNavigate} = GlobalFunctions();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
+  const {redirectToLogin} = Authentication();
+
+  useEffect(()=>{
+    redirectToLogin()
+  },[]); // eslint-disable-line
+
+  // Check if user is logged in to redirect to Login
 
   useEffect(() => {
-    getUsageData(parkingP5Url, props)
-        .then(result => setParkingP5Data(result.percent));
-    getUsageData(restaurantUrl, props)
-        .then(result => setRestaurantData(result.fill_percent));
-    getUsageData(parkingP10Url, props)
-        .then(result => setParking10Data(result.percent));
-    getUsageData(parkingP10TopUrl, props)
-        .then(result => setParkingP10TopData(result.percent));
 
-  },[]);// eslint-disable-line
+    getUsageData(parkingP5Url, props).
+        then(result => setParkingP5Data(result.percent));
+    getUsageData(restaurantUrl, props).
+        then(result => setRestaurantData(result.fill_percent));
+    getUsageData(parkingP10Url, props).
+        then(result => setParking10Data(result.percent));
+    getUsageData(parkingP10TopUrl, props).
+        then(result => setParkingP10TopData(result.percent));
 
-
+  }, []);// eslint-disable-line
   const homeTheme = createMuiTheme({
     flexGrow: 1,
     overrides: {
@@ -58,7 +65,7 @@ const Home = (props) => {
     headLine: {
       marginTop: '10px',
       marginBottom: '10px',
-      color: 'blue'
+      color: 'blue',
     },
     progressHeadLine: {
       position: 'absolute',
@@ -70,7 +77,7 @@ const Home = (props) => {
       zIndex: 1,
       '& span': {
         width: '100%',
-      }
+      },
     },
     progressLabel: {
       position: 'absolute',
@@ -87,18 +94,20 @@ const Home = (props) => {
     },
   }));
   const progressBarTheme = useStyles();
-  const {TopNavigationbar} = Navibar();
+  const {TopNavigationBar} = NaviBar();
 
   return (
       <ThemeProvider theme={homeTheme}>
-        {TopNavigationbar()}
+        {TopNavigationBar()}
         <Grid container spacing={1} component='home' maxWidth='xs'
               justify="space-between">
           <Grid item xs={12} spacing={0}>
-            <div className={progressBarTheme.headLine}>Current campus statistics are:
+            <div className={progressBarTheme.headLine}>Current campus statistics
+              are:
             </div>
           </Grid>
-          <Grid item xs={12} spacing={0}  onClick={() => onItemClickNavigate('restaurant')}>
+          <Grid item xs={12} spacing={0}
+                onClick={() => onItemClickNavigate('restaurant')}>
             <div className={progressBarTheme.progressHeadLine}>
               <span>Restaurant</span>
             </div>
@@ -110,7 +119,8 @@ const Home = (props) => {
                             value={restaurantData}>restaurantData</LinearProgress>
           </Grid>
 
-          <Grid item xs={12} spacing={0} onClick={() => onItemClickNavigate('p5')}>
+          <Grid item xs={12} spacing={0}
+                onClick={() => onItemClickNavigate('p5')}>
             <div className={progressBarTheme.progressHeadLine}>
               <span>P5</span>
             </div>
@@ -120,7 +130,8 @@ const Home = (props) => {
             <LinearProgress variant="determinate"
                             value={parkingP5Data}>P5</LinearProgress>
           </Grid>
-          <Grid item xs={12} spacing={0}  onClick={() => onItemClickNavigate('p10')}>
+          <Grid item xs={12} spacing={0}
+                onClick={() => onItemClickNavigate('p10')}>
             <div className={progressBarTheme.progressHeadLine}>
               <span>P10</span>
             </div>
@@ -130,7 +141,8 @@ const Home = (props) => {
             <LinearProgress variant="determinate"
                             value={parkingP10Data}>P10</LinearProgress>
           </Grid>
-          <Grid item xs={12} spacing={0}  onClick={()=> onItemClickNavigate('p10')}>
+          <Grid item xs={12} spacing={0}
+                onClick={() => onItemClickNavigate('p10')}>
             <div className={progressBarTheme.progressHeadLine}>
               <span>P10</span>
             </div>
@@ -141,10 +153,13 @@ const Home = (props) => {
                             value={parkingP10TopData}>ParkingP10Top</LinearProgress>
           </Grid>
           <Grid item xs={12} spacing={0}>
-            <div className={progressBarTheme.headLine}>Tap blocks to display additional information</div>
+            <div className={progressBarTheme.headLine}>Tap blocks to display
+              additional information
+            </div>
           </Grid>
         </Grid>
       </ThemeProvider>
+
   );
 };
 
