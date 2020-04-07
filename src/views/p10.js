@@ -5,7 +5,7 @@ import p10Styles from '../styles/p10Styles'
 import commonStyles from "../styles/commonStyles";
 import '../styles/App.css';
 import '../styles/p10Style.css'
-import Container from "@material-ui/core/Container";
+
 import Typography from "@material-ui/core/Typography";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
@@ -19,7 +19,7 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import Navibar from "../fragments/topNavigationbar";
+import NaviBar from "../fragments/topNavigationbar";
 import Authentication from '../hooks/Authentication';
 
 function TabFragmentHistory(props) {
@@ -118,7 +118,7 @@ const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
-    const {TopNavigationbar} = Navibar();
+    const {TopNavigationbar} = NaviBar();
     const {checkIfLogged} = Authentication();
 
     useEffect(()=>{
