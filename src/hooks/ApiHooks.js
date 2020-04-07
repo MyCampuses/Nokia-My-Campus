@@ -43,10 +43,17 @@ const API = () => {
         })
     };
 
+    const getUsageDataNoProps = (url) => {
+        return fetchGetUrl(url, 'user').then((json) => {
+            return json
+        })
+    };
+
     return {
         loginAsync,
         registerAsync,
         getUsageData,
+        getUsageDataNoProps,
     }
 
 };

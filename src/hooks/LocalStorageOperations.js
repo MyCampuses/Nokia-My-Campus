@@ -1,7 +1,7 @@
 
 const LocalStorageOperations=()=> {
 
-    const myStorage = window.localStorage
+    const myStorage = window.localStorage;
 
     const create = (data,key) =>{
         myStorage.setItem(key,data);
@@ -14,12 +14,12 @@ const LocalStorageOperations=()=> {
     };
 
     const del = (key) =>{
-        myStorage.removeItem(key)
+        myStorage.removeItem(key);
         console.log(`Item deleted for key: ${key}`)
     };
 
     const clear = () =>{
-      myStorage.clear()
+      myStorage.clear();
         console.log("LocalStorage Cleared")
     };
 

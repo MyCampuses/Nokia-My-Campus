@@ -31,11 +31,11 @@ function TabFragmentHistory(props) {
     /*eslint-disable */
     return (
         <div
-            component="div"
             role="tabfragment"
             hidden={value !== index}
             id={`tabfragment-${index}`}
             aria-labelledby={`tab-${index}`}
+            inputStyle={{ textAlign: 'center' }}
             {...other}>
             <Typography>
                 {value === index && <Box p={5}>{children}</Box>}
@@ -124,31 +124,28 @@ const P10 = () => {
     };
 
     return (
-        <Container component="main" maxWidth="lg" id="mainContainer">
+        <div component="main" maxWidth="lg" id="mainContainer">
             <div>
                 {TopNavigationbar()}
-                <p>P10 Placeholder</p>
             </div>
             <div className="p10">
                 <Typography className={p10classes.p10title} component="h1" variant="h5">P10</Typography>
             </div>
             <TabFragmentLive value={value} index={0}>
-                Live
             </TabFragmentLive>
             <TabFragmentHistory value={value} index={1}>
-                History
             </TabFragmentHistory>
             <Tabs
                 value={value}
                 onChange={handleChange}
                 className={commonClasses.bottomTabs}
                 variant="fullWidth"
-                indicatorColor="#008AFF"
+                indicatorColor="primary"
             >
                 <Tab id="live" label="Live"/>
                 <Tab id="history" label="History"/>
             </Tabs>
-        </Container>
+        </div>
     );
 };
 

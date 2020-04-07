@@ -5,6 +5,7 @@ const ApiUrls = () => {
   const apiUrl = 'https://mycampus-server.karage.fi/api/';
   const restaurantUrl = apiUrl +
       'common/restaurant/Midpoint?select=fill_percent';
+  const restaurantQueueUrl = apiUrl + 'common/restaurant/Midpoint/queue/';
   const parkingP5Url = apiUrl + 'common/parking/status/P5';
   const parkingP10Url = apiUrl + 'common/parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'common/parking/status/P10TOP';
@@ -21,6 +22,7 @@ const ApiUrls = () => {
     parkingP10TopUrl,
     campusMapP5Url,
     campusMapP10Url,
+    restaurantQueueUrl
   };
 };
 export default ApiUrls;

@@ -11,7 +11,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import Authentication from '../hooks/Authentication';
+import Navibar from "../fragments/topNavigationbar";
 
 const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -88,14 +88,13 @@ const Home = (props) => {
     },
   }));
   const progressBarTheme = useStyles();
+  const {TopNavigationbar} = Navibar();
 
   return (
       <ThemeProvider theme={homeTheme}>
+        {TopNavigationbar()}
         <Grid container spacing={1} component='home' maxWidth='xs'
               justify="space-between">
-          <Grid item xs={12} spacing={0}>
-            <div className={progressBarTheme.headLine}>Welcome to MyCampus</div>
-          </Grid>
           <Grid item xs={12} spacing={0}>
             <div className={progressBarTheme.headLine}>Current campus statistics
               are:
@@ -152,12 +151,10 @@ const Home = (props) => {
               additional information
             </div>
           </Grid>
-
         </Grid>
       </ThemeProvider>
 
   );
-
 };
 
 export default Home;
