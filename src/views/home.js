@@ -22,10 +22,10 @@ const Home = (props) => {
   const {getUsageData} = API();
   const {onItemClickNavigate} = GlobalFunctions();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-  const {checkIfLogged} = Authentication();
+  const {redirectToLogin} = Authentication();
 
   useEffect(()=>{
-    checkIfLogged()
+    redirectToLogin()
   },[]); // eslint-disable-line
 
   // Check if user is logged in to redirect to Login
