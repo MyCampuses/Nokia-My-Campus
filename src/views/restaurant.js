@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import {Box} from "@material-ui/core";
 import API from "../hooks/ApiHooks";
 import ApiUrls from '../hooks/ApiUrls';
+import Authentication from '../hooks/Authentication';
+
 
 const lines = new Map([[1, "Favourites 1"], [2, "Favourites 2"],
     [3, "Pizza"], [4, "Round Table"], [5, "Bowl"],
@@ -31,6 +33,8 @@ function ListContainer() {
     useEffect(() => {
         getQueueTimes().then()
     }, []);// eslint-disable-line
+
+
 
     return (<Box>
             {[...lines.keys()].map(mapkey => (
@@ -66,6 +70,10 @@ function ListContainer() {
 
 const Restaurant = (props) => {
     const {TopNavigationbar} = Navibar();
+    const {checkIfLogged} = Authentication();
+    useEffect(()=>{
+        checkIfLogged()
+    },[]); // eslint-disable-line
 
     return (
         <div>

@@ -5,7 +5,7 @@ import Authentication from '../hooks/Authentication';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 const AuthLoading = (props) =>{
-    const {isLoggedIn,checkIfLogged} = Authentication();
+    const {checkIfLogged} = Authentication();
     const [logged,setLogged] = useState(false)
     const {read} = LocalStorageOperations();
 

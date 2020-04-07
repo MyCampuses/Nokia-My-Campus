@@ -57,17 +57,18 @@ const Login = (props) => {
       <ThemeProvider theme={FormTheme}>
         <Container component='main' maxWidth="xs">
           <div className="form">
-            <img src={require('../assets/logo_mycampus.png')}
 
-                 alt={strings.logoAlt} className="logoImg"/>
-            <Typography component="h5" color="secondary" className="typo">
-              {strings.welcome}
-            </Typography>
-            <Typography component="h1" variant="h5" color={'secondary'}
-                        className="typo">
-              {strings.signIn}
-            </Typography>
             <form noValidate onSubmit={handleSubmit}>
+              <img src={require('../assets/logo_mycampus.png')}
+
+                   alt={strings.logoAlt} className="logoImg"/>
+              <Typography component="h5" color="secondary" className="typo">
+                {strings.welcome}
+              </Typography>
+              <Typography component="h1" variant="h5" color={'secondary'}
+                          className="typo">
+                {strings.signIn}
+              </Typography>
               <TextField
                   variant="outlined"
                   margin="normal"

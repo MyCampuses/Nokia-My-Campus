@@ -50,12 +50,12 @@ const MuiThemes = () => {
                     '&:-webkit-autofill':{
                         WebkitBoxShadow: '0 0 0 100px #0d47a1  inset',
                         WebkitTextFillColor: blue[50]
-                    }
+                    },
                 }
             },
             MuiInputBase:{
                 input:{
-                    color:blue[50]
+                    color:blue[50],
                 }
             },
             MuiFormLabel: {
@@ -80,7 +80,7 @@ const MuiThemes = () => {
                 body1:{
                     color:blue[50]
                 }
-            }
+            },
         },
     });
 
@@ -88,7 +88,6 @@ const MuiThemes = () => {
         FormTheme:FormTheme,
         setBackgroundBlue:setBackgroundBlue
     }
-
 };
 
 export default MuiThemes

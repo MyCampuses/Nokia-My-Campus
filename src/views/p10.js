@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import p10Styles from '../styles/p10Styles'
 import commonStyles from "../styles/commonStyles";
 import '../styles/App.css';
@@ -20,6 +20,8 @@ import {
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import Navibar from "../fragments/topNavigationbar";
+import Authentication from '../hooks/Authentication';
+
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
@@ -118,6 +120,11 @@ const P10 = () => {
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
     const {TopNavigationbar} = Navibar();
+    const {checkIfLogged} = Authentication();
+
+    useEffect(()=>{
+        checkIfLogged()
+    },[]); // eslint-disable-line
 
     const handleChange = (event, newValue) => {
         setValue(newValue);

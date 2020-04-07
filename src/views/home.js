@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Navibar from "../fragments/topNavigationbar";
+import Authentication from '../hooks/Authentication';
 
 const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -21,6 +22,11 @@ const Home = (props) => {
   const {getUsageData} = API();
   const {onItemClickNavigate} = GlobalFunctions();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
+  const {checkIfLogged} = Authentication();
+
+  useEffect(()=>{
+    checkIfLogged()
+  },[]); // eslint-disable-line
 
   useEffect(() => {
     getUsageData(parkingP5Url, props)

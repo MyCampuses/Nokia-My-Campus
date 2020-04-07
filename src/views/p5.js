@@ -9,6 +9,7 @@ import {
 import Navibar from "../fragments/topNavigationbar";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
+import Authentication from '../hooks/Authentication';
 
 
 const useStyle = makeStyles((theme) => ({
@@ -60,6 +61,11 @@ const P5 = (props) =>{
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
   const {getUsageData} = API();
   const {parkingP5Url} = ApiUrls();
+  const {checkIfLogged} = Authentication();
+
+  useEffect(()=>{
+    checkIfLogged()
+  },[]); // eslint-disable-line
 
   useEffect(() => {
     getUsageData(parkingP5Url, props)
