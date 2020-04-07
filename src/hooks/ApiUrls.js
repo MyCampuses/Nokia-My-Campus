@@ -6,11 +6,17 @@ const ApiUrls = () => {
   const restaurantUrl = apiUrl +
       'common/restaurant/Midpoint?select=fill_percent';
   const restaurantQueueUrl = apiUrl + 'common/restaurant/Midpoint/queue/';
+  const dailyParkingUrl = apiUrl + 'common/parking/data/';
   const parkingP5Url = apiUrl + 'common/parking/status/P5';
   const parkingP10Url = apiUrl + 'common/parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'common/parking/status/P10TOP';
   const campusMapP5Url = 'https://mycampus-server.karage.fi/style/static/images/campus_map_P5.png';
   const campusMapP10Url = 'https://mycampus-server.karage.fi/style/static/images/campus_map_P10.png';
+
+  const selectDate = (loc, date) => {
+    return dailyParkingUrl + loc + '/' + date;
+
+  };
 
   return {
     loginUrl,
@@ -22,7 +28,8 @@ const ApiUrls = () => {
     parkingP10TopUrl,
     campusMapP5Url,
     campusMapP10Url,
-    restaurantQueueUrl
+    restaurantQueueUrl,
+    selectDate,
   };
 };
 export default ApiUrls;

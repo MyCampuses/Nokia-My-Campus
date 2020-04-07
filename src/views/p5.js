@@ -9,6 +9,7 @@ import {
 import NaviBar from '../fragments/topNavigationbar';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
+import Authentication from '../hooks/Authentication';
 import {XYPlot, VerticalBarSeries} from 'react-vis';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -78,13 +79,12 @@ const P5 = (props) => {
   },[]); // eslint-disable-line
 
   useEffect(() => {
-    getUsageData(parkingP5Url, props).
-        then(result => setParkingP5Data(result.percent));
+    getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
   }, []);// eslint-disable-line
 
   const getChartData = () => {
     getUsageData(selectDate(thisLoc, thisDate))
-        .then(result => dataToChart(result.samples)).then(result => setChartData(result));
+      .then(result => dataToChart(result.samples)).then(result => setChartData(result));
   };
 
   const dataToChart = (json) => {
@@ -104,7 +104,7 @@ const P5 = (props) => {
   };
   useEffect(() => {
     getChartData()
-  },[]);
+  },[]);// eslint-disable-line
 
   console.log("Chart:" + JSON.stringify(chartData))
 
