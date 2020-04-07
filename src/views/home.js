@@ -30,8 +30,8 @@ const Home = (props) => {
 
   // Check if user is logged in to redirect to Login
 
+  /*eslint-disable */
   useEffect(() => {
-
     getUsageData(parkingP5Url, props).
         then(result => setParkingP5Data(result.percent));
     getUsageData(restaurantUrl, props).
@@ -40,8 +40,9 @@ const Home = (props) => {
         then(result => setParking10Data(result.percent));
     getUsageData(parkingP10TopUrl, props).
         then(result => setParkingP10TopData(result.percent));
+  }, []);
+  /*eslint-enable */
 
-  }, []);// eslint-disable-line
   const homeTheme = createMuiTheme({
     flexGrow: 1,
     overrides: {

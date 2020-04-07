@@ -15,6 +15,7 @@ const ForgotPassword = (props) => {
     const {FormTheme,setBackgroundBlue} = MuiThemes();
     const [email, setEmail] = useState('');
 
+    // Sets background
     useEffect(()=>{
         setBackgroundBlue()
     });
@@ -46,7 +47,6 @@ const ForgotPassword = (props) => {
                             value={email}
                             autoComplete={"email"}
                         />
-
                         <Button type="submit" fullWidth variant="contained" color="primary">
                             {strings.send}
                         </Button>

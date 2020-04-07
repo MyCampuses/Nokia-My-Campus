@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 
 import React, {useEffect, useState} from 'react';
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import {Box} from "@material-ui/core";
@@ -17,6 +16,9 @@ const lines = new Map([[1, "Favourites 1"], [2, "Favourites 2"],
 
 const times = new Map([[1, "wait time < 30s"], [2, "wait time < 1m"],
     [3, "wait time < 1m 30s"], [4, "wait time < 2m”"], [5, "wait time > 2m"]]);
+
+const colours = new Map([[1, "#CFFFA7"], [2, "#ECFFAC"],
+    [3, "#FFF7A7"], [4, "#FFEAA5"], [5, "#FFD9A7"]]);
 
 function ListContainer() {
     const [queuetimes, setQueuetimes] = useState(new Map());
@@ -35,44 +37,48 @@ function ListContainer() {
     }, []);// eslint-disable-line
 
 
-
-    return (<Box>
+    return (
+        <Box>
             {[...lines.keys()].map(mapkey => (
-                <Box className="lineDiv"
-                     border={1}
-                     p={1}
-                     m={1}
-                     key={mapkey}
-                     bgcolor="#D8FFD8"
-                     borderColor="#E9E9E9"
-                >
-                    <Grid container direction="row"
-                          justify="space-between"
-                          alignItems="center">
-                        <Grid>
-                            <Typography>
-                                {lines.get(mapkey)}
-                            </Typography>
+                <div>
+                    {queuetimes.get(mapkey) != null && <Box className="lineDiv"
+                          border={1}
+                          p={1}
+                          m={1}
+                          key={mapkey}
+                          bgcolor={colours.get(parseInt(queuetimes.get(mapkey).queue_time))}
+                          borderColor="#E9E9E9"
+                    >
+                        <Grid container direction="row"
+                              justify="space-between"
+                              alignItems="center">
+                            <Grid>
+                                <Typography>
+                                    {lines.get(mapkey)}
+                                </Typography>
+                            </Grid>
+                            <Grid>
+                                {queuetimes.get(mapkey) != null &&
+                                <Typography>
+                                    {times.get(parseInt(queuetimes.get(mapkey).queue_time))}
+                                </Typography>
+                                }
+                            </Grid>
                         </Grid>
-                        <Grid>
-                            {queuetimes.get(mapkey) != null &&
-                            <Typography>
-                                {times.get(parseInt(queuetimes.get(mapkey).queue_time))}
-                            </Typography>
-                            }
-                        </Grid>
-                    </Grid>
-                </Box>
+                    </Box>
+                    }
+                </div>
             ))}
         </Box>
+
     )
 }
 
 const Restaurant = (props) => {
     const {redirectToLogin} = Authentication();
-    useEffect(()=>{
+    useEffect(() => {
         redirectToLogin()
-    },[]); // eslint-disable-line
+    }, []); // eslint-disable-line
     const {TopNavigationBar} = Navibar();
 
     return (
