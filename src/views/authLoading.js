@@ -9,7 +9,6 @@ const AuthLoading = (props) =>{
     const [logged,setLogged] = useState(false)
     const {read} = LocalStorageOperations();
 
-
     useEffect(()=>{
        checkIfLogged()
     },[]); // eslint-disable-line

@@ -24,11 +24,18 @@ const Authentication = () => {
       }
   };
 
+  const redirectFromLogin = () =>{
+    const login = read("user")
+    if (login !== null){
+      window.location.href = "/home"
+    }
+  };
 
   return {
     isLoggedIn,
     checkIfLogged,
-    redirectToLogin
+    redirectToLogin,
+    redirectFromLogin
   };
 };
 
