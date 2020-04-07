@@ -6,9 +6,10 @@ import {
   LinearProgress,
   withStyles,
 } from '@material-ui/core'
-import Navibar from "../fragments/topNavigationbar";
+import NaviBar from "../fragments/topNavigationbar";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
+import Authentication from '../hooks/Authentication';
 
 
 const useStyle = makeStyles((theme) => ({
@@ -56,10 +57,15 @@ const BorderLinearProgress = withStyles({
 
 const P5 = (props) =>{
   const classes = useStyle();
-  const {TopNavigationbar} = Navibar();
+  const {TopNavigationBar} = NaviBar();
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
   const {getUsageData} = API();
   const {parkingP5Url} = ApiUrls();
+  const {redirectToLogin} = Authentication();
+
+  useEffect(()=>{
+    redirectToLogin()
+  },[]); // eslint-disable-line
 
   useEffect(() => {
     getUsageData(parkingP5Url, props)
@@ -68,7 +74,7 @@ const P5 = (props) =>{
 
   return(
       <div className={classes.root}>
-        {TopNavigationbar()}
+        {TopNavigationBar()}
         <h1>Inside levels of P5</h1>
         <h3 align="screenLeft">Live Utilization</h3>
         <div className={classes.progressLabel}>

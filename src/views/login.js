@@ -22,10 +22,15 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(true);
   const {create, read, clear, del} = LocalStorageOperations();
-  const {isLoggedIn} = Authentication();
+  const {redirectFromLogin} = Authentication();
+
 
   useEffect(() => {
       setBackgroundBlue();
+  });
+
+  useEffect(()=>{
+     redirectFromLogin();
   });
 
   const handleSubmit = (evt) => {
@@ -57,17 +62,18 @@ const Login = (props) => {
       <ThemeProvider theme={FormTheme}>
         <Container component='main' maxWidth="xs">
           <div className="form">
-            <img src={require('../assets/logo_mycampus.png')}
 
-                 alt={strings.logoAlt} className="logoImg"/>
-            <Typography component="h5" color="secondary" className="typo">
-              {strings.welcome}
-            </Typography>
-            <Typography component="h1" variant="h5" color={'secondary'}
-                        className="typo">
-              {strings.signIn}
-            </Typography>
             <form noValidate onSubmit={handleSubmit}>
+              <img src={require('../assets/logo_mycampus.png')}
+
+                   alt={strings.logoAlt} className="logoImg"/>
+              <Typography component="h5" color="secondary" className="typo">
+                {strings.welcome}
+              </Typography>
+              <Typography component="h1" variant="h5" color={'secondary'}
+                          className="typo">
+                {strings.signIn}
+              </Typography>
               <TextField
                   variant="outlined"
                   margin="normal"

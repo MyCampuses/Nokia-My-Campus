@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import p10Styles from '../styles/p10Styles'
 import commonStyles from "../styles/commonStyles";
 import '../styles/App.css';
 import '../styles/p10Style.css'
-import Container from "@material-ui/core/Container";
+
 import Typography from "@material-ui/core/Typography";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
@@ -19,7 +19,8 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import Navibar from "../fragments/topNavigationbar";
+import NaviBar from "../fragments/topNavigationbar";
+import Authentication from '../hooks/Authentication';
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
@@ -117,7 +118,13 @@ const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
-    const {TopNavigationbar} = Navibar();
+    const {redirectToLogin} = Authentication();
+
+
+    useEffect(()=>{
+        redirectToLogin()
+    },[]); // eslint-disable-line
+    const {TopNavigationBar} = NaviBar();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -126,7 +133,7 @@ const P10 = () => {
     return (
         <div component="main" maxWidth="lg" id="mainContainer">
             <div>
-                {TopNavigationbar()}
+                {TopNavigationBar()}
             </div>
             <div className="p10">
                 <Typography className={p10classes.p10title} component="h1" variant="h5">P10</Typography>

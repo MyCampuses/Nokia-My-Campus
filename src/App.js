@@ -4,10 +4,10 @@ import {useRoutes} from 'hookrouter';
 import './styles/App.css';
 import routes from './hooks/Routes';
 import Authentication from './hooks/Authentication';
+import LocalStorageOperations from './hooks/LocalStorageOperations';
 
 
 const App = () => {
-    const {isLoggedIn} = Authentication();
     const routeResult = useRoutes(routes);
 
     return (

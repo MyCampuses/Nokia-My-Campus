@@ -33,7 +33,7 @@ const useStyle = makeStyles((theme) => ({
     },
 }));
 
-const Navibar = () => {
+const NaviBar = () => {
     const TopNavigationbar = () => {
         const classes = useStyle();
 
@@ -92,7 +92,7 @@ const Navibar = () => {
         );
     };
     return {
-        TopNavigationbar
+        TopNavigationBar: TopNavigationbar
     };
 };
-export default Navibar;
+export default NaviBar;
