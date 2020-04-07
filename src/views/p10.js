@@ -124,7 +124,7 @@ const P10 = () => {
     };
 
     return (
-        <Container component="main" maxWidth="lg" id="mainContainer">
+        <div component="main" maxWidth="lg" id="mainContainer">
             <div>
                 {TopNavigationbar()}
             </div>
@@ -145,7 +145,7 @@ const P10 = () => {
                 <Tab id="live" label="Live"/>
                 <Tab id="history" label="History"/>
             </Tabs>
-        </Container>
+        </div>
     );
 };
 
