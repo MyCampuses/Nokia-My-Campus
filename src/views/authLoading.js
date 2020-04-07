@@ -6,13 +6,14 @@ import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 const AuthLoading = (props) =>{
     const {checkIfLogged} = Authentication();
-    const [logged,setLogged] = useState(false)
-    const {read} = LocalStorageOperations();
 
+    // Checks if the user is logged in when navigating to root url of the app
+    // Redirects to either home or login accordingly
     useEffect(()=>{
        checkIfLogged()
     },[]); // eslint-disable-line
 
+    // Centers the loading progress
     const centered = {
         textAlign:"center",
         margin:"auto 0",
