@@ -39,6 +39,8 @@ function ListContainer() {
                      p={1}
                      m={1}
                      key={mapkey}
+                     bgcolor="#D8FFD8"
+                     borderColor="#E9E9E9"
                 >
                     <Grid container direction="row"
                           justify="space-between"
@@ -66,13 +68,13 @@ const Restaurant = (props) => {
     const {TopNavigationbar} = Navibar();
 
     return (
-        <Container>
+        <div>
             <div>
                 {TopNavigationbar()}
                 <p>Queue Times</p>
             </div>
             <ListContainer/>
-        </Container>
+        </div>
     )
 
 };
