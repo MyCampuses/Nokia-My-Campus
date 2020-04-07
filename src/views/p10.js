@@ -19,7 +19,7 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import Navibar from "../fragments/topNavigationbar";
+import NaviBar from "../fragments/topNavigationbar";
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
@@ -117,7 +117,7 @@ const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
-    const {TopNavigationbar} = Navibar();
+    const {TopNavigationBar} = NaviBar();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -126,7 +126,7 @@ const P10 = () => {
     return (
         <div component="main" maxWidth="lg" id="mainContainer">
             <div>
-                {TopNavigationbar()}
+                {TopNavigationBar()}
             </div>
             <div className="p10">
                 <Typography className={p10classes.p10title} component="h1" variant="h5">P10</Typography>
