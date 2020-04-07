@@ -19,18 +19,17 @@ const times = new Map([[1, "wait time < 30s"], [2, "wait time < 1m"],
 function ListContainer() {
     const [queuetimes, setQueuetimes] = useState(new Map());
     const {getUsageDataNoProps} = API();
-    const {restaurantUrl, restaurantQueueUrl} = ApiUrls();
+    const {restaurantQueueUrl} = ApiUrls();
 
-    const getQueueTimes = () => {
+    const getQueueTimes = async () => {
         const lineMap = new Map();
         for (let i = 1; i < 9; i++) {
-            //getUsageDataNoProps(restaurantQueueUrl + i).then(result => lineMap.set(i, result))
+            getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueuetimes(new Map(queuetimes.set(i, result))))
         }
-        setQueuetimes(lineMap)
     };
 
     useEffect(() => {
-        getQueueTimes()
+        getQueueTimes().then()
     }, []);// eslint-disable-line
 
     return (<Box>
@@ -39,19 +38,22 @@ function ListContainer() {
                      border={1}
                      p={1}
                      m={1}
+                     key={mapkey}
                 >
                     <Grid container direction="row"
                           justify="space-between"
                           alignItems="center">
                         <Grid>
-                            <Typography key={mapkey}>
+                            <Typography>
                                 {lines.get(mapkey)}
                             </Typography>
                         </Grid>
                         <Grid>
+                            {queuetimes.get(mapkey) != null &&
                             <Typography>
-                                Queue time
+                                {times.get(parseInt(queuetimes.get(mapkey).queue_time))}
                             </Typography>
+                            }
                         </Grid>
                     </Grid>
                 </Box>
@@ -67,7 +69,7 @@ const Restaurant = (props) => {
         <Container>
             <div>
                 {TopNavigationbar()}
-                <p>Restaurant Placeholder</p>
+                <p>Queue Times</p>
             </div>
             <ListContainer/>
         </Container>
