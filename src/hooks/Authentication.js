@@ -2,18 +2,29 @@ import LocalStorageOperations from './LocalStorageOperations';
 
 const Authentication = () => {
   const {read} = LocalStorageOperations();
-  const getUser = () => {
-    console.log("Hei");
+
+  const isLoggedIn = () => {
     let user = read('user');
-    if(user == null) {
-      console.log("returning false");
+    if (user!==null){
+      return true
+    } else{
       return false
     }
-    console.log("user");
-    return user
   };
+
+  const checkIfLogged = () =>{
+    const login = read("user");
+    if (login!==null){
+      window.location.href = '/home'
+    } else {
+      window.location.href = '/login'
+    }
+  };
+
+
   return {
-    getUser,
+    isLoggedIn,
+    checkIfLogged
   };
 };
 

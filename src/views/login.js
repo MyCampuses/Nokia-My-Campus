@@ -16,12 +16,13 @@ import LocalStorageOperations from '../hooks/LocalStorageOperations';
 import Authentication from '../hooks/Authentication';
 
 const Login = (props) => {
-  const {loginAsync, checkUserLogged} = API();
+  const {loginAsync} = API();
   const {FormTheme, setBackgroundBlue} = MuiThemes();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
+  const [remember, setRemember] = useState(true);
   const {create, read, clear, del} = LocalStorageOperations();
+  const {isLoggedIn} = Authentication();
 
   useEffect(() => {
       setBackgroundBlue();

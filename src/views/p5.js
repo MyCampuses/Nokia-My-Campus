@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
 import {
   makeStyles,
@@ -7,9 +7,8 @@ import {
   withStyles,
 } from '@material-ui/core'
 import Navibar from "../fragments/topNavigationbar";
-
-
-
+import API from "../hooks/ApiHooks";
+import ApiUrls from "../hooks/ApiUrls";
 
 
 const useStyle = makeStyles((theme) => ({
@@ -27,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     zIndex: 1,
-    maxHeight: "50px", // borderlinearprogress root.height
+    maxHeight: "50px",
     textAlign: "center",
     textColor: "#000000",
     display: "flex",
@@ -58,19 +57,27 @@ const BorderLinearProgress = withStyles({
 const P5 = (props) =>{
   const classes = useStyle();
   const {TopNavigationbar} = Navibar();
+  const [parkingP5Data, setParkingP5Data] = useState(undefined);
+  const {getUsageData} = API();
+  const {parkingP5Url} = ApiUrls();
+
+  useEffect(() => {
+    getUsageData(parkingP5Url, props)
+        .then(result => setParkingP5Data(result.percent));
+  });
 
   return(
       <div className={classes.root}>
         {TopNavigationbar()}
         <h1>Inside levels of P5</h1>
-        <h3>Live Utilization</h3>
+        <h3 align="screenLeft">Live Utilization</h3>
         <div className={classes.progressLabel}>
-          <span>50%</span>
+          <span>{parkingP5Data}%</span>
         </div>
         <BorderLinearProgress
             className={classes.margin}
             variant="determinate"
-            value={50}
+            value={parkingP5Data}
         />
       </div>
   )

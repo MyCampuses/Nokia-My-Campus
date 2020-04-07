@@ -1,10 +1,9 @@
 import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
+const { loginUrl,regUrl } = ApiUrls();
 
-const {loginUrl} = ApiUrls();
-
-const fetchPostUrl = async (url, data) => {
-    const response = await fetch(url, {
+const fetchPostUrl = async (url,data) => {
+    const response = await fetch(url,{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -28,13 +27,18 @@ const fetchGetUrl = async (url, userKey) => {
 };
 
 const API = () => {
-    const loginAsync = async (loginData, props) => {
+
+    const loginAsync = async (loginData,props) =>{
         console.log(loginUrl);
         return fetchPostUrl(loginUrl, loginData)
     };
 
+    const registerAsync = async (registerData,props)=>{
+        return fetchPostUrl(regUrl,registerData)
+    };
+
     const getUsageData = (url, props) => {
-        return fetchGetUrl(url, 'user').then((json) => {
+        return fetchGetUrl(url ,'user').then((json)=>{
             return json
         })
     };
@@ -47,6 +51,7 @@ const API = () => {
 
     return {
         loginAsync,
+        registerAsync,
         getUsageData,
         getUsageDataNoProps,
     }

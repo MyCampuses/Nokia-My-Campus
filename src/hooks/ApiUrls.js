@@ -1,6 +1,7 @@
 const ApiUrls = () => {
 
   const loginUrl = 'https://mycampus-server.karage.fi/auth/login';
+  const regUrl = 'https://mycampus-server.karage.fi/auth/signup';
   const apiUrl = 'https://mycampus-server.karage.fi/api/';
   const restaurantUrl = apiUrl +
       'common/restaurant/Midpoint?select=fill_percent';
@@ -13,6 +14,7 @@ const ApiUrls = () => {
 
   return {
     loginUrl,
+    regUrl,
     apiUrl,
     restaurantUrl,
     parkingP10Url,

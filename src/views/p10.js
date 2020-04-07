@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+/* eslint-disable no-unused-vars */
 
+import React, {useState} from "react";
 import p10Styles from '../styles/p10Styles'
 import commonStyles from "../styles/commonStyles";
 import '../styles/App.css';
@@ -27,7 +28,7 @@ function TabFragmentHistory(props) {
     const handleDateChange = date => {
         setSelectedDate(date);
     };
-
+    /*eslint-disable */
     return (
         <div
             role="tabfragment"
@@ -80,7 +81,7 @@ function TabFragmentLive(props) {
         </div>
     );
 }
-
+/*eslint-enable */
 function ProgeBar() {
     const classes = p10Styles();
     return (
