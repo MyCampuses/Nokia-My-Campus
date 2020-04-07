@@ -69,9 +69,9 @@ function ListContainer() {
 }
 
 const Restaurant = (props) => {
-    const {checkIfLogged} = Authentication();
+    const {redirectToLogin} = Authentication();
     useEffect(()=>{
-        checkIfLogged()
+        redirectToLogin()
     },[]); // eslint-disable-line
     const {TopNavigationBar} = Navibar();
 

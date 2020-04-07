@@ -118,11 +118,11 @@ const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
-    const {TopNavigationbar} = NaviBar();
-    const {checkIfLogged} = Authentication();
+    const {redirectToLogin} = Authentication();
+
 
     useEffect(()=>{
-        checkIfLogged()
+        redirectToLogin()
     },[]); // eslint-disable-line
     const {TopNavigationBar} = NaviBar();
 

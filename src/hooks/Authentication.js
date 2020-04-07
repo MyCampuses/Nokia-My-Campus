@@ -17,10 +17,18 @@ const Authentication = () => {
     }
   };
 
+  const redirectToLogin = () =>{
+      const login = read("user");
+      if (login===null){
+        window.location.href = "/login"
+      }
+  };
+
 
   return {
     isLoggedIn,
-    checkIfLogged
+    checkIfLogged,
+    redirectToLogin
   };
 };
 

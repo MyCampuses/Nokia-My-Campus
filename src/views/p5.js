@@ -61,10 +61,10 @@ const P5 = (props) =>{
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
   const {getUsageData} = API();
   const {parkingP5Url} = ApiUrls();
-  const {checkIfLogged} = Authentication();
+  const {redirectToLogin} = Authentication();
 
   useEffect(()=>{
-    checkIfLogged()
+    redirectToLogin()
   },[]); // eslint-disable-line
 
   useEffect(() => {
