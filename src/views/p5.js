@@ -6,7 +6,6 @@ import {
   LinearProgress,
   withStyles, Box,
 } from '@material-ui/core';
-
 import NaviBar from '../fragments/topNavigationbar';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
@@ -72,6 +71,11 @@ const P5 = (props) => {
   const {parkingP5Url, selectDate} = ApiUrls();
   const thisLoc = 'P5';
   const thisDate = '02-04-2020';
+  const {redirectToLogin} = Authentication();
+
+  useEffect(()=>{
+    redirectToLogin()
+  },[]); // eslint-disable-line
 
   useEffect(() => {
     getUsageData(parkingP5Url, props).

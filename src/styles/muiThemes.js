@@ -1,9 +1,15 @@
 import {createMuiTheme} from "@material-ui/core";
 import {blue} from "@material-ui/core/colors";
-
+/*
+    Contains the Theme used in all the forms in the application and the function
+    to set the background for login,register and forgot password
+ */
 
 const MuiThemes = () => {
 
+    // Controls the Login, Register and Forgot Password page backgrounds.
+    // Can be used to set either background color or image for example.
+    // Background image behaviour is buggy atm so using a solid color instead for now
     const setBackgroundBlue = () => {
         let root = document.getElementById('root-body');
         //root.style.backgroundImage = "url(loginBackground.png)";
@@ -50,12 +56,12 @@ const MuiThemes = () => {
                     '&:-webkit-autofill':{
                         WebkitBoxShadow: '0 0 0 100px #0d47a1  inset',
                         WebkitTextFillColor: blue[50]
-                    }
+                    },
                 }
             },
             MuiInputBase:{
                 input:{
-                    color:blue[50]
+                    color:blue[50],
                 }
             },
             MuiFormLabel: {
@@ -80,7 +86,7 @@ const MuiThemes = () => {
                 body1:{
                     color:blue[50]
                 }
-            }
+            },
         },
     });
 
@@ -88,7 +94,6 @@ const MuiThemes = () => {
         FormTheme:FormTheme,
         setBackgroundBlue:setBackgroundBlue
     }
-
 };
 
 export default MuiThemes

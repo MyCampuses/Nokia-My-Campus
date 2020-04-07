@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import p10Styles from '../styles/p10Styles'
 import commonStyles from "../styles/commonStyles";
 import '../styles/App.css';
 import '../styles/p10Style.css'
-import Container from "@material-ui/core/Container";
+
 import Typography from "@material-ui/core/Typography";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
@@ -20,6 +20,9 @@ import {
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import NaviBar from "../fragments/topNavigationbar";
+import Authentication from '../hooks/Authentication';
+import ApiUrls from "../hooks/ApiUrls";
+import API from "../hooks/ApiHooks";
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
@@ -59,6 +62,19 @@ function TabFragmentHistory(props) {
 
 function TabFragmentLive(props) {
     const {children, value, index, ...other} = props;
+    const {parkingP10Url, parkingP10TopUrl} = ApiUrls();
+    const {getUsageData} = API();
+    const [parkingP10Data, setParking10Data] = useState(undefined);
+    const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
+
+    //Set p10 fetched data
+    useEffect(() => {
+        getUsageData(parkingP10Url, props)
+            .then(result => setParking10Data(result.percent));
+        getUsageData(parkingP10TopUrl, props)
+            .then(result => setParkingP10TopData(result.percent));
+    }, []);// eslint-disable-line
+
 
     return (
         <div
@@ -72,26 +88,36 @@ function TabFragmentLive(props) {
             <Typography>
                 {value === index && <Box p={5}>{children}</Box>}
             </Typography>
-            <ProgeBar variant="determinate">
+            <Typography variant="h7">
+                Inside Levels
+            </Typography>
+            <ProgeBar variant="determinate" value={parkingP10Data}>
             </ProgeBar>
-            <ProgeBar variant="determinate">
+            <Typography variant="h7">
+                Rooftop Levels
+            </Typography>
+            <ProgeBar variant="determinate" value={parkingP10TopData}>
             </ProgeBar>
-            <ProgeBar variant="determinate">
+            <Typography variant="h7">
+                Rooftop electric places (est.)
+            </Typography>
+            <ProgeBar variant="determinate" value={4}>
             </ProgeBar>
         </div>
     );
 }
 /*eslint-enable */
-function ProgeBar() {
+//'bar' is the values that are given in the <ProgeBar>
+function ProgeBar(bar) {
     const classes = p10Styles();
     return (
         <div className={classes.root}>
             <Grid container spacing={0} justify="space-between">
                 <Grid item xs={12} spacing={0}>
                     <div className={classes.progressLabel}>
-                        <span>Application</span>
+                        <span>{bar.value}%</span>
                     </div>
-                    <UtilLinearProgress variant="determinate" value={50}/>
+                    <UtilLinearProgress variant="determinate" value={bar.value}/>
                 </Grid>
             </Grid>
         </div>
@@ -117,11 +143,20 @@ const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
+    const {redirectToLogin} = Authentication();
+
+
+    useEffect(()=>{
+        redirectToLogin()
+
+    },[]); // eslint-disable-line
     const {TopNavigationBar} = NaviBar();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+
 
     return (
         <div component="main" maxWidth="lg" id="mainContainer">

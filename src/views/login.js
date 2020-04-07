@@ -22,18 +22,29 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(true);
   const {create, read, clear, del} = LocalStorageOperations();
-  const {isLoggedIn} = Authentication();
+  const {redirectFromLogin} = Authentication();
 
-
+  // Sets the pages background
   useEffect(() => {
       setBackgroundBlue();
   });
-  // Check if user is logged in to redirect to Home
+  // Redirects to home if the user has already signed in
+  useEffect(()=>{
+     redirectFromLogin();
+  });
 
+  useEffect(()=>{
+    let seconds = 1586269154004;
 
+    let date = new Date(seconds)
+    console.log(date)
+
+  });
+
+  // Handles login submit
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const loginData = {
+    const loginData = { // Gets data from the states
       email: email,
       password: password,
     };
@@ -43,15 +54,16 @@ const Login = (props) => {
       console.log(result);
       if (!result.errors) { // Check if the result contains errors
         //alert('Signed In!');
-        if (remember) { // If Remember me is checked -> save users info to LocalStorage
+        if (remember) { // If Remember me is checked -> save users info to LocalStorage. Remember me atm is defaulted to true
           let json = {username: result.username, token: result.token};
-          create(JSON.stringify(json), 'user');
+          create(JSON.stringify(json), 'user'); // Saves the users information as a json string inside LocalStorage
           window.location.href = '/home';
         } else {
           window.location.href = '/home';
         }
       } else {
-        alert('Failed to Sign In');
+        alert('Failed to Sign In'); // Alerts the user that the sign in failed
+        //TODO Add error response from server to alert
       }
     });
   };
@@ -60,17 +72,16 @@ const Login = (props) => {
       <ThemeProvider theme={FormTheme}>
         <Container component='main' maxWidth="xs">
           <div className="form">
-            <img src={require('../assets/logo_mycampus.png')}
-
-                 alt={strings.logoAlt} className="logoImg"/>
-            <Typography component="h5" color="secondary" className="typo">
-              {strings.welcome}
-            </Typography>
-            <Typography component="h1" variant="h5" color={'secondary'}
-                        className="typo">
-              {strings.signIn}
-            </Typography>
             <form noValidate onSubmit={handleSubmit}>
+              <img src={require('../assets/logo_mycampus.png')}
+                   alt={strings.logoAlt} className="logoImg"/>
+              <Typography component="h5" color="secondary" className="typo">
+                {strings.welcome}
+              </Typography>
+              <Typography component="h1" variant="h5" color={'secondary'}
+                          className="typo">
+                {strings.signIn}
+              </Typography>
               <TextField
                   variant="outlined"
                   margin="normal"

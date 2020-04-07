@@ -11,6 +11,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import Authentication from '../hooks/Authentication';
 import NaviBar from "../fragments/topNavigationbar";
 
 const Home = (props) => {
@@ -21,11 +22,16 @@ const Home = (props) => {
   const {getUsageData} = API();
   const {onItemClickNavigate} = GlobalFunctions();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
+  const {redirectToLogin} = Authentication();
+
+  useEffect(()=>{
+    redirectToLogin()
+  },[]); // eslint-disable-line
 
   // Check if user is logged in to redirect to Login
 
+  /*eslint-disable */
   useEffect(() => {
-
     getUsageData(parkingP5Url, props).
         then(result => setParkingP5Data(result.percent));
     getUsageData(restaurantUrl, props).
@@ -34,8 +40,9 @@ const Home = (props) => {
         then(result => setParking10Data(result.percent));
     getUsageData(parkingP10TopUrl, props).
         then(result => setParkingP10TopData(result.percent));
+  }, []);
+  /*eslint-enable */
 
-  }, []);// eslint-disable-line
   const homeTheme = createMuiTheme({
     flexGrow: 1,
     overrides: {

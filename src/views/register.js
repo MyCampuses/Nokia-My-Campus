@@ -21,14 +21,13 @@ const Register = (props) =>{
     const [userErrorMsg,setUserErrorMsg]= useState("")
     const [emailErrorMsg,setEmailErrorMsg]=useState("")
     const [passwordErrorMsg, setPasswordErrorMsg]=useState("")
-
     const [formData, setFormData] = useState({
         username: "",
         email:"",
         password:"",
         confirmPassword:""
     });
-
+    // Enables the submit button when all the values have been input
     const enableSubmit = () => {
         if (!usernameError && !emailError && !passwordError){
             setBtnDisable(false)
@@ -36,25 +35,30 @@ const Register = (props) =>{
             setBtnDisable(true)
         }
     };
-
+    // Updates the fields json according to the inputted information
     const updateField =e=>{
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-
+    // Sets background
     useEffect(()=>{
         setBackgroundBlue()
-
     });
+    // Inits the submit button
     useEffect(()=>{
         enableSubmit()
     });
 
+    // Handles the registering submit
     const handleSubmit = () =>{
         console.log("submit")
+        //TODO Add registering logic here
     };
+
+    // Validates username input. Has to be between 2-20 characters
+    // Also sets the errors accordingly
     const validateUsername = () =>{
         if (formData.username.length >= 2 && formData.username.length <= 20) {
             setUsernameError(false);
@@ -68,6 +72,7 @@ const Register = (props) =>{
         }
     };
 
+    // Validates Email input to match a "real" email. Also sets errors accordingly
     const validateEmail = () =>{
         const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
         if (emailReqEx.test(formData.email)){
@@ -80,7 +85,7 @@ const Register = (props) =>{
             enableSubmit()
         }
     };
-
+    // Validates both of the password fields to match
     const validatePasswords = () => {
         if (formData.password === formData.confirmPassword && formData.password.length !==0 && formData.confirmPassword.length!==0){
             setPasswordError(false);
@@ -174,7 +179,6 @@ const Register = (props) =>{
                 </div>
             </Container>
         </ThemeProvider>
-
     )
 };
 export default Register
