@@ -22,7 +22,6 @@ import DateFnsUtils from '@date-io/date-fns';
 import Navibar from "../fragments/topNavigationbar";
 import Authentication from '../hooks/Authentication';
 
-
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
     const [selectedDate, setSelectedDate] = useState(new Date(2020, 4, 2));
@@ -125,6 +124,7 @@ const P10 = () => {
     useEffect(()=>{
         checkIfLogged()
     },[]); // eslint-disable-line
+    const {TopNavigationBar} = NaviBar();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -133,7 +133,7 @@ const P10 = () => {
     return (
         <div component="main" maxWidth="lg" id="mainContainer">
             <div>
-                {TopNavigationbar()}
+                {TopNavigationBar()}
             </div>
             <div className="p10">
                 <Typography className={p10classes.p10title} component="h1" variant="h5">P10</Typography>

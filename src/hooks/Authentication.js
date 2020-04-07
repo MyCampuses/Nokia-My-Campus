@@ -5,11 +5,7 @@ const Authentication = () => {
 
   const isLoggedIn = () => {
     let user = read('user');
-    if (user!==null){
-      return true
-    } else{
-      return false
-    }
+    return user !== null;
   };
 
   const checkIfLogged = () =>{
