@@ -33,6 +33,13 @@ const Login = (props) => {
      redirectFromLogin();
   });
 
+  useEffect(()=>{
+    let seconds = 1586269154004;
+
+    let date = new Date(seconds)
+    console.log(date)
+
+  });
 
   // Handles login submit
   const handleSubmit = (evt) => {
