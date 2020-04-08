@@ -50,6 +50,7 @@ const useStyle = makeStyles((theme) => ({
 
 }));
 
+//Progress bar style
 const BorderLinearProgress = withStyles({
   root: {
     height: 50,
