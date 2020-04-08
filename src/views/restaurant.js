@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import {Box} from "@material-ui/core";
 import API from "../hooks/ApiHooks";
 import ApiUrls from '../hooks/ApiUrls';
+import Data from '../hooks/Data'
 import Authentication from '../hooks/Authentication';
 import Navibar from "../fragments/topNavigationbar";
 import strings from '../localization';
@@ -25,6 +26,7 @@ function ListContainer() {
     const [queuetimes, setQueuetimes] = useState(new Map());
     const {getUsageDataNoProps} = API();
     const {restaurantQueueUrl} = ApiUrls();
+    const {lines, times, colours} = Data();
 
     const getQueueTimes = async () => {
         const lineMap = new Map();
