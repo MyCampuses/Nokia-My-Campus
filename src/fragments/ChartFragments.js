@@ -85,6 +85,7 @@ const ChartFragment = () => {
     );
   };
   // Chart for Restaurant History
+  /*eslint-disable */
   const RestaurantChart = (props) => {
     const propsDate = formattedFullDate(props.date);
     const [chartData, setChartData] = useState(undefined);
