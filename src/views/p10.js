@@ -27,10 +27,13 @@ import GlobalFunctions from '../hooks/GlobalFunctions';
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
     const { thisDate } = GlobalFunctions();
-    const [selectedDate, setSelectedDate] = useState(thisDate);
     const {P10Chart} = ChartFragment();
+    const [selectedDate, setSelectedDate] = useState(new Date(props.date));
+
     const handleDateChange = date => {
+        console.log(date);
         setSelectedDate(date);
+        props.onDateChange(date);
     };
     /*eslint-disable */
     return (
@@ -114,6 +117,7 @@ function TabFragmentLive(props) {
 
 
 /*eslint-enable */
+
 //'bar' is the values that are given in the <ProgeBar>
 function ProgeBar(bar) {
     const classes = p10Styles();
@@ -149,15 +153,21 @@ const UtilLinearProgress = withStyles({
 const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
-    const [value, setValue] = React.useState(0);
-    const { isLoggedIn} = Authentication();
+    const [value, setValue] = useState(0);
+    const [date, setDate] = useState(new Date());
+    const {isLoggedIn} = Authentication();
     const {TopNavigationBar} = NaviBar();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    const P10Page = () =>{
+    const handleDateChange = (data) => {
+        setDate(data);
+        console.log(data);
+    };
+
+    const P10Page = () => {
         return (
             <div component="main" maxWidth="lg" id="mainContainer">
                 <div>
@@ -170,7 +180,7 @@ const P10 = () => {
                 </div>
                 <TabFragmentLive value={value} index={0}>
                 </TabFragmentLive>
-                <TabFragmentHistory value={value} index={1}>
+                <TabFragmentHistory value={value} index={1} onDateChange={handleDateChange} date={date}>
                 </TabFragmentHistory>
                 <Tabs
                     value={value}
@@ -185,8 +195,8 @@ const P10 = () => {
             </div>
         );
     };
-    const AuthP10 = () =>{
-        if (isLoggedIn()){
+    const AuthP10 = () => {
+        if (isLoggedIn()) {
             return <P10Page/>
         } else {
             return <AuthLoading/>
@@ -195,9 +205,8 @@ const P10 = () => {
 
     return(
         <AuthP10/>
-    )
+    );
 
 
-};
 
-export default P10
+export default P10;
