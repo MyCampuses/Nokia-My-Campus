@@ -29,7 +29,6 @@ import GlobalFunctions from '../hooks/GlobalFunctions';
 
 function TabFragmentHistory(props) {
   const {children, value, index, ...other} = props;
-  const {thisDate} = GlobalFunctions();
   const {P10Chart} = ChartFragment();
   const [selectedDate, setSelectedDate] = useState(new Date(props.date));
 
@@ -63,7 +62,7 @@ function TabFragmentHistory(props) {
               }}
           />
         </MuiPickersUtilsProvider>
-        <P10Chart/>
+        <P10Chart{...props}/>
       </div>
   );
 }

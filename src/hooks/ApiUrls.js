@@ -7,7 +7,7 @@ const ApiUrls = () => {
       'restaurant/Midpoint?select=fill_percent';
   const restaurantQueueUrl = apiUrl + 'restaurant/Midpoint/queue/';
   const dailyParkingUrl = apiUrl + 'parking/data/';
-  const dailyRestaurantUrl = apiUrl + 'restaurant/Midpoint/daily?=date='
+  const dailyRestaurantUrl = apiUrl + 'restaurant/Midpoint/daily?=date=';
   const parkingP5Url = apiUrl + 'parking/status/P5';
   const parkingP10Url = apiUrl + 'parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'parking/status/P10TOP';
