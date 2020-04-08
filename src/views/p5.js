@@ -41,10 +41,11 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   p5Box: {
-    height: 400,
     width: '100%',
+    height:  '50vh',
     marginRight: '5%',
-    marginTop:  '5%'
+    marginTop:  '5%',
+    display: 'block'
   },
 
 }));
@@ -115,12 +116,13 @@ const P5 = (props) => {
   }, []);// eslint-disable-line
 
   // Bar chart rendering, X-axis dataKey is from timestamps (x), Y-axis dataKey is the percentage of usage. Data is from chartData state
-  const renderBarChart = (<BarChart width={500} height={300} margin={{left: 0, right: 50}} data={chartData}>
+  const renderBarChart = (
+      <ResponsiveContainer width="100%" height="100%"><BarChart margin={{left: 0, right: 50}} data={chartData}>
     <XAxis dataKey="x" />
     <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
     <Bar dataKey="y" fill="#0000FF"/>
     <YAxis barSize={50} fill="#8884d8" dataKey="pv"/>
-  </BarChart>);
+  </BarChart></ResponsiveContainer>);
 
   return (
       <div className={classes.root}>
@@ -135,7 +137,7 @@ const P5 = (props) => {
             variant="determinate"
             value={parkingP5Data}
         />
-        <Container className={classes.p5Box}><p>Utilization Records for {thisDate}</p><ResponsiveContainer>{renderBarChart}</ResponsiveContainer></Container>
+        <Container className={classes.p5Box}><p>Utilization Records for {thisDate}</p>{renderBarChart}</Container>
       </div>
   );
 };
