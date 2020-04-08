@@ -22,7 +22,16 @@ let strings = new LocalizedStrings({
         pleaseEnterEmail: "Please enter an email",
         pleaseEnterConfirmPass: "Please enter password confirmation",
         pleaseEnterPassword: "Please enter an password",
-        pleaseEnterUsername: "Please enter a name"
+        pleaseEnterUsername: "Please enter a name",
+        waitTime1: "wait time < 30s",
+        waitTime2: "wait time < 1m",
+        waitTime3: "wait time < 1m 30s",
+        waitTime4: "wait time < 2m",
+        waitTime5: "wait time > 2m",
+        restaurantPageTitle: "Queue Times",
+        p10PageTitle: "P10",
+        live: "Live",
+        history: "History",
     }
 });
 

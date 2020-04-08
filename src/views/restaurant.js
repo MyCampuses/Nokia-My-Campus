@@ -8,14 +8,15 @@ import API from "../hooks/ApiHooks";
 import ApiUrls from '../hooks/ApiUrls';
 import Authentication from '../hooks/Authentication';
 import Navibar from "../fragments/topNavigationbar";
+import strings from '../localization';
 
 
 const lines = new Map([[1, "Favourites 1"], [2, "Favourites 2"],
     [3, "Pizza"], [4, "Round Table"], [5, "Bowl"],
     [6, "Vege"], [7, "Cafe Pickup Line"], [8, "Salad/Nokia Coffee"]]);
 
-const times = new Map([[1, "wait time < 30s"], [2, "wait time < 1m"],
-    [3, "wait time < 1m 30s"], [4, "wait time < 2m”"], [5, "wait time > 2m"]]);
+const times = new Map([[1, strings.waitTime1], [2, strings.waitTime2],
+    [3, strings.waitTime3], [4, strings.waitTime4], [5, strings.waitTime5]]);
 
 const colours = new Map([[1, "#CFFFA7"], [2, "#ECFFAC"],
     [3, "#FFF7A7"], [4, "#FFEAA5"], [5, "#FFD9A7"]]);
@@ -40,12 +41,11 @@ function ListContainer() {
     return (
         <Box>
             {[...lines.keys()].map(mapkey => (
-                <div>
+                <div key={mapkey}>
                     {queuetimes.get(mapkey) != null && <Box className="lineDiv"
                           border={1}
                           p={1}
                           m={1}
-                          key={mapkey}
                           bgcolor={colours.get(parseInt(queuetimes.get(mapkey).queue_time))}
                           borderColor="#E9E9E9"
                     >
@@ -85,7 +85,7 @@ const Restaurant = (props) => {
         <div>
             <div>
                 {TopNavigationBar()}
-                <p>Queue Times</p>
+                <p>{strings.restaurantPageTitle}</p>
             </div>
             <ListContainer/>
         </div>
