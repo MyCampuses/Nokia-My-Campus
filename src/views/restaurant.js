@@ -10,6 +10,7 @@ import Data from '../hooks/Data'
 import Authentication from '../hooks/Authentication';
 import Navibar from "../fragments/topNavigationbar";
 import strings from '../localization';
+import AuthLoading from "./authLoading";
 
 function ListContainer() {
     const [queuetimes, setQueuetimes] = useState(new Map());
@@ -66,20 +67,30 @@ function ListContainer() {
 }
 
 const Restaurant = (props) => {
-    const {redirectToLogin} = Authentication();
-    useEffect(() => {
-        redirectToLogin()
-    }, []); // eslint-disable-line
-    const {TopNavigationBar} = Navibar();
+    const {isLoggedIn} = Authentication();
 
-    return (
-        <div>
+    const {TopNavigationBar} = Navibar();
+    const RestaurantPage = () =>{
+        return (
             <div>
-                {TopNavigationBar()}
-                <p>{strings.restaurantPageTitle}</p>
+                <div>
+                    {TopNavigationBar()}
+                    <p>{strings.restaurantPageTitle}</p>
+                </div>
+                <ListContainer/>
             </div>
-            <ListContainer/>
-        </div>
+        )
+    }
+    const AuthRestaurant = () =>{
+        if(isLoggedIn()){
+            return <RestaurantPage/>
+        } else {
+            return <AuthLoading/>
+        }
+    }
+
+    return(
+        <AuthRestaurant/>
     )
 
 };

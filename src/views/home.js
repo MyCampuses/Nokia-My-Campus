@@ -23,7 +23,7 @@ const Home = (props) => {
   const {getUsageData} = API();
   const {onItemClickNavigate} = GlobalFunctions();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-  const {redirectToLogin,isLoggedIn} = Authentication();
+  const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
 
   /*eslint-disable */

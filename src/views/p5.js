@@ -16,6 +16,7 @@ import {
 import YAxis from 'recharts/lib/cartesian/YAxis';
 import Bar from 'recharts/lib/cartesian/Bar';
 import GlobalFunctions from '../hooks/GlobalFunctions';
+import AuthLoading from "./authLoading";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -75,12 +76,11 @@ const P5 = (props) => {
   const {getUsageData} = API();
   const {parkingP5Url, selectDate} = ApiUrls();
   const thisLoc = 'P5';
-  const {redirectToLogin} = Authentication();
+  const {isLoggedIn} = Authentication();
   const { convertTime, formattedDate, thisDate } = GlobalFunctions();
 
   // Check if user is logged in
   useEffect(() => {
-    redirectToLogin();
   }, []); // eslint-disable-line
 
   // Fetch data of P5 parking usage and set it to parkingP5Data state
@@ -122,22 +122,37 @@ const P5 = (props) => {
     <YAxis barSize={50} fill="#8884d8" dataKey="pv"/>
   </BarChart>);
 
-  return (
-      <div className={classes.root}>
-        {TopNavigationBar()}
-        <h1>Inside levels of P5</h1>
-        <h3 align="screenLeft">Live Utilization</h3>
-        <div className={classes.progressLabel}>
-          <span>{parkingP5Data}%</span>
+  const P5Page = () =>{
+    return (
+        <div className={classes.root}>
+          {TopNavigationBar()}
+          <h1>Inside levels of P5</h1>
+          <h3 align="screenLeft">Live Utilization</h3>
+          <div className={classes.progressLabel}>
+            <span>{parkingP5Data}%</span>
+          </div>
+          <BorderLinearProgress
+              className={classes.margin}
+              variant="determinate"
+              value={parkingP5Data}
+          />
+          <Container className={classes.p5Box}><p>Utilization Records for {thisDate}</p><ResponsiveContainer>{renderBarChart}</ResponsiveContainer></Container>
         </div>
-        <BorderLinearProgress
-            className={classes.margin}
-            variant="determinate"
-            value={parkingP5Data}
-        />
-        <Container className={classes.p5Box}><p>Utilization Records for {thisDate}</p><ResponsiveContainer>{renderBarChart}</ResponsiveContainer></Container>
-      </div>
-  );
+    );
+  };
+
+  const AuthP5 = () =>{
+    if (isLoggedIn()){
+      return <P5Page/>
+    } else{
+      return <AuthLoading/>
+    }
+  };
+
+  return(
+     <AuthP5/>
+  )
+
 };
 
 export default P5;
