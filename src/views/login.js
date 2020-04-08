@@ -35,10 +35,10 @@ const Login = (props) => {
 
   useEffect(()=>{
     let seconds = 1586269154004;
-
     let date = new Date(seconds)
-    console.log(date)
-
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+    console.log(hours +":"+ minutes)
   });
 
   // Handles login submit

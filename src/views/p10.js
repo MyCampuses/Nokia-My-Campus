@@ -5,7 +5,6 @@ import p10Styles from '../styles/p10Styles'
 import commonStyles from "../styles/commonStyles";
 import '../styles/App.css';
 import '../styles/p10Style.css'
-
 import Typography from "@material-ui/core/Typography";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
@@ -13,14 +12,12 @@ import Box from '@material-ui/core/Box';
 import withStyles from "@material-ui/core/styles/withStyles";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from "@material-ui/core/Grid";
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import {KeyboardDatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import NaviBar from "../fragments/topNavigationbar";
 import Authentication from '../hooks/Authentication';
+import strings from '../localization';
 import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 
@@ -38,7 +35,7 @@ function TabFragmentHistory(props) {
             hidden={value !== index}
             id={`tabfragment-${index}`}
             aria-labelledby={`tab-${index}`}
-            inputStyle={{ textAlign: 'center' }}
+            inputStyle={{textAlign: 'center'}}
             {...other}>
             <Typography>
                 {value === index && <Box p={5}>{children}</Box>}
@@ -106,6 +103,7 @@ function TabFragmentLive(props) {
         </div>
     );
 }
+
 /*eslint-enable */
 //'bar' is the values that are given in the <ProgeBar>
 function ProgeBar(bar) {
@@ -145,18 +143,15 @@ const P10 = () => {
     const [value, setValue] = React.useState(0);
     const {redirectToLogin} = Authentication();
 
-
-    useEffect(()=>{
+    useEffect(() => {
         redirectToLogin()
+    }, []); // eslint-disable-line
 
-    },[]); // eslint-disable-line
     const {TopNavigationBar} = NaviBar();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
-
 
     return (
         <div component="main" maxWidth="lg" id="mainContainer">
@@ -164,7 +159,9 @@ const P10 = () => {
                 {TopNavigationBar()}
             </div>
             <div className="p10">
-                <Typography className={p10classes.p10title} component="h1" variant="h5">P10</Typography>
+                <Typography className={p10classes.p10title} component="h1"
+                            variant="h5">{strings.p10PageTitle
+                }</Typography>
             </div>
             <TabFragmentLive value={value} index={0}>
             </TabFragmentLive>
@@ -177,8 +174,8 @@ const P10 = () => {
                 variant="fullWidth"
                 indicatorColor="primary"
             >
-                <Tab id="live" label="Live"/>
-                <Tab id="history" label="History"/>
+                <Tab id="live" label={strings.live}/>
+                <Tab id="history" label={strings.history}/>
             </Tabs>
         </div>
     );
