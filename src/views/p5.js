@@ -4,22 +4,23 @@ import '../styles/App.css';
 import {
   makeStyles,
   LinearProgress,
-  withStyles, Box,
+  withStyles, Container
 } from '@material-ui/core';
 import NaviBar from '../fragments/topNavigationbar';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import Authentication from '../hooks/Authentication';
 import {
-  BarChart, CartesianGrid, XAxis,
+  BarChart, CartesianGrid, ResponsiveContainer, XAxis,
 } from 'recharts';
 import YAxis from 'recharts/lib/cartesian/YAxis';
 import Bar from 'recharts/lib/cartesian/Bar';
+import { format } from 'date-fns'
+import GlobalFunctions from '../hooks/GlobalFunctions';
 
 const useStyle = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#ffffff',
   },
   margin: {
     margin: theme.spacing(1),
@@ -31,9 +32,9 @@ const useStyle = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     zIndex: 1,
+    border: 5,
     maxHeight: '50px',
     textAlign: 'center',
-    textColor: '#000000',
     display: 'flex',
     alignItems: 'center',
     '& span': {
@@ -41,8 +42,10 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   p5Box: {
-    height: '200px',
+    height: 400,
     width: '100%',
+    marginRight: '5%',
+    marginTop:  '5%'
   },
 
 }));
@@ -72,35 +75,38 @@ const P5 = (props) => {
   const {getUsageData} = API();
   const {parkingP5Url, selectDate} = ApiUrls();
   const thisLoc = 'P5';
-  const thisDate = '02-04-2020';
+  const thisDate = format(new Date(), "dd-MM-yyyy")
   const {redirectToLogin} = Authentication();
+  const { convertTime, formattedDate } = GlobalFunctions();
 
+  // Check if user is logged in
   useEffect(() => {
     redirectToLogin();
   }, []); // eslint-disable-line
 
+  // Fetch data of P5 parking usage and set it to parkingP5Data state
   useEffect(() => {
-    getUsageData(parkingP5Url, props).
-        then(result => setParkingP5Data(result.percent));
+    getUsageData(parkingP5Url, props)
+    .then(result => setParkingP5Data(result.percent));
   }, []);// eslint-disable-line
 
+  // Get usage of specific day thisDate and return sample date and set it to ChartData state
   const getChartData = () => {
-    getUsageData(selectDate(thisLoc, thisDate)).
-        then(result => dataToChart(result.samples)).
-        then(result => setChartData(result));
+    getUsageData(selectDate(thisLoc, thisDate))
+    .then(result => dataToChart(result.samples))
+    .then(result => setChartData(result));
   };
 
+  // Set the data to a chart json and return it
   const dataToChart = (json) => {
     if (json !== undefined) {
       const chart = [];
-      let baseValue = {x: 0, y: 100};
-      chart.push(baseValue);
       for (let key in json) {
         console.log(key);
-        let xc = key;
-        const xcInt = parseInt(xc);
+        const timeStamp = convertTime(json[key].date);
+        const fromUnixTime = formattedDate(timeStamp);
         let yc = json[key].percent;
-        let tempJson = {x: xcInt, y: yc};
+        let tempJson = {x: fromUnixTime, y: yc, pv: 100};
         chart.push(tempJson);
       }
       console.log(chart);
@@ -110,13 +116,13 @@ const P5 = (props) => {
   useEffect(() => {
     getChartData();
   }, []);// eslint-disable-line
-  console.log('Chart:' + JSON.stringify(chartData));
 
-  const renderBarChart = (<BarChart width={500} height={300} data={chartData}>
-    <XAxis/>
+  // Bar chart rendering, X-axis dataKey is from timestamps (x), Y-axis dataKey is the percentage of usage. Data is from chartData state
+  const renderBarChart = (<BarChart width={500} height={300} margin={{left: 0, right: 50}} data={chartData}>
+    <XAxis dataKey="x" />
     <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
     <Bar dataKey="y" fill="#0000FF"/>
-    <YAxis barSize={50} fill="#8884d8"/>
+    <YAxis barSize={50} fill="#8884d8" dataKey="pv"/>
   </BarChart>);
 
   return (
@@ -132,7 +138,7 @@ const P5 = (props) => {
             variant="determinate"
             value={parkingP5Data}
         />
-        <Box className={classes.p5Box}>{renderBarChart}</Box>
+        <Container className={classes.p5Box}><p>Utilization Records for {thisDate}</p><ResponsiveContainer>{renderBarChart}</ResponsiveContainer></Container>
       </div>
   );
 };
