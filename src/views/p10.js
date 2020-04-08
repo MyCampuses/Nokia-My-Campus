@@ -20,6 +20,7 @@ import Authentication from '../hooks/Authentication';
 import strings from '../localization';
 import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
+import AuthLoading from "./authLoading";
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
@@ -141,11 +142,8 @@ const P10 = () => {
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
-    const {redirectToLogin} = Authentication();
+    const { isLoggedIn} = Authentication();
 
-    useEffect(() => {
-        redirectToLogin()
-    }, []); // eslint-disable-line
 
     const {TopNavigationBar} = NaviBar();
 
@@ -153,32 +151,46 @@ const P10 = () => {
         setValue(newValue);
     };
 
-    return (
-        <div component="main" maxWidth="lg" id="mainContainer">
-            <div>
-                {TopNavigationBar()}
+    const P10Page = () =>{
+        return (
+            <div component="main" maxWidth="lg" id="mainContainer">
+                <div>
+                    {TopNavigationBar()}
+                </div>
+                <div className="p10">
+                    <Typography className={p10classes.p10title} component="h1"
+                                variant="h5">{strings.p10PageTitle
+                    }</Typography>
+                </div>
+                <TabFragmentLive value={value} index={0}>
+                </TabFragmentLive>
+                <TabFragmentHistory value={value} index={1}>
+                </TabFragmentHistory>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    className={commonClasses.bottomTabs}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                >
+                    <Tab id="live" label={strings.live}/>
+                    <Tab id="history" label={strings.history}/>
+                </Tabs>
             </div>
-            <div className="p10">
-                <Typography className={p10classes.p10title} component="h1"
-                            variant="h5">{strings.p10PageTitle
-                }</Typography>
-            </div>
-            <TabFragmentLive value={value} index={0}>
-            </TabFragmentLive>
-            <TabFragmentHistory value={value} index={1}>
-            </TabFragmentHistory>
-            <Tabs
-                value={value}
-                onChange={handleChange}
-                className={commonClasses.bottomTabs}
-                variant="fullWidth"
-                indicatorColor="primary"
-            >
-                <Tab id="live" label={strings.live}/>
-                <Tab id="history" label={strings.history}/>
-            </Tabs>
-        </div>
-    );
+        );
+    };
+    const AuthP10 = () =>{
+        if (isLoggedIn()){
+            return <P10Page/>
+        } else {
+            return <AuthLoading/>
+        }
+    }
+
+    return(
+        <AuthP10/>
+    )
+
 };
 
 export default P10

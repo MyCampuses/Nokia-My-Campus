@@ -75,11 +75,11 @@ const Login = (props) => {
             <form noValidate onSubmit={handleSubmit}>
               <img src={require('../assets/logo_mycampus.png')}
                    alt={strings.logoAlt} className="logoImg"/>
-              <Typography component="h5" color="secondary" className="typo">
+              <Typography component="h5" color="secondary" className="typo" style={{paddingTop:"1rem"}}>
                 {strings.welcome}
               </Typography>
               <Typography component="h1" variant="h5" color={'secondary'}
-                          className="typo">
+                          className="typo" style={{paddingTop:"1rem"}}>
                 {strings.signIn}
               </Typography>
               <TextField
@@ -109,7 +109,6 @@ const Login = (props) => {
                   onChange={event => setPassword(event.target.value)}
                   value={password}
               />
-
               <Button type="submit" fullWidth variant="contained"
                       color="primary">
                 {strings.signIn}
