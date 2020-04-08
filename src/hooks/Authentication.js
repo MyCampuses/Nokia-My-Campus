@@ -1,6 +1,8 @@
 import LocalStorageOperations from './LocalStorageOperations';
+import Login from '../views/login';
+import React from "react";
 
-const Authentication = () => {
+const Authentication = (props) => {
   const {read} = LocalStorageOperations();
   // Returns true or false according to if the user is logged in
   const isLoggedIn = () => {
@@ -33,11 +35,21 @@ const Authentication = () => {
     }
   };
 
+  // Checks if logged in Then redirects to login or returns the intended page to be shown. Not in use
+  const checkLogged = (props,page) =>{
+    if (isLoggedIn()){
+      return page
+    } else {
+      return <Login/>
+    }
+  };
+
   return {
     isLoggedIn,
     checkIfLogged,
     redirectToLogin,
-    redirectFromLogin
+    redirectFromLogin,
+    checkLogged
   };
 };
 

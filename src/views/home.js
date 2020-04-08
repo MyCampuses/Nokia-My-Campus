@@ -13,6 +13,7 @@ import {
 import Grid from '@material-ui/core/Grid';
 import Authentication from '../hooks/Authentication';
 import NaviBar from "../fragments/topNavigationbar";
+import AuthLoading from "../views/authLoading";
 
 const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -22,14 +23,8 @@ const Home = (props) => {
   const {getUsageData} = API();
   const {onItemClickNavigate} = GlobalFunctions();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-  const {redirectToLogin} = Authentication();
+  const {redirectToLogin,isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
-
-  useEffect(()=>{
-    redirectToLogin()
-  },[]); // eslint-disable-line
-
-  // Check if user is logged in to redirect to Login
 
   /*eslint-disable */
   useEffect(() => {
@@ -97,71 +92,83 @@ const Home = (props) => {
   }));
   const progressBarTheme = useStyles();
 
+  const HomePage = () =>{
+    return (
+        <ThemeProvider theme={homeTheme}>
+          {TopNavigationBar()}
+          <Grid container spacing={1} component='home' maxWidth='xs'
+                justify="space-between">
+            <Grid item xs={12} spacing={0}>
+              <div className={progressBarTheme.headLine}>Current campus statistics
+                are:
+              </div>
+            </Grid>
+            <Grid item xs={12} spacing={0}
+                  onClick={() => onItemClickNavigate('restaurant')}>
+              <div className={progressBarTheme.progressHeadLine}>
+                <span style={{maxWidth:"30px"}}>Restaurant</span>
+              </div>
+              <div className={progressBarTheme.progressLabel}>
+                <span>Midpoint Fill rate: {restaurantData}%</span>
+              </div>
+
+              <LinearProgress variant="determinate"
+                              value={restaurantData}>restaurantData</LinearProgress>
+            </Grid>
+            <Grid item xs={12} spacing={0}
+                  onClick={() => onItemClickNavigate('p5')}>
+              <div className={progressBarTheme.progressHeadLine}>
+                <span>P5</span>
+              </div>
+              <div className={progressBarTheme.progressLabel}>
+                <span>Live Utilization: {parkingP5Data}%</span>
+              </div>
+              <LinearProgress variant="determinate"
+                              value={parkingP5Data}>P5</LinearProgress>
+            </Grid>
+            <Grid item xs={12} spacing={0}
+                  onClick={() => onItemClickNavigate('p10')}>
+              <div className={progressBarTheme.progressHeadLine}>
+                <span>P10</span>
+              </div>
+              <div className={progressBarTheme.progressLabel}>
+                <span>Inside levels: {parkingP10Data}%</span>
+              </div>
+              <LinearProgress variant="determinate"
+                              value={parkingP10Data}>P10</LinearProgress>
+            </Grid>
+            <Grid item xs={12} spacing={0}
+                  onClick={() => onItemClickNavigate('p10')}>
+              <div className={progressBarTheme.progressHeadLine}>
+                <span>P10</span>
+              </div>
+              <div className={progressBarTheme.progressLabel}>
+                <span>Rooftop level: {parkingP10TopData}%</span>
+              </div>
+              <LinearProgress variant="determinate"
+                              value={parkingP10TopData}>ParkingP10Top</LinearProgress>
+            </Grid>
+            <Grid item xs={12} spacing={0}>
+              <div className={progressBarTheme.headLine}>Tap blocks to display
+                additional information
+              </div>
+            </Grid>
+          </Grid>
+        </ThemeProvider>
+    );
+  };
+
+  const AuthHome = () =>{
+    if (isLoggedIn()){
+      return <HomePage/>
+    } else{
+      return <AuthLoading/>
+    }
+  };
+
   return (
-      <ThemeProvider theme={homeTheme}>
-        {TopNavigationBar()}
-        <Grid container spacing={1} component='home' maxWidth='xs'
-              justify="space-between">
-          <Grid item xs={12} spacing={0}>
-            <div className={progressBarTheme.headLine}>Current campus statistics
-              are:
-            </div>
-          </Grid>
-          <Grid item xs={12} spacing={0}
-                onClick={() => onItemClickNavigate('restaurant')}>
-            <div className={progressBarTheme.progressHeadLine}>
-              <span>Restaurant</span>
-            </div>
-            <div className={progressBarTheme.progressLabel}>
-              <span>Midpoint Fill rate: {restaurantData}%</span>
-            </div>
-
-            <LinearProgress variant="determinate"
-                            value={restaurantData}>restaurantData</LinearProgress>
-          </Grid>
-
-          <Grid item xs={12} spacing={0}
-                onClick={() => onItemClickNavigate('p5')}>
-            <div className={progressBarTheme.progressHeadLine}>
-              <span>P5</span>
-            </div>
-            <div className={progressBarTheme.progressLabel}>
-              <span>Live Utilization: {parkingP5Data}%</span>
-            </div>
-            <LinearProgress variant="determinate"
-                            value={parkingP5Data}>P5</LinearProgress>
-          </Grid>
-          <Grid item xs={12} spacing={0}
-                onClick={() => onItemClickNavigate('p10')}>
-            <div className={progressBarTheme.progressHeadLine}>
-              <span>P10</span>
-            </div>
-            <div className={progressBarTheme.progressLabel}>
-              <span>Inside levels: {parkingP10Data}%</span>
-            </div>
-            <LinearProgress variant="determinate"
-                            value={parkingP10Data}>P10</LinearProgress>
-          </Grid>
-          <Grid item xs={12} spacing={0}
-                onClick={() => onItemClickNavigate('p10')}>
-            <div className={progressBarTheme.progressHeadLine}>
-              <span>P10</span>
-            </div>
-            <div className={progressBarTheme.progressLabel}>
-              <span>Rooftop level: {parkingP10TopData}%</span>
-            </div>
-            <LinearProgress variant="determinate"
-                            value={parkingP10TopData}>ParkingP10Top</LinearProgress>
-          </Grid>
-          <Grid item xs={12} spacing={0}>
-            <div className={progressBarTheme.headLine}>Tap blocks to display
-              additional information
-            </div>
-          </Grid>
-        </Grid>
-      </ThemeProvider>
-
-  );
+      <AuthHome/>
+  )
 };
 
 export default Home;
