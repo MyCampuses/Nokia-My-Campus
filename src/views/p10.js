@@ -21,11 +21,14 @@ import strings from '../localization';
 import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import AuthLoading from "./authLoading";
+import ChartFragment from '../fragments/ChartFragments';
+import GlobalFunctions from '../hooks/GlobalFunctions';
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
-    const [selectedDate, setSelectedDate] = useState(new Date(2020, 4, 2));
-
+    const { thisDate } = GlobalFunctions();
+    const [selectedDate, setSelectedDate] = useState(thisDate);
+    const {P10Chart} = ChartFragment();
     const handleDateChange = date => {
         setSelectedDate(date);
     };
@@ -54,9 +57,13 @@ function TabFragmentHistory(props) {
                     }}
                 />
             </MuiPickersUtilsProvider>
+            <P10Chart/>
         </div>
     );
 }
+
+
+
 
 function TabFragmentLive(props) {
     const {children, value, index, ...other} = props;
@@ -105,6 +112,7 @@ function TabFragmentLive(props) {
     );
 }
 
+
 /*eslint-enable */
 //'bar' is the values that are given in the <ProgeBar>
 function ProgeBar(bar) {
@@ -143,8 +151,6 @@ const P10 = () => {
     const commonClasses = commonStyles();
     const [value, setValue] = React.useState(0);
     const { isLoggedIn} = Authentication();
-
-
     const {TopNavigationBar} = NaviBar();
 
     const handleChange = (event, newValue) => {
@@ -185,11 +191,12 @@ const P10 = () => {
         } else {
             return <AuthLoading/>
         }
-    }
+    };
 
     return(
         <AuthP10/>
     )
+
 
 };
 
