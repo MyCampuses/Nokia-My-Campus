@@ -22,7 +22,7 @@ let strings = new LocalizedStrings({
         pleaseEnterEmail: "Please enter an email",
         pleaseEnterConfirmPass: "Please enter password confirmation",
         pleaseEnterPassword: "Please enter an password",
-        pleaseEnterUsername: "Please enter a name",
+        pleaseEnterName: "Please enter a name",
         waitTime1: "wait time < 30s",
         waitTime2: "wait time < 1m",
         waitTime3: "wait time < 1m 30s",
