@@ -5,7 +5,7 @@ const GlobalFunctions = () => {
   const onItemClickNavigate = (url) => {
     window.location.href = url;
   };
-  // Converts a Unix timestamp to a real time
+  // Converts a Unix timestamp to a real time timestamp
   const convertTime = (timestamp) =>{
     return new Date(timestamp)
   };
@@ -13,10 +13,14 @@ const GlobalFunctions = () => {
   const formattedDate = (timeStamp) => {
     return format(timeStamp, "HH:mm")
   };
+  // Returns the current date in chart-friendly format
+  const thisDate = format(new Date(), "dd-MM-yyyy");
+
   return {
     onItemClickNavigate,
     convertTime,
-    formattedDate
+    formattedDate,
+    thisDate
   };
 };
 export default GlobalFunctions;

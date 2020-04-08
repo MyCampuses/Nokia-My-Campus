@@ -75,9 +75,8 @@ const P5 = (props) => {
   const {getUsageData} = API();
   const {parkingP5Url, selectDate} = ApiUrls();
   const thisLoc = 'P5';
-  const thisDate = format(new Date(), "dd-MM-yyyy")
   const {redirectToLogin} = Authentication();
-  const { convertTime, formattedDate } = GlobalFunctions();
+  const { convertTime, formattedDate, thisDate } = GlobalFunctions();
 
   // Check if user is logged in
   useEffect(() => {
@@ -102,14 +101,12 @@ const P5 = (props) => {
     if (json !== undefined) {
       const chart = [];
       for (let key in json) {
-        console.log(key);
         const timeStamp = convertTime(json[key].date);
         const fromUnixTime = formattedDate(timeStamp);
         let yc = json[key].percent;
         let tempJson = {x: fromUnixTime, y: yc, pv: 100};
         chart.push(tempJson);
       }
-      console.log(chart);
       return chart;
     }
   };
