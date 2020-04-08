@@ -22,7 +22,30 @@ let strings = new LocalizedStrings({
         pleaseEnterEmail: "Please enter an email",
         pleaseEnterConfirmPass: "Please enter password confirmation",
         pleaseEnterPassword: "Please enter an password",
-        pleaseEnterUsername: "Please enter a name"
+        pleaseEnterUsername: "Please enter an username"
+    },
+    fi:{
+        signIn: "Kirjaudu",
+        signUp: "Rekisteröidy",
+        emailAddress: "Sähköposti",
+        username: "Käyttäjänimi",
+        password: "Salasana",
+        confirmPassword: "Varmista salasana",
+        rememberMe: "Muista minut",
+        forgotPass: "Unohtuiko salasana?",
+        noAccount: "Ei käyttäjätiliä? Rekisteröidy",
+        welcome: "Tervetuloa progressiiviseen verkko sovellukseen joka tarjoaa tietoa Nokian Karamalmin kampuksen kolmesta suosituimmasta paikasta.",
+        logoAlt: "MyCampus Logo",
+        validEmail: "Syötä sähköposti",
+        enterEmail: "Syötä sähköposti jonka salasanan tahdot resetoida ja paina lähetä",
+        send: "Lähetä",
+        joinPlatform: "Liity Nokia MyCampus alustalle",
+        usernameError: "Käyttäjänimen tulee olla 2-20 merkkiä",
+        passwordError: "Salasanat eivä täsmää",
+        pleaseEnterEmail: "Syötä säähköposti",
+        pleaseEnterConfirmPass: "Syötä salasanan vahvistus",
+        pleaseEnterPassword: "Syötä salasana",
+        pleaseEnterUsername: "Syötä käyttäjänimi"
     }
 });
 
