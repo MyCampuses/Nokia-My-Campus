@@ -23,6 +23,7 @@ const Home = (props) => {
   const {onItemClickNavigate} = GlobalFunctions();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
   const {redirectToLogin} = Authentication();
+  const {TopNavigationBar} = NaviBar();
 
   useEffect(()=>{
     redirectToLogin()
@@ -95,7 +96,6 @@ const Home = (props) => {
     },
   }));
   const progressBarTheme = useStyles();
-  const {TopNavigationBar} = NaviBar();
 
   return (
       <ThemeProvider theme={homeTheme}>

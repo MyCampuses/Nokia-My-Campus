@@ -11,11 +11,10 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import Authentication from '../hooks/Authentication';
 import {
-  BarChart, CartesianGrid, ResponsiveContainer, XAxis,
+  BarChart, CartesianGrid, ResponsiveContainer, XAxis
 } from 'recharts';
 import YAxis from 'recharts/lib/cartesian/YAxis';
 import Bar from 'recharts/lib/cartesian/Bar';
-import { format } from 'date-fns'
 import GlobalFunctions from '../hooks/GlobalFunctions';
 
 const useStyle = makeStyles((theme) => ({
