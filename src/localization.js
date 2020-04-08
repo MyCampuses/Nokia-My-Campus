@@ -50,12 +50,22 @@ let strings = new LocalizedStrings({
         enterEmail: "Syötä sähköposti jonka salasanan tahdot resetoida ja paina lähetä",
         send: "Lähetä",
         joinPlatform: "Liity Nokia MyCampus alustalle",
-        usernameError: "Käyttäjänimen tulee olla 2-20 merkkiä",
-        passwordError: "Salasanat eivä täsmää",
-        pleaseEnterEmail: "Syötä säähköposti",
+        usernameError: "Käyttäjänimen tulee olla 2-20 merkkiä pitkä",
+        passwordError: "Salasanat eivät täsmää",
+        pleaseEnterEmail: "Syötä sähköposti",
         pleaseEnterConfirmPass: "Syötä salasanan vahvistus",
         pleaseEnterPassword: "Syötä salasana",
-        pleaseEnterUsername: "Syötä käyttäjänimi"
+        pleaseEnterUsername: "Syötä käyttäjänimi",
+        pleaseEnterName: "Syötä nimi",
+        waitTime1: "jonotusaika < 30s",
+        waitTime2: "jonotusaika < 1m",
+        waitTime3: "jonotusaika < 1m 30s",
+        waitTime4: "jonotusaika < 2m",
+        waitTime5: "jonotusaika > 2m",
+        restaurantPageTitle: "Jonotusajat",
+        p10PageTitle: "P10",
+        live: "Live",
+        history: "Vanha Data",
     }
 });
 
