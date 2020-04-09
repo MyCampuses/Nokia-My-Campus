@@ -6,7 +6,7 @@ import {
   LinearProgress,
   withStyles, Container,
 } from '@material-ui/core';
-import NaviBar from '../fragments/topNavigationbar';
+import NaviBar from '../fragments/TopNavigationBarFragment';
 import ChartFragment from '../fragments/ChartFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';

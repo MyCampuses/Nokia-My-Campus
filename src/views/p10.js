@@ -18,7 +18,7 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import NaviBar from '../fragments/topNavigationbar';
+import NaviBar from '../fragments/TopNavigationBarFragment';
 import Authentication from '../hooks/Authentication';
 import strings from '../localization';
 import ApiUrls from '../hooks/ApiUrls';

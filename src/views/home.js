@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Authentication from '../hooks/Authentication';
-import NaviBar from "../fragments/topNavigationbar";
+import NaviBar from "../fragments/TopNavigationBarFragment";
 import AuthLoading from "../views/authLoading";
 
 const Home = (props) => {

@@ -8,7 +8,7 @@ import API from "../hooks/ApiHooks";
 import ApiUrls from '../hooks/ApiUrls';
 import Data from '../hooks/Data'
 import Authentication from '../hooks/Authentication';
-import Navibar from "../fragments/topNavigationbar";
+import Navibar from "../fragments/TopNavigationBarFragment";
 import strings from '../localization';
 import AuthLoading from "./authLoading";
 
