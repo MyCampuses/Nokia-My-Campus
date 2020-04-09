@@ -32,7 +32,12 @@ let strings = new LocalizedStrings({
         p10PageTitle: "P10",
         live: "Live",
         history: "History",
-        pleaseEnterUsername: "Please enter an username"
+        pleaseEnterUsername: "Please enter an username",
+        topBarMenuItemHome: "Home",
+        topBarMenuItemRestaurant: "Restaurant",
+        topBarMenuItemP5: "P5",
+        topBarMenuItemP10: "P10",
+        topBarMenuItemLogout: "Logout"
     },
     fi:{
         signIn: "Kirjaudu",
@@ -66,6 +71,11 @@ let strings = new LocalizedStrings({
         p10PageTitle: "P10",
         live: "Live",
         history: "Vanha Data",
+        topBarMenuItemHome: "Home",
+        topBarMenuItemRestaurant: "Restaurant",
+        topBarMenuItemP5: "P5",
+        topBarMenuItemP10: "P10",
+        topBarMenuItemLogout: "Kirjaudu Ulos"
     }
 });
 

@@ -71,8 +71,6 @@ const P5 = (props) => {
     getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
   }, []);// eslint-disable-line
 
-  // Bar chart rendering, X-axis dataKey is from timestamps (x), Y-axis dataKey is the percentage of usage. Data is from chartData state
-
   const P5Page = () => {
     return (
         <div className={classes.root}>

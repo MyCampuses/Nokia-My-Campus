@@ -101,10 +101,10 @@ const NaviBar = () => {
                                     onClose={handleClose}
                                 >
 
-                                    <MenuItem onClick={() => onItemClickNavigate('home')}>Home</MenuItem>
-                                    <MenuItem onClick={() => onItemClickNavigate('restaurant')}>Restaurant</MenuItem>
-                                    <MenuItem onClick={() => onItemClickNavigate('p5')}>Parking 5</MenuItem>
-                                    <MenuItem onClick={() => onItemClickNavigate('p10')}>Parking 10</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('home')}>{strings.topBarMenuItemHome}</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('restaurant')}>{strings.topBarMenuItemRestaurant}</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('p5')}>{strings.topBarMenuItemP5}</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('p10')}>{strings.topBarMenuItemP10}</MenuItem>
                                     <MenuItem onClick={() => logoutOnClick()}>Logout</MenuItem>
                                 </Menu>
                          </section>
