@@ -84,9 +84,9 @@ const NaviBar = () => {
                             </IconButton>
 
                                 <Menu
-                                    id="fade-menu"
+                                    id="simple-menu"
                                     anchorEl={anchorEl}
-                                    elevation={0}
+                                    elevation={3}
                                     getContentAnchorEl={null}
                                     anchorOrigin={{
                                         vertical: 'bottom',
@@ -96,16 +96,16 @@ const NaviBar = () => {
                                         vertical: 'top',
                                         horizontal: 'center',
                                     }}
+                                    keepMounted
                                     open={Boolean(anchorEl)}
                                     onClose={handleClose}
                                 >
-                                    <Paper variant="outlined">
+
                                     <MenuItem onClick={() => onItemClickNavigate('home')}>Home</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('restaurant')}>Restaurant</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('p5')}>Parking 5</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('p10')}>Parking 10</MenuItem>
                                     <MenuItem onClick={() => logoutOnClick()}>Logout</MenuItem>
-                                    </Paper>
                                 </Menu>
                          </section>
                     </Toolbar>
