@@ -4,18 +4,14 @@ import '../styles/App.css';
 import {
   makeStyles,
   LinearProgress,
-  withStyles, Container
+  withStyles, Container,
 } from '@material-ui/core';
 import NaviBar from '../fragments/topNavigationbar';
+import ChartFragment from '../fragments/ChartFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import Authentication from '../hooks/Authentication';
-import {
-  BarChart, CartesianGrid, ResponsiveContainer, XAxis
-} from 'recharts';
-import YAxis from 'recharts/lib/cartesian/YAxis';
-import Bar from 'recharts/lib/cartesian/Bar';
-import GlobalFunctions from '../hooks/GlobalFunctions';
+import AuthLoading from './authLoading';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -39,12 +35,6 @@ const useStyle = makeStyles((theme) => ({
     '& span': {
       width: '100%',
     },
-  },
-  p5Box: {
-    height: 400,
-    width: '100%',
-    marginRight: '5%',
-    marginTop:  '5%'
   },
 
 }));
@@ -70,74 +60,50 @@ const BorderLinearProgress = withStyles({
 const P5 = (props) => {
   const classes = useStyle();
   const {TopNavigationBar} = NaviBar();
+  const {P5Chart} = ChartFragment();
+  const {isLoggedIn} = Authentication();
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
-  const [chartData, setChartData] = useState(undefined);
   const {getUsageData} = API();
-  const {parkingP5Url, selectDate} = ApiUrls();
-  const thisLoc = 'P5';
-  const {redirectToLogin} = Authentication();
-  const { convertTime, formattedDate, thisDate } = GlobalFunctions();
-
-  // Check if user is logged in
-  useEffect(() => {
-    redirectToLogin();
-  }, []); // eslint-disable-line
+  const {parkingP5Url} = ApiUrls();
 
   // Fetch data of P5 parking usage and set it to parkingP5Data state
   useEffect(() => {
-    getUsageData(parkingP5Url, props)
-    .then(result => setParkingP5Data(result.percent));
-  }, []);// eslint-disable-line
-
-  // Get usage of specific day thisDate and return sample date and set it to ChartData state
-  const getChartData = () => {
-    getUsageData(selectDate(thisLoc, thisDate))
-    .then(result => dataToChart(result.samples))
-    .then(result => setChartData(result));
-  };
-
-  // Set the data to a chart json and return it
-  const dataToChart = (json) => {
-    if (json !== undefined) {
-      const chart = [];
-      for (let key in json) {
-        const timeStamp = convertTime(json[key].date);
-        const fromUnixTime = formattedDate(timeStamp);
-        let yc = json[key].percent;
-        let tempJson = {x: fromUnixTime, y: yc, pv: 100};
-        chart.push(tempJson);
-      }
-      return chart;
-    }
-  };
-  useEffect(() => {
-    getChartData();
+    getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
   }, []);// eslint-disable-line
 
   // Bar chart rendering, X-axis dataKey is from timestamps (x), Y-axis dataKey is the percentage of usage. Data is from chartData state
-  const renderBarChart = (<BarChart width={500} height={300} margin={{left: 0, right: 50}} data={chartData}>
-    <XAxis dataKey="x" />
-    <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
-    <Bar dataKey="y" fill="#0000FF"/>
-    <YAxis barSize={50} fill="#8884d8" dataKey="pv"/>
-  </BarChart>);
+
+  const P5Page = () => {
+    return (
+        <div className={classes.root}>
+          {TopNavigationBar()}
+          <h1>Inside levels of P5</h1>
+          <h3 align="screenLeft">Live Utilization</h3>
+          <div className={classes.progressLabel}>
+            <span>{parkingP5Data}%</span>
+          </div>
+          <BorderLinearProgress
+              className={classes.margin}
+              variant="determinate"
+              value={parkingP5Data}
+          />
+          <P5Chart/>
+        </div>
+    );
+
+  };
+
+  const AuthP5 = () => {
+    if (isLoggedIn()) {
+      return <P5Page/>;
+    } else {
+      return <AuthLoading/>;
+    }
+  };
 
   return (
-      <div className={classes.root}>
-        {TopNavigationBar()}
-        <h1>Inside levels of P5</h1>
-        <h3 align="screenLeft">Live Utilization</h3>
-        <div className={classes.progressLabel}>
-          <span>{parkingP5Data}%</span>
-        </div>
-        <BorderLinearProgress
-            className={classes.margin}
-            variant="determinate"
-            value={parkingP5Data}
-        />
-        <Container className={classes.p5Box}><p>Utilization Records for {thisDate}</p><ResponsiveContainer>{renderBarChart}</ResponsiveContainer></Container>
-      </div>
-  );
+          <AuthP5/>
+      )
 };
 
 export default P5;

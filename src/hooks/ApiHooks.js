@@ -1,6 +1,8 @@
 import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
+import GlobalFunctions from './GlobalFunctions';
 const { loginUrl,regUrl } = ApiUrls();
+const {convertTime, formattedDate } = GlobalFunctions();
 
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
@@ -23,7 +25,7 @@ const fetchGetUrl = async (url, userKey) => {
             authorization: userToken.token,
         },
     });
-    return response.json()
+    return await response.json()
 };
 
 const API = () => {
@@ -48,12 +50,33 @@ const API = () => {
             return json
         })
     };
+    const getChartData = (url, location, date) => {
+        return getUsageData(url + location + date).then((json) => {
+            return json
+        })
+    };
+    const dataToChart = (json) => {
+        if (json !== undefined) {
+            const chart = [];
+            for (let key in json) {
+                const timeStamp = convertTime(json[key].date);
+                const fromUnixTime = formattedDate(timeStamp);
+                let yc = json[key].percent;
+                let tempJson = {x: fromUnixTime, y: yc, pv: 100};
+                chart.push(tempJson);
+                // Set the data to a chart json and return it
+            }
+            return chart;
+        }
+    };
 
     return {
         loginAsync,
         registerAsync,
         getUsageData,
         getUsageDataNoProps,
+        getChartData,
+        dataToChart
     }
 
 };

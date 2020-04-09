@@ -10,9 +10,13 @@ const GlobalFunctions = () => {
     return new Date(timestamp)
   };
   // Creates a date in HH:mm format from timestamp
-  const formattedDate = (timeStamp) => {
-    return format(timeStamp, "HH:mm")
+  const formattedDate = (timestamp) => {
+    return format(timestamp, "HH:mm")
   };
+  // Create a date in dd-MM-yyyy format from timestamp
+  const formattedFullDate = (timestamp) => {
+    return format(timestamp, "dd-MM-yyyy")
+  }
   // Returns the current date in chart-friendly format
   const thisDate = format(new Date(), "dd-MM-yyyy");
 
@@ -20,6 +24,7 @@ const GlobalFunctions = () => {
     onItemClickNavigate,
     convertTime,
     formattedDate,
+    formattedFullDate,
     thisDate
   };
 };
