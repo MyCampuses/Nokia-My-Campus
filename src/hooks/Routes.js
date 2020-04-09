@@ -7,8 +7,8 @@ import Restaurant from '../views/restaurant';
 import ForgotPassword from '../views/forgotPass'
 import Register from "../views/register";
 import AuthLoading from "../views/authLoading";
-
 const routes = {
+
   '/home': () => <Home/>,
   '/': () => <AuthLoading/>,
   '/login': () => <Login/>,
