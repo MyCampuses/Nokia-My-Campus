@@ -5,10 +5,10 @@ import GlobalFunctions from '../hooks/GlobalFunctions';
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
 import {
-  makeStyles,
+  Container,
   createMuiTheme,
   LinearProgress,
-  Container,
+  makeStyles,
   ThemeProvider,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
@@ -16,9 +16,8 @@ import Authentication from '../hooks/Authentication';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 
-const Home = () => {
+const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
   const [parkingP10Data, setParking10Data] = useState(undefined);
@@ -31,13 +30,13 @@ const Home = () => {
 
   /*eslint-disable */
   useEffect(() => {
-    getUsageData(parkingP5Url).
+    getUsageData(parkingP5Url, props).
         then(result => setParkingP5Data(result.percent));
-    getUsageData(restaurantUrl).
+    getUsageData(restaurantUrl, props).
         then(result => setRestaurantData(result.fill_percent));
-    getUsageData(parkingP10Url).
+    getUsageData(parkingP10Url, props).
         then(result => setParking10Data(result.percent));
-    getUsageData(parkingP10TopUrl).
+    getUsageData(parkingP10TopUrl, props).
         then(result => setParkingP10TopData(result.percent));
   }, []);
   /*eslint-enable */
@@ -77,7 +76,6 @@ const Home = () => {
     root: {
       flexGrow: 1,
     },
-
     headLine: {
       marginTop: '10px',
       marginBottom: '10px',
@@ -86,63 +84,130 @@ const Home = () => {
     progressLabel: {
       position: 'absolute',
       zIndex: 1,
-
+      maxHeight: '100px',
+      height: '15vh',
+      maxWidth: '1152px',
+      width: '90%',
+    },
+    labelLocation: {
+      maxHeight: '100px',
+      height: '15vh',
+      justifyContent: 'flex-start',
     },
   }));
   const progressBarTheme = useStyles();
 
-  const HomePage = (props) => {
-    const {children, value, index} = props;
+  const HomePage = () => {
     return (
-
         <ThemeProvider theme={homeTheme}>
           {TopNavigationBar()}
           <Container>
-            <Grid container
-                  justify="space-between" spacing={1}>
-              <Grid item xs={12}>
+            <Grid container spacing={1} component='home' maxwidth='xs'
+                  justify="space-between">
+              <Grid item xs={12} spacing={0}>
                 <div className={progressBarTheme.headLine}>Current campus
                   statistics
                   are:
                 </div>
               </Grid>
-              <Grid item xs={12}
+              <Grid container item xs={12} spacing={0}
                     onClick={() => onItemClickNavigate('restaurant')}>
-
-                <div className={progressBarTheme.progressLabel}>
-                  <span>Restaurant Fill rate: {restaurantData}%</span>
-                </div>
+                <Grid item container className={progressBarTheme.progressLabel}
+                      direction="row"
+                      justify="space-between"
+                      alignItems="center"
+                      xs={12}>
+                  <Grid item alignItems="flex-start"
+                        className={progressBarTheme.labelLocation} xs={4}>
+                    <Typography>
+                      Restaurant
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography>
+                      Fill rate: {restaurantData}%
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                  </Grid>
+                </Grid>
                 <LinearProgress variant="determinate"
                                 value={restaurantData}>restaurantData
                 </LinearProgress>
               </Grid>
-              <Grid item xs={12}
+              <Grid item xs={12} spacing={0}
                     onClick={() => onItemClickNavigate('p5')}>
-
-                <div className={progressBarTheme.progressLabel}>
-                  <span>P5 Live Utilization: {parkingP5Data}%</span>
-                </div>
+                <Grid item container className={progressBarTheme.progressLabel}
+                      direction="row"
+                      justify="space-between"
+                      alignItems="center"
+                      xs={12}>
+                  <Grid item alignItems="flex-start"
+                        className={progressBarTheme.labelLocation} xs={4}>
+                    <Typography>
+                      P5
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography>
+                      Live Utilization: {parkingP5Data}%
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                  </Grid>
+                </Grid>
                 <LinearProgress variant="determinate"
                                 value={parkingP5Data}>P5</LinearProgress>
               </Grid>
-              <Grid item xs={12}
+              <Grid item xs={12} spacing={0}
                     onClick={() => onItemClickNavigate('p10')}>
-
-                <div className={progressBarTheme.progressLabel}>
-                  <span>P10 Inside levels: {parkingP10Data}%</span>
-                </div>
+                <Grid item container className={progressBarTheme.progressLabel}
+                      direction="row"
+                      justify="space-between"
+                      alignItems="center"
+                      xs={12}>
+                  <Grid item alignItems="flex-start"
+                        className={progressBarTheme.labelLocation} xs={4}>
+                    <Typography>
+                      P10 Inside
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography>
+                      Live Utilization: {parkingP10Data}%
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                  </Grid>
+                </Grid>
                 <LinearProgress variant="determinate"
                                 value={parkingP10Data}>P10</LinearProgress>
               </Grid>
-              <Grid item xs={12}
+              <Grid item xs={12} spacing={0}
                     onClick={() => onItemClickNavigate('p10')}>
-                <div className={progressBarTheme.progressLabel}>
-                  <span>P10 Rooftop level: {parkingP10TopData}%</span>
-                </div>
+                <Grid item container className={progressBarTheme.progressLabel}
+                      direction="row"
+                      justify="space-between"
+                      alignItems="center"
+                      xs={12}>
+                  <Grid item alignItems="flex-start"
+                        className={progressBarTheme.labelLocation} xs={4}>
+                    <Typography>
+                      P10 Rooftop
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography>
+                      Live Utilization: {parkingP10TopData}%
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                  </Grid>
+                </Grid>
                 <LinearProgress variant="determinate"
                                 value={parkingP10TopData}>ParkingP10Top</LinearProgress>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} spacing={0}>
                 <div className={progressBarTheme.headLine}>Tap blocks to display
                   additional information
                 </div>
@@ -150,7 +215,6 @@ const Home = () => {
             </Grid>
           </Container>
         </ThemeProvider>
-
     );
   };
 

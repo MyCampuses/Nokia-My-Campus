@@ -30,7 +30,7 @@ const Login = (props) => {
   });
   // Redirects to home if the user has already signed in
   useEffect(()=>{
-     redirectFromLogin();
+      redirectFromLogin()
   });
 
   useEffect(()=>{
