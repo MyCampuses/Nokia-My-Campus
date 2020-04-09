@@ -1,10 +1,10 @@
 import React, {Fragment, useState} from 'react';
-import {AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
-import HomeIcon from "@material-ui/icons/Home";
+import {AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar, Paper   } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Logout from "../hooks/Logout";
 import strings from "../localization";
+
 
 
 //Styles for the Top Navigation Bar
@@ -38,8 +38,7 @@ const useStyle = makeStyles((theme) => ({
     },
     rightToolbar: {
         marginLeft: 'auto',
-        marginRight: -12,
-    }
+    },
 }));
 
 const NaviBar = () => {
@@ -65,9 +64,7 @@ const NaviBar = () => {
             setAnchorEl(null);
         };
 
-        //returns an easily addable fragment <IconButton className={classes.homeButton} edge="start" color="inherit" onClick={() => onItemClickNavigate('home')}>
-        //                             <HomeIcon/>
-        //                         </IconButton>
+        //returns an reusable fragment
         return (
             <Fragment>
                 <AppBar className={classes.appBar}>
@@ -78,29 +75,39 @@ const NaviBar = () => {
                         />
 
                          <section className={classes.rightToolbar}>
+
                             <IconButton className={classes.menu}
                                         aria-controls="menu-appbar"
                                         aria-haspopup="true"
                                         onClick={handleClick}>
                                 <MenuIcon/>
                             </IconButton>
-                            <Menu
-                                id="simple-menu"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                                keepMounted
-                                transformOrigin={{ vertical: "top", horizontal: "center" }}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={() => onItemClickNavigate('home')}>Home</MenuItem>
-                                <MenuItem onClick={() => onItemClickNavigate('restaurant')}>Restaurant</MenuItem>
-                                <MenuItem onClick={() => onItemClickNavigate('p5')}>Parking 5</MenuItem>
-                                <MenuItem onClick={() => onItemClickNavigate('p10')}>Parking 10</MenuItem>
-                                <MenuItem onClick={() => logoutOnClick()}>Logout</MenuItem>
-                            </Menu>
-                         </section>
 
+                                <Menu
+                                    id="fade-menu"
+                                    anchorEl={anchorEl}
+                                    elevation={0}
+                                    getContentAnchorEl={null}
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'center',
+                                    }}
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'center',
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
+                                    <Paper variant="outlined">
+                                    <MenuItem onClick={() => onItemClickNavigate('home')}>Home</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('restaurant')}>Restaurant</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('p5')}>Parking 5</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('p10')}>Parking 10</MenuItem>
+                                    <MenuItem onClick={() => logoutOnClick()}>Logout</MenuItem>
+                                    </Paper>
+                                </Menu>
+                         </section>
                     </Toolbar>
                 </AppBar>
             </Fragment>
