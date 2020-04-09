@@ -45,7 +45,8 @@ const Home = (props) => {
     overrides: {
       MuiLinearProgress: {
         root: {
-          height: '100px',
+          height: '15vh',
+          maxHeight: "100px",
           borderRadius: '10px',
           width:"100%"
         },
@@ -74,23 +75,11 @@ const Home = (props) => {
     root: {
       flexGrow: 1,
     },
-    margin: {
-      margin: theme.spacing(1),
-    },
+
     headLine: {
       marginTop: '10px',
       marginBottom: '10px',
       color: 'blue',
-    },
-    progressHeadLine: {
-      position: 'absolute',
-      width: '100px',
-      height: '20px',
-      marginLeft: '30px',
-      textAlign: 'left',
-      display: 'flex',
-      zIndex: 1,
-
     },
     progressLabel: {
       position:"absolute",
