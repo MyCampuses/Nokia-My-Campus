@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar, Paper } from "@material-ui/core";
+import {AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Logout from "../hooks/Logout";
