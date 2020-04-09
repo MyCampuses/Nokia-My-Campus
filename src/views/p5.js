@@ -85,7 +85,7 @@ const P5 = (props) => {
               variant="determinate"
               value={parkingP5Data}
           />
-          <P5Chart/>
+          <div><P5Chart/></div>
         </div>
     );
 

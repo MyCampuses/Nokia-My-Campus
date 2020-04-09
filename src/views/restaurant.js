@@ -8,12 +8,12 @@ import API from "../hooks/ApiHooks";
 import ApiUrls from '../hooks/ApiUrls';
 import Data from '../hooks/Data'
 import Authentication from '../hooks/Authentication';
-import Navibar from "../fragments/TopNavigationBarFragment";
+import NaviBar from "../fragments/TopNavigationBarFragment";
 import strings from '../localization';
 import AuthLoading from "./authLoading";
 
 function ListContainer() {
-    const [queuetimes, setQueuetimes] = useState(new Map());
+    const [queueTimes, setQueueTimes] = useState(new Map());
     const {getUsageDataNoProps} = API();
     const {restaurantQueueUrl} = ApiUrls();
     const {lines, times, colours} = Data();
@@ -21,7 +21,7 @@ function ListContainer() {
     const getQueueTimes = async () => {
         const lineMap = new Map();
         for (let i = 1; i < 9; i++) {
-            getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueuetimes(new Map(queuetimes.set(i, result))))
+            getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueueTimes(new Map(queueTimes.set(i, result))))
         }
     };
 
@@ -32,13 +32,13 @@ function ListContainer() {
 
     return (
         <Box>
-            {[...lines.keys()].map(mapkey => (
-                <div key={mapkey}>
-                    {queuetimes.get(mapkey) != null && <Box className="lineDiv"
+            {[...lines.keys()].map(mapKey => (
+                <div key={mapKey}>
+                    {queueTimes.get(mapKey) != null && <Box className="lineDiv"
                           border={1}
                           p={1}
                           m={1}
-                          bgcolor={colours.get(parseInt(queuetimes.get(mapkey).queue_time))}
+                          bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
                           borderColor="#E9E9E9"
                     >
                         <Grid container direction="row"
@@ -46,13 +46,13 @@ function ListContainer() {
                               alignItems="center">
                             <Grid>
                                 <Typography>
-                                    {lines.get(mapkey)}
+                                    {lines.get(mapKey)}
                                 </Typography>
                             </Grid>
                             <Grid>
-                                {queuetimes.get(mapkey) != null &&
+                                {queueTimes.get(mapKey) != null &&
                                 <Typography>
-                                    {times.get(parseInt(queuetimes.get(mapkey).queue_time))}
+                                    {times.get(parseInt(queueTimes.get(mapKey).queue_time))}
                                 </Typography>
                                 }
                             </Grid>
@@ -68,8 +68,7 @@ function ListContainer() {
 
 const Restaurant = (props) => {
     const {isLoggedIn} = Authentication();
-
-    const {TopNavigationBar} = Navibar();
+    const {TopNavigationBar} = NaviBar();
     const RestaurantPage = () =>{
         return (
             <div>
@@ -80,14 +79,14 @@ const Restaurant = (props) => {
                 <ListContainer/>
             </div>
         )
-    }
+    };
     const AuthRestaurant = () =>{
         if(isLoggedIn()){
             return <RestaurantPage/>
         } else {
             return <AuthLoading/>
         }
-    }
+    };
 
     return(
         <AuthRestaurant/>

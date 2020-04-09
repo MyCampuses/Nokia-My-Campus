@@ -56,6 +56,7 @@ function TabFragmentHistory(props) {
               label="Date picker"
               format="dd/MM/yyyy"
               value={selectedDate}
+              disableFuture={true}
               onChange={handleDateChange}
               KeyboardButtonProps={{
                 'aria-label': 'change date',

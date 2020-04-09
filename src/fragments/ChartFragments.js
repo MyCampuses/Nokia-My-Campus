@@ -41,9 +41,6 @@ const ChartFragment = () => {
   const {formattedFullDate, thisDate} = GlobalFunctions();
 
   // Convert data to be used in chart
-
-
-
   const renderBarChart = (data) => (
       <ResponsiveContainer width="100%" height="100%"><BarChart minWidth={200} minHeight={200}
           margin={{left: 0, right: 50}} data={data}>
@@ -91,7 +88,7 @@ const ChartFragment = () => {
     const [chartData, setChartData] = useState(undefined);
     useEffect(() => {
       getChartData(dailyRestaurantUrl, '', propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
-    },[]); // eslint-disable-line
+    }); // eslint-disable-line
 
     return (
         <Fragment>
