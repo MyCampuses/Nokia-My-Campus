@@ -29,7 +29,9 @@ const Login = (props) => {
       setBackgroundBlue();
   });
   // Redirects to home if the user has already signed in
-
+  useEffect(()=>{
+      redirectFromLogin()
+  });
 
   useEffect(()=>{
     let seconds = 1586269154004;
