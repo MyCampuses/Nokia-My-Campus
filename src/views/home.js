@@ -16,6 +16,7 @@ import Authentication from '../hooks/Authentication';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import Typography from '@material-ui/core/Typography';
+import p10Styles from '../styles/p10Styles';
 
 const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -95,14 +96,21 @@ const Home = (props) => {
       justifyContent: 'flex-start',
     },
   }));
+
   const progressBarTheme = useStyles();
+  //Progressbar with props
+  function HomeProgressBar(props) {
+    return (
+        <LinearProgress variant="determinate" value={props.value}/>
+    );
+  }
 
   const HomePage = () => {
     return (
         <ThemeProvider theme={homeTheme}>
           {TopNavigationBar()}
           <Container>
-            <Grid container spacing={1} component='home' maxwidth='xs'
+            <Grid container spacing={1}
                   justify="space-between">
               <Grid item xs={12} spacing={0}>
                 <div className={progressBarTheme.headLine}>Current campus
@@ -131,9 +139,8 @@ const Home = (props) => {
                   <Grid item xs={4}>
                   </Grid>
                 </Grid>
-                <LinearProgress variant="determinate"
-                                value={restaurantData}>restaurantData
-                </LinearProgress>
+                <HomeProgressBar value={restaurantData}>restaurantData
+              </HomeProgressBar>
               </Grid>
               <Grid item xs={12} spacing={0}
                     onClick={() => onItemClickNavigate('p5')}>
@@ -156,8 +163,8 @@ const Home = (props) => {
                   <Grid item xs={4}>
                   </Grid>
                 </Grid>
-                <LinearProgress variant="determinate"
-                                value={parkingP5Data}>P5</LinearProgress>
+                <HomeProgressBar value={parkingP5Data}>
+                </HomeProgressBar>
               </Grid>
               <Grid item xs={12} spacing={0}
                     onClick={() => onItemClickNavigate('p10')}>
@@ -180,8 +187,8 @@ const Home = (props) => {
                   <Grid item xs={4}>
                   </Grid>
                 </Grid>
-                <LinearProgress variant="determinate"
-                                value={parkingP10Data}>P10</LinearProgress>
+                <HomeProgressBar value={parkingP10Data}>
+                </HomeProgressBar>
               </Grid>
               <Grid item xs={12} spacing={0}
                     onClick={() => onItemClickNavigate('p10')}>
@@ -204,8 +211,8 @@ const Home = (props) => {
                   <Grid item xs={4}>
                   </Grid>
                 </Grid>
-                <LinearProgress variant="determinate"
-                                value={parkingP10TopData}>ParkingP10Top</LinearProgress>
+                <HomeProgressBar value={parkingP10TopData}>
+                </HomeProgressBar>
               </Grid>
               <Grid item xs={12} spacing={0}>
                 <div className={progressBarTheme.headLine}>Tap blocks to display
