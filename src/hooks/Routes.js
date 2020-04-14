@@ -7,16 +7,16 @@ import Restaurant from '../views/restaurant';
 import ForgotPassword from '../views/forgotPass'
 import Register from "../views/register";
 import AuthLoading from "../views/authLoading";
-
 const routes = {
+  '/': ()=> <Home/>,
   '/home': () => <Home/>,
-  '/': () => <AuthLoading/>,
   '/login': () => <Login/>,
   '/p5': () => <P5/>,
   '/p10': () => <P10/>,
   '/restaurant': () => <Restaurant/>,
   '/register': () => <Register/>,
   '/forgot_password': () => <ForgotPassword/>,
+  '/auth':()=> <AuthLoading/>
 };
 
 

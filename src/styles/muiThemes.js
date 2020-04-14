@@ -21,7 +21,7 @@ const MuiThemes = () => {
     const FormTheme = createMuiTheme({
         palette: {
             primary: {
-                main: blue[500],
+                main: blue[200],
             },
             secondary: {
                 main: blue[50],
@@ -73,9 +73,12 @@ const MuiThemes = () => {
             },
             MuiButton: {
                 containedPrimary: {
-                    color: blue[50],
+                    color: blue[800],
                     marginTop: '0.5em',
                 },
+                fullWidth:{
+                    backgroundColor:blue[50]
+                }
             },
             MuiCheckbox:{
                 colorPrimary:{
