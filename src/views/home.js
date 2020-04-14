@@ -16,7 +16,6 @@ import Authentication from '../hooks/Authentication';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import Typography from '@material-ui/core/Typography';
-import p10Styles from '../styles/p10Styles';
 
 const Home = (props) => {
   const [restaurantData, setRestaurantData] = useState(undefined);

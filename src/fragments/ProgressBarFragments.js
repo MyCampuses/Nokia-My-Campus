@@ -4,13 +4,17 @@ import React, {Fragment, useEffect, useState} from 'react';
 import API from "../hooks/ApiHooks";
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import ApiUrls from "../hooks/ApiUrls";
-import Authentication from "../hooks/Authentication";
-import NaviBar from "./TopNavigationBarFragment";
-
-
+import Typography from "@material-ui/core/Typography";
 
 
 const ProgressBarFragments = (props) => {
+
+    //Progressbar with props
+    function HomeProgressBar(props) {
+        return (
+            <LinearProgress variant="determinate" value={props.value}/>
+        );
+    }
 
     const [restaurantData, setRestaurantData] = useState(undefined);
     const [parkingP5Data, setParkingP5Data] = useState(undefined);
@@ -55,15 +59,29 @@ const ProgressBarFragments = (props) => {
     const restaurantProgressBar = () => {
         return(
             <Fragment>
-                <Grid item xs={12} spacing={0}
-                    onClick={() => onItemClickNavigate('restaurant')}>
-
-                    <div className={progressBarTheme.progressLabel}>
-                        <span>Restaurant Fill rate: {restaurantData}%</span>
-                    </div>
-                    <LinearProgress variant="determinate"
-                                value={restaurantData}>restaurantData
-                    </LinearProgress>
+                <Grid container item xs={12} spacing={0}
+                      onClick={() => onItemClickNavigate('restaurant')}>
+                    <Grid item container className={progressBarTheme.progressLabel}
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                          xs={12}>
+                        <Grid item alignItems="flex-start"
+                              className={progressBarTheme.labelLocation} xs={4}>
+                            <Typography>
+                                Restaurant
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography>
+                                Fill rate: {restaurantData}%
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                        </Grid>
+                    </Grid>
+                    <HomeProgressBar value={restaurantData}>restaurantData
+                    </HomeProgressBar>
                 </Grid>
             </Fragment>
         )
@@ -74,38 +92,101 @@ const ProgressBarFragments = (props) => {
         return (
             <Fragment>
                 <Grid item xs={12} spacing={0}
-                    onClick={() => onItemClickNavigate('p5')}>
-
-                    <div className={progressBarTheme.progressLabel}>
-                        <span>P5 Live Utilization: {parkingP5Data}%</span>
-                    </div>
-                    <LinearProgress variant="determinate"
-                                value={parkingP5Data}>P5</LinearProgress>
+                      onClick={() => onItemClickNavigate('p5')}>
+                    <Grid item container className={progressBarTheme.progressLabel}
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                          xs={12}>
+                        <Grid item alignItems="flex-start"
+                              className={progressBarTheme.labelLocation} xs={4}>
+                            <Typography>
+                                P5
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography>
+                                Live Utilization: {parkingP5Data}%
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                        </Grid>
+                    </Grid>
+                    <HomeProgressBar value={parkingP5Data}>
+                    </HomeProgressBar>
                 </Grid>
             </Fragment>
         )
     }
 
     //Progress bar for P10, including all data
-    const p10ProgressBar = () => {
+    const p10InsideProgressBar = () => {
         return (
             <Fragment>
                 <Grid item xs={12} spacing={0}
-                      onClick={() => onItemClickNavigate('p5')}>
+                    onClick={() => onItemClickNavigate('p10')}>
+                <Grid item container className={progressBarTheme.progressLabel}
+                      direction="row"
+                      justify="space-between"
+                      alignItems="center"
+                      xs={12}>
+                    <Grid item alignItems="flex-start"
+                          className={progressBarTheme.labelLocation} xs={4}>
+                        <Typography>
+                            P10 Inside
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Typography>
+                            Live Utilization: {parkingP10Data}%
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                    </Grid>
+                </Grid>
+                <HomeProgressBar value={parkingP10Data}>
+                </HomeProgressBar>
+            </Grid>
+            </Fragment>
+        )
+    }
 
-                    <div className={progressBarTheme.progressLabel}>
-                        <span>P5 Live Utilization: {parkingP5Data}%</span>
-                    </div>
-                    <LinearProgress variant="determinate"
-                                    value={parkingP5Data}>P5</LinearProgress>
+    const p10RooftopProgressBar = () => {
+        return (
+            <Fragment>
+                <Grid item xs={12} spacing={0}
+                    onClick={() => onItemClickNavigate('p10')}>
+                    <Grid item container className={progressBarTheme.progressLabel}
+                        direction="row"
+                        justify="space-between"
+                        alignItems="center"
+                        xs={12}>
+                        <Grid item alignItems="flex-start"
+                            className={progressBarTheme.labelLocation} xs={4}>
+                            <Typography>
+                                P10 Rooftop
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography>
+                                Live Utilization: {parkingP10TopData}%
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                        </Grid>
+                    </Grid>
+                    <HomeProgressBar value={parkingP10TopData}>
+                    </HomeProgressBar>
                 </Grid>
             </Fragment>
         )
     }
 
+
     return {
         p5ProgressBar: p5ProgressBar,
         restaurantProgressBar: restaurantProgressBar,
-        p10ProgressBar: p10ProgressBar
+        p10InsideProgressBar: p10InsideProgressBar,
+        p10RooftopProgressBar: p10RooftopProgressBar
     };
 }
