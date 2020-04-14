@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from '../views/home';
 import Login from '../views/login';
+import Info from '../views/info'
 import P5 from '../views/p5';
 import P10 from '../views/p10';
 import Restaurant from '../views/restaurant';
@@ -9,6 +10,7 @@ import Register from "../views/register";
 import AuthLoading from "../views/authLoading";
 const routes = {
   '/': ()=> <Home/>,
+  '/info': ()=> <Info/>,
   '/home': () => <Home/>,
   '/login': () => <Login/>,
   '/p5': () => <P5/>,
