@@ -24,11 +24,12 @@
     "react-scripts": "3.4.1",
     "recharts": "^1.8.5",
     "semantic-ui-react": "^0.88.2",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "workbox-cli": "^5.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": " workbox generateSW && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
