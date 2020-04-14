@@ -11,21 +11,18 @@ const useStyle = makeStyles((theme) => ({
   p5Box: {
     width: '100%',
     height: '50vh',
-    marginRight: '5%',
     marginTop: '5%',
     display: 'block',
   },
   p10Box: {
     width: '100%',
     height: '30vh',
-    marginRight: '5%',
     marginTop: '5%',
     display: 'block',
   },
   RestaurantBox: {
     width: '100%',
     height: '50vh',
-    marginRight: '5%',
     marginTop: '5%',
     display: 'block',
   }
@@ -78,7 +75,6 @@ const ChartFragment = () => {
           <Container className={classes.p10Box}><p>Utilization Records
             for {propsDate}</p>{renderBarChart(chartData)}</Container>
         </Fragment>
-
     );
   };
   // Chart for Restaurant History

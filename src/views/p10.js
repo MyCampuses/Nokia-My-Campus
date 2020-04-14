@@ -110,7 +110,7 @@ function TabFragmentLive(props) {
 
 /*eslint-enable */
 
-//'bar' is the values that are given in the <ProgeBar>
+//'bar' are the values that are inserted into <ProgeBar>
 function ProgeBar(bar) {
     const classes = p10Styles();
     return (
@@ -188,7 +188,7 @@ const P10 = () => {
             </div>
         );
     };
-    const AuthP10 = () => {
+    const AuthP10 = () => { //eslint-disable-line
         if (isLoggedIn()) {
             return <P10Page/>;
         } else {
