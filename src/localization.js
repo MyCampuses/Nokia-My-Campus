@@ -39,7 +39,17 @@ let strings = new LocalizedStrings({
         topBarMenuItemP5: "P5",
         topBarMenuItemP10: "P10",
         topBarMenuItemInfo: "Info",
-        topBarMenuItemLogout: "Logout"
+        topBarMenuItemLogout: "Logout",
+        infoPageHeading: "MyCampus is a portal providing access to applications created by Nokia’s employees,\n" +
+            "    Quja start ups and other ecosystem partners. The key enabler is the underlying Nokia Innovation Platform (NIP).\n" +
+            "    For new ideas and questions, please contact: mikael.lindblad@nokia.com",
+        infoPageP1: "Thermal camera sensors cover Midpoint restaurant and the app shows current utilization rate and provides historical data.",
+        infoPageP2: "Car count is provided by time-of-flight sensors and thermal cameras at bottom levels in parking P5 and different floor levels in parking P10",
+        liveUtilization: "Live Utilization",
+        insideLevelsP5: "Inside levels of P5",
+        insideLevels: "Inside levels",
+        roofTopLevels: "Rooftop level",
+        roofTopElectricPlaces: "Rooftop electric places (est)"
     },
     fi:{
         signIn: "Kirjaudu",
@@ -77,7 +87,18 @@ let strings = new LocalizedStrings({
         topBarMenuItemRestaurant: "Restaurant",
         topBarMenuItemP5: "P5",
         topBarMenuItemP10: "P10",
-        topBarMenuItemLogout: "Kirjaudu Ulos"
+        topBarMenuItemLogout: "Kirjaudu Ulos",
+        infoPageHeading: "MyCampus on portaali, joka tarjoaa yhteyden Nokian työntekijöiden,Quja startuppien,\n" +
+            "    ja muiden ekosysteemin yhteistyökumppanien tekemiin sovelluksiin. Pääasiallinen mahdollistaja on perustana oleva Nokia Innovation Platform (NIP).\n" +
+            "    Uusia ideoita ja kysymyksiä koskien, ota yhteyttä: mikael.lindblad@nokia.com",
+        infoPageP1: "Lämpökameroiden sensorit kattavat keskikohdan ravintolan ja sovellus näyttää nykyisen käyttöasteen sekä tarjoaa historiallista dataa",
+        infoPageP2: "Autojen lukumäärän tarjoaa time-of-flight -sensorit ja lämpökamerat P5-parkkitason alatasoilla sekä P10-parkkitason eri kerroksissa",
+        liveUtilization: "Nykyinen käyttöaste",
+        insideLevelsP5: "P5:n sisätilan tasot",
+        insideLevels: "Sisätilan tasot",
+        roofTopLevels: "Kattotaso",
+        roofTopElectricPlaces: "Sähköpaikat katolla (arvio)"
+
     }
 });
 

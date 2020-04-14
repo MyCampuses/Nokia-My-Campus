@@ -12,6 +12,7 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
+import strings from '../localization';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -75,8 +76,8 @@ const P5 = (props) => {
     return (
         <div className={classes.root}>
           {TopNavigationBar()}
-          <h1>Inside levels of P5</h1>
-          <h3 align="screenLeft">Live Utilization</h3>
+          <h1>{strings.insideLevelsP5}</h1>
+          <h3 align="screenLeft">{strings.liveUtilization}</h3>
           <div className={classes.progressLabel}>
             <span>{parkingP5Data}%</span>
           </div>
