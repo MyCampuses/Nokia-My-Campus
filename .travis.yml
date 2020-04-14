@@ -15,6 +15,9 @@ cache:
 script:
   - npm test
   - npm run build
+
+
+after_success:
   - lhci autorun
 
 before_deploy:
