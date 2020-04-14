@@ -66,8 +66,8 @@ const ChartFragment = () => {
     );
   };
   // Chart for P10 History
-  const P10Chart = (props) => {
-    const propsDate = formattedFullDate(props.date);
+  const P10Chart = (date) => {
+    const propsDate = formattedFullDate(date.date);
     const [chartData, setChartData] = useState(undefined);
     useEffect(() => {
       getChartData(dailyParkingUrl, p10Loc, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
