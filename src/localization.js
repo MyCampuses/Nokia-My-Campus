@@ -17,6 +17,7 @@ let strings = new LocalizedStrings({
         enterEmail: "Enter the email you want the password to be reset and click send",
         send: "Send",
         joinPlatform: "Join Nokia MyCampus platform",
+        backToLogin: "Back to Login",
         usernameError: "Username must be between 2-20 characters",
         passwordError: "Passwords don't match",
         pleaseEnterEmail: "Please enter an email",
