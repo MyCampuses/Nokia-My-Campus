@@ -101,6 +101,7 @@ const NaviBar = () => {
                                     onClose={handleClose}
                                 >
 
+                                    <MenuItem onClick={() => onItemClickNavigate('info')}>{strings.topBarMenuItemInfo}</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('home')}>{strings.topBarMenuItemHome}</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('restaurant')}>{strings.topBarMenuItemRestaurant}</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('p5')}>{strings.topBarMenuItemP5}</MenuItem>
