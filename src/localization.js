@@ -66,6 +66,7 @@ let strings = new LocalizedStrings({
         validEmail: "Syötä sähköposti",
         enterEmail: "Syötä sähköposti jonka salasanan tahdot resetoida ja paina lähetä",
         send: "Lähetä",
+        backToLogin:"Takaisin Kirjautumiseen",
         joinPlatform: "Liity Nokia MyCampus alustalle",
         usernameError: "Käyttäjänimen tulee olla 2-20 merkkiä pitkä",
         passwordError: "Salasanat eivät täsmää",
