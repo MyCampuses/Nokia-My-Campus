@@ -38,6 +38,7 @@ let strings = new LocalizedStrings({
         topBarMenuItemRestaurant: "Restaurant",
         topBarMenuItemP5: "P5",
         topBarMenuItemP10: "P10",
+        topBarMenuItemInfo: "Info",
         topBarMenuItemLogout: "Logout"
     },
     fi:{
