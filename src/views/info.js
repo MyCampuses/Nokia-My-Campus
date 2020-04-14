@@ -7,6 +7,7 @@ import {
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
+import strings from '../localization';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -30,12 +31,9 @@ const Info = (props) => {
         <div className={classes.root}>
           {TopNavigationBar()}
           <h2>MyCampus</h2>
-          <p>MyCampus Apps is a portal providing access to applications created by Nokia’s employees,
-            Quja start ups and other ecosystem partners. The key enabler is the underlying Nokia Innovation Platform (NIP).
-            For new ideas and questions, please contact: mikael.lindblad@nokia.com</p>
-          <p>Thermal camera sensors cover Midpoint restaurant and the app shows current utilization rate and provides historical data.</p>
-          <p>Car count provided by time-of-flight sensors and thermal cameras at bottom levels in parking P5.</p>
-          <p>Car count provided by time-of-flight sensors and thermal cameras at different floor Levels in parking P10.</p>
+          <p>{strings.infoPageHeading}</p>
+          <p>{strings.infoPageP1}</p>
+          <p>{strings.infoPageP2}</p>
         </div>
     );
 

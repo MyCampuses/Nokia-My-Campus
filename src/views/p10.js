@@ -90,17 +90,17 @@ function TabFragmentLive(props) {
                 {value === index && <Box p={5}>{children}</Box>}
             </div>
             <Typography>
-                Inside Levels
+                {strings.insideLevels}
             </Typography>
             <ProgeBar variant="determinate" value={parkingP10Data}>
             </ProgeBar>
             <Typography>
-                Rooftop Levels
+                {strings.roofTopLevels}
             </Typography>
             <ProgeBar variant="determinate" value={parkingP10TopData}>
             </ProgeBar>
             <Typography>
-                Rooftop electric places (est.)
+                {strings.roofTopElectricPlaces}
             </Typography>
             <ProgeBar variant="determinate" value={4}>
             </ProgeBar>
