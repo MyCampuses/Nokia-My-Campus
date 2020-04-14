@@ -118,7 +118,7 @@ const Register = (props) =>{
                     <img src={require('../assets/logo_mycampus.png')}
                          className="logoImg"
                          alt={strings.logoAlt}/>
-                    <Typography component="h5" color="secondary" className="typo">
+                    <Typography component="h5" color="secondary" className="typo" style={{paddingTop:"1rem"}}>
                         {strings.joinPlatform}
                     </Typography>
                     <form onSubmit={handleSubmit} className="registerForm">
@@ -188,6 +188,14 @@ const Register = (props) =>{
                         <Button type="submit" fullWidth variant="contained" color="primary" disabled={btnDisable}>
                             {strings.signUp}
                         </Button>
+                        <Grid style={{padding: '1em'}}>
+                            <Grid item xs style={{padding: '1em'}}>
+                                <Link
+                                    onClick={() => {window.location.href = '/login';}}>
+                                    {strings.backToLogin}
+                                </Link>
+                            </Grid>
+                        </Grid>
                     </form>
                 </div>
             </Container>

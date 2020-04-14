@@ -15,6 +15,7 @@ cache:
 script:
   - npm test
   - npm run build
+  - lhci autorun --rc-overrides.upload.target=temporary-public-storage- lhci autorun
 
 
 before_deploy:

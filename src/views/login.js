@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Button,
-  FormControlLabel,
   Container,
   ThemeProvider,
   Typography,
-  TextField, Checkbox, Grid, Link,
+  TextField, Grid, Link,
 } from '@material-ui/core';
 import MuiThemes from '../styles/muiThemes';
 import '../styles/form.css';
@@ -27,11 +26,11 @@ const Login = (props) => {
   // Sets the pages background
   useEffect(() => {
       setBackgroundBlue();
-  });
+  },[]); //eslint-disable-line
   // Redirects to home if the user has already signed in
   useEffect(()=>{
       redirectFromLogin()
-  });
+  },[]);//eslint-disable-line
 
   useEffect(()=>{
     let seconds = 1586269154004;
