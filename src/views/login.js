@@ -26,11 +26,11 @@ const Login = (props) => {
   // Sets the pages background
   useEffect(() => {
       setBackgroundBlue();
-  });
+  },[]); //eslint-disable-line
   // Redirects to home if the user has already signed in
   useEffect(()=>{
       redirectFromLogin()
-  });
+  },[]);//eslint-disable-line
 
   useEffect(()=>{
     let seconds = 1586269154004;
