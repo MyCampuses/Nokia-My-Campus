@@ -82,7 +82,6 @@ const NaviBar = () => {
                                         onClick={handleClick}>
                                 <MenuIcon/>
                             </IconButton>
-
                                 <Menu
                                     id="simple-menu"
                                     anchorEl={anchorEl}
@@ -100,12 +99,11 @@ const NaviBar = () => {
                                     open={Boolean(anchorEl)}
                                     onClose={handleClose}
                                 >
-
                                     <MenuItem onClick={() => onItemClickNavigate('home')}>{strings.topBarMenuItemHome}</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('restaurant')}>{strings.topBarMenuItemRestaurant}</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('p5')}>{strings.topBarMenuItemP5}</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('p10')}>{strings.topBarMenuItemP10}</MenuItem>
-                                    <MenuItem onClick={() => logoutOnClick()}>Logout</MenuItem>
+                                    <MenuItem onClick={() => logoutOnClick()}>{strings.topBarMenuItemLogout}</MenuItem>
                                 </Menu>
                          </section>
                     </Toolbar>

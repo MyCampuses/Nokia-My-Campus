@@ -112,6 +112,7 @@ const Home = (props) => {
                               value={restaurantData}>restaurantData
               </LinearProgress>
             </Grid>
+
             <Grid item xs={12} spacing={0}
                   onClick={() => onItemClickNavigate('p5')}>
 
@@ -121,6 +122,7 @@ const Home = (props) => {
               <LinearProgress variant="determinate"
                               value={parkingP5Data}>P5</LinearProgress>
             </Grid>
+
             <Grid item xs={12} spacing={0}
                   onClick={() => onItemClickNavigate('p10')}>
 
@@ -130,6 +132,7 @@ const Home = (props) => {
               <LinearProgress variant="determinate"
                               value={parkingP10Data}>P10</LinearProgress>
             </Grid>
+
             <Grid item xs={12} spacing={0}
                   onClick={() => onItemClickNavigate('p10')}>
               <div className={progressBarTheme.progressLabel}>

@@ -115,7 +115,7 @@ function TabFragmentLive(props) {
 
 /*eslint-enable */
 
-//'bar' is the values that are given in the <ProgeBar>
+//'bar' are the values that are inserted into <ProgeBar>
 function ProgeBar(bar) {
   const classes = p10Styles();
   return (
@@ -167,9 +167,7 @@ const P10 = () => {
   const P10Page = () => {
     return (
         <div component="main" maxWidth="lg" id="mainContainer">
-          <div>
             {TopNavigationBar()}
-          </div>
           <div className="p10">
             <Typography className={p10classes.p10title} component="h1"
                         variant="h5">{strings.p10PageTitle
