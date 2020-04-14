@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect, useRef} from 'react';
 import MuiThemes from '../styles/muiThemes'
-
+import Authentication from '../hooks/Authentication';
 import {
     Button,
     FormControlLabel,
@@ -11,6 +11,7 @@ import {
     TextField, Checkbox, Grid, Link,
 } from '@material-ui/core';
 import strings from "../localization";
+import API from "../hooks/ApiHooks";
 
 const Register = (props) =>{
     const {FormTheme,setBackgroundBlue} = MuiThemes();
@@ -21,6 +22,8 @@ const Register = (props) =>{
     const [userErrorMsg,setUserErrorMsg]= useState("")
     const [emailErrorMsg,setEmailErrorMsg]=useState("")
     const [passwordErrorMsg, setPasswordErrorMsg]=useState("")
+    const {registerAsync} = API();
+
     const [formData, setFormData] = useState({
         username: "",
         email:"",
@@ -52,9 +55,19 @@ const Register = (props) =>{
     });
 
     // Handles the registering submit
+    //TODO Add registering logic here
     const handleSubmit = () =>{
         console.log("submit")
-        //TODO Add registering logic here
+        const submitData = {
+            email: formData.email,
+            name: formData.username,
+            password: formData.password
+        }
+        const json = registerAsync(submitData)
+        json.then((result)=>{
+
+        })
+
     };
 
     // Validates username input. Has to be between 2-20 characters
