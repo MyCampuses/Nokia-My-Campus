@@ -188,7 +188,7 @@ const P10 = () => {
             </div>
         );
     };
-    const AuthP10 = () => {
+    const AuthP10 = () => { //eslint-disable-line
         if (isLoggedIn()) {
             return <P10Page/>;
         } else {
@@ -197,29 +197,7 @@ const P10 = () => {
     };
 
     return (
-        <div component="main" maxWidth="lg" id="mainContainer">
-            {TopNavigationBar()}
-          <div className="p10">
-            <Typography className={p10classes.p10title} component="h1"
-                        variant="h5">{strings.p10PageTitle
-            }</Typography>
-          </div>
-          <TabFragmentLive value={value} index={0}>
-          </TabFragmentLive>
-          <TabFragmentHistory value={value} index={1}
-                              onDateChange={handleDateChange} date={date}>
-          </TabFragmentHistory>
-          <Tabs
-              value={value}
-              onChange={handleChange}
-              className={commonClasses.bottomTabs}
-              variant="fullWidth"
-              indicatorColor="primary"
-          >
-            <Tab id="live" label={strings.live}/>
-            <Tab id="history" label={strings.history}/>
-          </Tabs>
-        </div>
+        <AuthP10/>
     );
 };
 
