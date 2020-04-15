@@ -28,7 +28,7 @@ const ForgotPassword = (props) => {
         <ThemeProvider theme={FormTheme}>
             <Container component="main" maxWidth="xs">
                 <div className="form">
-                    <img src={require('../assets/logo_mycampus.png')}
+                    <img src={require('../assets/logo_mycampus.webp')}
                          alt={strings.logoAlt} className="logoImg"/>
                     <Typography component="h5" color="secondary" className="typo" style={{paddingTop:"1rem"}}>
                         {strings.enterEmail}

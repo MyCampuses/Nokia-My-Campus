@@ -69,7 +69,7 @@ const NaviBar = () => {
             <Fragment>
                 <AppBar className={classes.appBar}>
                     <Toolbar className={classes.toolBar}>
-                        <img src={require('../assets/logo_mycampus.png')}
+                        <img src={require('../assets/logo_mycampus.webp')}
                              alt={strings.logoAlt} className={classes.logo}
                              onClick={() => onItemClickNavigate('home')}
                         />

@@ -72,7 +72,7 @@ const Login = (props) => {
         <Container component='main' maxWidth="xs">
           <div className="form">
             <form noValidate onSubmit={handleSubmit}>
-              <img src={require('../assets/logo_mycampus.png')}
+              <img src={require('../assets/logo_mycampus.webp')}
                    alt={strings.logoAlt} className="logoImg"/>
               <Typography component="h5" color="secondary" className="typo" style={{paddingTop:"1rem"}}>
                 {strings.welcome}
