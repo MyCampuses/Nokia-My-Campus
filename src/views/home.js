@@ -12,6 +12,7 @@ import Authentication from '../hooks/Authentication';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
+import ServiceWorkerWrapper from '../hooks/ServiceWorkerWrapper';
 
 
 const Home = (props) => {
@@ -79,6 +80,7 @@ const Home = (props) => {
   const progressBarTheme = useStyles();
 
   const HomePage = () => {
+    ServiceWorkerWrapper()
     return (
         <ThemeProvider theme={homeTheme}>
           {TopNavigationBar()}
@@ -88,7 +90,7 @@ const Home = (props) => {
               <Grid item xs={12} spacing={0}>
                 <div className={progressBarTheme.headLine}>Current campus
                   statistics
-                  are testtest:
+                  are testtestasd:
                 </div>
               </Grid>
               {RestaurantProgressBar()}
