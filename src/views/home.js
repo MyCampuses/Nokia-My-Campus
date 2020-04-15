@@ -92,7 +92,7 @@ const Home = (props) => {
               <Grid item xs={12} spacing={0}>
                 <div className={progressBarTheme.headLine}>Current campus
                   statistics
-                  are testet:
+                  are test:
                 </div>
               </Grid>
               {RestaurantProgressBar()}
