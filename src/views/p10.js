@@ -22,6 +22,7 @@ import ApiUrls from '../hooks/ApiUrls';
 import API from '../hooks/ApiHooks';
 import AuthLoading from './authLoading';
 import ChartFragment from '../fragments/ChartFragments';
+import P10MapView from "./p10MapView";
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
@@ -175,6 +176,7 @@ const P10 = () => {
                 <TabFragmentLive value={value} index={0}>
                 </TabFragmentLive>
                 {tabHistory}
+                <P10MapView value={value} index={2}/>
                 <Tabs
                     value={value}
                     onChange={handleChange}
@@ -184,6 +186,7 @@ const P10 = () => {
                 >
                     <Tab id="live" label={strings.live}/>
                     <Tab id="history" label={strings.history}/>
+                    <Tab id="p10map" label={strings.map}/>
                 </Tabs>
             </div>
         );

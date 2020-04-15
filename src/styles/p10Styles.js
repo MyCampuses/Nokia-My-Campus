@@ -17,6 +17,7 @@ const p10Styles = makeStyles({
             width: "100%"
         }
     },
+
 });
 
 export default p10Styles;

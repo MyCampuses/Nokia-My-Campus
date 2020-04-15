@@ -52,6 +52,7 @@ let strings = new LocalizedStrings({
         roofTopElectricPlaces: "Rooftop electric places (est)",
         p10MapAlt: "P10 Map",
         p5MapAlt:"P5 Map",
+        map: "Map"
     },
     fi:{
         signIn: "Kirjaudu",
@@ -103,6 +104,7 @@ let strings = new LocalizedStrings({
         roofTopElectricPlaces: "Sähköpaikat katolla (arvio)",
         p10MapAlt: "P10 Kartta",
         p5MapAlt:"P5 Kartta",
+        map: "Kartta"
     }
 });
 
