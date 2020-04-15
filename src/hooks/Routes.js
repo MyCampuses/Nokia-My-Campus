@@ -8,6 +8,8 @@ import Restaurant from '../views/restaurant';
 import ForgotPassword from '../views/forgotPass'
 import Register from "../views/register";
 import AuthLoading from "../views/authLoading";
+import P5MapView from "../views/p5MapView";
+import P10MapView from "../views/p10MapView";
 const routes = {
   '/': ()=> <Home/>,
   '/info': ()=> <Info/>,
@@ -18,7 +20,9 @@ const routes = {
   '/restaurant': () => <Restaurant/>,
   '/register': () => <Register/>,
   '/forgot_password': () => <ForgotPassword/>,
-  '/auth':()=> <AuthLoading/>
+  '/auth':()=> <AuthLoading/>,
+  '/p5map': ()=> <P5MapView/>,
+  '/p10map': () => <P10MapView/>
 };
 
 

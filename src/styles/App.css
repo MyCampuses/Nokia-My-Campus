@@ -50,6 +50,10 @@ body{
   color: #61dafb;
 }
 
+.MapStyle {
+  max-width: 100%;
+  height: auto;
+}
 
 
 @keyframes App-logo-spin {

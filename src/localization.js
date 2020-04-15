@@ -49,7 +49,9 @@ let strings = new LocalizedStrings({
         insideLevelsP5: "Inside levels of P5",
         insideLevels: "Inside levels",
         roofTopLevels: "Rooftop level",
-        roofTopElectricPlaces: "Rooftop electric places (est)"
+        roofTopElectricPlaces: "Rooftop electric places (est)",
+        p10MapAlt: "P10 Map",
+        p5MapAlt:"P5 Map",
     },
     fi:{
         signIn: "Kirjaudu",
@@ -98,8 +100,9 @@ let strings = new LocalizedStrings({
         insideLevelsP5: "P5:n sisätilan tasot",
         insideLevels: "Sisätilan tasot",
         roofTopLevels: "Kattotaso",
-        roofTopElectricPlaces: "Sähköpaikat katolla (arvio)"
-
+        roofTopElectricPlaces: "Sähköpaikat katolla (arvio)",
+        p10MapAlt: "P10 Kartta",
+        p5MapAlt:"P5 Kartta",
     }
 });
 
