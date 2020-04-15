@@ -13,6 +13,7 @@ import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
 
+
 const Home = (props) => {
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
