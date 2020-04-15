@@ -7,10 +7,9 @@ import Data from './hooks/Data'
 import Alert from './hooks/UpdateAlert'
 const { SW_INIT, SW_UPDATE } = Data()
 
-
-
 const App = () => {
   const routeResult = useRoutes(routes);
+  // State selectors for redux
   const isServiceWorkerInitialized = useSelector(
       state => state.serviceWorkerInitialized);
   const isServiceWorkerUpdated = useSelector(
