@@ -23,6 +23,7 @@ import API from '../hooks/ApiHooks';
 import AuthLoading from './authLoading';
 import ChartFragment from '../fragments/ChartFragments';
 import P10MapView from "./p10MapView";
+import ServiceWorkerWrapper from '../hooks/ServiceWorkerWrapper';
 
 function TabFragmentHistory(props) {
     const {children, value, index, ...other} = props;
@@ -144,6 +145,7 @@ const UtilLinearProgress = withStyles({
 })(LinearProgress);
 
 const P10 = () => {
+    ServiceWorkerWrapper()
     const p10classes = p10Styles();
     const commonClasses = commonStyles();
     const [value, setValue] = useState(0);
