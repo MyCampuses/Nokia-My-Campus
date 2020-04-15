@@ -55,6 +55,7 @@ const UpdateAlert = () => {
 
   function App() {
     console.log("App")
+    const isServiceWorkerInitialized = useSelector(state => state.serviceWorkerInitialized,)
     const isServiceWorkerUpdated = useSelector(
         state => state.serviceWorkerUpdated);
     const serviceWorkerRegistration = useSelector(
@@ -74,6 +75,7 @@ const UpdateAlert = () => {
       }
     };
     return <div className="App-alert">
+      {isServiceWorkerInitialized}
       {isServiceWorkerUpdated && (
           <Alert text="New version of the app available" buttonText="Update"
                  type={SW_UPDATE} onClick={updateServiceWorker()}/>
