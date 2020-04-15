@@ -6,6 +6,7 @@ const SW_INIT = 'SW_INIT';
 const SW_UPDATE = 'SW_UPDATE';
 
 const UpdateAlert = () => {
+  console.log("updateAlert")
   function rootReducer(state = {}, action) {
     switch (action.type) {
       case SW_INIT:
@@ -25,6 +26,7 @@ const UpdateAlert = () => {
   }
 
   const configureStore = () => {
+    console.log("configureStore")
     createStore(rootReducer, {
       serviceWorkerInitialized: false,
       serviceWorkerUpdated: false,
@@ -52,6 +54,7 @@ const UpdateAlert = () => {
   };
 
   function App() {
+    console.log("App")
     const isServiceWorkerUpdated = useSelector(
         state => state.serviceWorkerUpdated);
     const serviceWorkerRegistration = useSelector(
@@ -62,6 +65,8 @@ const UpdateAlert = () => {
       if (registrationWaiting) {
         registrationWaiting.postMessage({type: 'SKIP_WAITING'});
         registrationWaiting.addEventListener('statechange', event => {
+          console.log(event.state)
+          console.log(event.target.state)
           if (event.target.state === 'activated') {
             window.location.reload();
           }

@@ -19,6 +19,9 @@ const Home = (props) => {
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
   const {RestaurantProgressBar, P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar} = ProgressBarFragments();
+  useEffect(() => {
+    App()
+  },[]);
 
   /*eslint-enable */
 
@@ -80,7 +83,6 @@ const Home = (props) => {
   const progressBarTheme = useStyles();
 
   const HomePage = () => {
-    App()
     return (
         <ThemeProvider theme={homeTheme}>
           {TopNavigationBar()}
@@ -90,7 +92,7 @@ const Home = (props) => {
               <Grid item xs={12} spacing={0}>
                 <div className={progressBarTheme.headLine}>Current campus
                   statistics
-                  are testest:
+                  are testet:
                 </div>
               </Grid>
               {RestaurantProgressBar()}
