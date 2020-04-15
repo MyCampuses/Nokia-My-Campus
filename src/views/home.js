@@ -77,9 +77,6 @@ const Home = (props) => {
 
   const progressBarTheme = useStyles();
 
-
-
-
   const HomePage = () => {
     return (
         <ThemeProvider theme={homeTheme}>
