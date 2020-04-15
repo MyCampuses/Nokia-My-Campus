@@ -75,7 +75,7 @@ const UpdateAlert = () => {
       }
     };
     return <div className="App-alert">
-      {isServiceWorkerInitialized}
+      {isServiceWorkerInitialized && <Alert text="Service worker is initialized" type={SW_INIT}>}
       {isServiceWorkerUpdated && (
           <Alert text="New version of the app available" buttonText="Update"
                  type={SW_UPDATE} onClick={updateServiceWorker()}/>
