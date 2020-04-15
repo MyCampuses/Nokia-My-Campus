@@ -26,38 +26,42 @@ const ProgressBarFragments = (props) => {
 
     /*eslint-disable */
     useEffect(() => {
-        getUsageData(parkingP5Url, props).
-        then(result => setParkingP5Data(result.percent));
-        getUsageData(restaurantUrl, props).
-        then(result => setRestaurantData(result.fill_percent));
-        getUsageData(parkingP10Url, props).
-        then(result => setParking10Data(result.percent));
-        getUsageData(parkingP10TopUrl, props).
-        then(result => setParkingP10TopData(result.percent));
+        getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
+        getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
+        getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
+        getUsageData(parkingP10TopUrl, props).then(result => setParkingP10TopData(result.percent));
     }, []);
     /*eslint-enable */
+
 
     const useStyles = makeStyles(theme => ({
         root: {
             flexGrow: 1,
         },
-
         headLine: {
             marginTop: '10px',
             marginBottom: '10px',
             color: 'blue',
         },
         progressLabel: {
-            position:"absolute",
-            zIndex:1,
-
+            position: 'absolute',
+            zIndex: 1,
+            maxHeight: '100px',
+            height: '15vh',
+            maxWidth: '1152px',
+            width: '90%',
+        },
+        labelLocation: {
+            maxHeight: '100px',
+            height: '15vh',
+            justifyContent: 'flex-start',
         },
     }));
     const progressBarTheme = useStyles();
 
-    //Progress bar for restaurant, including all data
-    const restaurantProgressBar = () => {
-        return(
+    //Restaurant progress bar
+    const RestaurantProgressBar = () => {
+        return (
             <Fragment>
                 <Grid container item xs={12} spacing={0}
                       onClick={() => onItemClickNavigate('restaurant')}>
@@ -87,8 +91,8 @@ const ProgressBarFragments = (props) => {
         )
     }
 
-    //Progress bar for P5, including all data
-    const p5ProgressBar = () => {
+    //P5 progress bar
+    const P5ProgressBar = () => {
         return (
             <Fragment>
                 <Grid item xs={12} spacing={0}
@@ -119,50 +123,51 @@ const ProgressBarFragments = (props) => {
         )
     }
 
-    //Progress bar for P10, including all data
-    const p10InsideProgressBar = () => {
+    //P10 inside levels Progress Bar
+    const P10InsideProgressBar = () => {
         return (
             <Fragment>
                 <Grid item xs={12} spacing={0}
-                    onClick={() => onItemClickNavigate('p10')}>
-                <Grid item container className={progressBarTheme.progressLabel}
-                      direction="row"
-                      justify="space-between"
-                      alignItems="center"
-                      xs={12}>
-                    <Grid item alignItems="flex-start"
-                          className={progressBarTheme.labelLocation} xs={4}>
-                        <Typography>
-                            P10 Inside
-                        </Typography>
+                      onClick={() => onItemClickNavigate('p10')}>
+                    <Grid item container className={progressBarTheme.progressLabel}
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                          xs={12}>
+                        <Grid item alignItems="flex-start"
+                              className={progressBarTheme.labelLocation} xs={4}>
+                            <Typography>
+                                P10 Inside
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography>
+                                Live Utilization: {parkingP10Data}%
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={4}>
-                        <Typography>
-                            Live Utilization: {parkingP10Data}%
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={4}>
-                    </Grid>
+                    <HomeProgressBar value={parkingP10Data}>
+                    </HomeProgressBar>
                 </Grid>
-                <HomeProgressBar value={parkingP10Data}>
-                </HomeProgressBar>
-            </Grid>
             </Fragment>
         )
     }
 
-    const p10RooftopProgressBar = () => {
+    // P10 Rooftop Progress Bar
+    const P10RooftopProgressBar = () => {
         return (
             <Fragment>
                 <Grid item xs={12} spacing={0}
-                    onClick={() => onItemClickNavigate('p10')}>
+                      onClick={() => onItemClickNavigate('p10')}>
                     <Grid item container className={progressBarTheme.progressLabel}
-                        direction="row"
-                        justify="space-between"
-                        alignItems="center"
-                        xs={12}>
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                          xs={12}>
                         <Grid item alignItems="flex-start"
-                            className={progressBarTheme.labelLocation} xs={4}>
+                              className={progressBarTheme.labelLocation} xs={4}>
                             <Typography>
                                 P10 Rooftop
                             </Typography>
@@ -181,12 +186,13 @@ const ProgressBarFragments = (props) => {
             </Fragment>
         )
     }
-
-
+    
     return {
-        p5ProgressBar: p5ProgressBar,
-        restaurantProgressBar: restaurantProgressBar,
-        p10InsideProgressBar: p10InsideProgressBar,
-        p10RooftopProgressBar: p10RooftopProgressBar
+        P5ProgressBar: P5ProgressBar,
+        RestaurantProgressBar: RestaurantProgressBar,
+        P10InsideProgressBar: P10InsideProgressBar,
+        P10RooftopProgressBar: P10RooftopProgressBar
     };
 }
+
+export default ProgressBarFragments;
