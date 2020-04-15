@@ -5,9 +5,9 @@ import App from './App';
 import UpdateAlert from './hooks/UpdateAlert';
 import {CssBaseline} from "@material-ui/core";
 import * as serviceWorker from './serviceWorker';
-const { SW_INIT, SW_UPDATE, configureStore } = UpdateAlert()
-
-
+import configureStore from './hooks/UpdateAlert'
+const { SW_INIT, SW_UPDATE } = UpdateAlert()
+const store = configureStore()
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,7 +21,6 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.register({
-  onSuccess: () => configureStore.dispatch({ type: SW_INIT }),
-  onUpdate: registration =>
-      configureStore.dispatch({ type: SW_UPDATE, payload: registration }),
+  onSuccess: () => store.dispatch({ type: SW_INIT }),
+  onUpdate: registration => store.dispatch({ type: SW_UPDATE, payload: registration }),
 });

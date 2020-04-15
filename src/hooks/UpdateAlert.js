@@ -6,7 +6,8 @@ const SW_INIT = 'SW_INIT';
 const SW_UPDATE = 'SW_UPDATE';
 
 const UpdateAlert = () => {
-  console.log("updateAlert")
+  console.log('updateAlert');
+
   function rootReducer(state = {}, action) {
     switch (action.type) {
       case SW_INIT:
@@ -26,7 +27,7 @@ const UpdateAlert = () => {
   }
 
   const configureStore = () => {
-    console.log("configureStore")
+    console.log('configureStore');
     createStore(rootReducer, {
       serviceWorkerInitialized: false,
       serviceWorkerUpdated: false,
@@ -54,8 +55,9 @@ const UpdateAlert = () => {
   };
 
   function App() {
-    console.log("App")
-    const isServiceWorkerInitialized = useSelector(state => state.serviceWorkerInitialized,)
+    console.log('App');
+    const isServiceWorkerInitialized = useSelector(
+        state => state.serviceWorkerInitialized);
     const isServiceWorkerUpdated = useSelector(
         state => state.serviceWorkerUpdated);
     const serviceWorkerRegistration = useSelector(
@@ -66,29 +68,33 @@ const UpdateAlert = () => {
       if (registrationWaiting) {
         registrationWaiting.postMessage({type: 'SKIP_WAITING'});
         registrationWaiting.addEventListener('statechange', event => {
-          console.log(event.state)
-          console.log(event.target.state)
+          console.log(event.state);
+          console.log(event.target.state);
           if (event.target.state === 'activated') {
             window.location.reload();
           }
         });
       }
     };
-    return <div className="App-alert">
-      {isServiceWorkerInitialized && (<Alert text="Service worker is initialized" type={SW_INIT}/>
-        )}
-      {isServiceWorkerUpdated && (
-          <Alert text="New version of the app available" buttonText="Update"
-                 type={SW_UPDATE} onClick={updateServiceWorker()}/>
-      )}
-    </div>
+    return (
+        <div className="App-alert">
+          {isServiceWorkerInitialized &&
+          (<Alert text="Service worker is initialized" type={SW_INIT}/>
+          )}
+          {isServiceWorkerUpdated && (
+              <Alert text="New version of the app available" buttonText="Update"
+                     type={SW_UPDATE} onClick={updateServiceWorker()}
+              />
+          )}
+        </div>
+    );
   }
 
   return {
     SW_INIT,
     SW_UPDATE,
     configureStore,
-    App
+    App,
   };
 };
 
