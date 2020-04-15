@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Container, makeStyles} from '@material-ui/core';
-import {BarChart, CartesianGrid, ResponsiveContainer, XAxis} from 'recharts';
-import Bar from 'recharts/lib/cartesian/Bar';
+import {AreaChart, CartesianGrid, ResponsiveContainer, XAxis} from 'recharts';
+import Area from 'recharts/lib/cartesian/Area';
 import YAxis from 'recharts/lib/cartesian/YAxis';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
@@ -38,14 +38,14 @@ const ChartFragment = () => {
   const {formattedFullDate, thisDate} = GlobalFunctions();
 
   // Convert data to be used in chart
-  const renderBarChart = (data) => (
-      <ResponsiveContainer width="100%" height="100%"><BarChart minWidth={200} minHeight={200}
+  const renderChart = (data) => (
+      <ResponsiveContainer width="100%" height="100%"><AreaChart minWidth={200} minHeight={200}
           margin={{left: 0, right: 50}} data={data}>
         <XAxis dataKey="x"/>
         <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
-        <Bar dataKey="y" fill="#0000FF"/>
+        <Area dataKey="y" fill="#0000FF"/>
         <YAxis barSize={50} fill="#8884d8" dataKey="pv"/>
-      </BarChart></ResponsiveContainer>);
+      </AreaChart></ResponsiveContainer>);
 
 
   // Chart for P5 History
@@ -58,7 +58,7 @@ const ChartFragment = () => {
     return (
         <Fragment>
           <Container className={classes.p5Box}><p>Utilization Records
-            for {thisDate}</p>{renderBarChart(chartData)}</Container>
+            for {thisDate}</p>{renderChart(chartData)}</Container>
         </Fragment>
     );
   };
@@ -73,7 +73,7 @@ const ChartFragment = () => {
     return (
         <Fragment>
           <Container className={classes.p10Box}><p>Utilization Records
-            for {propsDate}</p>{renderBarChart(chartData)}</Container>
+            for {propsDate}</p>{renderChart(chartData)}</Container>
         </Fragment>
     );
   };
@@ -89,7 +89,7 @@ const ChartFragment = () => {
     return (
         <Fragment>
           <Container className={classes.RestaurantBox}><p>Utilization Records
-            for {propsDate}</p>{renderBarChart(chartData)}</Container>
+            for {propsDate}</p>{renderChart(chartData)}</Container>
         </Fragment>
 
     );
