@@ -12,16 +12,11 @@ import Authentication from '../hooks/Authentication';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import App from '../hooks/UpdateAlert'
-
 
 const Home = (props) => {
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
   const {RestaurantProgressBar, P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar} = ProgressBarFragments();
-  useEffect(() => {
-    App()
-  },[]);
 
   /*eslint-enable */
 

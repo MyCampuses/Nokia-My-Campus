@@ -14,10 +14,15 @@ const Data = () => {
         [1, '#CFFFA7'], [2, '#ECFFAC'],
         [3, '#FFF7A7'], [4, '#FFEAA5'], [5, '#FFD9A7']]);
 
+    const SW_INIT = 'SW_INIT';
+    const SW_UPDATE = 'SW_UPDATE';
+
     return {
         lines,
         times,
         colours,
+        SW_INIT,
+        SW_UPDATE,
 
     };
 };
