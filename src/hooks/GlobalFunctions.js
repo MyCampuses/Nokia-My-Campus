@@ -6,26 +6,26 @@ const GlobalFunctions = () => {
     window.location.href = url;
   };
   // Converts a Unix timestamp to a real time timestamp
-  const convertTime = (timestamp) =>{
-    return new Date(timestamp)
+  const convertTime = (timestamp) => {
+    return new Date(timestamp);
   };
   // Creates a date in HH:mm format from timestamp
   const formattedDate = (timestamp) => {
-    return format(timestamp, "HH:mm")
+    return format(timestamp, 'HH:mm');
   };
   // Create a date in dd-MM-yyyy format from timestamp
   const formattedFullDate = (timestamp) => {
-    return format(timestamp, "dd-MM-yyyy")
-  }
+    return format(timestamp, 'dd-MM-yyyy');
+  };
   // Returns the current date in chart-friendly format
-  const thisDate = format(new Date(), "dd-MM-yyyy");
+  const thisDate = format(new Date(), 'dd-MM-yyyy');
 
   return {
     onItemClickNavigate,
     convertTime,
     formattedDate,
     formattedFullDate,
-    thisDate
+    thisDate,
   };
 };
 export default GlobalFunctions;

@@ -13,7 +13,6 @@ import ApiUrls from '../hooks/ApiUrls';
 import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import strings from '../localization';
-import ServiceWorkerWrapper from '../hooks/ServiceWorkerWrapper';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -74,7 +73,6 @@ const P5 = (props) => {
   }, []);// eslint-disable-line
 
   const P5Page = () => {
-    ServiceWorkerWrapper()
     return (
         <div className={classes.root}>
           {TopNavigationBar()}
