@@ -202,7 +202,7 @@ const ProgressBarFragments = (props) => {
                         <Grid item alignItems="flex-start"
                               className={progressBarTheme.labelLocation} xs={4}>
                             <Typography>
-                                P10 Rooftop Electric (est)
+                                P10 Rooftop Electric (est.)
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
