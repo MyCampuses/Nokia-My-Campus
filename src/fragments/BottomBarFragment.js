@@ -5,15 +5,15 @@ import React, {useMemo, useState} from "react";
 import commonStyles from "../styles/commonStyles";
 import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
+import P5MapView from "../views/p5MapView";
 
 const BottomBarTabFragment = (props) => {
+    const commonClasses = commonStyles();
+    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5} = TabFragments();
 
-    const P10BottomTab = (props) => {
-
-        const commonClasses = commonStyles();
+    const P10BottomTab = () => {
         const [value, setValue] = useState(0);
         const [date, setDate] = useState(new Date());
-        const {TabFragmentHistory, TabFragmentLive} = TabFragments();
 
         const handleChange = (event, newValue) => {
             setValue(newValue);
@@ -21,7 +21,6 @@ const BottomBarTabFragment = (props) => {
 
         const handleDateChange = (data) => {
             setDate(data);
-            console.log(data);
         };
 
         const tabHistory = useMemo(() =>
@@ -51,8 +50,52 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
+    const P5BottomTab = () => {
+        const [valueP5, setValueP5] = useState(0);
+        const [date, setDate] = useState(new Date());
+
+        const handleChange = (event, newValue) => {
+            setValueP5(newValue);
+        };
+
+        const handleDateChange = (data) => {
+            setDate(data);
+        };
+
+        const tabHistoryP5 = useMemo(() =>
+            <TabFragmentHistoryP5 value={valueP5} index={1}
+                                  onDateChange={handleDateChange} date={date}>
+            </TabFragmentHistoryP5>, [valueP5, date]
+        );
+
+        const tabLiveP5 = useMemo(() =>
+            <TabFragmentLiveP5 value={valueP5} index={0}>
+            </TabFragmentLiveP5>, [valueP5]
+        );
+
+        return (
+            <div>
+                {tabLiveP5}
+                {tabHistoryP5}
+                <P5MapView value={valueP5} index={2}/>
+                <Tabs
+                    value={valueP5}
+                    onChange={handleChange}
+                    className={commonClasses.bottomTabs}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                >
+                    <Tab id="live" label={strings.live}/>
+                    <Tab id="history" label={strings.history}/>
+                    <Tab id="p5map" label={strings.map}/>
+                </Tabs>
+            </div>
+        );
+    };
+
     return {
         P10BottomTab: P10BottomTab,
+        P5BottomTab: P5BottomTab,
     };
 };
 

@@ -5,12 +5,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import strings from "../localization";
 import ChartFragment from "./ChartFragments";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import {Container} from "@material-ui/core";
+import ProgressBarFragments from "./ProgressBarFragments";
 
 //'bar' are the values that are inserted into <ProgeBar>
 //ProgeBar is only temporary while fragment is being worked on
@@ -46,6 +47,8 @@ const UtilLinearProgress = withStyles({
 })(LinearProgress);
 
 const TabFragments = (props) => {
+    const {P5Chart, P10Chart} = ChartFragment();
+    const {P5ProgressBar} = ProgressBarFragments();
 
     function TabFragmentLive(props) {
         const {children, value, index, ...other} = props;
@@ -90,11 +93,9 @@ const TabFragments = (props) => {
 
     function TabFragmentHistory(props) {
         const {children, value, index, ...other} = props;
-        const {P10Chart} = ChartFragment();
         const [selectedDate, setSelectedDate] = useState(new Date(props.date));
 
         const handleDateChange = date => {
-            console.log(date);
             setSelectedDate(date);
             props.onDateChange(date);
         };
@@ -126,9 +127,64 @@ const TabFragments = (props) => {
         );
     }
 
+    function TabFragmentLiveP5(props) {
+        const {children, value, index, ...other} = props;
+
+        return (
+            <div
+                hidden={value !== index}>
+                <Container>
+                    <h1>{strings.insideLevelsP5}</h1>
+                    <Grid>{P5ProgressBar()}</Grid>
+                </Container>
+                <Grid>
+                    <P5Chart date={new Date()}/>
+                </Grid>
+            </div>
+        );
+    }
+
+    function TabFragmentHistoryP5(props) {
+        const {children, value, index, ...other} = props;
+        const [selectedDate, setSelectedDate] = useState(new Date(props.date));
+
+        const handleDateChange = date => {
+            setSelectedDate(date);
+            props.onDateChange(date);
+        };
+
+        return (
+            <div
+                role="tabfragment"
+                hidden={value !== index}
+                id={`tabfragment-${index}`}
+                aria-labelledby={`tab-${index}`}
+                inputstyle={{textAlign: 'center'}}
+                {...other}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                        margin="normal"
+                        id="dialog date picker"
+                        label="Date picker"
+                        format="dd/MM/yyyy"
+                        value={selectedDate}
+                        disableFuture={true}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                </MuiPickersUtilsProvider>
+                <P5Chart date={selectedDate}/>
+            </div>
+        );
+    }
+
     return {
-      TabFragmentHistory: TabFragmentHistory,
-      TabFragmentLive: TabFragmentLive,
+        TabFragmentHistory: TabFragmentHistory,
+        TabFragmentLive: TabFragmentLive,
+        TabFragmentLiveP5: TabFragmentLiveP5,
+        TabFragmentHistoryP5: TabFragmentHistoryP5,
     };
 
 };

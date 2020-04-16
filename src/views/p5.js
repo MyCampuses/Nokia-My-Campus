@@ -11,6 +11,8 @@ import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import strings from '../localization';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
+import TabFragments from "../fragments/TabFragments";
+import BottomBarTabFragment from "../fragments/BottomBarFragment";
 
 const homeTheme = createMuiTheme({
   flexGrow: 1,
@@ -46,19 +48,14 @@ const homeTheme = createMuiTheme({
 
 const P5 = (props) => {
   const {TopNavigationBar} = NaviBar();
-  const {P5Chart} = ChartFragment();
   const {isLoggedIn} = Authentication();
-  const {P5ProgressBar} = ProgressBarFragments();
+  const {P5BottomTab} = BottomBarTabFragment();
 
   const P5Page = () => {
     return (
         <ThemeProvider theme={homeTheme}>
           {TopNavigationBar()}
-          <Container>
-          <h1>{strings.insideLevelsP5}</h1>
-          <Grid>{P5ProgressBar()}</Grid>
-          </Container>
-          <Grid><P5Chart/></Grid>
+          {P5BottomTab()}
         </ThemeProvider>
     );
 
