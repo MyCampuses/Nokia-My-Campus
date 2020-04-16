@@ -35,12 +35,11 @@ function ListContainer() {
             {[...lines.keys()].map(mapKey => (
                 <div key={mapKey}>
                     {queueTimes.get(mapKey) != null && <Box className="lineDiv"
-                          border={1}
-                          p={1}
-                          m={1}
-                          bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
-                          borderColor="#E9E9E9"
-                    >
+                                                            border={1}
+                                                            p={1}
+                                                            m={1}
+                                                            bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
+                                                            borderColor="#E9E9E9">
                         <Grid container direction="row"
                               justify="space-between"
                               alignItems="center">
@@ -69,7 +68,7 @@ function ListContainer() {
 const Restaurant = (props) => {
     const {isLoggedIn} = Authentication();
     const {TopNavigationBar} = NaviBar();
-    const RestaurantPage = () =>{
+    const RestaurantPage = () => {
         return (
             <div>
                 <div>
@@ -80,15 +79,15 @@ const Restaurant = (props) => {
             </div>
         )
     };
-    const AuthRestaurant = () =>{
-        if(isLoggedIn()){
+    const AuthRestaurant = () => {
+        if (isLoggedIn()) {
             return <RestaurantPage/>
         } else {
             return <AuthLoading/>
         }
     };
 
-    return(
+    return (
         <AuthRestaurant/>
     )
 
