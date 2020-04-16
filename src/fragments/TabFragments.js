@@ -1,89 +1,74 @@
-import React, {useEffect, useState} from "react";
-import p10Styles from "../styles/p10Styles";
+import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
-import withStyles from "@material-ui/core/styles/withStyles";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import API from "../hooks/ApiHooks";
-import ApiUrls from "../hooks/ApiUrls";
-import Typography from "@material-ui/core/Typography";
-import strings from "../localization";
 import ChartFragment from "./ChartFragments";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import ProgressBarFragments from '../fragments/ProgressBarFragments'
+import {createMuiTheme, ThemeProvider, Container} from "@material-ui/core";
 
 //'bar' are the values that are inserted into <ProgeBar>
 //ProgeBar is only temporary while fragment is being worked on
-function ProgeBar(bar) {
-    const classes = p10Styles();
-    return (
-        <div className={classes.root}>
-            <Grid container spacing={0} justify="space-between">
-                <Grid item xs={12} spacing={0}>
-                    <div className={classes.progressLabel}>
-                        <span>{bar.value}%</span>
-                    </div>
-                    <UtilLinearProgress variant="determinate" value={bar.value}/>
-                </Grid>
-            </Grid>
-        </div>
-    );
-}
-
-const UtilLinearProgress = withStyles({
-    root: {
-        height: 50,
-        width: '90%',
-        justifyContent: 'center',
-        marginLeft: '5%',
-        marginRight: '5%',
-        marginBottom: '1em',
-        backgroundColor: 'white',
-    },
-    bar: {
-        backgroundColor: '#DAEDFB',
-    },
-})(LinearProgress);
 
 const TabFragments = (props) => {
+    const homeTheme = createMuiTheme({
+        flexGrow: 1,
+        overrides: {
+            MuiLinearProgress: {
+                root: {
+                    height: '15vh',
+                    maxHeight: '100px',
+                    borderRadius: '10px',
+                    width: '100%',
+                },
+            },
+            MuiGrid: {
+                root: {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                },
+                'spacing-xs-1': {
+                    padding: '0px',
+                    margin: '0px',
+                    width: '100%',
+                },
+            },
+            MuiContainer: {
+                root: {
+                    paddingLeft: '4px',
+                    paddingRight: '4px',
+                },
+            },
+        },
+    });
+
+    const {P10InsideProgressBar, P10RooftopProgressBar} = ProgressBarFragments();
 
     function TabFragmentLive(props) {
         const {children, value, index, ...other} = props;
-        const {parkingP10Url, parkingP10TopUrl} = ApiUrls();
-        const {getUsageData} = API();
-        const [parkingP10Data, setParking10Data] = useState(undefined);
-        const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
 
         //Set p10 fetched data
-        useEffect(() => {
-            getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
-            getUsageData(parkingP10TopUrl, props).then(result => setParkingP10TopData(result.percent));
-        }, []);// eslint-disable-line
 
         return (
-            <div
-                component="div"
-                role="tabfragmentlive" //eslint-disable-line
-                hidden={value !== index}
-                id={`tabfragmentlive-${index}`}
-                aria-labelledby={`tab-${index}`}
-                {...other}
-            >
-                <Typography>
-                    {strings.insideLevels}
-                </Typography>
-                <ProgeBar variant="determinate" value={parkingP10Data}>
-                </ProgeBar>
-                <Typography>
-                    {strings.roofTopLevels}
-                </Typography>
-                <ProgeBar variant="determinate" value={parkingP10TopData}>
-                </ProgeBar>
-                <Typography>
-                    {strings.roofTopElectricPlaces}
-                </Typography>
-                <ProgeBar variant="determinate" value={4}>
-                </ProgeBar>
-            </div>
+            <ThemeProvider theme={homeTheme}>
+                <Container>
+                    <div
+                        component="div"
+                        role="tabfragmentlive" //eslint-disable-line
+                        hidden={value !== index}
+                        id={`tabfragmentlive-${index}`}
+                        aria-labelledby={`tab-${index}`}
+                        {...other}
+                    >
+                        <Grid container spacing={1}
+                              justify="space-between">
+                            {P10InsideProgressBar()}
+                            {P10RooftopProgressBar()}
+                        </Grid>
+
+                    </div>
+                </Container>
+            </ThemeProvider>
         );
     }
 
@@ -126,8 +111,8 @@ const TabFragments = (props) => {
     }
 
     return {
-      TabFragmentHistory: TabFragmentHistory,
-      TabFragmentLive: TabFragmentLive,
+        TabFragmentHistory: TabFragmentHistory,
+        TabFragmentLive: TabFragmentLive,
     };
 
 };

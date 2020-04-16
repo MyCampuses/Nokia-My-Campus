@@ -15,7 +15,6 @@ import BottomBarTabFragment from "../fragments/BottomBarFragment";
 /*eslint-enable */
 
 const P10 = () => {
-    const p10classes = p10Styles();
     const {isLoggedIn} = Authentication();
     const {TopNavigationBar} = NaviBar();
     const {P10BottomTab} = BottomBarTabFragment();
@@ -25,9 +24,7 @@ const P10 = () => {
             <div component="main" maxwidth="lg" id="mainContainer">
                 {TopNavigationBar()}
                 <div className="p10">
-                    <Typography className={p10classes.p10title} component="h1"
-                                variant="h5">{strings.p10PageTitle}
-                    </Typography>
+                    <h1>P10</h1>
                 </div>
                 {P10BottomTab()}
             </div>
