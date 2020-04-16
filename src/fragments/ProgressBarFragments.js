@@ -5,7 +5,8 @@ import API from "../hooks/ApiHooks";
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import ApiUrls from "../hooks/ApiUrls";
 import Typography from "@material-ui/core/Typography";
-
+import '../styles/progressBar.css';
+import strings from "../localization";
 
 const ProgressBarFragments = (props) => {
 
@@ -74,13 +75,13 @@ const ProgressBarFragments = (props) => {
                           xs={12}>
                         <Grid item alignItems="flex-start"
                               className={progressBarTheme.labelLocation} xs={4}>
-                            <Typography>
-                                Restaurant
+                            <Typography className="alignLeft">
+                                {strings.topBarMenuItemRestaurant}
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
                             <Typography>
-                                Fill rate: {restaurantData}%
+                                {strings.fillRate}: {restaurantData}%
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
@@ -106,13 +107,13 @@ const ProgressBarFragments = (props) => {
                           xs={12}>
                         <Grid item alignItems="flex-start"
                               className={progressBarTheme.labelLocation} xs={4}>
-                            <Typography>
-                                P5
+                            <Typography className="alignLeft">
+                                {strings.p5inside}
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
                             <Typography>
-                                Live Utilization: {parkingP5Data}%
+                                {strings.liveUtilization}: {parkingP5Data}%
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
@@ -138,13 +139,13 @@ const ProgressBarFragments = (props) => {
                           xs={12}>
                         <Grid item alignItems="flex-start"
                               className={progressBarTheme.labelLocation} xs={4}>
-                            <Typography>
-                                P10 Inside
+                            <Typography className="alignLeft">
+                                {strings.p10inside}
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
                             <Typography>
-                                Live Utilization: {parkingP10Data}%
+                                {strings.liveUtilization}: {parkingP10Data}%
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
@@ -170,13 +171,13 @@ const ProgressBarFragments = (props) => {
                           xs={12}>
                         <Grid item alignItems="flex-start"
                               className={progressBarTheme.labelLocation} xs={4}>
-                            <Typography>
-                                P10 Rooftop
+                            <Typography className="alignLeft">
+                                {strings.p10rooftop}
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
                             <Typography>
-                                Live Utilization: {parkingP10TopData}%
+                                {strings.liveUtilization}: {parkingP10TopData}%
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
@@ -201,13 +202,13 @@ const ProgressBarFragments = (props) => {
                           xs={12}>
                         <Grid item alignItems="flex-start"
                               className={progressBarTheme.labelLocation} xs={4}>
-                            <Typography>
-                                P10 Rooftop Electric (est.)
+                            <Typography className="alignLeft">
+                                {strings.p10electric}
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
                             <Typography>
-                                Live Utilization: {parkingP10ElectricData}%
+                                {strings.liveUtilization}: {parkingP10ElectricData}%
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>

@@ -52,7 +52,13 @@ let strings = new LocalizedStrings({
         roofTopElectricPlaces: "Rooftop electric places (est)",
         p10MapAlt: "P10 Map",
         p5MapAlt:"P5 Map",
-        map: "Map"
+        map: "Map",
+        p10electric: "P10 Rooftop Electic (est.)",
+        p10inside: "P10 Inside",
+        p10rooftop:"P10 Rooftop",
+        p5inside: "P5 Inside",
+        fillRate: "Fill Rate"
+
     },
     fi:{
         signIn: "Kirjaudu",
@@ -87,8 +93,8 @@ let strings = new LocalizedStrings({
         p10PageTitle: "P10",
         live: "Live",
         history: "Vanha Data",
-        topBarMenuItemHome: "Home",
-        topBarMenuItemRestaurant: "Restaurant",
+        topBarMenuItemHome: "Koti",
+        topBarMenuItemRestaurant: "Ravintola",
         topBarMenuItemP5: "P5",
         topBarMenuItemP10: "P10",
         topBarMenuItemLogout: "Kirjaudu Ulos",
@@ -104,7 +110,13 @@ let strings = new LocalizedStrings({
         roofTopElectricPlaces: "Sähköpaikat katolla (arvio)",
         p10MapAlt: "P10 Kartta",
         p5MapAlt:"P5 Kartta",
-        map: "Kartta"
+        map: "Kartta",
+        p10electric: "P10 Sähköpaikat (arvio)",
+        p10inside: "P10 Sisätaso",
+        p10rooftop:"P10 kattotaso",
+        p5inside: "P5 Sisätaso",
+        fillRate: "Täyttöaste"
+
     }
 });
 
