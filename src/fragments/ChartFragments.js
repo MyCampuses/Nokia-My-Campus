@@ -87,14 +87,13 @@ const ChartFragment = () => {
                 getChartData(dailyRestaurantUrl, '', propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
             }); // eslint-disable-line
 
-            return (
-                <Fragment>
-                    <Container className={classes.RestaurantBox}><p>Utilization Records
-                        for {propsDate}</p>{renderChart(chartData)}</Container>
-                </Fragment>
-
-            );
-        };
+    return (
+        <Fragment>
+          <Container className={classes.RestaurantBox}><p>Utilization Records
+            for {propsDate}</p>{renderChart(chartData)}</Container>
+        </Fragment>
+    );
+  };
 
         return {
             P5Chart: P5Chart,
