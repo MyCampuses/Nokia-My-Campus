@@ -91,7 +91,6 @@ const ChartFragment = () => {
           <Container className={classes.RestaurantBox}><p>Utilization Records
             for {propsDate}</p>{renderChart(chartData)}</Container>
         </Fragment>
-
     );
   };
 
