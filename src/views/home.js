@@ -95,7 +95,7 @@ const Home = (props) => {
               {P10InsideProgressBar()}
               {P10RooftopProgressBar()}
             </Grid>
-          </Container>xxx
+          </Container>
         </ThemeProvider>
     );
   };
