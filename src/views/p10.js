@@ -1,14 +1,11 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
-import p10Styles from '../styles/p10Styles';
 import '../styles/App.css';
 import '../styles/p10Style.css';
-import Typography from '@material-ui/core/Typography';
 import 'date-fns';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import Authentication from '../hooks/Authentication';
-import strings from '../localization';
 import AuthLoading from './authLoading';
 import BottomBarTabFragment from "../fragments/BottomBarFragment";
 

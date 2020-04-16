@@ -5,6 +5,7 @@ import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers"
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
 import {createMuiTheme, ThemeProvider, Container} from "@material-ui/core";
+import strings from "../localization";
 
 
 const TabFragments = (props) => {
