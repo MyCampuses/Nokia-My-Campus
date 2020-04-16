@@ -69,9 +69,6 @@ const TabFragments = (props) => {
                 aria-labelledby={`tab-${index}`}
                 {...other}
             >
-                <div>
-                    {value === index && <Box p={5}>{children}</Box>}
-                </div>
                 <Typography>
                     {strings.insideLevels}
                 </Typography>
@@ -110,9 +107,6 @@ const TabFragments = (props) => {
                 aria-labelledby={`tab-${index}`}
                 inputstyle={{textAlign: 'center'}}
                 {...other}>
-                <div>
-                    {value === index && <Box p={5}>{children}</Box>}
-                </div>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                         margin="normal"
