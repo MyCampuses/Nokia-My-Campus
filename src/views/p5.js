@@ -4,15 +4,16 @@ import '../styles/App.css';
 import {
   makeStyles,
   LinearProgress,
-  withStyles, Container,
+  withStyles,
+  Container, createMuiTheme, ThemeProvider
 } from '@material-ui/core';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import ChartFragment from '../fragments/ChartFragments';
-import API from '../hooks/ApiHooks';
-import ApiUrls from '../hooks/ApiUrls';
+import Grid from '@material-ui/core/Grid';
 import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import strings from '../localization';
+import ProgressBarFragments from '../fragments/ProgressBarFragments'
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -40,6 +41,38 @@ const useStyle = makeStyles((theme) => ({
 
 }));
 
+const homeTheme = createMuiTheme({
+  flexGrow: 1,
+  overrides: {
+    MuiLinearProgress: {
+      root: {
+        height: '15vh',
+        maxHeight: '100px',
+        borderRadius: '10px',
+        width: '100%',
+      },
+    },
+    MuiGrid: {
+      root: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      'spacing-xs-1': {
+        padding: '0px',
+        margin: '0px',
+        width: '100%',
+      },
+    },
+    MuiContainer: {
+      root: {
+        paddingLeft: '4px',
+        paddingRight: '4px',
+      },
+    },
+  },
+});
+
 //Progress bar style
 const BorderLinearProgress = withStyles({
   root: {
@@ -63,31 +96,18 @@ const P5 = (props) => {
   const {TopNavigationBar} = NaviBar();
   const {P5Chart} = ChartFragment();
   const {isLoggedIn} = Authentication();
-  const [parkingP5Data, setParkingP5Data] = useState(undefined);
-  const {getUsageData} = API();
-  const {parkingP5Url} = ApiUrls();
-
-  // Fetch data of P5 parking usage and set it to parkingP5Data state
-  useEffect(() => {
-    getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
-  }, []);// eslint-disable-line
+  const {P5ProgressBar} = ProgressBarFragments();
 
   const P5Page = () => {
     return (
-        <div className={classes.root}>
+        <ThemeProvider theme={homeTheme}>
           {TopNavigationBar()}
+          <Container>
           <h1>{strings.insideLevelsP5}</h1>
-          <h3 align="screenLeft">{strings.liveUtilization}</h3>
-          <div className={classes.progressLabel}>
-            <span>{parkingP5Data}%</span>
-          </div>
-          <BorderLinearProgress
-              className={classes.margin}
-              variant="determinate"
-              value={parkingP5Data}
-          />
-          <div><P5Chart/></div>
-        </div>
+          <Grid>{P5ProgressBar()}</Grid>
+          </Container>
+          <Grid><P5Chart/></Grid>
+        </ThemeProvider>
     );
 
   };
