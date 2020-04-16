@@ -12,12 +12,13 @@ import Authentication from '../hooks/Authentication';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
+import GlobalFunctions from "../hooks/GlobalFunctions";
 
 const Home = (props) => {
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
   const {RestaurantProgressBar, P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar} = ProgressBarFragments();
-
+  const {onItemClickNavigate} = GlobalFunctions();
   /*eslint-enable */
 
   const homeTheme = createMuiTheme({
@@ -90,10 +91,10 @@ const Home = (props) => {
                   are test:
                 </div>
               </Grid>
-              {RestaurantProgressBar()}
-              {P5ProgressBar()}
-              {P10InsideProgressBar()}
-              {P10RooftopProgressBar()}
+              {RestaurantProgressBar('/restaurant')}
+              {P5ProgressBar('/p5')}
+              {P10InsideProgressBar('/p10')}
+              {P10RooftopProgressBar('/p10')}
             </Grid>
           </Container>
         </ThemeProvider>

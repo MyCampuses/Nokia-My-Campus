@@ -5,7 +5,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import strings from "../localization";
 import ChartFragment from "./ChartFragments";
@@ -63,7 +62,7 @@ const TabFragments = (props) => {
         return (
             <div
                 component="div"
-                role="tabfragmentlive"
+                role="tabfragmentlive" //eslint-disable-line
                 hidden={value !== index}
                 id={`tabfragmentlive-${index}`}
                 aria-labelledby={`tab-${index}`}

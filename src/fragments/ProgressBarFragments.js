@@ -60,11 +60,11 @@ const ProgressBarFragments = (props) => {
     const progressBarTheme = useStyles();
 
     //Restaurant progress bar
-    const RestaurantProgressBar = () => {
+    const RestaurantProgressBar = (navigationUrl) => {
         return (
             <Fragment>
                 <Grid container item xs={12} spacing={0}
-                      onClick={() => onItemClickNavigate('restaurant')}>
+                      onClick={() => {onItemClickNavigate(navigationUrl)}}>
                     <Grid item container className={progressBarTheme.progressLabel}
                           direction="row"
                           justify="space-between"
@@ -92,11 +92,11 @@ const ProgressBarFragments = (props) => {
     }
 
     //P5 progress bar
-    const P5ProgressBar = () => {
+    const P5ProgressBar = (navigationUrl) => {
         return (
             <Fragment>
                 <Grid item xs={12} spacing={0}
-                      onClick={() => onItemClickNavigate('p5')}>
+                      onClick={()=>{onItemClickNavigate(navigationUrl)}}>
                     <Grid item container className={progressBarTheme.progressLabel}
                           direction="row"
                           justify="space-between"
@@ -124,11 +124,11 @@ const ProgressBarFragments = (props) => {
     }
 
     //P10 inside levels Progress Bar
-    const P10InsideProgressBar = () => {
+    const P10InsideProgressBar = (navigationUrl) => {
         return (
             <Fragment>
                 <Grid item xs={12} spacing={0}
-                      onClick={() => onItemClickNavigate('p10')}>
+                      onClick={() => {onItemClickNavigate(navigationUrl)}}>
                     <Grid item container className={progressBarTheme.progressLabel}
                           direction="row"
                           justify="space-between"
@@ -156,11 +156,11 @@ const ProgressBarFragments = (props) => {
     }
 
     // P10 Rooftop Progress Bar
-    const P10RooftopProgressBar = () => {
+    const P10RooftopProgressBar = (navigationUrl) => {
         return (
             <Fragment>
                 <Grid item xs={12} spacing={0}
-                      onClick={() => onItemClickNavigate('p10')}>
+                      onClick={() => {onItemClickNavigate(navigationUrl)}}>
                     <Grid item container className={progressBarTheme.progressLabel}
                           direction="row"
                           justify="space-between"
@@ -186,7 +186,7 @@ const ProgressBarFragments = (props) => {
             </Fragment>
         )
     }
-    
+
     return {
         P5ProgressBar: P5ProgressBar,
         RestaurantProgressBar: RestaurantProgressBar,

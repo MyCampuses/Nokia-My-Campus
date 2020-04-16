@@ -3,7 +3,9 @@ import {format} from 'date-fns';
 const GlobalFunctions = () => {
   // Navigate to url, check routes.js for more information
   const onItemClickNavigate = (url) => {
-    window.location.href = url;
+    if (url !== undefined) {
+      window.location.href = url;
+    }
   };
   // Converts a Unix timestamp to a real time timestamp
   const convertTime = (timestamp) => {
