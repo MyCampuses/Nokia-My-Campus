@@ -16,7 +16,7 @@ import ProgressBarStyle from "../styles/progressBarStyle";
 const Home = (props) => {
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
-  const {RestaurantProgressBar, P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar} = ProgressBarFragments();
+  const {RestaurantProgressBar, P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar,P10RooftopElectricProgressBar} = ProgressBarFragments();
   const {PageTheme} = MuiThemes();
   const {progressBarTheme} = ProgressBarStyle();
   /*eslint-enable */
@@ -38,6 +38,7 @@ const Home = (props) => {
               {P5ProgressBar('/p5')}
               {P10InsideProgressBar('/p10')}
               {P10RooftopProgressBar('/p10')}
+              {P10RooftopElectricProgressBar('/p10')}
             </Grid>
           </Container>
         </ThemeProvider>

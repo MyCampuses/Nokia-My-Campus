@@ -41,7 +41,7 @@ const TabFragments = (props) => {
         },
     });
     const {P5Chart, P10Chart} = ChartFragment();
-    const {P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar} = ProgressBarFragments();
+    const {P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar, P10RooftopElectricProgressBar} = ProgressBarFragments();
 
     function TabFragmentLive(props) {
         const {children, value, index, ...other} = props;
@@ -63,6 +63,7 @@ const TabFragments = (props) => {
                               justify="space-between">
                             {P10InsideProgressBar()}
                             {P10RooftopProgressBar()}
+                            {P10RooftopElectricProgressBar()}
                         </Grid>
 
                     </div>
