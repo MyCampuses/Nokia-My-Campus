@@ -2,9 +2,6 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
 import {
-  makeStyles,
-  LinearProgress,
-  withStyles,
   Container, createMuiTheme, ThemeProvider
 } from '@material-ui/core';
 import NaviBar from '../fragments/TopNavigationBarFragment';
@@ -14,32 +11,6 @@ import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import strings from '../localization';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-
-const useStyle = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  margin: {
-    margin: theme.spacing(1),
-    border: 1,
-  },
-
-  progressLabel: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    zIndex: 1,
-    border: 5,
-    maxHeight: '50px',
-    textAlign: 'center',
-    display: 'flex',
-    alignItems: 'center',
-    '& span': {
-      width: '100%',
-    },
-  },
-
-}));
 
 const homeTheme = createMuiTheme({
   flexGrow: 1,
@@ -73,26 +44,7 @@ const homeTheme = createMuiTheme({
   },
 });
 
-//Progress bar style
-const BorderLinearProgress = withStyles({
-  root: {
-    height: 50,
-    backgroundColor: ('White'),
-    border: 5,
-    borderColor: '#000000',
-  },
-  bar: {
-    backgroundColor: '#108EE9',
-    borderColor: '#707070',
-    border: 1,
-    m: 1,
-    bgColor: 'background.paper',
-    style: {width: '5rem', height: '5rem'},
-  },
-})(LinearProgress);
-
 const P5 = (props) => {
-  const classes = useStyle();
   const {TopNavigationBar} = NaviBar();
   const {P5Chart} = ChartFragment();
   const {isLoggedIn} = Authentication();
