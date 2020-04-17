@@ -9,8 +9,8 @@ import strings from "../localization";
 import ProgressBarStyle from "../styles/progressBarStyle";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
-const {parkingP5Url} = ApiUrls();
 
+const {parkingP5Url} = ApiUrls();
 
 const TabFragments = (props) => {
     const {Chart} = ChartFragment();
