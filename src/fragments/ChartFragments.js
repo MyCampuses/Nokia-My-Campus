@@ -32,8 +32,6 @@ const ChartFragment = () => {
         const classes = useStyle();
         const {getChartData, dataToChart} = API();
         const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
-        const p5Loc = 'P5/';
-        const p10Loc = 'P10/';
         //const p10TopLoc = 'P10TOP/';
         const {formattedFullDate} = GlobalFunctions();
 
@@ -50,8 +48,6 @@ const ChartFragment = () => {
         // Common chart to be used, needs a date and location(path)
         const Chart = (props) => {
             const propsDate = formattedFullDate(props.date);
-            console.log(props.date);
-            console.log(props.location);
             const [chartData, setChartData] = useState(undefined);
             useEffect(() => {
                 getChartData(dailyParkingUrl, props.location, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))

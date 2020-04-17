@@ -16,7 +16,6 @@ const TabFragments = (props) => {
     const {Chart} = ChartFragment();
     const p10Loc = 'P10/';
     const p5Loc = 'P5/';
-    const {P5Chart, P10Chart} = ChartFragment();
     const {ProgressBar} = ProgressBarFragments();
     const {P5P10ProgressBar} = ProgressBarStyle()
 
