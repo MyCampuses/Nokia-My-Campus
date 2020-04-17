@@ -6,13 +6,14 @@ import NaviBar from '../fragments/TopNavigationBarFragment';
 import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import BottomBarTabFragment from "../fragments/BottomBarFragment";
-import MuiThemes from "../styles/muiThemes";
+import ProgressBarStyle from "../styles/progressBarStyle";
 
 const P5 = (props) => {
     const {TopNavigationBar} = NaviBar();
     const {isLoggedIn} = Authentication();
     const {P5BottomTab} = BottomBarTabFragment();
-    const {PageTheme,P5P10ProgressBar} = MuiThemes();
+    const {P5P10ProgressBar} = ProgressBarStyle()
+
 
     const P5Page = () => {
         return (
