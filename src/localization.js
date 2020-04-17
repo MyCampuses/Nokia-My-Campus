@@ -57,7 +57,9 @@ let strings = new LocalizedStrings({
         p10inside: "P10 Inside",
         p10rooftop:"P10 Rooftop",
         p5inside: "P5 Inside",
-        fillRate: "Fill Rate"
+        fillRate: "Fill Rate",
+        resetToken:"Reset Token",
+        resetPasswordText: "Enter the Email, New Password and the Reset Token you got to change to a new Password"
 
     },
     fi:{
@@ -115,8 +117,9 @@ let strings = new LocalizedStrings({
         p10inside: "P10 Sisätaso",
         p10rooftop:"P10 kattotaso",
         p5inside: "P5 Sisätaso",
-        fillRate: "Täyttöaste"
-
+        fillRate: "Täyttöaste",
+        resetToken: "Nollaus Koodi",
+        resetPasswordText: "Syötä sähköposti, uusi salasanasi ja koodi jonka sait sähköpostiisi vaihtaeksi salasanasi"
     }
 });
 

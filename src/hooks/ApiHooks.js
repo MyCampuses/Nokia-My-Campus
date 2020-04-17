@@ -1,7 +1,7 @@
 import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
 import GlobalFunctions from './GlobalFunctions';
-const { loginUrl,regUrl } = ApiUrls();
+const { loginUrl,regUrl,forgotPassUrl,resetPassUrl } = ApiUrls();
 const {convertTime, formattedDate } = GlobalFunctions();
 
 const fetchPostUrl = async (url,data) => {
@@ -33,6 +33,18 @@ const API = () => {
     const loginAsync = async (loginData,props) =>{
         console.log(loginUrl);
         return fetchPostUrl(loginUrl, loginData)
+    };
+
+    const resetPasswordAsync = async (data,props)=>{
+        return fetchPostUrl(resetPassUrl,data).then((json)=>{
+            return json
+        })
+    };
+
+    const forgotPassAsync = async (data,props)=>{
+        return fetchPostUrl(forgotPassUrl,data).then((json)=>{
+            return json
+        })
     };
 
     const registerAsync = async (registerData,props)=>{
@@ -76,7 +88,9 @@ const API = () => {
         getUsageData,
         getUsageDataNoProps,
         getChartData,
-        dataToChart
+        dataToChart,
+        forgotPassAsync,
+        resetPasswordAsync
     }
 
 };
