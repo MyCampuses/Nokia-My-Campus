@@ -4,44 +4,16 @@ import ChartFragment from "./ChartFragments";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {createMuiTheme, ThemeProvider, Container} from "@material-ui/core";
+import {ThemeProvider, Container} from "@material-ui/core";
 import strings from "../localization";
+import MuiThemes from "../styles/muiThemes";
+
 
 
 const TabFragments = (props) => {
-    const homeTheme = createMuiTheme({
-        flexGrow: 1,
-        overrides: {
-            MuiLinearProgress: {
-                root: {
-                    height: '15vh',
-                    maxHeight: '100px',
-                    borderRadius: '10px',
-                    width: '100%',
-                },
-            },
-            MuiGrid: {
-                root: {
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                },
-                'spacing-xs-1': {
-                    padding: '0px',
-                    margin: '0px',
-                    width: '100%',
-                },
-            },
-            MuiContainer: {
-                root: {
-                    paddingLeft: '4px',
-                    paddingRight: '4px',
-                },
-            },
-        },
-    });
     const {P5Chart, P10Chart} = ChartFragment();
     const {P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar, P10RooftopElectricProgressBar} = ProgressBarFragments();
+    const {P5P10ProgressBar} = MuiThemes();
 
     function TabFragmentLive(props) {
         const {children, value, index, ...other} = props;
@@ -49,7 +21,7 @@ const TabFragments = (props) => {
         //Set p10 fetched data
 
         return (
-            <ThemeProvider theme={homeTheme}>
+            <ThemeProvider theme={P5P10ProgressBar}>
                 <Container>
                     <div
                         component="div"
