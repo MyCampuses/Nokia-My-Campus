@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core";
+import {createMuiTheme, makeStyles} from "@material-ui/core";
 
 const ProgressBarStyle = () => {
 
@@ -14,7 +14,7 @@ const ProgressBarStyle = () => {
         progressLabel: {
             position: 'absolute',
             zIndex: 1,
-            maxHeight: '100px',
+            maxHeight: '50px',
             height: '15vh',
             maxWidth: '1152px',
             width: '90%',
@@ -26,8 +26,47 @@ const ProgressBarStyle = () => {
         },
     }));
 
+    const P5P10ProgressBar = createMuiTheme({
+        flexGrow: 1,
+        overrides: {
+            MuiLinearProgress: {
+                root: {
+                    height: '15vh',
+                    maxHeight: '50px',
+                    borderRadius: '10px',
+                    width: '100%',
+                },
+            },
+            MuiGrid: {
+                root: {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                },
+                'spacing-xs-1': {
+                    padding: '0px',
+                    margin: '0px',
+                    width: '100%',
+                },
+            },
+            MuiContainer: {
+                root: {
+                    paddingLeft: '4px',
+                    paddingRight: '4px',
+                },
+            },
+            MuiTypography:{
+                body1:{
+                    minWidth:"150px"
+                }
+            }
+        },
+    });
+
+
     return{
-        progressBarTheme: progressBarTheme
+        progressBarTheme: progressBarTheme,
+        P5P10ProgressBar:P5P10ProgressBar
     }
 }
 
