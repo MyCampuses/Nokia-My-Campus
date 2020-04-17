@@ -12,11 +12,11 @@ const P5 = (props) => {
     const {TopNavigationBar} = NaviBar();
     const {isLoggedIn} = Authentication();
     const {P5BottomTab} = BottomBarTabFragment();
-    const {PageTheme} = MuiThemes();
+    const {PageTheme,P5P10ProgressBar} = MuiThemes();
 
     const P5Page = () => {
         return (
-            <ThemeProvider theme={PageTheme}>
+            <ThemeProvider theme={P5P10ProgressBar}>
                 {TopNavigationBar()}
                 {P5BottomTab()}
             </ThemeProvider>
