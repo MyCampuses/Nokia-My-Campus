@@ -35,9 +35,9 @@ const TabFragments = (props) => {
         },[]);  //eslint-disable-line
 
         //Set p10 fetched data
-        const p10insideData = {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data};
-        const p10roofData = {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData};
-        const p10electicData = {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData};
+        const p10insideData = {navigationUrl: undefined, barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data};
+        const p10roofData = {navigationUrl: undefined, barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData};
+        const p10electicData = {navigationUrl: undefined, barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData};
 
         return (
             <ThemeProvider theme={P5P10ProgressBar}>
