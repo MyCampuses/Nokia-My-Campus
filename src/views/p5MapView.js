@@ -4,7 +4,6 @@ import strings from "../localization";
 import '../styles/App.css';
 import Box from "@material-ui/core/Box";
 
-
 const P5MapView = (props) =>{
     const {children, value, index, ...other} = props;
 
