@@ -6,14 +6,13 @@ import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
 import {ThemeProvider, Container} from "@material-ui/core";
 import strings from "../localization";
-import MuiThemes from "../styles/muiThemes";
-
+import ProgressBarStyle from "../styles/progressBarStyle";
 
 
 const TabFragments = (props) => {
     const {Chart} = ChartFragment();
     const {P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar, P10RooftopElectricProgressBar} = ProgressBarFragments();
-    const {P5P10ProgressBar} = MuiThemes();
+    const {P5P10ProgressBar} = ProgressBarStyle();
     const p10Loc = 'P10/';
     const p5Loc = 'P5/';
 
