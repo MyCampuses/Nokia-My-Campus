@@ -11,9 +11,11 @@ import MuiThemes from "../styles/muiThemes";
 
 
 const TabFragments = (props) => {
-    const {P5Chart, P10Chart} = ChartFragment();
+    const {Chart} = ChartFragment();
     const {P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar, P10RooftopElectricProgressBar} = ProgressBarFragments();
     const {P5P10ProgressBar} = MuiThemes();
+    const p10Loc = 'P10/';
+    const p5Loc = 'P5/';
 
     function TabFragmentLive(props) {
         const {children, value, index, ...other} = props;
@@ -75,7 +77,7 @@ const TabFragments = (props) => {
                         }}
                     />
                 </MuiPickersUtilsProvider>
-                <P10Chart date={selectedDate}/>
+                <Chart date={selectedDate} location={p10Loc}/>
             </div>
         );
     }
@@ -91,7 +93,7 @@ const TabFragments = (props) => {
                     <Grid>{P5ProgressBar()}</Grid>
                 </Container>
                 <Grid>
-                    <P5Chart date={new Date()}/>
+                    <Chart date={new Date()} location={p5Loc}/>
                 </Grid>
             </div>
         );
@@ -128,7 +130,7 @@ const TabFragments = (props) => {
                         }}
                     />
                 </MuiPickersUtilsProvider>
-                <P5Chart date={selectedDate}/>
+                <Chart date={selectedDate} location={p5Loc}/>
             </div>
         );
     }

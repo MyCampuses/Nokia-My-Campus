@@ -47,29 +47,15 @@ const ChartFragment = () => {
                 <YAxis barSize={50} fill="#8884d8" dataKey="pv"/>
             </AreaChart></ResponsiveContainer>);
 
-
-        // Chart for P5 History
-        const P5Chart = (date) => {
-            const propsDate = formattedFullDate(date.date);
+        // Common chart to be used, needs a date and location(path)
+        const Chart = (props) => {
+            const propsDate = formattedFullDate(props.date);
+            console.log(props.date);
+            console.log(props.location);
             const [chartData, setChartData] = useState(undefined);
             useEffect(() => {
-                getChartData(dailyParkingUrl, p5Loc, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
-            }, [date]); // eslint-disable-line
-
-            return (
-                <Fragment>
-                    <Container className={classes.p5Box}><p>Utilization Records
-                        for {propsDate}</p>{renderChart(chartData)}</Container>
-                </Fragment>
-            );
-        };
-// Chart for P10 History
-        const P10Chart = (date) => {
-            const propsDate = formattedFullDate(date.date);
-            const [chartData, setChartData] = useState(undefined);
-            useEffect(() => {
-                getChartData(dailyParkingUrl, p10Loc, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
-            }, [date]); // eslint-disable-line
+                getChartData(dailyParkingUrl, props.location, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
+            }, [props]); // eslint-disable-line
 
             return (
                 <Fragment>
@@ -78,6 +64,7 @@ const ChartFragment = () => {
                 </Fragment>
             );
         };
+
 // Chart for Restaurant History
         /*eslint-disable */
         const RestaurantChart = (props) => {
@@ -96,8 +83,7 @@ const ChartFragment = () => {
   };
 
         return {
-            P5Chart: P5Chart,
-            P10Chart: P10Chart,
+            Chart: Chart,
         };
     }
 ;
