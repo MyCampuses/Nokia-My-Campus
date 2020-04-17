@@ -36,27 +36,54 @@ const ChartFragment = () => {
         const {formattedFullDate} = GlobalFunctions();
 
         // Convert data to be used in chart
-        const renderChart = (data) => (
-            <ResponsiveContainer width="100%" height="100%"><AreaChart minWidth={200} minHeight={200}
-                                                                       margin={{left: 0, right: 50}} data={data}>
-                <XAxis dataKey="x"/>
-                <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
-                <Area dataKey="y" fill="#0000FF"/>
-                <YAxis barSize={50} fill="#8884d8" dataKey="pv"/>
-            </AreaChart></ResponsiveContainer>);
+        const renderChart = (data, maxValue) => (
+            <ResponsiveContainer width="100%" height="100%">
+                <AreaChart minWidth={200} minHeight={200}
+                           margin={{left: 0, right: 50}} data={data}>
+                    <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
+                    <Area dataKey="y" fill="#0000FF"/>
+                    <XAxis dataKey="x"/>
+                    <YAxis fill="#8884d8" dataKey="pv" type="number" domain={[0, data => {
+                        if (maxValue < 50) {
+                            return 50
+                        } else {
+                            return 100
+                        }
+                    }]}
+                           unit={"%"}
+                           allowDataOverflow={true}/>
+                </AreaChart>
+            </ResponsiveContainer>);
 
         // Common chart to be used, needs a date and location(path)
         const Chart = (props) => {
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
+            const [max, setMax] = useState(undefined);
             useEffect(() => {
                 getChartData(dailyParkingUrl, props.location, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
             }, [props]); // eslint-disable-line
 
+            useEffect(() => {
+                if (chartData !== undefined) {
+                let highest = 0;
+                chartData.forEach(element => {
+                        if (element.y > highest) {
+                            highest = element.y;
+                        }
+                    }
+                );
+                setMax(highest);
+            }}, [chartData]);
+
+
+
             return (
                 <Fragment>
-                    <Container className={classes.p10Box}><p>Utilization Records
-                        for {propsDate}</p>{renderChart(chartData)}</Container>
+                    <Container className={classes.p10Box}>
+                        <p>Utilization Records for {propsDate}</p>
+                        {renderChart(chartData, max)}
+                    </Container>
                 </Fragment>
             );
         };
@@ -70,13 +97,15 @@ const ChartFragment = () => {
                 getChartData(dailyRestaurantUrl, '', propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
             }); // eslint-disable-line
 
-    return (
-        <Fragment>
-          <Container className={classes.RestaurantBox}><p>Utilization Records
-            for {propsDate}</p>{renderChart(chartData)}</Container>
-        </Fragment>
-    );
-  };
+            return (
+                <Fragment>
+                    <Container className={classes.RestaurantBox}>
+                        <p>Utilization Records for {propsDate}</p>
+                        {renderChart(chartData)}
+                    </Container>
+                </Fragment>
+            );
+        };
 
         return {
             Chart: Chart,
