@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
 import {
   Container,
@@ -12,14 +12,40 @@ import AuthLoading from '../views/authLoading';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
 import MuiThemes from "../styles/muiThemes";
 import ProgressBarStyle from "../styles/progressBarStyle";
+import ApiUrls from "../hooks/ApiUrls";
+import API from "../hooks/ApiHooks";
+import strings from "../localization";
 
 const Home = (props) => {
+  const {getUsageData} = API();
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
-  const {RestaurantProgressBar, P5ProgressBar, P10InsideProgressBar, P10RooftopProgressBar,P10RooftopElectricProgressBar} = ProgressBarFragments();
+  const {ProgressBar} = ProgressBarFragments();
+  const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
   const {PageTheme} = MuiThemes();
   const {progressBarTheme} = ProgressBarStyle();
+  // States
+  const [restaurantData, setRestaurantData] = useState(undefined);
+  const [parkingP5Data, setParkingP5Data] = useState(undefined);
+  const [parkingP10Data, setParking10Data] = useState(undefined);
+  const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
+  const [parkingP10ElectricData, setParkingP10ElectricData] = useState(undefined);
+  const multiplier = 2;
+
   /*eslint-enable */
+
+  useEffect(()=> {
+    getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
+    getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
+    getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
+    getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
+  },[]); //eslint-disable-line
+
+  const restaurantBarData = {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData};
+  const p5BarData = {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data};
+  const p10insideData = {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data};
+  const p10roofData = {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData};
+  const p10electicData = {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData};
 
   const HomePage = () => {
     return (
@@ -34,11 +60,11 @@ const Home = (props) => {
                   are test:
                 </div>
               </Grid>
-              {RestaurantProgressBar('/restaurant')}
-              {P5ProgressBar('/p5')}
-              {P10InsideProgressBar('/p10')}
-              {P10RooftopProgressBar('/p10')}
-              {P10RooftopElectricProgressBar('/p10')}
+              {ProgressBar(restaurantBarData)}
+              {ProgressBar(p5BarData)}
+              {ProgressBar(p10insideData)}
+              {ProgressBar(p10roofData)}
+              {ProgressBar(p10electicData)}
             </Grid>
           </Container>
         </ThemeProvider>
