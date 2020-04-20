@@ -81,6 +81,7 @@ const API = () => {
             return chart;
         }
     };
+    // If Selected is Electric Places charts the data with the given multiplier to calculate the estimated utilization
     const chartEstData = (json) =>{
         const multiplier = 2;
         if (json !== undefined) {
