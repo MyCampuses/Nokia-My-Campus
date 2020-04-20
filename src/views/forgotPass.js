@@ -12,7 +12,7 @@ import {
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
 
-import {navigate,useRoutes} from 'hookrouter';
+import {navigate} from 'hookrouter';
 import ResetPassword from "./resetPassword";
 
 const ForgotPassword = (props) => {
@@ -29,8 +29,17 @@ const ForgotPassword = (props) => {
     const handleSubmit = () =>{
         //TODO FORGOT PASSWORD LOGIC
         const submitData = {userEmail: email};
-        //forgotPassAsync(submitData).then((json)=>{})
-        navigate('/reset_password',false, submitData)
+        forgotPassAsync(submitData).then((json)=>{
+            if (json.statusCode === 200){
+                /*Server responds with a success
+                  so the user has received the email with their reset token.
+                  Can navigate to the reset password screen*/
+                navigate('/reset_password',false, submitData)
+            } else { // Request wasn't successful. Communicate to user
+                alert("Something went wrong with your request. Please try again. ")
+            }
+        });
+
 
     };
 

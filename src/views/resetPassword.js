@@ -10,9 +10,10 @@ import {
 } from '@material-ui/core';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
+import {navigate} from 'hookrouter';
 
 const ResetPassword = (props) => {
-    console.log(props)
+    console.log(props);
     const [passwordError, setPasswordError] =useState(false);
     const [passwordErrorMsg, setPasswordErrorMsg]=useState("");
     const {FormTheme,setBackgroundBlue} = MuiThemes();
@@ -32,7 +33,16 @@ const ResetPassword = (props) => {
     });
 
     const handleSubmit = () =>{
-
+            const submitData = {email: email, password: password, passwordConfirm: confirmPassword, resetToken:resetToken};
+            resetPasswordAsync(submitData).then((json)=>{
+                if (json.statusCode === 200){
+                    // Was successful. Inform user and navigate to login
+                    alert("Password was reset!")
+                    navigate('/login',false,{email: submitData.email})
+                } else {
+                    alert("Something went wrong with your request. Please try again")
+                }
+            })
     };
 
     const validatePassword = () => {
@@ -46,7 +56,6 @@ const ResetPassword = (props) => {
             enableSubmit()
         }
     };
-
 
     const enableSubmit = () => {
         if (!passwordError && email.length>0 && resetToken.length>0){
