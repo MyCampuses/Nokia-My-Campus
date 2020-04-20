@@ -18,7 +18,6 @@ const App = () => {
       state => state.serviceWorkerRegistration);
   useEffect(() => {
     const registrationWaiting = serviceWorkerRegistration.waiting;
-    console.log(registrationWaiting)
     console.log("Checking SW state")
     if (registrationWaiting) {
       registrationWaiting.postMessage({type: 'SKIP_WAITING'});
