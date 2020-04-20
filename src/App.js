@@ -28,7 +28,7 @@ const App = () => {
         }
       });
     }
-  },[]);
+  },[])// eslint-disable-line
   return (
       <div className="App">
           {isServiceWorkerInitialized &&
