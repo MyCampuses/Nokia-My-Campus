@@ -93,7 +93,7 @@ const MuiThemes = () => {
         },
     });
 
-    // MUI theme for Restaurant, P5 & P10
+    // MUI theme for Home, Restaurant, P5 & P10
     const PageTheme = createMuiTheme({
         flexGrow: 1,
         overrides: {
