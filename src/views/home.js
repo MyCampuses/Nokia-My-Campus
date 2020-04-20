@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
 import {
-  Container,
+  Container, makeStyles,
   ThemeProvider,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
@@ -41,13 +41,39 @@ const Home = (props) => {
     getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
   },[]); //eslint-disable-line
 
-  const restaurantBarData = {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData};
-  const p5BarData = {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data};
-  const p10insideData = {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data};
-  const p10roofData = {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData};
-  const p10electicData = {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData};
-
   const HomePage = () => {
+
+    const useStyles = makeStyles(theme => ({
+      root: {
+        flexGrow: 1,
+      },
+      headLine: {
+        marginTop: '10px',
+        marginBottom: '10px',
+        color: 'blue',
+      },
+      progressLabel: {
+        position: 'absolute',
+        zIndex: 1,
+        maxHeight: '100px',
+        height: '15vh',
+        maxWidth: '1152px',
+        width: '90%',
+      },
+      labelLocation: {
+        maxHeight: '100px',
+        height: '15vh',
+        justifyContent: 'flex-start',
+      },
+    }));
+    const barTheme = useStyles();
+
+    const restaurantBarData = {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData,barTheme};
+    const p5BarData = {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data,barTheme};
+    const p10insideData = {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data,barTheme};
+    const p10roofData = {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData,barTheme};
+    const p10electicData = {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData,barTheme};
+
     return (
         <ThemeProvider theme={PageTheme}>
           {TopNavigationBar()}

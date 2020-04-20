@@ -4,7 +4,7 @@ import ChartFragment from "./ChartFragments";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {ThemeProvider, Container} from "@material-ui/core";
+import {ThemeProvider, Container, makeStyles} from "@material-ui/core";
 import strings from "../localization";
 import ProgressBarStyle from "../styles/progressBarStyle";
 import API from "../hooks/ApiHooks";
@@ -18,6 +18,32 @@ const TabFragments = (props) => {
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
     const {P5P10ProgressBar} = ProgressBarStyle()
+
+    const useStyles = makeStyles(theme => ({
+        root: {
+            flexGrow: 1,
+        },
+        headLine: {
+            marginTop: '10px',
+            marginBottom: '10px',
+            color: 'blue',
+        },
+        progressLabel: {
+            position: 'absolute',
+            zIndex: 1,
+            maxHeight: '100px',
+            height: '8h',
+            maxWidth: '1152px',
+            width: '90%',
+        },
+        labelLocation: {
+            maxHeight: '100px',
+            height: '7vh',
+            justifyContent: 'flex-start',
+            paddingLeft:"5px"
+        },
+    }));
+    const barTheme = useStyles();
 
     function TabFragmentLive(props) {
         const {children, value, index, ...other} = props;
@@ -33,10 +59,12 @@ const TabFragments = (props) => {
             getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
         },[]);  //eslint-disable-line
 
-        //Set p10 fetched data
-        const p10insideData = {navigationUrl: undefined, barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data};
-        const p10roofData = {navigationUrl: undefined, barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData};
-        const p10electicData = {navigationUrl: undefined, barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData};
+
+
+        const p10insideData = {navigationUrl: undefined, barLabel: "", utilization: strings.p10insideutil, data: parkingP10Data,barTheme};
+        const p10roofData = {navigationUrl: undefined, barLabel: "", utilization: strings.p10rooftoputil, data: parkingP10TopData,barTheme};
+        const p10electicData = {navigationUrl: undefined, barLabel: "", utilization: strings.p10electricutil, data: parkingP10ElectricData,barTheme};
+
 
         return (
             <ThemeProvider theme={P5P10ProgressBar}>
@@ -110,8 +138,9 @@ const TabFragments = (props) => {
         const barData = {
             navigationUrl: undefined,
             barLabel: '',
-            utilization: strings.liveUtilization,
-            data: parkingP5Data
+            utilization: strings.p10insideutil,
+            data: parkingP5Data,
+            barTheme
         };
         return (
             <div

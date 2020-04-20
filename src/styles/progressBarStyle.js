@@ -57,7 +57,7 @@ const ProgressBarStyle = () => {
             },
             MuiTypography:{
                 body1:{
-                    minWidth:"120px"
+                    minWidth:"200%"
                 }
             },
         },

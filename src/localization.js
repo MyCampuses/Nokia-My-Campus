@@ -59,7 +59,13 @@ let strings = new LocalizedStrings({
         p5inside: "P5 Inside",
         fillRate: "Fill Rate",
         resetToken:"Reset Token",
-        resetPasswordText: "Enter the Email, New Password and the Reset Token you got to change to a new Password"
+        resetPasswordText: "Enter the Email, New Password and the Reset Token you got to change to a new Password",
+        inside:"Inside",
+        rooftop:"Rooftop",
+        electric: "Electric(est.)",
+        p10insideutil: "Inside Utilization",
+        p10rooftoputil:"Rooftop Utilization",
+        p10electricutil:"Electric Utilization(est.)"
 
     },
     fi:{
@@ -119,7 +125,13 @@ let strings = new LocalizedStrings({
         p5inside: "P5 Sisätaso",
         fillRate: "Täyttöaste",
         resetToken: "Nollaus Koodi",
-        resetPasswordText: "Syötä sähköposti, uusi salasanasi ja koodi jonka sait sähköpostiisi vaihtaeksi salasanasi"
+        resetPasswordText: "Syötä sähköposti, uusi salasanasi ja koodi jonka sait sähköpostiisi vaihtaeksi salasanasi",
+        inside:"Sisätaso",
+        rooftop:"Kattotaso",
+        electric: "Sähköpaikat(arvio)",
+        p10insideutil: "Sisätason käyttöaste",
+        p10rooftoputil:"Kattotason käyttöaste",
+        p10electricutil:"Sähköpaikat käyttöaste(arvio)"
     }
 });
 
