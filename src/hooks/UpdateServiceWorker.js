@@ -8,7 +8,7 @@ const Update = ({type, onUpdate}) => {
     if (!onUpdate) {
       const timer = setTimeout(() => {
         dispatch({type});
-      }, 3000);
+      }, 200);
       return () => {
         clearTimeout(timer);
       };
