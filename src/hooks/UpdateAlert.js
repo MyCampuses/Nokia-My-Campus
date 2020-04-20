@@ -2,15 +2,15 @@ import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
 
-const [clicked, setClicked] = useState(false)
-const handleOnClick = (event, value) => {
-  if (value != null) {
-    setClicked(true);
-  }
-};
+
+
 
 // Create alert with redux
 const Alert = ({text, buttonText, type, onClick}) => {
+  const [clicked, setClicked] = useState(false)
+  function handleOnClick() {
+    setClicked(true);
+  }
   const dispatch = useDispatch();
   useEffect(() => {
     if (!clicked) {
@@ -24,7 +24,7 @@ const Alert = ({text, buttonText, type, onClick}) => {
   }, []);// eslint-disable-line
   return (
       <div className="updateAlert">
-        {text} {buttonText && <button onClick={() => handleOnClick} value={true}>{buttonText}</button>}
+        {text} {buttonText && <button onClick={() => handleOnClick}>{buttonText}</button>}
       </div>
   );
 };
