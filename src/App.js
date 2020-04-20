@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useRoutes} from 'hookrouter';
 import './styles/App.css';
 import routes from './hooks/Routes';
@@ -16,9 +16,9 @@ const App = () => {
       state => state.serviceWorkerUpdated);
   const serviceWorkerRegistration = useSelector(
       state => state.serviceWorkerRegistration);
-  useEffect(() => {
+  const updateServiceWorker = () => {
     const registrationWaiting = serviceWorkerRegistration.waiting;
-    console.log("Checking SW state")
+
     if (registrationWaiting) {
       registrationWaiting.postMessage({type: 'SKIP_WAITING'});
       registrationWaiting.addEventListener('statechange', event => {
@@ -27,14 +27,14 @@ const App = () => {
         }
       });
     }
-  },[])// eslint-disable-line
+  };
   return (
       <div className="App">
           {isServiceWorkerInitialized &&
           (<Update type={SW_INIT}/>
           )}
           {isServiceWorkerUpdated && (
-              <Update type={SW_UPDATE}
+              <Update type={SW_UPDATE} onUpdate={updateServiceWorker()}
               />
           )}
         {routeResult}
