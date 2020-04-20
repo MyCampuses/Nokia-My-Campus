@@ -37,10 +37,10 @@ const ResetPassword = (props) => {
             resetPasswordAsync(submitData).then((json)=>{
                 if (json.statusCode === 200){
                     // Was successful. Inform user and navigate to login
-                    alert("Password was reset!")
+                    alert(strings.passwordWasReset);
                     navigate('/login',false,{email: submitData.email})
                 } else {
-                    alert("Something went wrong with your request. Please try again")
+                    alert(strings.requestError)
                 }
             })
     };

@@ -36,7 +36,7 @@ const ForgotPassword = (props) => {
                   Can navigate to the reset password screen*/
                 navigate('/reset_password',false, submitData)
             } else { // Request wasn't successful. Communicate to user
-                alert("Something went wrong with your request. Please try again. ")
+                alert(strings.requestError)
             }
         });
 
