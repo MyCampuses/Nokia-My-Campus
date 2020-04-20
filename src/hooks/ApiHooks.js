@@ -81,6 +81,21 @@ const API = () => {
             return chart;
         }
     };
+    const chartEstData = (json) =>{
+        const multiplier = 2;
+        if (json !== undefined) {
+            const chart = [];
+            for (let key in json) {
+                const timeStamp = convertTime(json[key].date);
+                const fromUnixTime = formattedDate(timeStamp);
+                let yc = json[key].percent;
+                let tempJson = {x: fromUnixTime, y: (yc*multiplier), pv: 100};
+                chart.push(tempJson);
+                // Set the data to a chart json and return it
+            }
+            return chart;
+        }
+    };
 
     return {
         loginAsync,
@@ -90,7 +105,8 @@ const API = () => {
         getChartData,
         dataToChart,
         forgotPassAsync,
-        resetPasswordAsync
+        resetPasswordAsync,
+        chartEstData
     }
 
 };
