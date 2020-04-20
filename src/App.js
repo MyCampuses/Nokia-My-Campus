@@ -34,7 +34,7 @@ const App = () => {
           (<Update type={SW_INIT}/>
           )}
           {isServiceWorkerUpdated && (
-              <Update type={SW_UPDATE} onUpdate={updateServiceWorker}
+              <Update type={SW_UPDATE} onUpdate={updateServiceWorker()}
               />
           )}
         {routeResult}
