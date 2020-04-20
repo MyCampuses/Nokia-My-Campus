@@ -4,18 +4,20 @@ import ChartFragment from "./ChartFragments";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {ThemeProvider, Container, makeStyles, InputLabel, Select, FormControl} from "@material-ui/core";
+import {Box, Container, FormControl, InputLabel, makeStyles, Select, ThemeProvider} from "@material-ui/core";
 import strings from "../localization";
 import ProgressBarStyle from "../styles/progressBarStyle";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
 
 import MenuItem from "@material-ui/core/MenuItem";
+import Data from "../hooks/Data";
+import Typography from "@material-ui/core/Typography";
 
 const {parkingP5Url} = ApiUrls();
 
 const TabFragments = (props) => {
-    const {Chart} = ChartFragment();
+    const {Chart, RestaurantChart} = ChartFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
     const {P5P10ProgressBar} = ProgressBarStyle()
@@ -41,7 +43,7 @@ const TabFragments = (props) => {
             maxHeight: '100px',
             height: '7vh',
             justifyContent: 'flex-start',
-            paddingLeft:"5px"
+            paddingLeft: "5px"
         },
     }));
     const barTheme = useStyles();
@@ -55,16 +57,36 @@ const TabFragments = (props) => {
         const [parkingP10ElectricData, setParkingP10ElectricData] = useState(undefined);
         const multiplier = 2;
 
-        useEffect(()=>{
+        useEffect(() => {
             getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
-            getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
-        },[]);  //eslint-disable-line
+            getUsageData(parkingP10TopUrl, props).then((result) => {
+                setParkingP10TopData(result.percent);
+                setParkingP10ElectricData(result.percent * multiplier)
+            });
+        }, []);  //eslint-disable-line
 
 
-
-        const p10insideData = {navigationUrl: undefined, barLabel: "", utilization: strings.p10insideutil, data: parkingP10Data,barTheme};
-        const p10roofData = {navigationUrl: undefined, barLabel: "", utilization: strings.p10rooftoputil, data: parkingP10TopData,barTheme};
-        const p10electicData = {navigationUrl: undefined, barLabel: "", utilization: strings.p10electricutil, data: parkingP10ElectricData,barTheme};
+        const p10insideData = {
+            navigationUrl: undefined,
+            barLabel: "",
+            utilization: strings.p10insideutil,
+            data: parkingP10Data,
+            barTheme
+        };
+        const p10roofData = {
+            navigationUrl: undefined,
+            barLabel: "",
+            utilization: strings.p10rooftoputil,
+            data: parkingP10TopData,
+            barTheme
+        };
+        const p10electicData = {
+            navigationUrl: undefined,
+            barLabel: "",
+            utilization: strings.p10electricutil,
+            data: parkingP10ElectricData,
+            barTheme
+        };
 
 
         return (
@@ -103,17 +125,21 @@ const TabFragments = (props) => {
         };
         /*eslint-disable */
 
-        const handleChange = (value) =>{
+        const handleChange = (value) => {
             setSelectedLevel(value)
         };
 
-        const LevelSelector = () =>{
+        const LevelSelector = () => {
             return (
                 <div>
-                    <FormControl style={{width:"250px"}}>
+                    <FormControl style={{width: "250px"}}>
                         <InputLabel id="level">{strings.level}</InputLabel>
                         <Select labelId="level" id="level" value={selectedLevel}
-                                onChange={(event)=>{{handleChange(event.target.value)}}}>
+                                onChange={(event) => {
+                                    {
+                                        handleChange(event.target.value)
+                                    }
+                                }}>
                             <MenuItem value={insideLevels}>{strings.p10inside}</MenuItem>
                             <MenuItem value={rooftopLevels}>{strings.p10rooftop}</MenuItem>
                             <MenuItem value={electric}>{strings.p10electric}</MenuItem>
@@ -157,9 +183,9 @@ const TabFragments = (props) => {
 
         const [parkingP5Data, setParkingP5Data] = useState(undefined);
 
-        useEffect(()=>{
+        useEffect(() => {
             getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
-        },[parkingP5Data]);
+        }, [parkingP5Data]);
 
         const barData = {
             navigationUrl: undefined,
@@ -218,11 +244,88 @@ const TabFragments = (props) => {
         );
     }
 
+    function TabRestaurantLines(props) {
+        const {children, value, index, ...other} = props;
+        const [queueTimes, setQueueTimes] = useState(new Map());
+        const {getUsageDataNoProps} = API();
+        const {restaurantQueueUrl} = ApiUrls();
+        const {lines, times, colours} = Data();
+
+        const getQueueTimes = async () => {
+            for (let i = 1; i < 9; i++) {
+                getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueueTimes(new Map(queueTimes.set(i, result))))
+            }
+        };
+
+        useEffect(() => {
+            getQueueTimes().then()
+        }, []);// eslint-disable-line
+
+        return (
+            <div role="tabfragment"
+                 hidden={value !== index}
+                 id={`tabfragment-${index}`}
+                 aria-labelledby={`tab-${index}`}
+                 inputstyle={{textAlign: 'center'}}
+                 {...other}>
+                <p>{strings.restaurantPageTitle}</p>
+                <Box>
+                    {[...lines.keys()].map(mapKey => (
+                        <div key={mapKey}>
+                            {queueTimes.get(mapKey) != null && <Box className="lineDiv"
+                                                                    border={1}
+                                                                    p={1}
+                                                                    m={1}
+                                                                    bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
+                                                                    borderColor="#E9E9E9">
+                                <Grid container direction="row"
+                                      justify="space-between"
+                                      alignItems="center">
+                                    <Grid>
+                                        <Typography>
+                                            {lines.get(mapKey)}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid>
+                                        {queueTimes.get(mapKey) != null &&
+                                        <Typography>
+                                            {times.get(parseInt(queueTimes.get(mapKey).queue_time))}
+                                        </Typography>
+                                        }
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                            }
+                        </div>
+                    ))}
+                </Box>
+            </div>
+        )
+    }
+
+    function TabRestaurantChart(props) {
+        const {children, value, index, ...other} = props;
+
+        return (
+            <div role="tabfragment"
+                 hidden={value !== index}
+                 id={`tabfragment-${index}`}
+                 aria-labelledby={`tab-${index}`}
+                 inputstyle={{textAlign: 'center'}}
+                 {...other}>
+                <RestaurantChart date={new Date()}/>
+            </div>
+        );
+    }
+
+
     return {
         TabFragmentHistory: TabFragmentHistory,
         TabFragmentLive: TabFragmentLive,
         TabFragmentLiveP5: TabFragmentLiveP5,
         TabFragmentHistoryP5: TabFragmentHistoryP5,
+        TabRestaurantLines: TabRestaurantLines,
+        TabRestaurantChart: TabRestaurantChart,
     };
 
 };
