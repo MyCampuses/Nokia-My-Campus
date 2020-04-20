@@ -66,7 +66,9 @@ let strings = new LocalizedStrings({
         p10insideutil: "Inside Utilization",
         p10rooftoputil:"Rooftop Utilization",
         p10electricutil:"Electric Utilization(est.)",
-        level:"Level"
+        level:"Level",
+        passwordWasReset: "Password changed successfully",
+        requestError: "Something went wrong with your request. Please try again."
 
     },
     fi:{
@@ -133,7 +135,9 @@ let strings = new LocalizedStrings({
         p10insideutil: "Sisätason käyttöaste",
         p10rooftoputil:"Kattotason käyttöaste",
         p10electricutil:"Sähköpaikat käyttöaste(arvio)",
-        level:"Taso"
+        level:"Taso",
+        passwordWasReset: "Salasanan vaihto onnistui!",
+        requestError: "Jokin meni pieleen pyynnössä. Yritä Uudelleen"
     },
     se:{
         signIn: "Logga In",

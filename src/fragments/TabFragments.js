@@ -106,7 +106,7 @@ const TabFragments = (props) => {
         const handleChange = (value) =>{
             setSelectedLevel(value)
         };
-
+        // Selector for selecting the desired level in P10
         const LevelSelector = () =>{
             return (
                 <div>
