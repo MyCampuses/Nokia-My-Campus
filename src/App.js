@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useRoutes} from 'hookrouter';
 import './styles/App.css';
 import routes from './hooks/Routes';
@@ -16,7 +16,7 @@ const App = () => {
       state => state.serviceWorkerUpdated);
   const serviceWorkerRegistration = useSelector(
       state => state.serviceWorkerRegistration);
-  const updateServiceWorker = () => {
+  useEffect(() => {
     const registrationWaiting = serviceWorkerRegistration.waiting;
 
     if (registrationWaiting) {
@@ -27,14 +27,14 @@ const App = () => {
         }
       });
     }
-  };
+  },[]);
   return (
       <div className="App">
           {isServiceWorkerInitialized &&
           (<Update type={SW_INIT}/>
           )}
           {isServiceWorkerUpdated && (
-              <Update type={SW_UPDATE} onUpdate={updateServiceWorker()}
+              <Update type={SW_UPDATE}
               />
           )}
         {routeResult}
