@@ -12,10 +12,9 @@ const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-
       <CssBaseline/>
       <App/>
- </Provider>,
+    </Provider>,
     document.getElementById('root'),
 );
 

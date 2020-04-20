@@ -16,7 +16,7 @@ const Alert = ({text, buttonText, type, onClick}) => {
   }, []);// eslint-disable-line
   return (
       <div className="updateAlert">
-        {text} {buttonText && <button onClick={onClick}>{buttonText}</button>}
+        {text} {buttonText && <button onClick={() => onClick}>{buttonText}</button>}
       </div>
   );
 };
