@@ -30,7 +30,6 @@ const App = () => {
   };
   return (
       <div className="App">
-        <div className="App-alert">
           {isServiceWorkerInitialized &&
           (<Alert text="Service worker is initialized" type={SW_INIT}/>
           )}
@@ -39,7 +38,6 @@ const App = () => {
                      type={SW_UPDATE} onClick={() => {updateServiceWorker()}}
               />
           )}
-        </div>
         {routeResult}
       </div>
   );
