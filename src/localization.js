@@ -70,6 +70,9 @@ let strings = new LocalizedStrings({
         passwordWasReset: "Password changed successfully",
         requestError: "Something went wrong with your request. Please try again.",
         graph: "Graph",
+        verificationToken: "Verification Token",
+        resend: "Resend Verification Email",
+        userVerification: "Use your verification code here. Verification code should be in your Email. Make sure to also check your deleted/spam folder in case of it not being in your primary folder."
 
     },
     fi:{
@@ -140,6 +143,9 @@ let strings = new LocalizedStrings({
         graph: "Graafi",
         passwordWasReset: "Salasanan vaihto onnistui!",
         requestError: "Jokin meni pieleen pyynnössä. Yritä Uudelleen",
+        verificationToken: "Vahvistustunnus",
+        resend: "Lähetä Vahvistussähköposti Uudelleen",
+        userVerification: "Käytä vahvistuskoodiasi täällä. Vahvistuskoodin pitäisi olla sähköpostissasi. Muista tarkistaa myös poistetu / roskapostikansio, jos viesti ei näy pääkansiossa"
     },
     se:{
         signIn: "Logga In",
