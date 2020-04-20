@@ -65,7 +65,8 @@ let strings = new LocalizedStrings({
         electric: "Electric(est.)",
         p10insideutil: "Inside Utilization",
         p10rooftoputil:"Rooftop Utilization",
-        p10electricutil:"Electric Utilization(est.)"
+        p10electricutil:"Electric Utilization(est.)",
+        level:"Level"
 
     },
     fi:{
@@ -131,7 +132,8 @@ let strings = new LocalizedStrings({
         electric: "Sähköpaikat(arvio)",
         p10insideutil: "Sisätason käyttöaste",
         p10rooftoputil:"Kattotason käyttöaste",
-        p10electricutil:"Sähköpaikat käyttöaste(arvio)"
+        p10electricutil:"Sähköpaikat käyttöaste(arvio)",
+        level:"Taso"
     }
 });
 

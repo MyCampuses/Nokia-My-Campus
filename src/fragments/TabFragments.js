@@ -4,17 +4,18 @@ import ChartFragment from "./ChartFragments";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {ThemeProvider, Container, makeStyles} from "@material-ui/core";
+import {ThemeProvider, Container, makeStyles, InputLabel, Select, FormControl} from "@material-ui/core";
 import strings from "../localization";
 import ProgressBarStyle from "../styles/progressBarStyle";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
 
+import MenuItem from "@material-ui/core/MenuItem";
+
 const {parkingP5Url} = ApiUrls();
 
 const TabFragments = (props) => {
     const {Chart} = ChartFragment();
-    const p10Loc = 'P10/';
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
     const {P5P10ProgressBar} = ProgressBarStyle()
@@ -92,12 +93,36 @@ const TabFragments = (props) => {
     function TabFragmentHistory(props) {
         const {children, value, index, ...other} = props;
         const [selectedDate, setSelectedDate] = useState(new Date(props.date));
-
+        const insideLevels = 'P10/';
+        const rooftopLevels = 'P10TOP/';
+        const electric = "electric";
+        const [selectedLevel, setSelectedLevel] = useState(insideLevels);
         const handleDateChange = date => {
             setSelectedDate(date);
             props.onDateChange(date);
         };
         /*eslint-disable */
+
+        const handleChange = (value) =>{
+            setSelectedLevel(value)
+        };
+
+        const LevelSelector = () =>{
+            return (
+                <div>
+                    <FormControl style={{width:"250px"}}>
+                        <InputLabel id="level">{strings.level}</InputLabel>
+                        <Select labelId="level" id="level" value={selectedLevel}
+                                onChange={(event)=>{{handleChange(event.target.value)}}}>
+                            <MenuItem value={insideLevels}>{strings.p10inside}</MenuItem>
+                            <MenuItem value={rooftopLevels}>{strings.p10rooftop}</MenuItem>
+                            <MenuItem value={electric}>{strings.p10electric}</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
+            )
+        };
+
         return (
             <div
                 role="tabfragment"
@@ -106,6 +131,7 @@ const TabFragments = (props) => {
                 aria-labelledby={`tab-${index}`}
                 inputstyle={{textAlign: 'center'}}
                 {...other}>
+                <LevelSelector/>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                         margin="normal"
@@ -120,7 +146,7 @@ const TabFragments = (props) => {
                         }}
                     />
                 </MuiPickersUtilsProvider>
-                <Chart date={selectedDate} location={p10Loc}/>
+                <Chart date={selectedDate} location={selectedLevel}/>
             </div>
         );
     }

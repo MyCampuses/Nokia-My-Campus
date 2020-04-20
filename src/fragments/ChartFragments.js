@@ -30,7 +30,7 @@ const useStyle = makeStyles((theme) => ({
 // Holds all the fragments for charts
 const ChartFragment = () => {
         const classes = useStyle();
-        const {getChartData, dataToChart} = API();
+        const {getChartData, dataToChart,chartEstData} = API();
         const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
         //const p10TopLoc = 'P10TOP/';
         const {formattedFullDate} = GlobalFunctions();
@@ -61,7 +61,11 @@ const ChartFragment = () => {
             const [chartData, setChartData] = useState(undefined);
             const [max, setMax] = useState(undefined);
             useEffect(() => {
-                getChartData(dailyParkingUrl, props.location, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
+                if (props.location==="electric"){
+                    getChartData(dailyParkingUrl, 'P10TOP/', propsDate).then(json => chartEstData(json.samples)).then(json => setChartData(json))
+                }else {
+                    getChartData(dailyParkingUrl, props.location, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
+                }
             }, [props]); // eslint-disable-line
 
             useEffect(() => {
