@@ -1,9 +1,5 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {useState} from 'react';
-
-
-
 
 // Create alert with redux
 const Alert = ({text, buttonText, type, onClick}) => {
