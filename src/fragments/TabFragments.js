@@ -129,7 +129,8 @@ const TabFragments = (props) => {
             setSelectedLevel(value)
         };
 
-        const LevelSelector = () => {
+        // Selector for selecting the desired level in P10
+        const LevelSelector = () =>{
             return (
                 <div>
                     <FormControl style={{width: "250px"}}>
