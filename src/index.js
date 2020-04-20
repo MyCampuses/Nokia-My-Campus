@@ -12,10 +12,10 @@ const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-    <React.StrictMode>
+
       <CssBaseline/>
       <App/>
-    </React.StrictMode></Provider>,
+ </Provider>,
     document.getElementById('root'),
 );
 

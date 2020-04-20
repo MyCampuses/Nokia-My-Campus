@@ -3,6 +3,11 @@ const ApiUrls = () => {
   const loginUrl = 'https://mycampus-server.karage.fi/auth/login';
   const regUrl = 'https://mycampus-server.karage.fi/auth/signup';
   const apiUrl = 'https://mycampus-server.karage.fi/api/common/';
+  const forgotPassUrl = 'https://mycampus-server.karage.fi/auth/forgot_password';
+  const resendVerificationUrl = 'https://mycampus-server.karage.fi/auth/resend';
+  const resetPassUrl = 'https://mycampus-server.karage.fi/auth/reset_password';
+  const confirmUrl = 'https://mycampus-server.karage.fi/auth/confirmation';
+
   const restaurantUrl = apiUrl +
       'restaurant/Midpoint?select=fill_percent';
   const restaurantQueueUrl = apiUrl + 'restaurant/Midpoint/queue/';
@@ -31,7 +36,11 @@ const ApiUrls = () => {
     restaurantQueueUrl,
     selectDate,
     dailyParkingUrl,
-    dailyRestaurantUrl
+    dailyRestaurantUrl,
+    forgotPassUrl,
+    resendVerificationUrl,
+    resetPassUrl,
+    confirmUrl
   };
 };
 export default ApiUrls;

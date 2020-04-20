@@ -10,18 +10,28 @@ import {
     TextField, Checkbox, Grid, Link,
 } from '@material-ui/core';
 import strings from "../localization";
+import API from "../hooks/ApiHooks";
+
+import {navigate,useRoutes} from 'hookrouter';
+import ResetPassword from "./resetPassword";
 
 const ForgotPassword = (props) => {
     const {FormTheme,setBackgroundBlue} = MuiThemes();
     const [email, setEmail] = useState('');
-
+    const {forgotPassAsync} = API();
     // Sets background
     useEffect(()=>{
         setBackgroundBlue()
-    });
+    },[]); //eslint-disable-line
+
+
 
     const handleSubmit = () =>{
         //TODO FORGOT PASSWORD LOGIC
+        const submitData = {userEmail: email};
+        //forgotPassAsync(submitData).then((json)=>{})
+        navigate('/reset_password',false, submitData)
+
     };
 
     return(
@@ -47,7 +57,7 @@ const ForgotPassword = (props) => {
                             value={email}
                             autoComplete={"email"}
                         />
-                        <Button type="submit" fullWidth variant="contained" color="primary">
+                        <Button onClick={()=>{handleSubmit()}} fullWidth variant="contained" color="primary">
                             {strings.send}
                         </Button>
                         <Grid style={{padding: '1em'}}>

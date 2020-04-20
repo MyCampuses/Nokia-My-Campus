@@ -10,6 +10,7 @@ import Register from "../views/register";
 import AuthLoading from "../views/authLoading";
 import P5MapView from "../views/p5MapView";
 import P10MapView from "../views/p10MapView";
+import ResetPassword from "../views/resetPassword";
 const routes = {
   '/': ()=> <Home/>,
   '/info': ()=> <Info/>,
@@ -22,7 +23,8 @@ const routes = {
   '/forgot_password': () => <ForgotPassword/>,
   '/auth':()=> <AuthLoading/>,
   '/p5map': ()=> <P5MapView/>,
-  '/p10map': () => <P10MapView/>
+  '/p10map': () => <P10MapView/>,
+  '/reset_password': (userEmail) => <ResetPassword userEmail={userEmail}/>,
 };
 
 

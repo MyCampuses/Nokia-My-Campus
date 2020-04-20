@@ -19,9 +19,9 @@ const Register = (props) =>{
     const [usernameError, setUsernameError] = useState(false);
     const [emailError,setEmailError] = useState(false);
     const [passwordError, setPasswordError] =useState(false);
-    const [userErrorMsg,setUserErrorMsg]= useState("")
-    const [emailErrorMsg,setEmailErrorMsg]=useState("")
-    const [passwordErrorMsg, setPasswordErrorMsg]=useState("")
+    const [userErrorMsg,setUserErrorMsg]= useState("");
+    const [emailErrorMsg,setEmailErrorMsg]=useState("");
+    const [passwordErrorMsg, setPasswordErrorMsg]=useState("");
     const {registerAsync} = API();
 
     const [formData, setFormData] = useState({
@@ -57,13 +57,13 @@ const Register = (props) =>{
     // Handles the registering submit
     //TODO Add registering logic here
     const handleSubmit = () =>{
-        console.log("submit")
+        console.log("submit");
         const submitData = {
             email: formData.email,
             name: formData.username,
             password: formData.password
-        }
-        const json = registerAsync(submitData)
+        };
+        const json = registerAsync(submitData);
         json.then((result)=>{
 
         })
@@ -75,12 +75,12 @@ const Register = (props) =>{
     const validateUsername = () =>{
         if (formData.username.length >= 2 && formData.username.length <= 20) {
             setUsernameError(false);
-            setUserErrorMsg("")
+            setUserErrorMsg("");
             enableSubmit()
         }
         else {
             setUsernameError(true);
-            setUserErrorMsg(strings.usernameError)
+            setUserErrorMsg(strings.usernameError);
             enableSubmit()
         }
     };
@@ -90,11 +90,11 @@ const Register = (props) =>{
         const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
         if (emailReqEx.test(formData.email)){
             setEmailError(false);
-            setEmailErrorMsg("")
+            setEmailErrorMsg("");
             enableSubmit()
         } else {
             setEmailError(true);
-            setEmailErrorMsg(strings.pleaseEnterEmail)
+            setEmailErrorMsg(strings.pleaseEnterEmail);
             enableSubmit()
         }
     };
@@ -102,11 +102,11 @@ const Register = (props) =>{
     const validatePasswords = () => {
         if (formData.password === formData.confirmPassword && formData.password.length !==0 && formData.confirmPassword.length!==0){
             setPasswordError(false);
-            setPasswordErrorMsg("")
+            setPasswordErrorMsg("");
             enableSubmit()
         } else {
             setPasswordError(true);
-            setPasswordErrorMsg(strings.passwordError)
+            setPasswordErrorMsg(strings.passwordError);
             enableSubmit()
         }
     };
