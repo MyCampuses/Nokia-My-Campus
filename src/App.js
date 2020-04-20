@@ -35,7 +35,7 @@ const App = () => {
           )}
           {isServiceWorkerUpdated && (
               <Alert text="New version of the app available" buttonText="Update"
-                     type={SW_UPDATE} onClick={() => {updateServiceWorker()}}
+                     type={SW_UPDATE} onClick={updateServiceWorker}
               />
           )}
         {routeResult}
