@@ -42,7 +42,7 @@ const Update = () => {
                   text="The App has been updated, a new version is available"
                   buttonText="Update App"
                   type={SW_UPDATE}
-                  onClick={() => updateServiceWorker()}
+                  onClick={() => {updateServiceWorker()}}
               />
           )}
         </div>
