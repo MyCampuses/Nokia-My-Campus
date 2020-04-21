@@ -159,7 +159,7 @@ let strings = new LocalizedStrings({
         usernameError: "Användarnamnet måste vara mellan 2-20 tecken",
         passwordError: "Lösenordet matchar inte",
         pleaseEnterEmail: "Ange en giltig e-postadress",
-        pleaseEnterConfirmPass: "Ange lösenordet igen",
+        pleaseEnterConfirmPass: "Ange lösenordet igen",xxx
         pleaseEnterPassword: "Ange lösenord",
         pleaseEnterName: "Ange ett namn",
         waitTime1: "väntetid < 30s",
@@ -178,9 +178,9 @@ let strings = new LocalizedStrings({
         topBarMenuItemP10: "P10",
         topBarMenuItemInfo: "Info",
         topBarMenuItemLogout: "Logga ut",
-        infoPageHeading: "MyCampus är en portal som ger åtkomst till applikationen gjord av anställda på Nokia,\n" +
+        infoPageHeading: "MyCampus är en portal som ger åtkomst till applikationen skapad av anställda på Nokia,\n" +
             "    Quja start ups och andra partners i ekosystemet. Huvud möjliggöraren är Nokia Innovation Platform (NIP).\n" +
-            "    För nya idéer och frågor, kontakta: mikael.lindblad@nokia.com",
+            "    För nya idéer och frågor kontakta: mikael.lindblad@nokia.com",
         infoPageP1: "Värmekamerasensorer täcker restaurangens centrum och appen visar aktuellt beläggning och ger historiska data",
         infoPageP2: "Biltal tillhandahålls av  by time-of-flight sensorer och värmekameror på bottennivåer i parkering P5 och olika våningsnivåer i parkering P10",
         liveUtilization: "Live Utilization",
