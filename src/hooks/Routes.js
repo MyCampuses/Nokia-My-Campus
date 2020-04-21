@@ -26,8 +26,8 @@ const routes = {
   '/auth':()=> <AuthLoading/>,
   '/p5map': ()=> <P5MapView/>,
   '/p10map': () => <P10MapView/>,
-  '/reset_password': (userEmail) => <ResetPassword userEmail={userEmail}/>,
-  '/verify_account': (userEmail)=> <AccountVerification userEmail={userEmail}/>
+  '/reset_password': (email) => <ResetPassword email={email}/>,
+  '/verify_account': (email)=> <AccountVerification email={email}/>
 };
 
 

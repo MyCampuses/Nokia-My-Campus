@@ -72,7 +72,8 @@ let strings = new LocalizedStrings({
         graph: "Graph",
         verificationToken: "Verification Token",
         resend: "Resend Verification Email",
-        userVerification: "Use your verification code here. Verification code should be in your Email. Make sure to also check your deleted/spam folder in case of it not being in your primary folder."
+        userVerification: "Use your verification code here. Verification code should be in your Email. Make sure to also check your deleted/spam folder in case of it not being in your primary folder.",
+        sentVerification: "You can now check your email for a verification code."
 
     },
     fi:{
@@ -145,7 +146,8 @@ let strings = new LocalizedStrings({
         requestError: "Jokin meni pieleen pyynnössä. Yritä Uudelleen",
         verificationToken: "Vahvistustunnus",
         resend: "Lähetä Vahvistussähköposti Uudelleen",
-        userVerification: "Käytä vahvistuskoodiasi täällä. Vahvistuskoodin pitäisi olla sähköpostissasi. Muista tarkistaa myös poistetu / roskapostikansio, jos viesti ei näy pääkansiossa"
+        userVerification: "Käytä vahvistuskoodiasi täällä. Vahvistuskoodin pitäisi olla sähköpostissasi. Muista tarkistaa myös poistetu / roskapostikansio, jos viesti ei näy pääkansiossa",
+        sentVerification: "Vahvistuskoodi lähetetty sähköpostiin."
     },
     se:{
         signIn: "Logga In",

@@ -16,6 +16,7 @@ ReactDOM.render(
       <App/>
     </Provider>,
     document.getElementById('root'),
+    document.getElementById('update'),
 );
 
 // If you want your app to work offline and load faster, you can change

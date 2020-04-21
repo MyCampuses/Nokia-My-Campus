@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
+import {navigate} from 'hookrouter';
 
 const Register = (props) =>{
     const {FormTheme,setBackgroundBlue} = MuiThemes();
@@ -57,21 +58,19 @@ const Register = (props) =>{
     // Handles the registering submit
     //TODO Add registering logic here
     const handleSubmit = () =>{
-        console.log("submit");
         const submitData = {
             email: formData.email,
             name: formData.username,
             password: formData.password
         };
-        const json = registerAsync(submitData);
-        json.then((result)=>{
-            if (result.statusCode === 200){
-
+        registerAsync(submitData).then((result)=>{
+            if (result.status ===200){
+                alert("Registration received. You Should have gotten a verification code in your email");
+                navigate('/verify_account',false,{email:submitData.email})
             } else {
-                alert(strings.requestError)
+                alert("something went wrong");
             }
         })
-
     };
 
     // Validates username input. Has to be between 2-20 characters
@@ -104,7 +103,7 @@ const Register = (props) =>{
     };
     // Validates both of the password fields to match
     const validatePasswords = () => {
-        if (formData.password === formData.confirmPassword && formData.password.length !==0 && formData.confirmPassword.length!==0){
+        if (formData.password === formData.confirmPassword && formData.password.length >=5 && formData.confirmPassword.length>=5){
             setPasswordError(false);
             setPasswordErrorMsg("");
             enableSubmit()
@@ -125,7 +124,7 @@ const Register = (props) =>{
                     <Typography component="h5" color="secondary" className="typo" style={{paddingTop:"1rem"}}>
                         {strings.joinPlatform}
                     </Typography>
-                    <form onSubmit={handleSubmit} className="registerForm">
+                    <form className="registerForm">
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -189,7 +188,7 @@ const Register = (props) =>{
                             onBlur={validatePasswords}
                             helperText={passwordErrorMsg}
                         />
-                        <Button type="submit" fullWidth variant="contained" color="primary" disabled={btnDisable}>
+                        <Button fullWidth variant="contained" color="primary" disabled={btnDisable} onClick={()=>{handleSubmit()}}>
                             {strings.signUp}
                         </Button>
                         <Grid style={{padding: '1em'}}>

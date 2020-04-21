@@ -22,12 +22,11 @@ const ForgotPassword = (props) => {
     },[]); //eslint-disable-line
 
     const handleSubmit = () =>{
-        //TODO FORGOT PASSWORD LOGIC
         const submitData = {email: email};
         forgotPassAsync(submitData).then((response)=>{
-            console.log(response)
+            console.log(response);
             if (response.status === 200){
-                alert("You should have received a reset code into your email!")
+                alert(strings.sentVerification);
                 navigate('/reset_password',false, submitData)
             } else {
                 alert(strings.requestError)
