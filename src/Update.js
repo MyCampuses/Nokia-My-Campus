@@ -2,14 +2,11 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import Data from './hooks/Data';
 import notificationStyle from './styles/notificationStyle';
-import {
-  ThemeProvider,
-} from '@material-ui/core';
 
 const {SW_INIT, SW_UPDATE} = Data();
 
 const Update = () => {
-  const {updateAlertTheme} = notificationStyle;
+  const {update} = notificationStyle;
   // State selectors for redux
   const isServiceWorkerInitialized = useSelector(
       state => state.serviceWorkerInitialized);
@@ -30,23 +27,21 @@ const Update = () => {
     }
   };
   return (
-      <ThemeProvider theme={updateAlertTheme}>
-        <div className={updateAlertTheme.alertWindow}>
-          {isServiceWorkerInitialized &&
-          (<Update
-                  text = ""
-                  type={SW_INIT}/>
-          )}
-          {isServiceWorkerUpdated && (
-              <Update
-                  text="The App has been updated, a new version is available"
-                  buttonText="Update App"
-                  type={SW_UPDATE}
-                  onClick={() => {updateServiceWorker()}}
-              />
-          )}
-        </div>
-      </ThemeProvider>
+      <div className="Update" style={update}>
+        {isServiceWorkerInitialized &&
+        (<Update
+                text=""
+                type={SW_INIT}/>
+        )}
+        {isServiceWorkerUpdated && (
+            <Update
+                text="The App has been updated, a new version is available"
+                buttonText="Update App"
+                type={SW_UPDATE}
+                onClick={() => {updateServiceWorker();}}
+            />
+        )}
+      </div>
   );
 };
 export default Update;
