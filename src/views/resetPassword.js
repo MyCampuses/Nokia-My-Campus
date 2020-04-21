@@ -10,10 +10,10 @@ import {
 } from '@material-ui/core';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
-import {navigate} from 'hookrouter';
+import {navigate, useQueryParams} from 'hookrouter';
 
 const ResetPassword = (props) => {
-    console.log(props);
+
     const [passwordError, setPasswordError] =useState(false);
     const [passwordErrorMsg, setPasswordErrorMsg]=useState("");
     const {FormTheme,setBackgroundBlue} = MuiThemes();
@@ -24,12 +24,26 @@ const ResetPassword = (props) => {
     const {resetPasswordAsync} = API();
     const [btnDisable,setBtnDisable] = useState(true);
 
+    const [queryParams] = useQueryParams();
+
+
     useEffect(()=>{
         setBackgroundBlue()
     });
 
     useEffect(()=>{
         enableSubmit()
+    });
+
+    useEffect(()=>{ //eslint-disable-line
+        const {
+            // Use object destructuring and a default value
+            // if the param is not yet present in the URL.
+            email = ""
+        } = queryParams;
+
+
+        setEmail(queryParams.email)
     });
 
     const handleSubmit = () =>{
@@ -46,7 +60,7 @@ const ResetPassword = (props) => {
     };
 
     const validatePassword = () => {
-        if (password === confirmPassword && password.length !==0 && confirmPassword.length!==0){
+        if (password === confirmPassword && password.length >=5 && confirmPassword.length>=5){
             setPasswordError(false);
             setPasswordErrorMsg("");
             enableSubmit()
@@ -74,7 +88,7 @@ const ResetPassword = (props) => {
                     <Typography component="h5" color="secondary" className="typo" style={{paddingTop:"1rem"}}>
                         {strings.resetPasswordText}
                     </Typography>
-                    <form noValidate onSubmit={handleSubmit} className="forgotPassform">
+                    <form noValidate className="forgotPassform">
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -132,7 +146,7 @@ const ResetPassword = (props) => {
                             onChange={event => setResetToken(event.target.value)}
                             value={resetToken}
                         />
-                        <Button type="submit" fullWidth variant="contained" color="primary" disabled={btnDisable}>
+                        <Button fullWidth variant="contained" color="primary" disabled={btnDisable} onClick={()=>{handleSubmit()}}>
                             {strings.send}
                         </Button>
                         <Grid style={{padding: '1em'}}>

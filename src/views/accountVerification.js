@@ -10,7 +10,8 @@ import {
 } from '@material-ui/core';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
-import {navigate} from 'hookrouter';
+import {navigate,useQueryParams} from 'hookrouter';
+import LocalStorageOperations from "../hooks/LocalStorageOperations";
 
 
 const AccountVerification = (props) =>{
@@ -18,12 +19,49 @@ const AccountVerification = (props) =>{
     const {FormTheme,setBackgroundBlue} = MuiThemes();
     const [email, setEmail] = useState('');
     const [token, setToken] = useState('');
+    const {confirmAccountAsync} = API();
+    const {create, read, clear, del} = LocalStorageOperations();
+    const [queryParams] = useQueryParams();
+
+
+
     // Sets background
     useEffect(()=>{
         setBackgroundBlue()
     },[]); //eslint-disable-line
 
+    useEffect(()=>{//eslint-disable-line
+        const {
+            // Use object destructuring and a default value
+            // if the param is not yet present in the URL.
+            email = ''
+        } = queryParams;
+
+        setEmail(queryParams.email)
+    });
+
+
     const handleSubmit = () =>{
+        const submitData = {
+            email: email,
+            token:token
+        };
+        confirmAccountAsync(submitData).then((result)=>{
+            if (result.status===200){
+                alert("Account confirmation was successful!");
+                result.json().then((data)=>{
+                    const user = {username: data.username,token:data.token};
+                    create(JSON.stringify(user), 'user'); // Saves the users information as a json string inside LocalStorage
+                    window.location.href = '/home';
+                });
+            } else {
+                alert("Confirmation Failed")
+            }
+        });
+
+    };
+
+    const resendEmail = () => {
 
     };
 
@@ -73,7 +111,7 @@ const AccountVerification = (props) =>{
                                 </Link>
                             </Grid>
                             <Grid>
-                                <Link onClick={()=>{}}>
+                                <Link onClick={()=>{resendEmail()}}>
                                     {strings.resend}
                                 </Link>
                             </Grid>
