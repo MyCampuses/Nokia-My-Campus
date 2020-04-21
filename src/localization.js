@@ -167,7 +167,7 @@ let strings = new LocalizedStrings({
         usernameError: "Användarnamnet måste vara mellan 2-20 tecken",
         passwordError: "Lösenordet matchar inte",
         pleaseEnterEmail: "Ange en giltig e-postadress",
-        pleaseEnterConfirmPass: "Ange lösenordet igen",xxx
+        pleaseEnterConfirmPass: "Ange lösenordet igen",
         pleaseEnterPassword: "Ange lösenord",
         pleaseEnterName: "Ange ett namn",
         waitTime1: "väntetid < 30s",
