@@ -23,14 +23,13 @@ const ForgotPassword = (props) => {
 
     const handleSubmit = () =>{
         //TODO FORGOT PASSWORD LOGIC
-        const submitData = {userEmail: email};
-        forgotPassAsync(submitData).then((json)=>{
-            if (json.statusCode === 200){
-                /*Server responds with a success
-                  so the user has received the email with their reset token.
-                  Can navigate to the reset password screen*/
+        const submitData = {email: email};
+        forgotPassAsync(submitData).then((response)=>{
+            console.log(response)
+            if (response.status === 200){
+                alert("You should have received a reset code into your email!")
                 navigate('/reset_password',false, submitData)
-            } else { // Request wasn't successful. Communicate to user
+            } else {
                 alert(strings.requestError)
             }
         });

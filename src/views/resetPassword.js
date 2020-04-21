@@ -34,11 +34,11 @@ const ResetPassword = (props) => {
 
     const handleSubmit = () =>{
             const submitData = {email: email, password: password, passwordConfirm: confirmPassword, resetToken:resetToken};
-            resetPasswordAsync(submitData).then((json)=>{
-                if (json.statusCode === 200){
+            resetPasswordAsync(submitData).then((response)=>{
+                if (response.status === 200){
                     // Was successful. Inform user and navigate to login
+                    window.location.href = '/login';
                     alert(strings.passwordWasReset);
-                    navigate('/login',false,{email: submitData.email})
                 } else {
                     alert(strings.requestError)
                 }
