@@ -72,7 +72,7 @@ const Home = (props) => {
     const p5BarData = {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data,barTheme};
     const p10insideData = {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data,barTheme};
     const p10roofData = {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData,barTheme};
-    const p10electicData = {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData,barTheme};
+    const p10electricData = {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData,barTheme};
 
     return (
         <ThemeProvider theme={PageTheme}>
@@ -82,14 +82,14 @@ const Home = (props) => {
                   justify="space-between">
               <Grid item xs={12} spacing={0}>
                 <div className={progressBarTheme.headLine}>Current campus
-                  statistics are testasd:
+                  statistics are:
                 </div>
               </Grid>
               {ProgressBar(restaurantBarData)}
               {ProgressBar(p5BarData)}
               {ProgressBar(p10insideData)}
               {ProgressBar(p10roofData)}
-              {ProgressBar(p10electicData)}
+              {ProgressBar(p10electricData)}
             </Grid>
           </Container>
         </ThemeProvider>
