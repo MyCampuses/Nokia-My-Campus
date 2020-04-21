@@ -11,6 +11,8 @@ import AuthLoading from "../views/authLoading";
 import P5MapView from "../views/p5MapView";
 import P10MapView from "../views/p10MapView";
 import ResetPassword from "../views/resetPassword";
+import AccountVerification from "../views/accountVerification";
+
 const routes = {
   '/': ()=> <Home/>,
   '/info': ()=> <Info/>,
@@ -25,6 +27,7 @@ const routes = {
   '/p5map': ()=> <P5MapView/>,
   '/p10map': () => <P10MapView/>,
   '/reset_password': (userEmail) => <ResetPassword userEmail={userEmail}/>,
+  '/verify_account': (userEmail)=> <AccountVerification userEmail={userEmail}/>
 };
 
 

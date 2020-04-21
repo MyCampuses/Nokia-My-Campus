@@ -65,7 +65,11 @@ const Register = (props) =>{
         };
         const json = registerAsync(submitData);
         json.then((result)=>{
+            if (result.statusCode === 200){
 
+            } else {
+                alert(strings.requestError)
+            }
         })
 
     };

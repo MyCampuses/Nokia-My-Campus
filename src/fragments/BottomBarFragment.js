@@ -9,7 +9,7 @@ import P5MapView from "../views/p5MapView";
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
-    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5} = TabFragments();
+    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5, TabRestaurantLines, TabRestaurantChart} = TabFragments();
 
     const P10BottomTab = () => {
         const [value, setValue] = useState(0);
@@ -93,9 +93,35 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
+    const RestaurantBottomTab = () => {
+        const [valueRestaurant, setValueRestaurant] = useState(0);
+
+        const handleChange = (event, newValue) => {
+            setValueRestaurant(newValue);
+        };
+
+        return (
+            <div>
+                <TabRestaurantLines value={valueRestaurant} index={0}/>
+                <TabRestaurantChart value={valueRestaurant} index={1}/>
+                <Tabs
+                    value={valueRestaurant}
+                    onChange={handleChange}
+                    className={commonClasses.bottomTabs}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                >
+                    <Tab id="lines" label={strings.live}/>
+                    <Tab id="graph" label={strings.graph}/>
+                </Tabs>
+            </div>
+        );
+    };
+
     return {
         P10BottomTab: P10BottomTab,
         P5BottomTab: P5BottomTab,
+        RestaurantBottomTab: RestaurantBottomTab,
     };
 };
 

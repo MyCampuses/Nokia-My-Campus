@@ -30,9 +30,8 @@ const useStyle = makeStyles((theme) => ({
 // Holds all the fragments for charts
 const ChartFragment = () => {
         const classes = useStyle();
-        const {getChartData, dataToChart,chartEstData} = API();
+        const {getChartData, dataToChart,chartEstData, dataToChartRestaurant} = API();
         const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
-        //const p10TopLoc = 'P10TOP/';
         const {formattedFullDate} = GlobalFunctions();
 
         // Convert data to be used in chart
@@ -60,6 +59,7 @@ const ChartFragment = () => {
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
             const [max, setMax] = useState(undefined);
+
             useEffect(() => {
                 if (props.location==="electric"){
                     getChartData(dailyParkingUrl, 'P10TOP/', propsDate).then(json => chartEstData(json.samples)).then(json => setChartData(json))
@@ -80,8 +80,6 @@ const ChartFragment = () => {
                 setMax(highest);
             }}, [chartData]);
 
-
-
             return (
                 <Fragment>
                     <Container className={classes.p10Box}>
@@ -97,15 +95,31 @@ const ChartFragment = () => {
         const RestaurantChart = (props) => {
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
+            const [max, setMax] = useState(undefined);
+
             useEffect(() => {
-                getChartData(dailyRestaurantUrl, '', propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
-            }); // eslint-disable-line
+                getChartData(dailyRestaurantUrl, '', propsDate)
+                    .then(json => dataToChartRestaurant(json))
+                    .then(json => setChartData(json))
+            }, []); // eslint-disable-line
+
+            useEffect(() => {
+                if (chartData !== undefined) {
+                    let highest = 0;
+                    chartData.forEach(element => {
+                            if (element.y > highest) {
+                                highest = element.y;
+                            }
+                        }
+                    );
+                    setMax(highest);
+                }}, [chartData]);
 
             return (
                 <Fragment>
                     <Container className={classes.RestaurantBox}>
                         <p>Utilization Records for {propsDate}</p>
-                        {renderChart(chartData)}
+                        {renderChart(chartData, max)}
                     </Container>
                 </Fragment>
             );
@@ -113,7 +127,9 @@ const ChartFragment = () => {
 
         return {
             Chart: Chart,
+            RestaurantChart: RestaurantChart,
         };
     }
 ;
+
 export default ChartFragment;

@@ -12,27 +12,19 @@ import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import {navigate} from 'hookrouter';
 
-const ForgotPassword = (props) => {
+
+const AccountVerification = (props) =>{
+
     const {FormTheme,setBackgroundBlue} = MuiThemes();
     const [email, setEmail] = useState('');
-    const {forgotPassAsync} = API();
+    const [token, setToken] = useState('');
     // Sets background
     useEffect(()=>{
         setBackgroundBlue()
     },[]); //eslint-disable-line
 
     const handleSubmit = () =>{
-        //TODO FORGOT PASSWORD LOGIC
-        const submitData = {email: email};
-        forgotPassAsync(submitData).then((response)=>{
-            console.log(response)
-            if (response.status === 200){
-                alert("You should have received a reset code into your email!")
-                navigate('/reset_password',false, submitData)
-            } else {
-                alert(strings.requestError)
-            }
-        });
+
     };
 
     return(
@@ -42,9 +34,9 @@ const ForgotPassword = (props) => {
                     <img src={require('../assets/logo_mycampus.webp')}
                          alt={strings.logoAlt} className="logoImg"/>
                     <Typography component="h5" color="secondary" className="typo" style={{paddingTop:"1rem"}}>
-                        {strings.enterEmail}
+                        {strings.userVerification}
                     </Typography>
-                    <form noValidate onSubmit={handleSubmit} className="forgotPassform">
+                    <form noValidate onSubmit={handleSubmit}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -58,6 +50,18 @@ const ForgotPassword = (props) => {
                             value={email}
                             autoComplete={"email"}
                         />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            color={"secondary"}
+                            id="token"
+                            label={strings.verificationToken}
+                            name="token"
+                            onChange={event => setToken(event.target.value)}
+                            value={token}
+                        />
                         <Button onClick={()=>{handleSubmit()}} fullWidth variant="contained" color="primary">
                             {strings.send}
                         </Button>
@@ -68,6 +72,11 @@ const ForgotPassword = (props) => {
                                     {strings.backToLogin}
                                 </Link>
                             </Grid>
+                            <Grid>
+                                <Link onClick={()=>{}}>
+                                    {strings.resend}
+                                </Link>
+                            </Grid>
                         </Grid>
                     </form>
                 </div>
@@ -75,5 +84,4 @@ const ForgotPassword = (props) => {
         </ThemeProvider>
     )
 };
-
-export default ForgotPassword;
+export default AccountVerification

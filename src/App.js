@@ -4,7 +4,7 @@ import './styles/App.css';
 import routes from './hooks/Routes';
 import {useSelector} from 'react-redux';
 import Data from './hooks/Data'
-import Alert from './hooks/UpdateAlert'
+import Update from './hooks/UpdateServiceWorker'
 const { SW_INIT, SW_UPDATE } = Data()
 
 const App = () => {
@@ -30,16 +30,13 @@ const App = () => {
   };
   return (
       <div className="App">
-        <div className="App-alert">
           {isServiceWorkerInitialized &&
-          (<Alert text="Service worker is initialized" type={SW_INIT}/>
+          (<Update type={SW_INIT}/>
           )}
           {isServiceWorkerUpdated && (
-              <Alert text="New version of the app available" buttonText="Update"
-                     type={SW_UPDATE} onClick={() => {updateServiceWorker()}}
+              <Update type={SW_UPDATE} onUpdate={updateServiceWorker()}
               />
           )}
-        </div>
         {routeResult}
       </div>
   );

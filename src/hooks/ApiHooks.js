@@ -15,6 +15,16 @@ const fetchPostUrl = async (url,data) => {
     return await response.json()
 };
 
+const fetchPostUrlNoJson = async (url,data) => {
+    const response = await fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    return response;
+};
 
 const fetchGetUrl = async (url, userKey) => {
     const {read} = LocalStorageOperations();
@@ -35,16 +45,12 @@ const API = () => {
         return fetchPostUrl(loginUrl, loginData)
     };
 
-    const resetPasswordAsync = async (data,props)=>{
-        return fetchPostUrl(resetPassUrl,data).then((json)=>{
-            return json
-        })
+    const resetPasswordAsync = async (data)=>{
+        return fetchPostUrlNoJson(resetPassUrl,data)
     };
 
-    const forgotPassAsync = async (data,props)=>{
-        return fetchPostUrl(forgotPassUrl,data).then((json)=>{
-            return json
-        })
+    const forgotPassAsync = async (data)=>{
+        return fetchPostUrlNoJson(forgotPassUrl,data)
     };
 
     const registerAsync = async (registerData,props)=>{
@@ -62,11 +68,13 @@ const API = () => {
             return json
         })
     };
+
     const getChartData = (url, location, date) => {
         return getUsageData(url + location + date).then((json) => {
             return json
         })
     };
+
     const dataToChart = (json) => {
         if (json !== undefined) {
             const chart = [];
@@ -81,6 +89,22 @@ const API = () => {
             return chart;
         }
     };
+
+    const dataToChartRestaurant = (json) => {
+        if (json !== undefined) {
+            const chart = [];
+            for (let key in json) {
+                const timeStamp = convertTime(json[key].timestamp);
+                const fromUnixTime = formattedDate(timeStamp);
+                let yc = json[key].fill_percent;
+                let tempJson = {x: fromUnixTime, y: yc, pv: 100};
+                chart.push(tempJson);
+                // Set the data to a chart json and return it
+            }
+            return chart;
+        }
+    };
+
     // If Selected is Electric Places charts the data with the given multiplier to calculate the estimated utilization
     const chartEstData = (json) =>{
         const multiplier = 2;
@@ -107,7 +131,8 @@ const API = () => {
         dataToChart,
         forgotPassAsync,
         resetPasswordAsync,
-        chartEstData
+        chartEstData,
+        dataToChartRestaurant,
     }
 
 };
