@@ -1,6 +1,5 @@
 import {makeStyles} from "@material-ui/core";
 
-
 const InfoStyles = () => {
 
     const infoStyle = makeStyles(theme => ({

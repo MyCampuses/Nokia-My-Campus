@@ -1,12 +1,9 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Data from './hooks/Data';
-import notificationStyle from './styles/notificationStyle';
-
 const {SW_INIT, SW_UPDATE} = Data();
 
 const Update = () => {
-  const {update} = notificationStyle;
   // State selectors for redux
   const isServiceWorkerInitialized = useSelector(
       state => state.serviceWorkerInitialized);
@@ -27,7 +24,7 @@ const Update = () => {
     }
   };
   return (
-      <div className="Update" style={update}>
+      <div className="update">
         {isServiceWorkerInitialized &&
         (<Update
                 text=""

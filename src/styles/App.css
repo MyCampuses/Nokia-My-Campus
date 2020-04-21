@@ -1,17 +1,6 @@
 .App {
   text-align: center;
 }
-.Update {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-}
-.Update-alert {
-  width: 15rem;
-  background: #FFFFFF;
-  padding: 2rem;
-  border-radius: 2px;
-}
 
 html{
   width: 100%;
