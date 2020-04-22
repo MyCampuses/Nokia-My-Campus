@@ -94,6 +94,7 @@ const ChartFragment = () => {
         /*eslint-disable */
         const RestaurantChart = (props) => {
             const propsDate = formattedFullDate(props.date);
+            console.log("chart "+ propsDate);
             const [chartData, setChartData] = useState(undefined);
             const [max, setMax] = useState(undefined);
 
@@ -101,7 +102,7 @@ const ChartFragment = () => {
                 getChartData(dailyRestaurantUrl, '', propsDate)
                     .then(json => dataToChartRestaurant(json))
                     .then(json => setChartData(json))
-            }, []); // eslint-disable-line
+            }, [props]); // eslint-disable-line
 
             useEffect(() => {
                 if (chartData !== undefined) {
