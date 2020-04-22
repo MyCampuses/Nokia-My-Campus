@@ -130,7 +130,7 @@ const TabFragments = (props) => {
         };
 
         // Selector for selecting the desired level in P10
-        const LevelSelector = () =>{
+        const LevelSelector = () => {
             return (
                 <div>
                     <FormControl style={{width: "250px"}}>
@@ -273,12 +273,13 @@ const TabFragments = (props) => {
                 <Box>
                     {[...lines.keys()].map(mapKey => (
                         <div key={mapKey}>
-                            {queueTimes.get(mapKey) != null && <Box className="lineDiv"
-                                                                    border={1}
-                                                                    p={1}
-                                                                    m={1}
-                                                                    bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
-                                                                    borderColor="#E9E9E9">
+                            {queueTimes.get(mapKey) != null &&
+                            <Box className="lineDiv"
+                                 border={1}
+                                 p={1}
+                                 m={1}
+                                 bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
+                                 borderColor="#E9E9E9">
                                 <Grid container direction="row"
                                       justify="space-between"
                                       alignItems="center">
@@ -306,6 +307,12 @@ const TabFragments = (props) => {
 
     function TabRestaurantChart(props) {
         const {children, value, index, ...other} = props;
+        const [selectedDate, setSelectedDate] = useState(new Date(props.date));
+
+        const handleDateChange = date => {
+            setSelectedDate(date);
+            props.onDateChange(date);
+        };
 
         return (
             <div role="tabfragment"
@@ -314,7 +321,21 @@ const TabFragments = (props) => {
                  aria-labelledby={`tab-${index}`}
                  inputstyle={{textAlign: 'center'}}
                  {...other}>
-                <RestaurantChart date={new Date()}/>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                        margin="normal"
+                        id="dialog date picker"
+                        label="Date picker"
+                        format="dd/MM/yyyy"
+                        value={selectedDate}
+                        disableFuture={true}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                </MuiPickersUtilsProvider>
+                <RestaurantChart date={selectedDate}/>
             </div>
         );
     }

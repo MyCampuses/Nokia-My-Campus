@@ -95,15 +95,20 @@ const BottomBarTabFragment = (props) => {
 
     const RestaurantBottomTab = () => {
         const [valueRestaurant, setValueRestaurant] = useState(0);
+        const [date, setDate] = useState(new Date());
 
         const handleChange = (event, newValue) => {
             setValueRestaurant(newValue);
         };
 
+        const handleDateChange = (data) => {
+            setDate(data);
+        };
+
         return (
             <div>
                 <TabRestaurantLines value={valueRestaurant} index={0}/>
-                <TabRestaurantChart value={valueRestaurant} index={1}/>
+                <TabRestaurantChart value={valueRestaurant} index={1} onDateChange={handleDateChange} date={date}/>
                 <Tabs
                     value={valueRestaurant}
                     onChange={handleChange}
