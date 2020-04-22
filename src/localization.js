@@ -72,7 +72,9 @@ let strings = new LocalizedStrings({
         graph: "Graph",
         verificationToken: "Verification Token",
         resend: "Resend Verification Email",
-        userVerification: "Use your verification code here. Verification code should be in your Email. Make sure to also check your deleted/spam folder in case of it not being in your primary folder.",
+        passwordLengthError: "Password must be at least 5 characters long",
+        cannotBeEmpty: "Field can't be empty",
+        userVerification: "Use the verification code you have gotten by email. If it has not arrived in the inbox be sure to check deleted/spam folder.",
         sentVerification: "You can now check your email for a verification code."
 
     },
@@ -147,12 +149,14 @@ let strings = new LocalizedStrings({
         verificationToken: "Vahvistustunnus",
         resend: "Lähetä Vahvistussähköposti Uudelleen",
         userVerification: "Käytä vahvistuskoodiasi täällä. Vahvistuskoodin pitäisi olla sähköpostissasi. Muista tarkistaa myös poistetu / roskapostikansio, jos viesti ei näy pääkansiossa",
-        sentVerification: "Vahvistuskoodi lähetetty sähköpostiin."
+        sentVerification: "Vahvistuskoodi lähetetty sähköpostiin.",
+        passwordLengthError:"Salasan tulee olla vähintään 5 merkkiä",
+        cannotBeEmpty: "Kenttä ei saa olla tyhjä"
     },
     se:{
         signIn: "Logga In",
         signUp: "Logga Up",
-        emailAddress: "E-postadress",
+        emailAddress: "Epostadress",
         username: "Användarnamn",
         password: "Lösenord",
         confirmPassword: "Bekräfta Lösenordet",
@@ -168,7 +172,7 @@ let strings = new LocalizedStrings({
         backToLogin: "Tillbaka till Login",
         usernameError: "Användarnamnet måste vara mellan 2-20 tecken",
         passwordError: "Lösenordet matchar inte",
-        pleaseEnterEmail: "Ange en giltig e-postadress",
+        pleaseEnterEmail: "Ange en giltig epostadress",
         pleaseEnterConfirmPass: "Ange lösenordet igen",
         pleaseEnterPassword: "Ange lösenord",
         pleaseEnterName: "Ange ett namn",
@@ -188,9 +192,9 @@ let strings = new LocalizedStrings({
         topBarMenuItemP10: "P10",
         topBarMenuItemInfo: "Info",
         topBarMenuItemLogout: "Logga ut",
-        infoPageHeading: "MyCampus är en portal som ger åtkomst till applikationen gjord av anställda på Nokia,\n" +
+        infoPageHeading: "MyCampus är en portal som ger åtkomst till applikationen skapad av anställda på Nokia,\n" +
             "    Quja start ups och andra partners i ekosystemet. Huvud möjliggöraren är Nokia Innovation Platform (NIP).\n" +
-            "    För nya idéer och frågor, kontakta: mikael.lindblad@nokia.com",
+            "    För nya idéer och frågor kontakta: mikael.lindblad@nokia.com",
         infoPageP1: "Värmekamerasensorer täcker restaurangens centrum och appen visar aktuellt beläggning och ger historiska data",
         infoPageP2: "Biltal tillhandahålls av  by time-of-flight sensorer och värmekameror på bottennivåer i parkering P5 och olika våningsnivåer i parkering P10",
         liveUtilization: "Live Utilization",
@@ -201,10 +205,10 @@ let strings = new LocalizedStrings({
         p10MapAlt: "P10 Karta",
         p5MapAlt:"P5 Karta",
         map: "Karta",
-        p10electric: "P10 Tak elektriska (uppskatning)",
-        p10inside: "P10 Inre",
-        p10rooftop:"P10 Tak",
-        p5inside: "P5 Inre",
+        p10electric: "P10 Tak elektriska(est)",
+        p10inside: "P10 Inre nivåer",
+        p10rooftop:"P10 Tak nivå",
+        p5inside: "P5 Inre nivåer",
         fillRate: "Fyllnadsgrad",
         resetToken:"Återställnings tecken",
         resetPasswordText: "Ange e-postadresset, nya lösenordet och the återställnings tecken du fick för att byta lösenordet.",
@@ -215,7 +219,13 @@ let strings = new LocalizedStrings({
         p10rooftoputil:"Tak Användning",
         p10electricutil:"Elektriska Användning(uppskatning)",
         level:"Nivå",
-        graph: "Graafi", //TODO: translate to swedish
+        graph: "Graf",
+        verificationToken: "Verifikations Tecken",
+        resend: "Återsänd Verifikations eposten",
+        userVerification: "Använd verifikations koden du fått via epost. Kolla deleterade/spam foldern om du inte har fått eposten i inkorgen. ",
+        sentVerification: "Verifikations koden har skickats till er epost.",
+        passwordLengthError:"",
+        cannotBeEmpty:""
     }
 });
 
