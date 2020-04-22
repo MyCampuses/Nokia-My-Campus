@@ -217,7 +217,7 @@ let strings = new LocalizedStrings({
         level:"Nivå",
         graph: "Graf",
         verificationToken: "Verifikations Tecken",
-        resend: "Återsänd Verifikations EPostadressen",
+        resend: "Återsänd Verifikations eposten",
         userVerification: "Använd verifikations koden du fått via epost. Kolla deleterade/spam foldern om du inte har fått eposten i inkorgen. ",
         sentVerification: "Verifikations koden har skickats till er epost."
     }
