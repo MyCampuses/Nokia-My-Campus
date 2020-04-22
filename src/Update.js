@@ -1,23 +1,13 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Data from './hooks/Data';
-import {Container, makeStyles} from '@material-ui/core';
-const {SW_INIT, SW_UPDATE} = Data();
+import Update from './hooks/UpdateServiceWorker'
+const {SW_UPDATE} = Data();
 
 
 
-const Update = () => {
-  const useStyle = makeStyles({
-    MuiContainer: {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-      },
-  });
-  const classes = useStyle()
+const UpdateApp = () => {
   // State selectors for redux
-  const isServiceWorkerInitialized = useSelector(
-      state => state.serviceWorkerInitialized);
   const isServiceWorkerUpdated = useSelector(
       state => state.serviceWorkerUpdated);
   const serviceWorkerRegistration = useSelector(
@@ -35,21 +25,15 @@ const Update = () => {
     }
   };
   return (
-      <Container className={classes.MuiContainer}>
-        {isServiceWorkerInitialized &&
-        (<Update
-                text=""
-                type={SW_INIT}/>
-        )}
+      <div>
         {isServiceWorkerUpdated && (
             <Update
-                text="The App has been updated, a new version is available"
-                buttonText="Update App"
                 type={SW_UPDATE}
-                onClick={() => {updateServiceWorker();}}
+                onClick={updateServiceWorker()}
             />
         )}
-      </Container>
+      </div>
+
   );
 };
-export default Update;
+export default UpdateApp;

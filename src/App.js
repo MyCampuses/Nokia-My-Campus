@@ -12,9 +12,7 @@ const App = () => {
         {routeResult}
         <Update/>
       </div>
-
-
-)
+  )
   ;
 };
 export default App;
