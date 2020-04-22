@@ -6,12 +6,7 @@ const UpdateApp = ({type, onUpdate}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!onUpdate) {
-      const timer = setTimeout(() => {
         dispatch({type});
-      }, 6000);
-      return () => {
-        clearTimeout(timer);
-      };
     }
   }, []);// eslint-disable-line
 };
