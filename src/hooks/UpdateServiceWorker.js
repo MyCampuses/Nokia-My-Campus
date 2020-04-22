@@ -15,7 +15,7 @@ const UpdateApp = ({type, onUpdate}) => {
     }
   }, []);// eslint-disable-line
   return (
-        {onUpdate}
+      {onUpdate}
   )
 };
 
