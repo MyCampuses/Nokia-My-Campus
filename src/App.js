@@ -1,7 +1,7 @@
 import React from 'react';
 import {useRoutes} from 'hookrouter';
 import './styles/App.css';
-import Update from './Update';
+import UpdateApp from './Update';
 import routes from './hooks/Routes';
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
   return (
       <div className="App">
         {routeResult}
-        <Update/>
+        <UpdateApp/>
       </div>
   )
   ;
