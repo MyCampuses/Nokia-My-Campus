@@ -1,7 +1,7 @@
 import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
 import GlobalFunctions from './GlobalFunctions';
-const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl } = ApiUrls();
+const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl } = ApiUrls();
 const {convertTime, formattedDate } = GlobalFunctions();
 
 const fetchPostUrl = async (url,data) => {
@@ -51,6 +51,10 @@ const API = () => {
 
     const confirmAccountAsync = async (data)=>{
         return fetchPostUrlNoJson(confirmUrl,data)
+    };
+
+    const resendEmailAsync = async (data)=>{
+        return fetchPostUrlNoJson(resendVerificationUrl,data)
     };
 
     const forgotPassAsync = async (data)=>{
@@ -137,7 +141,8 @@ const API = () => {
         resetPasswordAsync,
         chartEstData,
         dataToChartRestaurant,
-        confirmAccountAsync
+        confirmAccountAsync,
+        resendEmailAsync
     }
 
 };

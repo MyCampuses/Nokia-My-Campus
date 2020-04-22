@@ -19,7 +19,7 @@ const AccountVerification = (props) =>{
     const {FormTheme,setBackgroundBlue} = MuiThemes();
     const [email, setEmail] = useState('');
     const [token, setToken] = useState('');
-    const {confirmAccountAsync} = API();
+    const {confirmAccountAsync,resendEmailAsync} = API();
     const {create, read, clear, del} = LocalStorageOperations();
     const [queryParams] = useQueryParams();
 
@@ -62,7 +62,13 @@ const AccountVerification = (props) =>{
     };
 
     const resendEmail = () => {
-
+        resendEmailAsync({email:email}).then((result)=>{
+            if(result.status===200){
+                alert("Verification token was sent to your email")
+            } else {
+                alert("Email wasn't sent. Make sure your email is correct in the Email field.")
+            }
+        })
     };
 
     return(

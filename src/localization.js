@@ -73,7 +73,9 @@ let strings = new LocalizedStrings({
         verificationToken: "Verification Token",
         resend: "Resend Verification Email",
         userVerification: "Use your verification code here. Verification code should be in your Email. Make sure to also check your deleted/spam folder in case of it not being in your primary folder.",
-        sentVerification: "You can now check your email for a verification code."
+        sentVerification: "You can now check your email for a verification code.",
+        passwordLengthError: "Password must be at least 5 characters long",
+        cannotBeEmpty: "Field can't be empty"
 
     },
     fi:{
@@ -147,7 +149,9 @@ let strings = new LocalizedStrings({
         verificationToken: "Vahvistustunnus",
         resend: "Lähetä Vahvistussähköposti Uudelleen",
         userVerification: "Käytä vahvistuskoodiasi täällä. Vahvistuskoodin pitäisi olla sähköpostissasi. Muista tarkistaa myös poistetu / roskapostikansio, jos viesti ei näy pääkansiossa",
-        sentVerification: "Vahvistuskoodi lähetetty sähköpostiin."
+        sentVerification: "Vahvistuskoodi lähetetty sähköpostiin.",
+        passwordLengthError:"Salasan tulee olla vähintään 5 merkkiä",
+        cannotBeEmpty: "Kenttä ei saa olla tyhjä"
     },
     se:{
         signIn: "Logga In",

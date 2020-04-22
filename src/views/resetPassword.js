@@ -1,91 +1,166 @@
 /* eslint-disable no-unused-vars */
 import MuiThemes from '../styles/muiThemes'
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     Button,
     Container,
     ThemeProvider,
     Typography,
-    TextField, Checkbox, Grid, Link,
+    TextField, Grid, Link,
 } from '@material-ui/core';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
-import {navigate, useQueryParams} from 'hookrouter';
+import {useQueryParams} from 'hookrouter';
 
 const ResetPassword = (props) => {
 
-    const [passwordError, setPasswordError] =useState(false);
-    const [passwordErrorMsg, setPasswordErrorMsg]=useState("");
-    const {FormTheme,setBackgroundBlue} = MuiThemes();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [resetToken, setResetToken] = useState('');
+    const {FormTheme, setBackgroundBlue} = MuiThemes();
     const {resetPasswordAsync} = API();
-    const [btnDisable,setBtnDisable] = useState(true);
-
+    const [btnDisable, setBtnDisable] = useState(true);
     const [queryParams] = useQueryParams();
 
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        resetToken: ""
+    });
 
-    useEffect(()=>{
+    const [formErrors, setFormErrors] = useState({
+        emailError: false,
+        passwordError: false,
+        confirmPasswordError: false,
+        resetTokenError: false
+    });
+
+    const [formErrorMessages, setFormErrorMessages] = useState({
+        emailError: "",
+        passwordError: "",
+        confirmPasswordError: "",
+        resetTokenError: "",
+    });
+
+    const updateErrorMsg = (error, message) => {
+        setFormErrorMessages({
+            ...formErrorMessages,
+            [error]: message
+        })
+    };
+
+    const updateError = (error, bool) => {
+        setFormErrors({
+            ...formErrors,
+            [error]: bool
+        })
+        enableSubmit()
+    };
+
+    const updateField = e => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    useEffect(() => {
         setBackgroundBlue()
     });
 
-    useEffect(()=>{
-        enableSubmit()
-    });
-
-    useEffect(()=>{ //eslint-disable-line
+    useEffect(() => { //eslint-disable-line
         const {
             // Use object destructuring and a default value
             // if the param is not yet present in the URL.
             email = ""
         } = queryParams;
+        setFormData({
+            ...formData,
+            email: queryParams.email
+        })
+    }, [formData.email, queryParams.email]); // eslint-disable-line
 
-
-        setEmail(queryParams.email)
-    });
-
-    const handleSubmit = () =>{
-            const submitData = {email: email, password: password, passwordConfirm: confirmPassword, resetToken:resetToken};
-            resetPasswordAsync(submitData).then((response)=>{
-                if (response.status === 200){
-                    // Was successful. Inform user and navigate to login
-                    window.location.href = '/login';
-                    alert(strings.passwordWasReset);
-                } else {
-                    alert(strings.requestError)
-                }
-            })
-    };
-
-    const validatePassword = () => {
-        if (password === confirmPassword && password.length >=5 && confirmPassword.length>=5){
-            setPasswordError(false);
-            setPasswordErrorMsg("");
-            enableSubmit()
-        } else {
-            setPasswordError(true);
-            setPasswordErrorMsg(strings.passwordError);
-            enableSubmit()
-        }
+    const handleSubmit = () => {
+        const submitData = {
+            email: formData.email,
+            password: formData.password,
+            passwordConfirm: formData.confirmPassword,
+            resetToken: formData.resetToken
+        };
+        resetPasswordAsync(submitData).then((response) => {
+            if (response.status === 200) {
+                // Was successful. Inform user and navigate to login
+                window.location.href = '/login';
+                alert(strings.passwordWasReset);
+            } else {
+                alert(strings.requestError)
+            }
+        })
     };
 
     const enableSubmit = () => {
-        if (!passwordError && email.length>0 && resetToken.length>0){
-            setBtnDisable(false)
-        }  else {
+        if (formData.email.length>0 && formData.password.length>0 && formData.confirmPassword.length>0 &&formData.resetToken.length>0){
+            if (!formErrors.emailError && !formErrors.resetTokenError && !formErrors.passwordError && !formErrors.confirmPasswordError) {
+                setBtnDisable(false)
+            } else {
+                setBtnDisable(true)
+            }
+        } else {
             setBtnDisable(true)
         }
     };
 
-    return(
+    const validateEmailField = () => {
+        const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
+        const emailError = "emailError"
+        if (emailReqEx.test(formData.email)) {
+            updateError(emailError, false);
+            updateErrorMsg(emailError, "");
+        } else {
+            updateError(emailError, true);
+            updateErrorMsg(strings.pleaseEnterEmail)
+        }
+
+    };
+
+    const validatePassword = () => {
+        const pwdError = "passwordError";
+        if (formData.password.length < 5) {
+            updateError(pwdError, true);
+            updateErrorMsg(pwdError, strings.passwordLengthError)
+        } else {
+            updateError(pwdError, false);
+            updateErrorMsg(pwdError, "")
+        }
+    };
+
+    const validateConfirmPassword = () => {
+        const confPwdError = "confirmPasswordError";
+        if (formData.password === formData.confirmPassword && formData.password.length >= 5) {
+            updateError(confPwdError, false);
+            updateErrorMsg(confPwdError, "");
+        } else {
+            updateError(confPwdError, true);
+            updateErrorMsg(confPwdError, strings.passwordError);
+        }
+    };
+
+    const validateTokenField = () => {
+        const tokenError = "resetTokenError";
+        if (formData.resetToken.length < 0) {
+            updateError(tokenError, true);
+            updateErrorMsg(tokenError, strings.cannotBeEmpty)
+        } else {
+            updateError(tokenError, false)
+            updateErrorMsg(tokenError, "")
+        }
+    };
+
+    return (
         <ThemeProvider theme={FormTheme}>
             <Container component="main" maxWidth="xs">
                 <div className="form">
                     <img src={require('../assets/logo_mycampus.webp')}
                          alt={strings.logoAlt} className="logoImg"/>
-                    <Typography component="h5" color="secondary" className="typo" style={{paddingTop:"1rem"}}>
+                    <Typography component="h5" color="secondary" className="typo" style={{paddingTop: "1rem"}}>
                         {strings.resetPasswordText}
                     </Typography>
                     <form noValidate className="forgotPassform">
@@ -98,8 +173,11 @@ const ResetPassword = (props) => {
                             id="email"
                             label={strings.emailAddress}
                             name="email"
-                            onChange={event => setEmail(event.target.value)}
-                            value={email}
+                            onChange={updateField}
+                            onBlur={validateEmailField}
+                            error={formErrors.emailError}
+                            helperText={formErrorMessages.emailError}
+                            value={formData.email}
                             autoComplete={"email"}
                         />
                         <TextField
@@ -111,12 +189,12 @@ const ResetPassword = (props) => {
                             color={"secondary"}
                             id="password"
                             label={strings.password}
-                            error={passwordError}
-                            helperText={passwordErrorMsg}
                             name="password"
-                            onChange={(event) => setPassword(event.target.value)}
-                            value={password}
+                            onChange={updateField}
                             onBlur={validatePassword}
+                            error={formErrors.passwordError}
+                            helperText={formErrorMessages.passwordError}
+                            value={formData.password}
                         />
                         <TextField
                             variant="outlined"
@@ -127,12 +205,12 @@ const ResetPassword = (props) => {
                             color={"secondary"}
                             id="confirmPassword"
                             label={strings.confirmPassword}
-                            error={passwordError}
-                            helperText={passwordErrorMsg}
                             name="confirmPassword"
-                            onBlur={validatePassword}
-                            onChange={event => setConfirmPassword(event.target.value)}
-                            value={confirmPassword}
+                            onChange={updateField}
+                            onBlur={validateConfirmPassword}
+                            error={formErrors.confirmPasswordError}
+                            helperText={formErrorMessages.confirmPasswordError}
+                            value={formData.confirmPassword}
                         />
                         <TextField
                             variant="outlined"
@@ -143,16 +221,23 @@ const ResetPassword = (props) => {
                             id="resetToken"
                             label={strings.resetToken}
                             name="resetToken"
-                            onChange={event => setResetToken(event.target.value)}
-                            value={resetToken}
+                            onChange={updateField}
+                            onBlur={validateTokenField}
+                            error={formErrors.resetTokenError}
+                            helperText={formErrorMessages.resetTokenError}
+                            value={formData.resetToken}
                         />
-                        <Button fullWidth variant="contained" color="primary" disabled={btnDisable} onClick={()=>{handleSubmit()}}>
+                        <Button fullWidth variant="contained" color="primary" disabled={btnDisable} onClick={() => {
+                            handleSubmit()
+                        }}>
                             {strings.send}
                         </Button>
                         <Grid style={{padding: '1em'}}>
                             <Grid item xs style={{padding: '1em'}}>
                                 <Link
-                                    onClick={() => {window.location.href = '/login';}}>
+                                    onClick={() => {
+                                        window.location.href = '/login';
+                                    }}>
                                     {strings.backToLogin}
                                 </Link>
                             </Grid>
