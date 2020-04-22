@@ -1,9 +1,20 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Data from './hooks/Data';
+import {Container, makeStyles} from '@material-ui/core';
 const {SW_INIT, SW_UPDATE} = Data();
 
+
+
 const Update = () => {
+  const useStyle = makeStyles({
+    MuiContainer: {
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+      },
+  });
+  const classes = useStyle()
   // State selectors for redux
   const isServiceWorkerInitialized = useSelector(
       state => state.serviceWorkerInitialized);
@@ -24,7 +35,7 @@ const Update = () => {
     }
   };
   return (
-      <div className="update">
+      <Container className={classes.MuiContainer}>
         {isServiceWorkerInitialized &&
         (<Update
                 text=""
@@ -38,7 +49,7 @@ const Update = () => {
                 onClick={() => {updateServiceWorker();}}
             />
         )}
-      </div>
+      </Container>
   );
 };
 export default Update;
