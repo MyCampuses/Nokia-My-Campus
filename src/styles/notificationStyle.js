@@ -1,15 +1,18 @@
-//import {makeStyles} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core';
 
 const notificationStyles = () => {
-  const update = {
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
-  };
+
+  const updateAlert = makeStyles( () => ({
+    body: {
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+    },
+  }));
 
   return {
-    update: update,
+    updateAlert: updateAlert,
   };
 };
 
-export default notificationStyles();
+export default notificationStyles;
