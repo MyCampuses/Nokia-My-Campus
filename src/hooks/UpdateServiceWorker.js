@@ -1,16 +1,22 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import AuthLoading from '../views/authLoading';
 
 // Create alert with redux
-const Update = ({type}) => {
+const UpdateApp = ({type, onUpdate}) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({type});
+    if (!onUpdate) {
+      const timer = setTimeout(() => {
+        dispatch({type});
+      }, 6000);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
   }, []);// eslint-disable-line
   return (
-      <AuthLoading/>
+        {onUpdate}
   )
 };
 
-export default Update;
+export default UpdateApp;

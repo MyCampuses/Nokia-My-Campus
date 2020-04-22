@@ -1,12 +1,11 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Data from './hooks/Data';
-import Update from './hooks/UpdateServiceWorker'
+import UpdateApp from './hooks/UpdateServiceWorker'
+
 const {SW_UPDATE} = Data();
 
-
-
-const UpdateApp = () => {
+const Update = () => {
   // State selectors for redux
   const isServiceWorkerUpdated = useSelector(
       state => state.serviceWorkerUpdated);
@@ -27,13 +26,13 @@ const UpdateApp = () => {
   return (
       <div>
         {isServiceWorkerUpdated && (
-            <Update
+            <UpdateApp
                 type={SW_UPDATE}
-                onClick={updateServiceWorker()}
+                onUpdate={updateServiceWorker()}
             />
         )}
       </div>
 
   );
 };
-export default UpdateApp;
+export default Update;
