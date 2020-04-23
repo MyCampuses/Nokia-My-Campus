@@ -19,7 +19,7 @@ const TabFragments = (props) => {
     const {Chart, RestaurantChart} = ChartFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
-    const {P5P10ProgressBar} = ProgressBarStyle()
+    const {P5P10ProgressBar} = ProgressBarStyle();
 
     const useStyles = makeStyles(theme => ({
         root: {

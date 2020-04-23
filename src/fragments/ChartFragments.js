@@ -42,8 +42,8 @@ const ChartFragment = () => {
                            margin={{left: -20, right: 0, top: 10}} data={data}>
                     <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
                     <Area dataKey="y" fill="#0000FF"/>
-                    <XAxis dataKey="x" interval={0} padding={{right: 20}} allowDataOverflow={false}
-                           ticks={["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]}
+                    <XAxis dataKey="x" padding={{right: 20}} allowDataOverflow={false}
+                           /*interval={0} ticks={["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]}*/
                            tickSize={6} type='category'/>
                     <YAxis fill="#8884d8" dataKey="pv" type="number" domain={[0, values => {
                         if (maxValue < 50) {
@@ -128,8 +128,7 @@ const ChartFragment = () => {
                         }
                     );
                     setMax(highest);
-                }
-            }, [chartData]);
+                }}, [chartData]);
 
             return (
                 <Fragment>
