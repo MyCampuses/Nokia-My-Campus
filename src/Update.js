@@ -17,9 +17,6 @@ const Update = () => {
 
     if (registrationWaiting) {
       registrationWaiting.postMessage({type: 'SKIP_WAITING'});
-      registrationWaiting.addEventListener('statechange', event => {
-          window.location.reload()
-      });
     }
   };
   return (
