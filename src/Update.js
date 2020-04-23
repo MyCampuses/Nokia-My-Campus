@@ -1,6 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Data from './hooks/Data';
+import UpdateApp from './hooks/UpdateServiceWorker'
 const {SW_INIT, SW_UPDATE} = Data();
 
 const Update = () => {
@@ -16,29 +17,26 @@ const Update = () => {
 
     if (registrationWaiting) {
       registrationWaiting.postMessage({type: 'SKIP_WAITING'});
-      registrationWaiting.addEventListener('statechange', event => {
-        if (event.target.state === 'activated') {
-          window.location.reload();
-        }
+      registrationWaiting.addEventListener('statechange', () => {
+          window.location.reload()
       });
     }
   };
   return (
-      <div className="update">
-        {isServiceWorkerInitialized &&
-        (<Update
-                text=""
-                type={SW_INIT}/>
-        )}
-        {isServiceWorkerUpdated && (
-            <Update
-                text="The App has been updated, a new version is available"
-                buttonText="Update App"
+      <div>
+        {isServiceWorkerInitialized && (
+            <UpdateApp
+                type={SW_INIT}
+            />
+          )}
+          {isServiceWorkerUpdated && (
+            <UpdateApp
                 type={SW_UPDATE}
-                onClick={() => {updateServiceWorker();}}
+                onUpdate={updateServiceWorker()}
             />
         )}
       </div>
+
   );
 };
 export default Update;

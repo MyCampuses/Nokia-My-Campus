@@ -1,24 +1,14 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 
 // Create alert with redux
-const Update = ({text, buttonText, type, onClick}) => {
+const UpdateApp = ({type, onUpdate}) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!onClick) {
-      const timer = setTimeout(() => {
+    if (!onUpdate) {
         dispatch({type});
-      }, 6000);
-      return () => {
-        clearTimeout(timer);
-      };
     }
   }, []);// eslint-disable-line
-  return (
-      <div className="alert">
-      {text} {buttonText} && <button onClick={onClick}>{buttonText}</button>}
-      </div>
-  )
 };
 
-export default Update;
+export default UpdateApp;

@@ -72,8 +72,11 @@ let strings = new LocalizedStrings({
         graph: "Graph",
         verificationToken: "Verification Token",
         resend: "Resend Verification Email",
+        passwordLengthError: "Password must be at least 5 characters long",
+        cannotBeEmpty: "Field can't be empty",
         userVerification: "Use the verification code you have gotten by email. If it has not arrived in the inbox be sure to check deleted/spam folder.",
-        sentVerification: "You can now check your email for a verification code."
+        sentVerification: "You can now check your email for a verification code.",
+        registeringSuccess: "Registration was successful. You Should have gotten a verification code in your email",
 
     },
     fi:{
@@ -147,7 +150,10 @@ let strings = new LocalizedStrings({
         verificationToken: "Vahvistustunnus",
         resend: "Lähetä Vahvistussähköposti Uudelleen",
         userVerification: "Käytä vahvistuskoodiasi täällä. Vahvistuskoodin pitäisi olla sähköpostissasi. Muista tarkistaa myös poistetu / roskapostikansio, jos viesti ei näy pääkansiossa",
-        sentVerification: "Vahvistuskoodi lähetetty sähköpostiin."
+        sentVerification: "Vahvistuskoodi lähetetty sähköpostiin.",
+        passwordLengthError:"Salasan tulee olla vähintään 5 merkkiä",
+        cannotBeEmpty: "Kenttä ei saa olla tyhjä",
+        registeringSuccess:""
     },
     se:{
         signIn: "Logga In",
@@ -219,7 +225,10 @@ let strings = new LocalizedStrings({
         verificationToken: "Verifikations Tecken",
         resend: "Återsänd Verifikations eposten",
         userVerification: "Använd verifikations koden du fått via epost. Kolla deleterade/spam foldern om du inte har fått eposten i inkorgen. ",
-        sentVerification: "Verifikations koden har skickats till er epost."
+        sentVerification: "Verifikations koden har skickats till er epost.",
+        passwordLengthError:"",
+        cannotBeEmpty:"",
+        registeringSuccess:""
     }
 });
 

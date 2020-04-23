@@ -34,17 +34,17 @@ const ChartFragment = () => {
         const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
         const {formattedFullDate} = GlobalFunctions();
 
-
         // Convert data to be used in chart
         const renderChart = (data, maxValue) => (
             <ResponsiveContainer width="100%" height="100%">
                 <AreaChart minWidth={200} minHeight={200}
                     //Negative margin below removes the space between YAxis and left side of chart
-                           margin={{left: -20, right: 0}} data={data}>
+                           margin={{left: -20, right: 0, top: 10}} data={data}>
                     <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
                     <Area dataKey="y" fill="#0000FF"/>
                     <XAxis dataKey="x" interval={0} padding={{right: 20}} allowDataOverflow={false}
-                           ticks={["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]}/>
+                           ticks={["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]}
+                           tickSize={6} type='category'/>
                     <YAxis fill="#8884d8" dataKey="pv" type="number" domain={[0, values => {
                         if (maxValue < 50) {
                             return 50

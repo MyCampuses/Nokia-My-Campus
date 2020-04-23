@@ -1,21 +1,18 @@
 import React from 'react';
 import {useRoutes} from 'hookrouter';
-import Update from './Update'
 import './styles/App.css';
 import routes from './hooks/Routes';
-import notificationStyles from './styles/notificationStyle';
-const {updateAlert} = notificationStyles()
+import Update from './Update';
 
 const App = () => {
   const routeResult = useRoutes(routes);
 
   return (
       <div className="App">
+        <Update/>
         {routeResult}
-        <div className={updateAlert}>
-          <Update/>
-        </div>
       </div>
-  );
+  )
+  ;
 };
 export default App;

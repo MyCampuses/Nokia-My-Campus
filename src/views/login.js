@@ -32,13 +32,6 @@ const Login = (props) => {
       redirectFromLogin()
   },[]);//eslint-disable-line
 
-  useEffect(()=>{
-    let seconds = 1586269154004;
-    let date = new Date(seconds)
-    let hours = date.getHours()
-    let minutes = date.getMinutes()
-    console.log(hours +":"+ minutes)
-  });
 
   // Handles login submit
   const handleSubmit = (evt) => {
@@ -61,8 +54,8 @@ const Login = (props) => {
           window.location.href = '/home';
         }
       } else {
-        alert('Failed to Sign In'); // Alerts the user that the sign in failed
-        //TODO Add error response from server to alert
+        const errors = result.errors
+        alert(errors[0].msg); // Alerts the user that the sign in failed
       }
     });
   };
