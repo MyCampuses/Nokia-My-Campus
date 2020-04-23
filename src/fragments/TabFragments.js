@@ -9,7 +9,6 @@ import strings from "../localization";
 import ProgressBarStyle from "../styles/progressBarStyle";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
-
 import MenuItem from "@material-ui/core/MenuItem";
 import Data from "../hooks/Data";
 import Typography from "@material-ui/core/Typography";
@@ -119,6 +118,7 @@ const TabFragments = (props) => {
         const rooftopLevels = 'P10TOP/';
         const electric = "electric";
         const [selectedLevel, setSelectedLevel] = useState(insideLevels);
+
         const handleDateChange = date => {
             setSelectedDate(date);
             props.onDateChange(date);
