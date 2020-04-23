@@ -38,10 +38,10 @@ const ChartFragment = () => {
         const renderChart = (data, maxValue) => (
             <ResponsiveContainer width="100%" height="100%">
                 <AreaChart minWidth={200} minHeight={200}
-                           margin={{left: 0, right: 50}} data={data}>
+                           margin={{left: 0, right: 50, top: 10}} data={data}>
                     <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
                     <Area dataKey="y" fill="#0000FF"/>
-                    <XAxis dataKey="x"/>
+                    <XAxis dataKey="x" interval="preserveStart" tickSize={6} type='category'/>
                     <YAxis fill="#8884d8" dataKey="pv" type="number" domain={[0, data => {
                         if (maxValue < 50) {
                             return 50
