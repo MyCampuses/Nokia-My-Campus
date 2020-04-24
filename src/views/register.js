@@ -38,7 +38,7 @@ const Register = (props) =>{
         confirmPasswordError: "",
     });
 
-    // Enables the submit button when all the values have been input
+    // Enables the submit button when all the values have been input and are not empty
     const enableSubmit = () => {
         if (formData.email.length>0 && formData.password.length>0 && formData.confirmPassword.length>0 &&formData.username.length>0){
             if (!formErrors.emailError && !formErrors.resetTokenError && !formErrors.passwordError && !formErrors.confirmPasswordError) {
@@ -50,14 +50,14 @@ const Register = (props) =>{
             setBtnDisable(true)
         }
     };
-
+    // Updates given error with a new message. "" message means no error
     const updateErrorMsg = (error, message) => {
         setFormErrorMessages({
             ...formErrorMessages,
             [error]: message
         })
     };
-
+    // Updates given error with the given boolean
     const updateError = (error, bool) => {
         setFormErrors({
             ...formErrors,
@@ -91,11 +91,12 @@ const Register = (props) =>{
             password: formData.password
         };
         registerAsync(submitData).then((result)=>{
-            if (result.status === 200){
+            if (result.status === 200){  // OK response means that registering went through with the API so the
+                // user can be notified that it was successful and user can be navigated to the next screen
                 alert(strings.registeringSuccess);
                 navigate('/verify_account',false,{email:submitData.email})
             } else {
-                result.json().then((json)=>{
+                result.json().then((json)=>{ // Server returns one error so that is read and displayed to the user
                     const errors = json.errors;
                     let errorStr = errors[0].msg;
                     alert(errorStr)
@@ -130,7 +131,7 @@ const Register = (props) =>{
             updateErrorMsg(emailError,strings.pleaseEnterEmail)
         }
     };
-
+    // Validates password to be at least 5 characters long
     const validatePassword = () => {
         const pwdError = "passwordError";
         if (formData.password.length < 5) {
@@ -141,7 +142,7 @@ const Register = (props) =>{
             updateErrorMsg(pwdError, "")
         }
     };
-
+    // Checks so that password and confirm password match
     const validateConfirmPassword = () => {
         const confPwdError = "confirmPasswordError";
         if (formData.password === formData.confirmPassword && formData.password.length >=5) {

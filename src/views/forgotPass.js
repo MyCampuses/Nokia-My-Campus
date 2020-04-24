@@ -6,7 +6,7 @@ import {
     Container,
     ThemeProvider,
     Typography,
-    TextField, Checkbox, Grid, Link,
+    TextField, Grid, Link,
 } from '@material-ui/core';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
@@ -24,12 +24,11 @@ const ForgotPassword = (props) => {
     const handleSubmit = () =>{
         const submitData = {email: email};
         forgotPassAsync(submitData).then((response)=>{
-            console.log(response);
-            if (response.status === 200){
+            if (response.status === 200){ // If response is OK user can be notified and moved to the next screen
                 alert(strings.sentVerification);
                 navigate('/reset_password',false, submitData)
             } else {
-                alert(strings.requestError)
+                alert(strings.requestError) // Generic error since the API doesn't return a json with errors
             }
         });
     };

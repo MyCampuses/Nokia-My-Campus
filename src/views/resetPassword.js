@@ -39,22 +39,22 @@ const ResetPassword = (props) => {
         confirmPasswordError: "",
         resetTokenError: "",
     });
-
+    // Updates given error with a new message. "" message means no error
     const updateErrorMsg = (error, message) => {
         setFormErrorMessages({
             ...formErrorMessages,
             [error]: message
         })
     };
-
+    // Updates given error with the given boolean
     const updateError = (error, bool) => {
         setFormErrors({
             ...formErrors,
             [error]: bool
-        })
-        enableSubmit()
+        });
+        enableSubmit() // Called here because form errors are updated with this method
     };
-
+    // Updates data based on the onChange event
     const updateField = e => {
         setFormData({
             ...formData,
@@ -89,13 +89,13 @@ const ResetPassword = (props) => {
             if (response.status === 200) {
                 // Was successful. Inform user and navigate to login
                 window.location.href = '/login';
-                alert(strings.passwordWasReset);
+                alert(strings.passwordWasReset); // Display message that password recet was successful
             } else {
-                alert(strings.requestError)
+                alert(strings.requestError) // Generic error since there is no error from the server
             }
         })
     };
-
+    // Enables submit button if the fields are note empty and there is no errors in the form
     const enableSubmit = () => {
         if (formData.email.length>0 && formData.password.length>0 && formData.confirmPassword.length>0 &&formData.resetToken.length>0){
             if (!formErrors.emailError && !formErrors.resetTokenError && !formErrors.passwordError && !formErrors.confirmPasswordError) {
@@ -107,7 +107,7 @@ const ResetPassword = (props) => {
             setBtnDisable(true)
         }
     };
-
+    // Validates email input
     const validateEmailField = () => {
         const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
         const emailError = "emailError"
@@ -119,7 +119,7 @@ const ResetPassword = (props) => {
             updateErrorMsg(strings.pleaseEnterEmail)
         }
     };
-
+    // Checks the password to be at least 5 characters
     const validatePassword = () => {
         const pwdError = "passwordError";
         if (formData.password.length < 5) {
@@ -130,7 +130,7 @@ const ResetPassword = (props) => {
             updateErrorMsg(pwdError, "")
         }
     };
-
+    // Checks that the passwords match
     const validateConfirmPassword = () => {
         const confPwdError = "confirmPasswordError";
         if (formData.password === formData.confirmPassword && formData.password.length >= 5) {
@@ -141,7 +141,7 @@ const ResetPassword = (props) => {
             updateErrorMsg(confPwdError, strings.passwordError);
         }
     };
-
+    // Just checks that the token field is not left empty
     const validateTokenField = () => {
         const tokenError = "resetTokenError";
         if (formData.resetToken.length < 0) {
