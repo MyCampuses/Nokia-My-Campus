@@ -20,14 +20,14 @@ const ProgressBarFragments = (props) => {
     const ProgressBar = (barData) =>{
         return (
             <Fragment>
-                <Grid item xs={12} spacing={0}
+                <Grid item xs={12}
                       onClick={() => {onItemClickNavigate(barData.navigationUrl)}}>
                     <Grid item container className={barData.barTheme.progressLabel}
                           direction="row"
                           justify="space-between"
                           alignItems="center"
                           xs={12}>
-                        <Grid item alignItems="flex-start"
+                        <Grid item container alignItems="flex-start"
                               className={barData.barTheme.labelLocation} xs={4}>
                             <Typography className="alignLeft">
                                 {barData.barLabel}
