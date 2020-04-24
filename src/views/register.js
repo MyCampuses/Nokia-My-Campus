@@ -240,7 +240,7 @@ const Register = (props) =>{
                             </Grid>
                             <Grid item xs>
                                 <Link
-                                    onClick={() => {window.location.href = '/reset_password';}}>
+                                    onClick={() => {window.location.href = '/verify_account';}}>
                                     {strings.toConfirmation}
                                 </Link>
                             </Grid>
