@@ -15,6 +15,7 @@ import ProgressBarStyle from "../styles/progressBarStyle";
 import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
+import blue from '@material-ui/core/colors/blue';
 
 const Home = (props) => {
   const {getUsageData} = API();
@@ -23,7 +24,6 @@ const Home = (props) => {
   const {ProgressBar} = ProgressBarFragments();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
   const {PageTheme} = MuiThemes();
-  const {progressBarTheme} = ProgressBarStyle();
 
   // States
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -44,6 +44,10 @@ const Home = (props) => {
 
   const HomePage = () => {
 
+    //Styles for the ProgressBars
+    //makeStyles, createStyles can not be in another folder and imported
+    //the styles have to be in the same file where they are used.
+    const colorB = blue[500]
     const useStyles = makeStyles({
       root: {
         flexGrow: 1,
@@ -51,7 +55,7 @@ const Home = (props) => {
       headLine: {
         marginTop: '10px',
         marginBottom: '10px',
-        color: 'blue',
+        color: colorB,
       },
       progressLabel: {
         position: 'absolute',
@@ -81,7 +85,7 @@ const Home = (props) => {
           <Container>
             <Grid container spacing={1}
                   justify="space-between">
-              <Grid item xs={12} spacing={0}>
+              <Grid item xs={12}>
                 <div className={barTheme.headLine}><h3>Current campus
                   statistics are: </h3>
                 </div>

@@ -35,7 +35,11 @@ const fetchGetUrl = async (url, userKey) => {
             authorization: userToken.token,
         },
     });
-    return await response.json()
+    if (response) {
+        return await response.json()
+    } else {
+        throw Error("no token")
+    }
 };
 
 const API = () => {
