@@ -49,7 +49,6 @@ const fetchGetUrl = async (url, userKey) => {
 const API = () => {
     // Handles Login.
     const loginAsync = async (loginData,props) =>{
-        console.log(loginUrl);
         return fetchPostUrl(loginUrl, loginData)
     };
     // Handles Password reset

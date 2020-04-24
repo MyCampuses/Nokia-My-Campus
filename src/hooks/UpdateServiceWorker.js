@@ -9,7 +9,6 @@ const UpdateApp = ({type, onUpdate}) => {
     if (!onUpdate) {
       // 2 second timeout and dispatch
       const timer = setTimeout(() => {
-        console.log("updating app, dispatch")
         dispatch({type});
       }, 2000)
       // Clear timeout so timer works correctly every time

@@ -50,7 +50,6 @@ const NaviBar = () => {
 
         const logoutOnClick = () => {
             removeToken();
-            console.log("user has been removed");
             window.location.href = '/login';
         };
 

@@ -94,7 +94,6 @@ const ChartFragment = () => {
                     );
                     setMax(highest);
                     setDataForRender(tempChartData);
-                    console.log(dataForRender);
                 }
             }, [chartData]); //eslint-disable-line
 
