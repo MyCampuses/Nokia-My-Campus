@@ -100,9 +100,9 @@ const TabFragments = (props) => {
                         {...other}>
                         <Grid container spacing={1}
                               justify="space-between">
-                            {ProgressBar(p10insideData)}
-                            {ProgressBar(p10roofData)}
                             {ProgressBar(p10electicData)}
+                            {ProgressBar(p10roofData)}
+                            {ProgressBar(p10insideData)}
                         </Grid>
 
                     </div>
