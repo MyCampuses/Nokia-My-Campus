@@ -15,6 +15,10 @@ const UpdateApp = ({type, onUpdate}) => {
       return () => clearTimeout(timer)
     }
   }, []);// eslint-disable-line
+
+  return (
+      {onUpdate}
+  )
 };
 
 export default UpdateApp;
