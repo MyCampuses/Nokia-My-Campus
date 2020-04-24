@@ -39,13 +39,14 @@ const ChartFragment = () => {
             <ResponsiveContainer width="100%" height="100%">
                 <AreaChart minWidth={200} minHeight={200}
                     //Negative margin below removes the space between YAxis and left side of chart
-                           margin={{left: -20, right: 0, top: 10}} data={data}>
+                           margin={{left: -20, right: 20, top: 10}} data={data}>
                     <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
                     <Area dataKey="y" fill="#0000FF"/>
-                    <XAxis dataKey="x" padding={{right: 20}} allowDataOverflow={false}
-                           /*interval={0} ticks={["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]}*/
+                    <XAxis dataKey="x" padding={{right: 0}} allowDataOverflow={false}
+                           interval={0} ticks={["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]}
                            tickSize={6} type='category'/>
                     <YAxis fill="#8884d8" dataKey="pv" type="number" domain={[0, values => {
+                        console.log(data); //TODO: remove
                         if (maxValue < 50) {
                             return 50
                         } else {
@@ -72,16 +73,74 @@ const ChartFragment = () => {
                 }
             }, [props]); // eslint-disable-line
 
+            const filterTime = (element) => {
+                if (element.x >= "06:00" && element.x <= "18:00") {
+                    return element;
+                }
+            };
+
+            const sortCompareFunction = (a, b) => {
+                return (new Date('1970/01/01 ' + a.x) - new Date('1970/01/01 ' + b.x));
+
+            };
+
+            const fixTimes = (array) => {
+                let tempArray = [];
+
+                for (let i = 1; i < array.length; i++) {
+
+                    let x =(checkIf(i, array.length -1, array[i - 1], array[i]));
+                    if(x !== -1) {
+                        tempArray.push(x);
+                    }
+                }
+
+                let tempReturnableArray = array.concat(tempArray);
+                tempReturnableArray.sort(sortCompareFunction);
+                return tempReturnableArray;
+            };
+
+            //TODO: add type checks
+            const getAverage = (x1, x2) => {
+                return (x1 + x2)/2;
+            };
+
+            const checkIf = (index, lastIndex, prevElement, element) => {
+                if(index === 1 && prevElement.x > "06:00") {
+                    return {x: "06:00", y: prevElement.y, pv: 100};
+                }
+                if(prevElement.x < "08:00" && element.x > "08:00") {
+                    let yValue = getAverage(prevElement.y, element.y);
+                    return {x: "08:00", y: yValue, pv: 100};
+                }
+                if(prevElement.x < "10:00" && element.x > "10:00") {
+                    let yValue = getAverage(prevElement.y, element.y);
+                    return {x: "10:00", y: yValue, pv: 100};
+                }
+                if(prevElement.x < "12:00" && element.x > "12:00") {
+                    let yValue = getAverage(prevElement.y, element.y);
+                    return {x: "12:00", y: yValue, pv: 100};
+                }
+                if(prevElement.x < "14:00" && element.x > "14:00") {
+                    let yValue = getAverage(prevElement.y, element.y);
+                    return {x: "14:00", y: yValue, pv: 100};
+                }
+                if(prevElement.x < "16:00"  && element.x > "16:00") {
+                    let yValue = getAverage(prevElement.y, element.y);
+                    return {x: "16:00", y: yValue, pv: 100};
+                }
+                if(index === lastIndex  && element.x < "18:00") {
+                    return {x: "18:00", y: element.y, pv: 100};
+                }
+                else return -1;
+            };
+
             //Parses retrieved data to only points between 06:00 and 18:00, saves highest utilization point from those data points as well
             //Possible TODO: limit how many times the useeffect runs if no changes to chartdata has occurred
             useEffect(() => {
                 if (chartData !== undefined) {
-                    let tempChartData = [];
-                    chartData.forEach(element => {
-                        if (element.x >= "06:00" && element.x <= "18:00") {
-                            tempChartData.push(element);
-                        }
-                    });
+                    let tempChartData = chartData.filter(filterTime);
+                    tempChartData = fixTimes(tempChartData);
                     let highest = 0;
                     tempChartData.forEach(element => {
                             if (element.y > highest) {
@@ -91,7 +150,6 @@ const ChartFragment = () => {
                     );
                     setMax(highest);
                     setDataForRender(tempChartData);
-                    console.log(dataForRender);
                 }
             }, [chartData]); //eslint-disable-line
 
