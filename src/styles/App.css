@@ -17,8 +17,6 @@ body{
   background-color: transparent;
 }
 
-
-
 .Test{
   background-image: url("../assets/loginBackground.png");
   text-align: center;
@@ -27,12 +25,6 @@ body{
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -54,7 +46,6 @@ body{
   max-width: 90%;
   height: auto;
 }
-
 
 @keyframes App-logo-spin {
   from {
