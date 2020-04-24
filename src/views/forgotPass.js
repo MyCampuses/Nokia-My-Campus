@@ -33,7 +33,7 @@ const ForgotPassword = (props) => {
         });
     };
 
-    return(
+    return (
         <ThemeProvider theme={FormTheme}>
             <Container component="main" maxWidth="xs">
                 <div className="form">

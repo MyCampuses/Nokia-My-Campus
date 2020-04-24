@@ -29,16 +29,20 @@ const fetchPostUrlNoJson = async (url,data) => {
 const fetchGetUrl = async (url, userKey) => {
     const {read} = LocalStorageOperations();
     const userToken = read(userKey);
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            authorization: userToken.token,
-        },
-    });
-    if (response) {
-        return await response.json()
+    if (userToken) {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                authorization: userToken.token,
+            },
+        });
+        if (response) {
+            return await response.json()
+        } else {
+            throw Error("No token, fetchGetUrl")
+        }
     } else {
-        throw Error("No token, fetchGetUrl")
+        throw Error("No user, No usertoken. fetchGetUrl")
     }
 };
 
