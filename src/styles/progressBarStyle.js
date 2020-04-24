@@ -1,8 +1,8 @@
-import {createMuiTheme, makeStyles} from "@material-ui/core";
+import {createMuiTheme} from "@material-ui/core";
 
 const ProgressBarStyle = () => {
 
-    const progressBarTheme = makeStyles(theme => ({
+    const progressBarTheme = createMuiTheme({
         root: {
             flexGrow: 1,
         },
@@ -24,7 +24,7 @@ const ProgressBarStyle = () => {
             height: '15vh',
             justifyContent: 'flex-start',
         },
-    }));
+    });
 
     const P5P10ProgressBar = createMuiTheme({
         flexGrow: 1,
