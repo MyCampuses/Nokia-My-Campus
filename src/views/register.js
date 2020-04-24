@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect, useRef} from 'react';
 import MuiThemes from '../styles/muiThemes'
-import Authentication from '../hooks/Authentication';
 import {
     Button,
-    FormControlLabel,
     Container,
     ThemeProvider,
     Typography,
-    TextField, Checkbox, Grid, Link,
+    TextField, Grid, Link,
 } from '@material-ui/core';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
@@ -17,12 +15,6 @@ import {navigate} from 'hookrouter';
 const Register = (props) =>{
     const {FormTheme,setBackgroundBlue} = MuiThemes();
     const [btnDisable,setBtnDisable] = useState(true);
-    const [usernameError, setUsernameError] = useState(false);
-    const [emailError,setEmailError] = useState(false);
-    const [passwordError, setPasswordError] =useState(false);
-    const [userErrorMsg,setUserErrorMsg]= useState("");
-    const [emailErrorMsg,setEmailErrorMsg]=useState("");
-    const [passwordErrorMsg, setPasswordErrorMsg]=useState("");
     const {registerAsync} = API();
 
     const [formData, setFormData] = useState({
@@ -31,14 +23,49 @@ const Register = (props) =>{
         password:"",
         confirmPassword:""
     });
+
+    const [formErrors, setFormErrors] = useState({
+        usernameError: false,
+        emailError: false,
+        passwordError: false,
+        confirmPasswordError: false
+    });
+
+    const [formErrorMessages, setFormErrorMessages] = useState({
+        usernameError: "",
+        emailError: "",
+        passwordError: "",
+        confirmPasswordError: "",
+    });
+
     // Enables the submit button when all the values have been input
     const enableSubmit = () => {
-        if (!usernameError && !emailError && !passwordError){
-            setBtnDisable(false)
-        }  else {
+        if (formData.email.length>0 && formData.password.length>0 && formData.confirmPassword.length>0 &&formData.username.length>0){
+            if (!formErrors.emailError && !formErrors.resetTokenError && !formErrors.passwordError && !formErrors.confirmPasswordError) {
+                setBtnDisable(false)
+            } else {
+                setBtnDisable(true)
+            }
+        } else {
             setBtnDisable(true)
         }
     };
+
+    const updateErrorMsg = (error, message) => {
+        setFormErrorMessages({
+            ...formErrorMessages,
+            [error]: message
+        })
+    };
+
+    const updateError = (error, bool) => {
+        setFormErrors({
+            ...formErrors,
+            [error]: bool
+        });
+        enableSubmit()
+    };
+
     // Updates the fields json according to the inputted information
     const updateField =e=>{
         setFormData({
@@ -46,17 +73,17 @@ const Register = (props) =>{
             [e.target.name]: e.target.value
         });
     };
+
     // Sets background
     useEffect(()=>{
         setBackgroundBlue()
     });
-    // Inits the submit button
+
     useEffect(()=>{
         enableSubmit()
     });
 
     // Handles the registering submit
-    //TODO Add registering logic here
     const handleSubmit = () =>{
         const submitData = {
             email: formData.email,
@@ -64,11 +91,15 @@ const Register = (props) =>{
             password: formData.password
         };
         registerAsync(submitData).then((result)=>{
-            if (result.status ===200){
-                alert("Registration received. You Should have gotten a verification code in your email");
+            if (result.status === 200){
+                alert(strings.registeringSuccess);
                 navigate('/verify_account',false,{email:submitData.email})
             } else {
-                alert("something went wrong");
+                result.json().then((json)=>{
+                    const errors = json.errors;
+                    let errorStr = errors[0].msg;
+                    alert(errorStr)
+                });
             }
         })
     };
@@ -76,41 +107,49 @@ const Register = (props) =>{
     // Validates username input. Has to be between 2-20 characters
     // Also sets the errors accordingly
     const validateUsername = () =>{
+        const uNameError ="usernameError";
         if (formData.username.length >= 2 && formData.username.length <= 20) {
-            setUsernameError(false);
-            setUserErrorMsg("");
-            enableSubmit()
+            updateError(uNameError,false);
+            updateErrorMsg(uNameError,"");
         }
         else {
-            setUsernameError(true);
-            setUserErrorMsg(strings.usernameError);
-            enableSubmit()
+            updateError(uNameError,true);
+            updateErrorMsg(uNameError,strings.usernameError);
         }
     };
 
     // Validates Email input to match a "real" email. Also sets errors accordingly
-    const validateEmail = () =>{
+    const validateEmailField = () => {
         const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
-        if (emailReqEx.test(formData.email)){
-            setEmailError(false);
-            setEmailErrorMsg("");
-            enableSubmit()
+        const emailError = "emailError"
+        if (emailReqEx.test(formData.email)) {
+            updateError(emailError, false);
+            updateErrorMsg(emailError, "");
         } else {
-            setEmailError(true);
-            setEmailErrorMsg(strings.pleaseEnterEmail);
-            enableSubmit()
+            updateError(emailError, true);
+            updateErrorMsg(emailError,strings.pleaseEnterEmail)
         }
     };
-    // Validates both of the password fields to match
-    const validatePasswords = () => {
-        if (formData.password === formData.confirmPassword && formData.password.length >=5 && formData.confirmPassword.length>=5){
-            setPasswordError(false);
-            setPasswordErrorMsg("");
-            enableSubmit()
+
+    const validatePassword = () => {
+        const pwdError = "passwordError";
+        if (formData.password.length < 5) {
+            updateError(pwdError, true);
+            updateErrorMsg(pwdError, strings.passwordLengthError);
         } else {
-            setPasswordError(true);
-            setPasswordErrorMsg(strings.passwordError);
-            enableSubmit()
+            updateError(pwdError, false);
+            updateErrorMsg(pwdError, "")
+        }
+    };
+
+    const validateConfirmPassword = () => {
+        const confPwdError = "confirmPasswordError";
+        if (formData.password === formData.confirmPassword && formData.password.length >=5) {
+            updateError(confPwdError, false);
+            updateErrorMsg(confPwdError, "");
+        } else {
+            updateError(confPwdError, true);
+            updateErrorMsg(confPwdError, strings.passwordError);
         }
     };
 
@@ -136,8 +175,8 @@ const Register = (props) =>{
                             name="username"
                             onChange={updateField}
                             onBlur={validateUsername}
-                            error={usernameError}
-                            helperText={userErrorMsg}
+                            error={formErrors.usernameError}
+                            helperText={formErrorMessages.usernameError}
                             value={formData.username}
                         />
                         <TextField
@@ -150,43 +189,43 @@ const Register = (props) =>{
                             label={strings.emailAddress}
                             name="email"
                             onChange={updateField}
-                            onBlur={validateEmail}
+                            onBlur={validateEmailField}
+                            error={formErrors.emailError}
+                            helperText={formErrorMessages.emailError}
                             value={formData.email}
                             autoComplete={"email"}
-                            error={emailError}
-                            helperText={emailErrorMsg}
                         />
                         <TextField
-                            color={"secondary"}
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
-                            name="password"
-                            label={strings.password}
                             type="password"
+                            color={"secondary"}
                             id="password"
+                            label={strings.password}
+                            name="password"
                             onChange={updateField}
-                            onBlur={validatePasswords}
-                            error={passwordError}
-                            helperText={passwordErrorMsg}
+                            onBlur={validatePassword}
+                            error={formErrors.passwordError}
+                            helperText={formErrorMessages.passwordError}
                             value={formData.password}
                         />
                         <TextField
-                            color={"secondary"}
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
-                            name="confirmPassword"
-                            label={strings.confirmPassword}
                             type="password"
+                            color={"secondary"}
                             id="confirmPassword"
+                            label={strings.confirmPassword}
+                            name="confirmPassword"
                             onChange={updateField}
+                            onBlur={validateConfirmPassword}
+                            error={formErrors.confirmPasswordError}
+                            helperText={formErrorMessages.confirmPasswordError}
                             value={formData.confirmPassword}
-                            error={passwordError}
-                            onBlur={validatePasswords}
-                            helperText={passwordErrorMsg}
                         />
                         <Button fullWidth variant="contained" color="primary" disabled={btnDisable} onClick={()=>{handleSubmit()}}>
                             {strings.signUp}
@@ -196,6 +235,12 @@ const Register = (props) =>{
                                 <Link
                                     onClick={() => {window.location.href = '/login';}}>
                                     {strings.backToLogin}
+                                </Link>
+                            </Grid>
+                            <Grid item xs>
+                                <Link
+                                    onClick={() => {window.location.href = '/reset_password';}}>
+                                    {strings.toConfirmation}
                                 </Link>
                             </Grid>
                         </Grid>

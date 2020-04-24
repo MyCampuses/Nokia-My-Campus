@@ -118,7 +118,6 @@ const ResetPassword = (props) => {
             updateError(emailError, true);
             updateErrorMsg(strings.pleaseEnterEmail)
         }
-
     };
 
     const validatePassword = () => {

@@ -116,8 +116,8 @@ const BottomBarTabFragment = (props) => {
                     variant="fullWidth"
                     indicatorColor="primary"
                 >
-                    <Tab id="lines" label={strings.live}/>
-                    <Tab id="graph" label={strings.graph}/>
+                    <Tab id="lines" label={strings.lines}/>
+                    <Tab id="graph" label={strings.live+ " "+strings.graph}/>
                 </Tabs>
             </div>
         );

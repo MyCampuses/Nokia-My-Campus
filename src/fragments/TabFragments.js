@@ -9,7 +9,6 @@ import strings from "../localization";
 import ProgressBarStyle from "../styles/progressBarStyle";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
-
 import MenuItem from "@material-ui/core/MenuItem";
 import Data from "../hooks/Data";
 import Typography from "@material-ui/core/Typography";
@@ -20,7 +19,7 @@ const TabFragments = (props) => {
     const {Chart, RestaurantChart} = ChartFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
-    const {P5P10ProgressBar} = ProgressBarStyle()
+    const {P5P10ProgressBar} = ProgressBarStyle();
 
     const useStyles = makeStyles(theme => ({
         root: {
@@ -99,11 +98,12 @@ const TabFragments = (props) => {
                         id={`tabfragmentlive-${index}`}
                         aria-labelledby={`tab-${index}`}
                         {...other}>
+                        <h3>P10</h3>
                         <Grid container spacing={1}
                               justify="space-between">
-                            {ProgressBar(p10insideData)}
-                            {ProgressBar(p10roofData)}
                             {ProgressBar(p10electicData)}
+                            {ProgressBar(p10roofData)}
+                            {ProgressBar(p10insideData)}
                         </Grid>
 
                     </div>
@@ -119,6 +119,7 @@ const TabFragments = (props) => {
         const rooftopLevels = 'P10TOP/';
         const electric = "electric";
         const [selectedLevel, setSelectedLevel] = useState(insideLevels);
+
         const handleDateChange = date => {
             setSelectedDate(date);
             props.onDateChange(date);
@@ -157,7 +158,8 @@ const TabFragments = (props) => {
                 id={`tabfragment-${index}`}
                 aria-labelledby={`tab-${index}`}
                 inputstyle={{textAlign: 'center'}}
-                {...other}>
+                {...other} style={{marginTop: "16px"}}>
+
                 <LevelSelector/>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
@@ -199,7 +201,7 @@ const TabFragments = (props) => {
             <div
                 hidden={value !== index}>
                 <Container>
-                    <h1>{strings.insideLevelsP5}</h1>
+                    <h3>{strings.insideLevelsP5}</h3>
                     <Grid>{ProgressBar(barData)}</Grid>
                 </Container>
                 <Grid>
@@ -269,7 +271,7 @@ const TabFragments = (props) => {
                  aria-labelledby={`tab-${index}`}
                  inputstyle={{textAlign: 'center'}}
                  {...other}>
-                <p>{strings.restaurantPageTitle}</p>
+                <h3>{strings.restaurantPageTitle}</h3>
                 <Box>
                     {[...lines.keys()].map(mapKey => (
                         <div key={mapKey}>
