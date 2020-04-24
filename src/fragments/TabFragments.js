@@ -12,6 +12,7 @@ import ApiUrls from "../hooks/ApiUrls";
 import MenuItem from "@material-ui/core/MenuItem";
 import Data from "../hooks/Data";
 import Typography from "@material-ui/core/Typography";
+import blue from '@material-ui/core/colors/blue';
 
 const {parkingP5Url} = ApiUrls();
 
@@ -21,6 +22,7 @@ const TabFragments = (props) => {
     const {ProgressBar} = ProgressBarFragments();
     const {P5P10ProgressBar} = ProgressBarStyle();
 
+    const colorB = blue[500]
     const useStyles = makeStyles(theme => ({
         root: {
             flexGrow: 1,
@@ -28,7 +30,7 @@ const TabFragments = (props) => {
         headLine: {
             marginTop: '10px',
             marginBottom: '10px',
-            color: 'blue',
+            color: colorB,
         },
         progressLabel: {
             position: 'absolute',
@@ -98,7 +100,7 @@ const TabFragments = (props) => {
                         id={`tabfragmentlive-${index}`}
                         aria-labelledby={`tab-${index}`}
                         {...other}>
-                        <h3>P10</h3>
+                        <h3 className={barTheme.headLine}>{strings.topBarMenuItemP10}</h3>
                         <Grid container spacing={1}
                               justify="space-between">
                             {ProgressBar(p10electicData)}
@@ -201,7 +203,7 @@ const TabFragments = (props) => {
             <div
                 hidden={value !== index}>
                 <Container>
-                    <h3>{strings.insideLevelsP5}</h3>
+                    <h3 className={barTheme.headLine}>{strings.insideLevelsP5}</h3>
                     <Grid>{ProgressBar(barData)}</Grid>
                 </Container>
                 <Grid>
@@ -271,7 +273,7 @@ const TabFragments = (props) => {
                  aria-labelledby={`tab-${index}`}
                  inputstyle={{textAlign: 'center'}}
                  {...other}>
-                <h3>{strings.restaurantPageTitle}</h3>
+                <h3 className={barTheme.headLine}>{strings.restaurantPageTitle}</h3>
                 <Box>
                     {[...lines.keys()].map(mapKey => (
                         <div key={mapKey}>
