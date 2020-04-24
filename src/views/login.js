@@ -19,7 +19,6 @@ const Login = (props) => {
   const {FormTheme, setBackgroundBlue} = MuiThemes();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(true);
   const {create, read, clear, del} = LocalStorageOperations();
   const {redirectFromLogin} = Authentication();
 
@@ -41,20 +40,13 @@ const Login = (props) => {
       password: password,
     };
     const json = loginAsync(loginData);
-    console.log('JSON');
     json.then((result) => {
-      console.log(result);
       if (!result.errors) { // Check if the result contains errors
-        //alert('Signed In!');
-        if (remember) { // If Remember me is checked -> save users info to LocalStorage. Remember me atm is defaulted to true
           let json = {username: result.username, token: result.token};
           create(JSON.stringify(json), 'user'); // Saves the users information as a json string inside LocalStorage
           window.location.href = '/home';
-        } else {
-          window.location.href = '/home';
-        }
       } else {
-        const errors = result.errors
+        const errors = result.errors;
         alert(errors[0].msg); // Alerts the user that the sign in failed
       }
     });

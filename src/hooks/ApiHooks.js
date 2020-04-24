@@ -1,9 +1,10 @@
 import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
 import GlobalFunctions from './GlobalFunctions';
+
 const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl } = ApiUrls();
 const {convertTime, formattedDate } = GlobalFunctions();
-
+// Basic Fetch template for post messages
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
         method: 'POST',
@@ -14,18 +15,17 @@ const fetchPostUrl = async (url,data) => {
     });
     return await response.json()
 };
-
+// Used if the server doesn't return a json response
 const fetchPostUrlNoJson = async (url,data) => {
-    const response = await fetch(url,{
+    return await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     });
-    return response;
 };
-
+// Basic Fetch template for get requests
 const fetchGetUrl = async (url, userKey) => {
     const {read} = LocalStorageOperations();
     const userToken = read(userKey);
@@ -39,32 +39,32 @@ const fetchGetUrl = async (url, userKey) => {
 };
 
 const API = () => {
-
+    // Handles Login.
     const loginAsync = async (loginData,props) =>{
         console.log(loginUrl);
         return fetchPostUrl(loginUrl, loginData)
     };
-
+    // Handles Password reset
     const resetPasswordAsync = async (data)=>{
         return fetchPostUrlNoJson(resetPassUrl,data)
     };
-
+    // Handles account confirmation
     const confirmAccountAsync = async (data)=>{
         return fetchPostUrlNoJson(confirmUrl,data)
     };
-
+    // Handles email resending
     const resendEmailAsync = async (data)=>{
         return fetchPostUrlNoJson(resendVerificationUrl,data)
     };
-
+    // Handles Forgot pass
     const forgotPassAsync = async (data)=>{
         return fetchPostUrlNoJson(forgotPassUrl,data)
     };
-
+    // Handles registering
     const registerAsync = async (registerData)=>{
         return fetchPostUrlNoJson(regUrl,registerData)
     };
-
+    // Handles fetching of usage data from the API
     const getUsageData = (url, props) => {
         return fetchGetUrl(url ,'user').then((json)=>{
             return json
