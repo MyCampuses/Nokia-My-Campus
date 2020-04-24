@@ -38,7 +38,7 @@ const fetchGetUrl = async (url, userKey) => {
     if (response) {
         return await response.json()
     } else {
-        throw Error("no token")
+        throw Error("No token, fetchGetUrl")
     }
 };
 
@@ -71,19 +71,31 @@ const API = () => {
     // Handles fetching of usage data from the API
     const getUsageData = (url, props) => {
         return fetchGetUrl(url ,'user').then((json)=>{
-            return json
+            if (json) {
+                return json
+            } else {
+                throw Error("No Token, getUsageData")
+            }
         })
     };
 
     const getUsageDataNoProps = (url) => {
         return fetchGetUrl(url, 'user').then((json) => {
-            return json
+            if (json) {
+                return json
+            } else {
+                throw Error("No Token, getUsageData")
+            }
         })
     };
 
     const getChartData = (url, location, date) => {
         return getUsageData(url + location + date).then((json) => {
-            return json
+            if (json) {
+                return json
+            } else {
+                throw Error("No Token, getUsageData")
+            }
         })
     };
 
