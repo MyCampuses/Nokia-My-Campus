@@ -93,7 +93,7 @@ const ChartFragment = () => {
                     setDataForRender(tempChartData);
                     console.log(dataForRender);
                 }
-            }, [chartData]);
+            }, [chartData]); //eslint-disable-line
 
             return (
                 <Fragment>

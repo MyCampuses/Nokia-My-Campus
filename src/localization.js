@@ -77,6 +77,8 @@ let strings = new LocalizedStrings({
         userVerification: "Use the verification code you have gotten by email. If it has not arrived in the inbox be sure to check deleted/spam folder.",
         sentVerification: "You can now check your email for a verification code.",
         registeringSuccess: "Registration was successful. You Should have gotten a verification code in your email",
+        toConfirmation: "Account Confirmation",
+        toPasswordReset: "To password reset"
 
     },
     fi:{
@@ -153,7 +155,9 @@ let strings = new LocalizedStrings({
         sentVerification: "Vahvistuskoodi lähetetty sähköpostiin.",
         passwordLengthError:"Salasan tulee olla vähintään 5 merkkiä",
         cannotBeEmpty: "Kenttä ei saa olla tyhjä",
-        registeringSuccess:""
+        registeringSuccess:"",
+        toConfirmation:"",
+        toPasswordReset: ""
     },
     se:{
         signIn: "Logga In",
@@ -228,7 +232,9 @@ let strings = new LocalizedStrings({
         sentVerification: "Verifikations koden har skickats till er epost.",
         passwordLengthError:"",
         cannotBeEmpty:"",
-        registeringSuccess:""
+        registeringSuccess:"",
+        toConfirmation:"",
+        toPasswordReset: ""
     }
 });
 

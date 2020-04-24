@@ -67,6 +67,12 @@ const ForgotPassword = (props) => {
                                     {strings.backToLogin}
                                 </Link>
                             </Grid>
+                            <Grid item xs >
+                                <Link
+                                    onClick={() => {window.location.href = '/verify_account';}}>
+                                    {strings.toPasswordReset}
+                                </Link>
+                            </Grid>
                         </Grid>
                     </form>
                 </div>

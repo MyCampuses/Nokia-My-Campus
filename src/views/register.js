@@ -237,6 +237,12 @@ const Register = (props) =>{
                                     {strings.backToLogin}
                                 </Link>
                             </Grid>
+                            <Grid item xs>
+                                <Link
+                                    onClick={() => {window.location.href = '/reset_password';}}>
+                                    {strings.toConfirmation}
+                                </Link>
+                            </Grid>
                         </Grid>
                     </form>
                 </div>
