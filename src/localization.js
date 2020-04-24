@@ -1,5 +1,4 @@
 import LocalizedStrings from 'react-localization'
-
 let strings = new LocalizedStrings({
     en:{
         signIn: "Sign In",

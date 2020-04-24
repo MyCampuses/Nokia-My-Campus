@@ -11,6 +11,8 @@ const {SW_INIT, SW_UPDATE} = Data();
 const store = configureStore();
 
 ReactDOM.render(
+    // Provider makes redux store available to any nested component
+    // Edit Store.js if you want to modify parameters
     <Provider store={store}>
       <CssBaseline/>
       <App/>

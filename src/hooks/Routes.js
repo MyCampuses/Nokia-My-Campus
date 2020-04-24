@@ -13,6 +13,8 @@ import P10MapView from "../views/p10MapView";
 import ResetPassword from "../views/resetPassword";
 import AccountVerification from "../views/accountVerification";
 
+// Navigation hookrouter, navigation url and the corresponding component
+// Used in App.js, routeResult
 const routes = {
   '/': ()=> <Home/>,
   '/info': ()=> <Info/>,

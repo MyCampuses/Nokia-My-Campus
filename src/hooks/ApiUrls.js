@@ -16,9 +16,11 @@ const ApiUrls = () => {
   const parkingP5Url = apiUrl + 'parking/status/P5';
   const parkingP10Url = apiUrl + 'parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'parking/status/P10TOP';
+  // Map images that clarify the location of P5 and P10
   const campusMapP5Url = 'https://mycampus-server.karage.fi/style/static/images/campus_map_P5.png';
   const campusMapP10Url = 'https://mycampus-server.karage.fi/style/static/images/campus_map_P10.png';
 
+  // Const used with Api fetch, define location and date
   const selectDate = (locUrl, loc, date) => {
     return locUrl + loc + '/' + date;
   };
