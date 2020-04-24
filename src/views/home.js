@@ -11,7 +11,6 @@ import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
 import MuiThemes from "../styles/muiThemes";
-import ProgressBarStyle from "../styles/progressBarStyle";
 import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
