@@ -84,7 +84,7 @@ const Home = (props) => {
           <Container>
             <Grid container spacing={1}
                   justify="space-between">
-              <Grid item xs={12} spacing={0}>
+              <Grid item xs={12}>
                 <div className={barTheme.headLine}><h3>Current campus
                   statistics are: </h3>
                 </div>

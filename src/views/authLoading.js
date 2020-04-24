@@ -14,7 +14,7 @@ const AuthLoading = (props) =>{
        checkIfLogged()
     },[]); // eslint-disable-line
 
-    return(
+    return (
         <div style={centered}>
             <CircularProgress style={{}}/>
         </div>

@@ -29,13 +29,21 @@ const fetchPostUrlNoJson = async (url,data) => {
 const fetchGetUrl = async (url, userKey) => {
     const {read} = LocalStorageOperations();
     const userToken = read(userKey);
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            authorization: userToken.token,
-        },
-    });
-    return await response.json()
+    if (userToken) {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                authorization: userToken.token,
+            },
+        });
+        if (response) {
+            return await response.json()
+        } else {
+            throw Error("No token, fetchGetUrl")
+        }
+    } else {
+        throw Error("No user, No usertoken. fetchGetUrl")
+    }
 };
 
 const API = () => {
@@ -67,19 +75,31 @@ const API = () => {
     // Handles fetching of usage data from the API
     const getUsageData = (url, props) => {
         return fetchGetUrl(url ,'user').then((json)=>{
-            return json
+            if (json) {
+                return json
+            } else {
+                throw Error("No Token, getUsageData")
+            }
         })
     };
 
     const getUsageDataNoProps = (url) => {
         return fetchGetUrl(url, 'user').then((json) => {
-            return json
+            if (json) {
+                return json
+            } else {
+                throw Error("No Token, getUsageData")
+            }
         })
     };
 
     const getChartData = (url, location, date) => {
         return getUsageData(url + location + date).then((json) => {
-            return json
+            if (json) {
+                return json
+            } else {
+                throw Error("No Token, getUsageData")
+            }
         })
     };
 
