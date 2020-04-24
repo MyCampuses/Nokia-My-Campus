@@ -98,6 +98,7 @@ const TabFragments = (props) => {
                         id={`tabfragmentlive-${index}`}
                         aria-labelledby={`tab-${index}`}
                         {...other}>
+                        <h3>P10</h3>
                         <Grid container spacing={1}
                               justify="space-between">
                             {ProgressBar(p10electicData)}
@@ -157,7 +158,8 @@ const TabFragments = (props) => {
                 id={`tabfragment-${index}`}
                 aria-labelledby={`tab-${index}`}
                 inputstyle={{textAlign: 'center'}}
-                {...other}>
+                {...other} style={{marginTop: "16px"}}>
+
                 <LevelSelector/>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
@@ -199,7 +201,7 @@ const TabFragments = (props) => {
             <div
                 hidden={value !== index}>
                 <Container>
-                    <h1>{strings.insideLevelsP5}</h1>
+                    <h3>{strings.insideLevelsP5}</h3>
                     <Grid>{ProgressBar(barData)}</Grid>
                 </Container>
                 <Grid>
@@ -269,7 +271,7 @@ const TabFragments = (props) => {
                  aria-labelledby={`tab-${index}`}
                  inputstyle={{textAlign: 'center'}}
                  {...other}>
-                <p>{strings.restaurantPageTitle}</p>
+                <h3>{strings.restaurantPageTitle}</h3>
                 <Box>
                     {[...lines.keys()].map(mapKey => (
                         <div key={mapKey}>

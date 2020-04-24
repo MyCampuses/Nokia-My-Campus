@@ -29,7 +29,7 @@ let strings = new LocalizedStrings({
         waitTime3: "wait time < 1m 30s",
         waitTime4: "wait time < 2m",
         waitTime5: "wait time > 2m",
-        restaurantPageTitle: "Queue Times",
+        restaurantPageTitle: "Queue wait times",
         p10PageTitle: "P10",
         live: "Live",
         history: "History",
@@ -78,7 +78,9 @@ let strings = new LocalizedStrings({
         sentVerification: "You can now check your email for a verification code.",
         registeringSuccess: "Registration was successful. You Should have gotten a verification code in your email",
         toConfirmation: "Account Confirmation",
-        toPasswordReset: "To password reset"
+        toPasswordReset: "To password reset",
+        lines: "Lines",
+
 
     },
     fi:{
@@ -157,7 +159,8 @@ let strings = new LocalizedStrings({
         cannotBeEmpty: "Kenttä ei saa olla tyhjä",
         registeringSuccess:"",
         toConfirmation:"",
-        toPasswordReset: ""
+        toPasswordReset: "",
+        lines: ""
     },
     se:{
         signIn: "Logga In",
@@ -234,7 +237,8 @@ let strings = new LocalizedStrings({
         cannotBeEmpty:"",
         registeringSuccess:"",
         toConfirmation:"",
-        toPasswordReset: ""
+        toPasswordReset: "",
+        lines: ""
     }
 });
 

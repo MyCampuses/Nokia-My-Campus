@@ -13,9 +13,11 @@ const P10MapView = (props) =>{
             id={`tabfragmentp10map-${index}`}
             aria-labelledby={`tab-${index}`}
             inputstyle={{textAlign: 'center'}} //eslint-disable-line
-            {...other}>
+            {...other}
+
+        >
             <div>
-                {value === index && <Box p={5} style={{padding:"0px"}}>{children}</Box>}
+                {value === index && <Box p={5}>{children}</Box>}
             </div>
             <img src={require('../assets/campus_map_P10.webp')} alt={strings.p10MapAlt} className="MapStyle"/>
         </div>

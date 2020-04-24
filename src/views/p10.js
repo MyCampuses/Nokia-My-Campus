@@ -21,7 +21,7 @@ const P10 = () => {
             <div component="main" maxwidth="lg" id="mainContainer">
                 {TopNavigationBar()}
                 <div className="p10">
-                    <h1>P10</h1>
+
                 </div>
                 {P10BottomTab()}
             </div>
