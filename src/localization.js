@@ -1,5 +1,4 @@
 import LocalizedStrings from 'react-localization'
-
 let strings = new LocalizedStrings({
     en:{
         signIn: "Sign In",
@@ -81,8 +80,8 @@ let strings = new LocalizedStrings({
         toPasswordReset: "To password reset",
         lines: "Lines",
 
-
     },
+
     fi:{
         signIn: "Kirjaudu",
         signUp: "Rekisteröidy",
@@ -157,11 +156,12 @@ let strings = new LocalizedStrings({
         sentVerification: "Vahvistuskoodi lähetetty sähköpostiin.",
         passwordLengthError:"Salasan tulee olla vähintään 5 merkkiä",
         cannotBeEmpty: "Kenttä ei saa olla tyhjä",
-        registeringSuccess:"",
-        toConfirmation:"",
-        toPasswordReset: "",
-        lines: ""
+        registeringSuccess:"Rekisteröinti onnistui, vahvistuskoodin on lähetetty sähköpostiinne",
+        toConfirmation:"Tilin vahvistus",
+        toPasswordReset: "Salasanan palautukseen",
+        lines: "Linjasto"
     },
+
     se:{
         signIn: "Logga In",
         signUp: "Logga Up",
@@ -233,12 +233,12 @@ let strings = new LocalizedStrings({
         resend: "Återsänd Verifikations eposten",
         userVerification: "Använd verifikations koden du fått via epost. Kolla deleterade/spam foldern om du inte har fått eposten i inkorgen. ",
         sentVerification: "Verifikations koden har skickats till er epost.",
-        passwordLengthError:"",
-        cannotBeEmpty:"",
-        registeringSuccess:"",
-        toConfirmation:"",
-        toPasswordReset: "",
-        lines: ""
+        passwordLengthError:"Lösenorder måste vara minst 5 tecken lång",
+        cannotBeEmpty:"Fältet kan inte vara tom",
+        registeringSuccess:"Registeringen lyckades, verifikations koden har sänts till er epost",
+        toConfirmation:"Konto Konfirmation",
+        toPasswordReset: "Till lösenord återställning",
+        lines: "Linjer"
     }
 });
 

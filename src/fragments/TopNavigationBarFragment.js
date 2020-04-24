@@ -5,8 +5,6 @@ import GlobalFunctions from "../hooks/GlobalFunctions";
 import Logout from "../hooks/Logout";
 import strings from "../localization";
 
-
-
 //Styles for the Top Navigation Bar
 const useStyle = makeStyles((theme) => ({
     frag: {
@@ -52,7 +50,6 @@ const NaviBar = () => {
 
         const logoutOnClick = () => {
             removeToken();
-            console.log("user has been removed");
             window.location.href = '/login';
         };
 

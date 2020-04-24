@@ -11,10 +11,10 @@ import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
 import MuiThemes from "../styles/muiThemes";
-import ProgressBarStyle from "../styles/progressBarStyle";
 import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
+import blue from '@material-ui/core/colors/blue';
 
 const Home = (props) => {
   const {getUsageData} = API();
@@ -23,7 +23,7 @@ const Home = (props) => {
   const {ProgressBar} = ProgressBarFragments();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
   const {PageTheme} = MuiThemes();
-  const {progressBarTheme} = ProgressBarStyle();
+
   // States
   const [restaurantData, setRestaurantData] = useState(undefined);
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
@@ -43,14 +43,18 @@ const Home = (props) => {
 
   const HomePage = () => {
 
-    const useStyles = makeStyles(theme => ({
+    //Styles for the ProgressBars
+    //makeStyles, createStyles can not be in another folder and imported
+    //the styles have to be in the same file where they are used.
+    const colorB = blue[500]
+    const useStyles = makeStyles({
       root: {
         flexGrow: 1,
       },
       headLine: {
         marginTop: '10px',
         marginBottom: '10px',
-        color: 'blue',
+        color: colorB,
       },
       progressLabel: {
         position: 'absolute',
@@ -65,7 +69,7 @@ const Home = (props) => {
         height: '15vh',
         justifyContent: 'flex-start',
       },
-    }));
+    });
     const barTheme = useStyles();
 
     const restaurantBarData = {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData,barTheme};
@@ -80,8 +84,8 @@ const Home = (props) => {
           <Container>
             <Grid container spacing={1}
                   justify="space-between">
-              <Grid item xs={12} spacing={0}>
-                <div className={progressBarTheme.headLine}><h3>Current campus
+              <Grid item xs={12}>
+                <div className={barTheme.headLine}><h3>Current campus
                   statistics are: </h3>
                 </div>
               </Grid>
