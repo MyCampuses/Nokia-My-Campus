@@ -102,6 +102,7 @@ const MuiThemes = () => {
                     maxHeight: '100px',
                     borderRadius: '10px',
                     width: '100%',
+                    color:blue[200]
                 },
             },
             MuiGrid: {
@@ -124,9 +125,6 @@ const MuiThemes = () => {
             },
         },
     });
-
-
-
 
     return{
         PageTheme: PageTheme,
