@@ -15,8 +15,7 @@ const ProgressBarFragments = (props) => {
     const {onItemClickNavigate} = GlobalFunctions();
 
     /*eslint-enable */
-    //Restaurant progress bar
-
+    //All progress bars
     const ProgressBar = (barData) =>{
         return (
             <Fragment>
