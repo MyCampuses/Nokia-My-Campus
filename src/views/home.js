@@ -24,6 +24,7 @@ const Home = (props) => {
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
   const {PageTheme} = MuiThemes();
   const {progressBarTheme} = ProgressBarStyle();
+
   // States
   const [restaurantData, setRestaurantData] = useState(undefined);
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
@@ -43,7 +44,7 @@ const Home = (props) => {
 
   const HomePage = () => {
 
-    const useStyles = makeStyles(theme => ({
+    const useStyles = makeStyles({
       root: {
         flexGrow: 1,
       },
@@ -65,7 +66,7 @@ const Home = (props) => {
         height: '15vh',
         justifyContent: 'flex-start',
       },
-    }));
+    });
     const barTheme = useStyles();
 
     const restaurantBarData = {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData,barTheme};
@@ -81,9 +82,9 @@ const Home = (props) => {
             <Grid container spacing={1}
                   justify="space-between">
               <Grid item xs={12} spacing={0}>
-                <div className={progressBarTheme.headLine}>Current campus
+                <h3 className={progressBarTheme.headLine}>Current campus
                   statistics are:
-                </div>
+                </h3>
               </Grid>
               {ProgressBar(restaurantBarData)}
               {ProgressBar(p5BarData)}
