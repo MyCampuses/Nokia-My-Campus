@@ -6,7 +6,6 @@ const LocalStorageOperations=()=> {
     // Add a new data,key value
     const create = (data,key) =>{
         myStorage.setItem(key,data);
-        console.log(`Item Saved: ${data}`)
     };
 
     // Get an item/data corresponding the key
@@ -17,12 +16,10 @@ const LocalStorageOperations=()=> {
 
     const del = (key) =>{
         myStorage.removeItem(key);
-        console.log(`Item deleted for key: ${key}`)
     };
 
     const clear = () =>{
       myStorage.clear();
-        console.log("LocalStorage Cleared")
     };
 
     return {
