@@ -9,7 +9,7 @@ import ChartFragment from "./ChartFragments";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {Box, Container, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
+import {Box, Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
@@ -17,7 +17,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Data from "../hooks/Data";
 import Typography from "@material-ui/core/Typography";
 import blue from '@material-ui/core/colors/blue';
-
+import {ThemeProvider} from '@material-ui/core';
 
 const {parkingP5Url} = ApiUrls();
 
@@ -25,6 +25,14 @@ const TabFragments = (props) => {
     const {Chart, RestaurantChart} = ChartFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
+
+    const DatePickerTheme = createMuiTheme({
+        MuiTypography: {
+            body1: {
+                color: "black"
+            }
+        },
+    });
 
     const colorB = blue[500];
     // this style is used to make small tweaks to the progress bars and their labels
@@ -100,26 +108,27 @@ const TabFragments = (props) => {
 
 
         return (
-                <Container>
-                    <div
-                        component="div"
-                        role="tabfragmentlive" //eslint-disable-line
-                        hidden={value !== index}
-                        id={`tabfragmentlive-${index}`}
-                        aria-labelledby={`tab-${index}`}
-                        {...other}>
-                        <h3 className={barTheme.headLine}>{strings.topBarMenuItemP10}</h3>
-                        <Grid container spacing={1}
-                              justify="space-between">
-                            {ProgressBar(p10electicData)}
-                            {ProgressBar(p10roofData)}
-                            {ProgressBar(p10insideData)}
-                        </Grid>
+            <Container>
+                <div
+                    component="div"
+                    role="tabfragmentlive" //eslint-disable-line
+                    hidden={value !== index}
+                    id={`tabfragmentlive-${index}`}
+                    aria-labelledby={`tab-${index}`}
+                    {...other}>
+                    <h3 className={barTheme.headLine}>{strings.topBarMenuItemP10}</h3>
+                    <Grid container spacing={1}
+                          justify="space-between">
+                        {ProgressBar(p10electicData)}
+                        {ProgressBar(p10roofData)}
+                        {ProgressBar(p10insideData)}
+                    </Grid>
 
-                    </div>
-                </Container>
+                </div>
+            </Container>
         );
     }
+
     // Renders the P10 History component with date level selector, date picker and chart
     function TabFragmentHistory(props) {
         const {children, value, index, ...other} = props;
@@ -161,6 +170,7 @@ const TabFragments = (props) => {
             )
         };
 
+
         return (
             <div
                 role="tabfragment"
@@ -169,26 +179,29 @@ const TabFragments = (props) => {
                 aria-labelledby={`tab-${index}`}
                 inputstyle={{textAlign: 'center'}}
                 {...other} style={{marginTop: "16px"}}>
-
                 <LevelSelector/>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                        margin="normal"
-                        id="dialog date picker"
-                        label="Date picker"
-                        format="dd/MM/yyyy"
-                        value={selectedDate}
-                        disableFuture={true}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                    />
-                </MuiPickersUtilsProvider>
+                <ThemeProvider theme={DatePickerTheme}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            style={{color: "black"}}
+                            margin="normal"
+                            id="dialog date picker"
+                            label="Date picker"
+                            format="dd/MM/yyyy"
+                            value={selectedDate}
+                            disableFuture={true}
+                            onChange={handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                    </MuiPickersUtilsProvider>
+                </ThemeProvider>
                 <Chart date={selectedDate} location={selectedLevel}/>
             </div>
         );
     }
+
     // Renders the P5 live data page with progress bar and
     // Live util graph
     function TabFragmentLiveP5(props) {
@@ -221,6 +234,7 @@ const TabFragments = (props) => {
             </div>
         );
     }
+
     // Renders the P5 history page with graph and date picker
     function TabFragmentHistoryP5(props) {
         const {children, value, index, ...other} = props;
@@ -239,24 +253,27 @@ const TabFragments = (props) => {
                 aria-labelledby={`tab-${index}`}
                 inputstyle={{textAlign: 'center'}}
                 {...other}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                        margin="normal"
-                        id="dialog date picker"
-                        label="Date picker"
-                        format="dd/MM/yyyy"
-                        value={selectedDate}
-                        disableFuture={true}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                    />
-                </MuiPickersUtilsProvider>
+                <ThemeProvider theme={DatePickerTheme}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            margin="normal"
+                            id="dialog date picker"
+                            label="Date picker"
+                            format="dd/MM/yyyy"
+                            value={selectedDate}
+                            disableFuture={true}
+                            onChange={handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                    </MuiPickersUtilsProvider>
+                </ThemeProvider>
                 <Chart date={selectedDate} location={p5Loc}/>
             </div>
         );
     }
+
     // Renders the restaurant lines page that shows individual lines and their wait times
     function TabRestaurantLines(props) {
         const {children, value, index, ...other} = props;
@@ -317,6 +334,7 @@ const TabFragments = (props) => {
             </div>
         )
     }
+
     // Renders the restaurant chart page with a date picker and chart
     function TabRestaurantChart(props) {
         const {children, value, index, ...other} = props;
@@ -334,20 +352,22 @@ const TabFragments = (props) => {
                  aria-labelledby={`tab-${index}`}
                  inputstyle={{textAlign: 'center'}}
                  {...other}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                        margin="normal"
-                        id="dialog date picker"
-                        label="Date picker"
-                        format="dd/MM/yyyy"
-                        value={selectedDate}
-                        disableFuture={true}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                    />
-                </MuiPickersUtilsProvider>
+                <ThemeProvider theme={DatePickerTheme}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            margin="normal"
+                            id="dialog date picker"
+                            label="Date picker"
+                            format="dd/MM/yyyy"
+                            value={selectedDate}
+                            disableFuture={true}
+                            onChange={handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                    </MuiPickersUtilsProvider>
+                </ThemeProvider>
                 <RestaurantChart date={selectedDate}/>
             </div>
         );
