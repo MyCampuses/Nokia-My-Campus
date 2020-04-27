@@ -45,14 +45,8 @@ body{
 .MapStyle {
   max-width: 90%;
   height: auto;
-  max-height: 800px;
+  max-height: 700px;
+  margin-bottom: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
