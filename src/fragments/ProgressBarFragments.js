@@ -1,11 +1,13 @@
+/*
+        This class contains the the progress bar fragment which renders the progress bar and all the texts in it
+        for p5, P10 and restaurant
+ */
 import {LinearProgress} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import React, {Fragment} from 'react';
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Typography from "@material-ui/core/Typography";
 import '../styles/progressBar.css';
-// Class Comment, all the functionality:
-// The progress bar and all the text that are inserted in it.
 
 const ProgressBarFragments = (props) => {
     //Progressbar with props

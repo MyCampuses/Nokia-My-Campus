@@ -1,3 +1,7 @@
+/*
+        This class holds all the bottom tabs for restaurant, p5 & p10.
+        The page views are passed when clicked on the tab.
+ */
 import Tab from "@material-ui/core/Tab";
 import strings from "../localization";
 import Tabs from "@material-ui/core/Tabs";
@@ -6,9 +10,6 @@ import commonStyles from "../styles/commonStyles";
 import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
-
-// Class Comment, all the functionality:
-// All bottom tab for restaurant, p5 & p10
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();

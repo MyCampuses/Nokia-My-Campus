@@ -6,7 +6,7 @@ import Logout from "../hooks/Logout";
 import strings from "../localization";
 
 // Class Comment, all the functionality:
-// The style for the top navigationbar
+// The style for the top navigation bar
 // All the elements in the top bar are here, including menu items.
 
 //Styles for the Top Navigation Bar

@@ -1,3 +1,6 @@
+/*
+        This class holds the charts and their styling for P5, P10 & Restaurant
+ */
 import React, {Fragment, useEffect, useState} from 'react';
 import {Container, makeStyles} from '@material-ui/core';
 import {AreaChart, CartesianGrid, ResponsiveContainer, XAxis} from 'recharts';
@@ -7,7 +10,6 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import GlobalFunctions from '../hooks/GlobalFunctions';
 
-// Class Comment, all the functionality:
 
 const useStyle = makeStyles((theme) => ({
     p5Box: {

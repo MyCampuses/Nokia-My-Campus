@@ -18,9 +18,6 @@ import Data from "../hooks/Data";
 import Typography from "@material-ui/core/Typography";
 import blue from '@material-ui/core/colors/blue';
 
-// Class comment, all the functionality:
-// Style for the tabs
-// Renders for P10, P5 & Restaurant Tabs
 
 const {parkingP5Url} = ApiUrls();
 
