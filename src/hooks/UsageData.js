@@ -22,4 +22,4 @@ const stateToProps = state => ({
   error: state.data.error
 })
 
-export default connect(stateToProps(UsageData));
+export default connect(stateToProps)(UsageData);
