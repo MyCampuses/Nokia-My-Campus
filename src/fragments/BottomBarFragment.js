@@ -8,6 +8,7 @@ import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
 
 // Class Comment, all the functinality:
+// Al
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();

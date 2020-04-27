@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import '../styles/progressBar.css';
 
 // Class Comment, all the functinality:
-//
+// The progress bar and all the text that are inserted in it.
 
 const ProgressBarFragments = (props) => {
     //Progressbar with props
