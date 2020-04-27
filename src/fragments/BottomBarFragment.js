@@ -8,12 +8,13 @@ import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
 
 // Class Comment, all the functinality:
-// Al
+// All bottom tab for restaurant, p5 & p10
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
     const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5, TabRestaurantLines, TabRestaurantChart} = TabFragments();
 
+    //P10 bottom tab
     const P10BottomTab = () => {
         const [value, setValue] = useState(0);
         const [date, setDate] = useState(new Date());
@@ -53,6 +54,7 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
+    //P5 bottom tab
     const P5BottomTab = () => {
         const [valueP5, setValueP5] = useState(0);
         const [date, setDate] = useState(new Date());
@@ -96,6 +98,7 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
+    //Restaurant bottom tab
     const RestaurantBottomTab = () => {
         const [valueRestaurant, setValueRestaurant] = useState(0);
         const [date, setDate] = useState(new Date());
