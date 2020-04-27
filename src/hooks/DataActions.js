@@ -2,7 +2,7 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from './ApiUrls';
 
 const {getUsageData} = API();
-const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
+const {parkingP5Url, restaurantUrl} = ApiUrls();
 export const FETCH_DATA_BEGIN = 'FETCH_DATA_BEGIN';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
