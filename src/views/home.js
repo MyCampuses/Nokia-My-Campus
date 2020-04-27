@@ -37,7 +37,6 @@ const Home = (props) => {
   /*eslint-enable */
 
   const data = UsageData()
-  console.log(data)
   useEffect(()=> {
     getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
     getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
@@ -92,6 +91,7 @@ const Home = (props) => {
                   justify="space-between">
               <Grid item xs={12}>
                <h3 className={barTheme.headLine}>
+                 {data}
                  {strings.currentStatsAre}
                </h3>
               </Grid>
