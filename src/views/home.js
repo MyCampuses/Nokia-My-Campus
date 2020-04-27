@@ -15,8 +15,6 @@ import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
 import blue from '@material-ui/core/colors/blue';
-import UsageData from '../hooks/UsageData';
-
 
 const Home = (props) => {
   const {getUsageData} = API();
@@ -25,9 +23,7 @@ const Home = (props) => {
   const {ProgressBar} = ProgressBarFragments();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
   const {PageTheme} = MuiThemes();
-
   // States
-  const [restData] = useState(UsageData)
   const [restaurantData, setRestaurantData] = useState(undefined);
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
   const [parkingP10Data, setParking10Data] = useState(undefined);
@@ -36,7 +32,6 @@ const Home = (props) => {
   const multiplier = 2;
 
   /*eslint-enable */
-
   useEffect(()=> {
     getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
     getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
@@ -91,7 +86,6 @@ const Home = (props) => {
                   justify="space-between">
               <Grid item xs={12}>
                <h3 className={barTheme.headLine}>
-                 {restData}
                  {strings.currentStatsAre}
                </h3>
               </Grid>
