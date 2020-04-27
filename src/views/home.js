@@ -15,6 +15,7 @@ import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
 import blue from '@material-ui/core/colors/blue';
+import {fetchData} from '../hooks/DataActions'
 
 const Home = (props) => {
   const {getUsageData} = API();
@@ -22,6 +23,7 @@ const Home = (props) => {
   const {TopNavigationBar} = NaviBar();
   const {ProgressBar} = ProgressBarFragments();
   const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
+  const { error, loading, data } = props
   const {PageTheme} = MuiThemes();
 
   // States
@@ -34,12 +36,14 @@ const Home = (props) => {
 
   /*eslint-enable */
 
-  useEffect(()=> {
+  useEffect((props)=> {
+    props.dispatch(fetchData())
     getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
     getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
     getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
     getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
   },[]); //eslint-disable-line
+  console.log(error + loading + data)
 
   const HomePage = () => {
 

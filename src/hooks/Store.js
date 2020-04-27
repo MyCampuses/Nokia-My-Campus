@@ -1,5 +1,6 @@
-import {createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
 import rootReducer from './RootReducer';
+import thunk from 'redux-thunk';
 
 // Redux store creation with initial values
 function configureStore() {
@@ -7,6 +8,10 @@ function configureStore() {
     serviceWorkerInitialized: false,
     serviceWorkerUpdated: false,
     serviceWorkerRegistration: null,
-  });
+    usageData: [],
+    loading: false,
+    error: null,
+  }, applyMiddleware(thunk));
 }
+
 export default configureStore;

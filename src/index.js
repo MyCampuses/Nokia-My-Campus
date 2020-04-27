@@ -31,12 +31,4 @@ serviceWorker.register({
   onUpdate: registration => store.dispatch(
       {type: SW_UPDATE, payload: registration}),
 });
-navigator.serviceWorker.ready.then(function(swRegistration) {
-  return swRegistration.sync.register('sync')
-});
-// eslint-disable-next-line no-restricted-globals
-self.addEventListener('sync', function(e) {
-  if (e.tag === 'sync') {
-    e.waitUntil(console.log("SWSyncTest"))
-  }
-});
+
