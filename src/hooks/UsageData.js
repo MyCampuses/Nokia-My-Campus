@@ -1,18 +1,18 @@
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {fetchRestaurantData} from './DataActions';
 
 const UsageData = (props) => {
-  const {error, loading, usageData} = props;
   useEffect(() => {
     props.dispatch(fetchRestaurantData());
   }, []); //eslint-disable-line
+  const {error, loading, usageData} = props;
   if (error) {
-    return {error};
+    return <div>{error.message}</div>
   }
   if (loading) {
-    return {loading};
+    return <div>loading</div>;
   }
-  return {usageData};
+  return <div>{usageData}</div>;
 };
 
 export default UsageData;
