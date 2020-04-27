@@ -15,6 +15,14 @@ Other Tools:
 - Languages: Javascript (React), Css, Html
 - Scrum
 
+## Pwa Audits as of 27.04.2020
+
+![PWA Audit](https://i.imgur.com/IQNnpr3.png)
+![PWA Audit](https://i.imgur.com/ZIdB8AW.png)
+
+## Issues
+There is an issue with Lighthouse CI and it doesn't work in conjunction with Travis CI. This is most likely caused by the routing library hookrouter. It's happening because it's trying to audit while the routing is trying to route the app to a different view. PWA Audits can be still done manually on the deployed version by pressing F12, going to Audits and pressing Generate Report
+
 ## Available Scripts
 
 In the project directory, you can run:
