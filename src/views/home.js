@@ -60,7 +60,7 @@ const Home = (props) => {
         position: 'absolute',
         zIndex: 1,
         maxHeight: '100px',
-        height: '15vh',
+        height: '14vh',
         maxWidth: '1152px',
         width: '90%',
       },
@@ -69,6 +69,7 @@ const Home = (props) => {
         height: '15vh',
         justifyContent: 'flex-start',
       },
+
     });
     const barTheme = useStyles();
 
@@ -85,9 +86,9 @@ const Home = (props) => {
             <Grid container spacing={1}
                   justify="space-between">
               <Grid item xs={12}>
-                <div className={barTheme.headLine}><h3>Current campus
-                  statistics are: </h3>
-                </div>
+               <h3 className={barTheme.headLine}>
+                 {strings.currentStatsAre}
+               </h3>
               </Grid>
               {ProgressBar(restaurantBarData)}
               {ProgressBar(p5BarData)}

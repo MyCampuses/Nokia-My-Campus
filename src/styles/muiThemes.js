@@ -96,9 +96,14 @@ const MuiThemes = () => {
     const PageTheme = createMuiTheme({
         flexGrow: 1,
         overrides: {
+
+            h3:{
+                marginBlockStart: 0,
+                marginBlockEnd:0
+            },
             MuiLinearProgress: {
                 root: {
-                    height: '15vh',
+                    height: '14vh',
                     maxHeight: '100px',
                     borderRadius: '10px',
                     width: '100%',

@@ -79,6 +79,7 @@ let strings = new LocalizedStrings({
         toConfirmation: "Account Confirmation",
         toPasswordReset: "To password reset",
         lines: "Lines",
+        currentStatsAre: "Current campus statistics are:"
 
     },
 
@@ -159,7 +160,8 @@ let strings = new LocalizedStrings({
         registeringSuccess:"Rekisteröinti onnistui, vahvistuskoodin on lähetetty sähköpostiinne",
         toConfirmation:"Tilin vahvistus",
         toPasswordReset: "Salasanan palautukseen",
-        lines: "Linjasto"
+        lines: "Linjasto",
+        currentStatsAre:""
     },
 
     se:{
@@ -238,7 +240,8 @@ let strings = new LocalizedStrings({
         registeringSuccess:"Registeringen lyckades, verifikations koden har sänts till er epost",
         toConfirmation:"Konto Konfirmation",
         toPasswordReset: "Till lösenord återställning",
-        lines: "Linjer"
+        lines: "Linjer",
+        currentStatsAre:""
     }
 });
 
