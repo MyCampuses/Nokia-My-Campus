@@ -1,4 +1,4 @@
-## Nokia MyCampus Progressive Web Application
+# Nokia MyCampus Progressive Web Application
 
 
 ## Available Scripts
