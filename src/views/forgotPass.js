@@ -1,4 +1,9 @@
-/* eslint-disable no-unused-vars */
+/*
+    This file contains everything needed for the forgot password page.
+    basic state for the inputted email and passing url parameters for the reset password page.
+    Also submit handling for getting the forgot password token from the server and the page
+    layout
+*/
 import MuiThemes from '../styles/muiThemes'
 import React, {useState, useEffect} from 'react';
 import {

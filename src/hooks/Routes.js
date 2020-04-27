@@ -1,3 +1,9 @@
+/*
+  This file contains the routes fo the app. If the app needs more navigation
+  the routes would be added here so that hookrouter can take advantage of them.
+  This export is used in App.js
+*/
+
 import React from 'react';
 import Home from '../views/home';
 import Login from '../views/login';

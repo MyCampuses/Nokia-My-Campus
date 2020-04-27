@@ -1,5 +1,9 @@
-/* eslint-disable no-unused-vars */
-import React, {useState, useEffect, useRef} from 'react';
+/*
+    This file contains all that is used for the Registering page of the app.
+    Contains basic states, form field validation for the registering form and submit logic for handling the
+    form submit. And lastly the layout for the Registering page.
+ */
+import React, {useState, useEffect} from 'react';
 import MuiThemes from '../styles/muiThemes'
 import {
     Button,
@@ -11,6 +15,7 @@ import {
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import {navigate} from 'hookrouter';
+
 
 const Register = (props) =>{
     const {FormTheme,setBackgroundBlue} = MuiThemes();
@@ -122,7 +127,7 @@ const Register = (props) =>{
     // Validates Email input to match a "real" email. Also sets errors accordingly
     const validateEmailField = () => {
         const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
-        const emailError = "emailError"
+        const emailError = "emailError";
         if (emailReqEx.test(formData.email)) {
             updateError(emailError, false);
             updateErrorMsg(emailError, "");

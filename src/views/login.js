@@ -1,4 +1,9 @@
-/* eslint-disable no-unused-vars */
+/*
+     This file contains everything to handle the login page of the app.
+     basic states for inputs and submit logic to handle the login event.
+     And also the layout for for the login page.
+*/
+
 import React, {useState, useEffect} from 'react';
 import {
   Button,
@@ -19,7 +24,7 @@ const Login = (props) => {
   const {FormTheme, setBackgroundBlue} = MuiThemes();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {create, read, clear, del} = LocalStorageOperations();
+  const {create} = LocalStorageOperations();
   const {redirectFromLogin} = Authentication();
 
   // Sets the pages background

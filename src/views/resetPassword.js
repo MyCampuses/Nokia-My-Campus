@@ -1,4 +1,7 @@
-/* eslint-disable no-unused-vars */
+/*
+    This file contains handling of the reset password page. Basic states for the form and submit handling.
+    Also includes validations for the different fields. And functions for updating the form and its errors.
+*/
 import MuiThemes from '../styles/muiThemes'
 import React, {useState, useEffect} from 'react';
 import {
@@ -70,7 +73,7 @@ const ResetPassword = (props) => {
         const {
             // Use object destructuring and a default value
             // if the param is not yet present in the URL.
-            email = ""
+            email = "" // eslint-disable-line
         } = queryParams;
         setFormData({
             ...formData,
