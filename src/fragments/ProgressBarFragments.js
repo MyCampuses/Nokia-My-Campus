@@ -4,7 +4,7 @@ import React, {Fragment} from 'react';
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Typography from "@material-ui/core/Typography";
 import '../styles/progressBar.css';
-// Class Comment, all the functinality:
+// Class Comment, all the functionality:
 // The progress bar and all the text that are inserted in it.
 
 const ProgressBarFragments = (props) => {

@@ -7,7 +7,7 @@ import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
 
-// Class Comment, all the functinality:
+// Class Comment, all the functionality:
 // All bottom tab for restaurant, p5 & p10
 
 const BottomBarTabFragment = (props) => {

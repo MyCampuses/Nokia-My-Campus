@@ -18,9 +18,9 @@ import Data from "../hooks/Data";
 import Typography from "@material-ui/core/Typography";
 import blue from '@material-ui/core/colors/blue';
 
-// Class comment, all the functinality:
-// Write all that is in here, so no one has to search
-// example: Styles for the page are here, navi bar, all the elements for the navi bar and what they are.
+// Class comment, all the functionality:
+// Style for the tabs
+// Renders for P10, P5 & Restaurant Tabs
 
 const {parkingP5Url} = ApiUrls();
 
