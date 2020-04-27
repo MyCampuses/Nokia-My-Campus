@@ -5,8 +5,8 @@ import GlobalFunctions from "../hooks/GlobalFunctions";
 import Logout from "../hooks/Logout";
 import strings from "../localization";
 
-// Class Comment, all the functinality:
-// The style for the top navigationbar
+// Class Comment, all the functionality:
+// The style for the top navigation bar
 // All the elements in the top bar are here, including menu items.
 
 //Styles for the Top Navigation Bar
@@ -66,7 +66,6 @@ const NaviBar = () => {
             setAnchorEl(null);
         };
 
-        //returns an reusable fragment
         return (
             <Fragment>
                 <AppBar className={classes.appBar}>
