@@ -1,5 +1,6 @@
 /*
-    This file contains all the localized strings in the app
+    This file contains all the localized strings in the app.
+    Current Languages: Fi, En, Se.
 */
 import LocalizedStrings from 'react-localization'
 let strings = new LocalizedStrings({

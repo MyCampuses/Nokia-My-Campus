@@ -62,7 +62,7 @@ const TabFragments = (props) => {
         const [parkingP10Data, setParking10Data] = useState(undefined);
         const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
         const [parkingP10ElectricData, setParkingP10ElectricData] = useState(undefined);
-        const multiplier = 2; // This is used in the estimation because about half of the rooftop is electric places.
+        const multiplier = 2.1; // This is used in the estimation because about half of the rooftop is electric places.
         // Fetches data for the progress bars and sets the,
         useEffect(() => {
             getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
