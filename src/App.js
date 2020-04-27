@@ -1,3 +1,7 @@
+/*
+    This is the Main app itself.
+    The routes are nested here.
+*/
 import React from 'react';
 import {useRoutes} from 'hookrouter';
 import './styles/App.css';
