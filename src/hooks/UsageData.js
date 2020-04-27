@@ -6,17 +6,17 @@ const UsageData = (props) => {
   useEffect(() => {
     props.dispatch(fetchRestaurantData());
   }, []); //eslint-disable-line
-  const {error, loading, usageData} = props;
+  const {error, loading, data} = props;
   if (error) {
     return <div>{error.message}</div>
   }
   if (loading) {
     return <div>loading</div>;
   }
-  return <div>{usageData}</div>;
+  return <div>{data}</div>;
 };
 const stateToProps = state => ({
-  usageData: state.data.usageData,
+  data: state.data.usageData,
   loading: state.data.loading,
   error: state.data.error
 })
