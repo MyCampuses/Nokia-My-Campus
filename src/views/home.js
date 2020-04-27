@@ -36,7 +36,7 @@ const Home = (props) => {
 
   /*eslint-enable */
 
-  const data = UsageData()
+  const data = UsageData(props.usageData)
   useEffect(()=> {
     getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
     getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
