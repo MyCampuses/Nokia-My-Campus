@@ -16,10 +16,19 @@ const ProgressBarFragments = (props) => {
     }
     const {onItemClickNavigate} = GlobalFunctions();
     /*eslint-enable */
-    //All progress bars
+
+    // Global progressbar that takes a json as a parameter.
+    /*  This is a sample of what data the bar needs
+        const progressbarData = {
+            navigationUrl: undefined,              -> Url that is used for the navigation if clicked. Undefined = no navigation
+            barLabel: "",                          -> Top Left label of the bar. Mainly only used in Home page. "" = no label
+            utilization: strings.p10insideutil,    -> The string displayed in the middle of the bar
+            data: parkingP10Data,                  -> Actual data the bar will use
+            barTheme                               -> The theme for the bar. Theme must contain stuff like labelLocation & progressLabel
+        };
+    */
     const ProgressBar = (barData) =>{
         return (
-
             <Fragment>
                 <Grid item xs={12}
                       onClick={() => {onItemClickNavigate(barData.navigationUrl)}}>

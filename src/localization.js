@@ -1,3 +1,6 @@
+/*
+    This file contains all the localized strings in the app
+*/
 import LocalizedStrings from 'react-localization'
 let strings = new LocalizedStrings({
     en:{

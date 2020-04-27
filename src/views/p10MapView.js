@@ -1,12 +1,13 @@
-/* eslint-disable no-unused-vars */
-import React, {useEffect, useState} from 'react';
+/*
+    This file is the component that renders the P10 map.
+*/
+import React from 'react';
 import strings from "../localization";
 import '../styles/App.css';
 import Box from "@material-ui/core/Box";
 
 const P10MapView = (props) =>{
     const {children, value, index, ...other} = props;
-
     return (
         <div role="tabfragmentp10map" //eslint-disable-line
             hidden={value !== index}

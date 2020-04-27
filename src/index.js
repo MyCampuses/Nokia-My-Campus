@@ -1,3 +1,6 @@
+/*
+    This file handles that the app is placed inside the index.html
+*/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

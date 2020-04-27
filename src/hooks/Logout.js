@@ -1,3 +1,6 @@
+/*
+    This file contains the logout event for the user
+*/
 import LocalStorageOperations from './LocalStorageOperations';
 
 // Logout, remove auth token from localstorage
