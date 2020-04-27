@@ -7,6 +7,8 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import GlobalFunctions from '../hooks/GlobalFunctions';
 
+// Class Comment, all the functinality:
+
 const useStyle = makeStyles((theme) => ({
     p5Box: {
         width: '100%',
