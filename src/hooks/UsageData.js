@@ -13,7 +13,7 @@ const UsageData = (props) => {
   if (loading) {
     return <div>loading</div>;
   }
-  return <div>{data}</div>;
+  return <div>{data.usageData}</div>;
 };
 const stateToProps = state => ({
   data: state.data.usageData,
