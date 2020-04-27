@@ -5,6 +5,10 @@ import GlobalFunctions from "../hooks/GlobalFunctions";
 import Logout from "../hooks/Logout";
 import strings from "../localization";
 
+// Class Comment, all the functinality:
+// The style for the top navigationbar
+// All the elements in the top bar are here, including menu items.
+
 //Styles for the Top Navigation Bar
 const useStyle = makeStyles((theme) => ({
     frag: {
@@ -41,6 +45,7 @@ const useStyle = makeStyles((theme) => ({
 
 const NaviBar = () => {
 
+    //Top navigation bar elements & menu bar elements
     const TopNavigationBar = () => {
         const classes = useStyle();
 
