@@ -4,9 +4,8 @@ import ChartFragment from "./ChartFragments";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {Box, Container, FormControl, InputLabel, makeStyles, Select, ThemeProvider} from "@material-ui/core";
+import {Box, Container, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
 import strings from "../localization";
-import ProgressBarStyle from "../styles/progressBarStyle";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -24,9 +23,8 @@ const TabFragments = (props) => {
     const {Chart, RestaurantChart} = ChartFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
-    const {P5P10ProgressBar} = ProgressBarStyle();
 
-    const colorB = blue[500]
+    const colorB = blue[500];
     const useStyles = makeStyles(theme => ({
         root: {
             flexGrow: 1,
@@ -95,7 +93,6 @@ const TabFragments = (props) => {
 
 
         return (
-            <ThemeProvider theme={P5P10ProgressBar}>
                 <Container>
                     <div
                         component="div"
@@ -114,7 +111,6 @@ const TabFragments = (props) => {
 
                     </div>
                 </Container>
-            </ThemeProvider>
         );
     }
 

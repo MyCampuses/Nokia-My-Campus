@@ -8,6 +8,8 @@ import NaviBar from '../fragments/TopNavigationBarFragment';
 import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import BottomBarTabFragment from "../fragments/BottomBarFragment";
+import {ThemeProvider} from "@material-ui/core";
+import ProgressBarStyle from "../styles/progressBarStyle";
 
 /*eslint-enable */
 
@@ -15,16 +17,14 @@ const P10 = () => {
     const {isLoggedIn} = Authentication();
     const {TopNavigationBar} = NaviBar();
     const {P10BottomTab} = BottomBarTabFragment();
+    const {P5P10ProgressBar} = ProgressBarStyle()
 
     const P10Page = () => {
         return (
-            <div component="main" maxwidth="lg" id="mainContainer">
+            <ThemeProvider theme={P5P10ProgressBar}>
                 {TopNavigationBar()}
-                <div className="p10">
-
-                </div>
                 {P10BottomTab()}
-            </div>
+            </ThemeProvider>
         );
     };
     const AuthP10 = () => { //eslint-disable-line

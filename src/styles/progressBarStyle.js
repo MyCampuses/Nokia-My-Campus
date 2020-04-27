@@ -26,16 +26,16 @@ const ProgressBarStyle = () => {
                     minWidth:"200%"
                 }
             },
-
-
             MuiGrid: {
                 root: {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                 },
-                'spacing-xs-1': {
-                    padding: '0px',
+                'spacing-xs-1-115': {
+                    padding: '0',
+                    paddingTop: "4px",
+                    paddingBottom: "4px",
                     margin: '0px',
                     width: '100%',
                 },
