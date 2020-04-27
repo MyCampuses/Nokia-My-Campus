@@ -1,12 +1,19 @@
 # Nokia MyCampus Progressive Web Application
 
 ## What is it?
-This is a Project to re do Nokias old MyCampus web application that displays usage data from different parking carages and a restaurant and make the old web application more modern and mobile friendly. We decided to make the application a progressive web application so it's platform agnostic (works well on any device and platform but still mobile first design)
+This is a Mobile Solution course project to re do Nokias old MyCampus web application that displays usage data from different parking carages and a restaurant and make the old web application more modern and mobile friendly. We decided to make the application a progressive web application so it's platform agnostic (works well on any device and platform but still mobile first design)
 
 ## Tools Used.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Other tools include Material UI, Postman for API testing and WebStorm IDE for development
+Other Tools:
+- Material UI
+- Postman (API testing)
+- Travis CI, Lightouse CI, Netlify (CI/CD Pipeline)
+- WebStorm IDE
+- Chrome DevTools 
+- Languages: Javascript (React), Css, Html
+- Scrum
 
 ## Available Scripts
 
