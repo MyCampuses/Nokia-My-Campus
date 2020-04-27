@@ -21,9 +21,9 @@ export function fetchRestaurantData() {
 export const fetchDataBegin = () => ({
   type: FETCH_DATA_BEGIN,
 });
-export const fetchDataSuccess = (data) => ({
+export const fetchDataSuccess = (usageData) => ({
   type: FETCH_DATA_SUCCESS,
-  payload: {data},
+  payload: { usageData },
 });
 export const fetchDataFailure = (error) => ({
   type: FETCH_DATA_FAILURE,
