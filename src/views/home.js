@@ -27,6 +27,7 @@ const Home = (props) => {
   const {PageTheme} = MuiThemes();
 
   // States
+  const [restData] = useState(UsageData)
   const [restaurantData, setRestaurantData] = useState(undefined);
   const [parkingP5Data, setParkingP5Data] = useState(undefined);
   const [parkingP10Data, setParking10Data] = useState(undefined);
@@ -90,7 +91,7 @@ const Home = (props) => {
                   justify="space-between">
               <Grid item xs={12}>
                <h3 className={barTheme.headLine}>
-                 {UsageData(props.usageData)}
+                 {restData}
                  {strings.currentStatsAre}
                </h3>
               </Grid>
