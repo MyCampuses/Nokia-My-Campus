@@ -120,7 +120,7 @@ const TabFragments = (props) => {
         const insideLevels = 'P10/';
         const rooftopLevels = 'P10TOP/';
         const electric = "electric";
-        const [selectedLevel, setSelectedLevel] = useState(insideLevels);
+        const [selectedLevel, setSelectedLevel] = useState(electric);
 
         const handleDateChange = date => {
             setSelectedDate(date);
@@ -144,9 +144,9 @@ const TabFragments = (props) => {
                                         handleChange(event.target.value)
                                     }
                                 }}>
-                            <MenuItem value={insideLevels}>{strings.p10inside}</MenuItem>
-                            <MenuItem value={rooftopLevels}>{strings.p10rooftop}</MenuItem>
                             <MenuItem value={electric}>{strings.p10electric}</MenuItem>
+                            <MenuItem value={rooftopLevels}>{strings.p10rooftop}</MenuItem>
+                            <MenuItem value={insideLevels}>{strings.p10inside}</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
