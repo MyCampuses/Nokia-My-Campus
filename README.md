@@ -1,5 +1,8 @@
 # Nokia MyCampus Progressive Web Application
 
+## What is it?
+This is a Project to redesign Nokias Espoo campus web application that displays usage data from different parking carages and a restaurant and make the old web application a bit more modern and mobile friendly 
+
 ## Tools Used.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
