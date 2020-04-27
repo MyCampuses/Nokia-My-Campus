@@ -7,7 +7,17 @@ export const FETCH_DATA_BEGIN = 'FETCH_DATA_BEGIN';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
 
-export function fetchData() {
+export function fetchRestaurantData() {
+  return dispatch => {
+    dispatch(fetchDataBegin());
+    return getUsageData(restaurantUrl).then(result => {
+      dispatch(fetchDataSuccess(result.fill_percent));
+      return result.fill_percent;
+    })
+    .catch(error => dispatch(fetchDataFailure(error)))
+  };
+}
+export function fetchP5Data() {
   return dispatch => {
     dispatch(fetchDataBegin());
     return getUsageData(parkingP5Url).then(result => {
