@@ -1,3 +1,9 @@
+/*
+    This file contains everything related to fetching data from the API
+    and handling those fetch results in an async manor.
+    Also contains the functions of handling the historical data and their charting.
+*/
+
 import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
 import GlobalFunctions from './GlobalFunctions';

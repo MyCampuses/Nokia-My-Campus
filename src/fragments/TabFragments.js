@@ -1,3 +1,8 @@
+/*
+    This file contains the bottom tab fragments that can be found in P10,P5 and Restaurant pages.
+    Each components have a bit more explanation what they are.
+*/
+
 import React, {useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import ChartFragment from "./ChartFragments";
@@ -25,6 +30,7 @@ const TabFragments = (props) => {
     const {ProgressBar} = ProgressBarFragments();
 
     const colorB = blue[500];
+    // this style is used to make small tweaks to the progress bars and their labels
     const useStyles = makeStyles(theme => ({
         root: {
             flexGrow: 1,
@@ -51,6 +57,7 @@ const TabFragments = (props) => {
     }));
     const barTheme = useStyles();
 
+    // Renders the P10 Live page with rooftop(electric), rooftop and inside progress bars
     function TabFragmentLive(props) {
         const {children, value, index, ...other} = props;
         const {parkingP10Url, parkingP10TopUrl} = ApiUrls();
@@ -58,8 +65,8 @@ const TabFragments = (props) => {
         const [parkingP10Data, setParking10Data] = useState(undefined);
         const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
         const [parkingP10ElectricData, setParkingP10ElectricData] = useState(undefined);
-        const multiplier = 2;
-
+        const multiplier = 2; // This is used in the estimation because about half of the rooftop is electric places.
+        // Fetches data for the progress bars and sets the,
         useEffect(() => {
             getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
             getUsageData(parkingP10TopUrl, props).then((result) => {
@@ -68,7 +75,10 @@ const TabFragments = (props) => {
             });
         }, []);  //eslint-disable-line
 
-
+        // ProgressBars take a json as a parameter that contains navigation url(undefined means no navigation from the click)
+        // Label is the top left label (Left empty because there is no used to it in this page
+        // Utilization is the string in the middle of the bar
+        // Data is the actual data the bar takes and lastly it takes a theme as its parameter
         const p10insideData = {
             navigationUrl: undefined,
             barLabel: "",
@@ -113,7 +123,7 @@ const TabFragments = (props) => {
                 </Container>
         );
     }
-
+    // Renders the P10 History component with date level selector, date picker and chart
     function TabFragmentHistory(props) {
         const {children, value, index, ...other} = props;
         const [selectedDate, setSelectedDate] = useState(new Date(props.date));
@@ -133,6 +143,7 @@ const TabFragments = (props) => {
         };
 
         // Selector for selecting the desired level in P10
+        // Select value is the default value that is shown first
         const LevelSelector = () => {
             return (
                 <div>
@@ -181,7 +192,8 @@ const TabFragments = (props) => {
             </div>
         );
     }
-
+    // Renders the P5 live data page with progress bar and
+    // Live util graph
     function TabFragmentLiveP5(props) {
         const {children, value, index, ...other} = props;
         const {getUsageData} = API();
@@ -200,7 +212,6 @@ const TabFragments = (props) => {
             barTheme
         };
         return (
-
             <div
                 hidden={value !== index}>
                 <Container>
@@ -213,7 +224,7 @@ const TabFragments = (props) => {
             </div>
         );
     }
-
+    // Renders the P5 history page with graph and date picker
     function TabFragmentHistoryP5(props) {
         const {children, value, index, ...other} = props;
         const [selectedDate, setSelectedDate] = useState(new Date(props.date));
@@ -249,7 +260,7 @@ const TabFragments = (props) => {
             </div>
         );
     }
-
+    // Renders the restaurant lines page that shows individual lines and their wait times
     function TabRestaurantLines(props) {
         const {children, value, index, ...other} = props;
         const [queueTimes, setQueueTimes] = useState(new Map());
@@ -309,7 +320,7 @@ const TabFragments = (props) => {
             </div>
         )
     }
-
+    // Renders the restaurant chart page with a date picker and chart
     function TabRestaurantChart(props) {
         const {children, value, index, ...other} = props;
         const [selectedDate, setSelectedDate] = useState(new Date(props.date));

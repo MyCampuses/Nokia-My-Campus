@@ -1,5 +1,8 @@
-const ApiUrls = () => {
+/*
+    This file just contains all the Urls used by the API
+*/
 
+const ApiUrls = () => {
   const loginUrl = 'https://mycampus-server.karage.fi/auth/login';
   const regUrl = 'https://mycampus-server.karage.fi/auth/signup';
   const apiUrl = 'https://mycampus-server.karage.fi/api/common/';

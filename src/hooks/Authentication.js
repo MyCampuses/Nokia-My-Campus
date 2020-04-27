@@ -1,3 +1,8 @@
+/*
+    This file contains methods related to authentication.
+    These are mainly used for handling redirects if the user
+    tries to use URL navigation.
+*/
 import LocalStorageOperations from './LocalStorageOperations';
 import Login from '../views/login';
 import React from "react";

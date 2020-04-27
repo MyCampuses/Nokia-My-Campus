@@ -1,4 +1,8 @@
-/* eslint-disable no-unused-vars */
+/*
+    This file provides a component that is basically just a blank page with a loading spinner on it.
+    This is used on every navigation in the app itself. Checks if the user is logged in or not.
+    Redirects to login in case the user is not logged in
+*/
 import React, {useEffect} from 'react';
 import {CircularProgress} from '@material-ui/core';
 import Authentication from '../hooks/Authentication';
