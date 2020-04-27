@@ -1,4 +1,5 @@
 import {createMuiTheme} from "@material-ui/core";
+import {blue} from "@material-ui/core/colors";
 
 const ProgressBarStyle = () => {
 
@@ -12,7 +13,21 @@ const ProgressBarStyle = () => {
                     borderRadius: '10px',
                     width: '100%',
                 },
+                colorPrimary:{
+                    backgroundColor: blue[400]
+                },
+                barColorPrimary:{
+                    backgroundColor: blue[900]
+                }
             },
+            MuiTypography:{
+                body1:{
+                    color:"white",
+                    minWidth:"200%"
+                }
+            },
+
+
             MuiGrid: {
                 root: {
                     display: 'flex',
@@ -31,18 +46,14 @@ const ProgressBarStyle = () => {
                     paddingRight: '4px',
                 },
             },
-            MuiTypography:{
-                body1:{
-                    minWidth:"200%"
-                }
-            },
         },
     });
 
     return{
-        P5P10ProgressBar:P5P10ProgressBar
+        P5P10ProgressBar:P5P10ProgressBar,
+
     }
-}
+};
 
 
 export default ProgressBarStyle

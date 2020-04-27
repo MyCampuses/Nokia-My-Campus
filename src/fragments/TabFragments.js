@@ -204,6 +204,7 @@ const TabFragments = (props) => {
             barTheme
         };
         return (
+
             <div
                 hidden={value !== index}>
                 <Container>

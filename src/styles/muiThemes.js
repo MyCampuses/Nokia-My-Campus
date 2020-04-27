@@ -102,8 +102,18 @@ const MuiThemes = () => {
                     maxHeight: '100px',
                     borderRadius: '10px',
                     width: '100%',
-                    color:blue[200]
                 },
+                colorPrimary:{
+                    backgroundColor: blue[400]
+                },
+                barColorPrimary:{
+                    backgroundColor: blue[900]
+                }
+            },
+            MuiTypography:{
+              body1:{
+                  color:"white"
+              }
             },
             MuiGrid: {
                 root: {
