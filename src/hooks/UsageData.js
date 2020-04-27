@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {connect} from 'react-redux'
 import {fetchRestaurantData} from './DataActions';
 
 const UsageData = (props) => {
@@ -14,5 +15,10 @@ const UsageData = (props) => {
   }
   return <div>{usageData}</div>;
 };
+const stateToProps = state => ({
+  usageData: state.data.usageData,
+  loading: state.data.loading,
+  error: state.data.error
+})
 
-export default UsageData;
+export default connect(stateToProps(UsageData));
