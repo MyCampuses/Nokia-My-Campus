@@ -113,7 +113,7 @@ const ResetPassword = (props) => {
     // Validates email input
     const validateEmailField = () => {
         const emailReqEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //eslint-disable-line
-        const emailError = "emailError"
+        const emailError = "emailError";
         if (emailReqEx.test(formData.email)) {
             updateError(emailError, false);
             updateErrorMsg(emailError, "");
@@ -151,7 +151,7 @@ const ResetPassword = (props) => {
             updateError(tokenError, true);
             updateErrorMsg(tokenError, strings.cannotBeEmpty)
         } else {
-            updateError(tokenError, false)
+            updateError(tokenError, false);
             updateErrorMsg(tokenError, "")
         }
     };

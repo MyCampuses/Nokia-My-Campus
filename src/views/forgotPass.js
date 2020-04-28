@@ -30,8 +30,8 @@ const ForgotPassword = (props) => {
         const submitData = {email: email};
         forgotPassAsync(submitData).then((response)=>{
             if (response.status === 200){ // If response is OK user can be notified and moved to the next screen
-                alert(strings.sentVerification);
-                navigate('/reset_password',false, submitData)
+                alert(strings.sentVerification); // Alerts the user that the verification token was send
+                navigate('/reset_password',false, submitData) // Submit data is given as url parameters
             } else {
                 alert(strings.requestError) // Generic error since the API doesn't return a json with errors
             }

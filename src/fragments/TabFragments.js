@@ -153,7 +153,7 @@ const TabFragments = (props) => {
         const LevelSelector = () => {
             return (
                 <div>
-                    <FormControl style={{width: "250px"}}>
+                    <FormControl style={{width: "250px", textAlign:"left"}}>
                         <InputLabel id="level">{strings.level}</InputLabel>
                         <Select labelId="level" id="level" value={selectedLevel}
                                 onChange={(event) => {
