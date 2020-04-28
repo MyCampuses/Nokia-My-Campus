@@ -26,9 +26,10 @@ const Update = () => {
           buttons: [
             {
               label: 'Ok',
-              onClick: window.location.reload()
+              onClick: () => window.location.reload()
             }
-          ]
+          ],
+          onClick: window.location.reload()
         })
       });
     }
