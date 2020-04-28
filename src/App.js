@@ -17,7 +17,6 @@ const App = () => {
         <Update/>
         {routeResult}
       </div>
-  )
-  ;
+  );
 };
 export default App;

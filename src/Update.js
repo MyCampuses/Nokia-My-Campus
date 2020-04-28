@@ -23,12 +23,8 @@ const Update = () => {
       registrationWaiting.addEventListener('statechange', () => {
         const addAlert = ({onClose}) => {
           const handleClick = () => {
-            const timer = setTimeout(() => {
-              window.location.reload();
-              onClose();
-            }, 2000);
-            // Clear timeout so timer works correctly every time
-            return () => clearTimeout(timer);
+            window.location.reload();
+            onClose();
           };
           return (
               <div className="AppUpdated">
@@ -44,7 +40,6 @@ const Update = () => {
       });
     }
   };
-
   return (
       // UpdateApp in UpdateServiceWorker.js, SW_INIT and SW_UPDATE is used with redux dispatch depending on serviceworker state
       <div>
