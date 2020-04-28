@@ -4,7 +4,6 @@ import Data from './hooks/Data';
 import UpdateApp from './hooks/UpdateServiceWorker';
 
 const {SW_INIT, SW_UPDATE} = Data();
-const {confirmAlert} = 'react-confirm-alert';
 
 const Update = () => {
   // Defining constants for redux depending on serviceworker state
@@ -19,8 +18,10 @@ const Update = () => {
     // If new update is waiting, reload current window with the new content
     if (registrationWaiting) {
       registrationWaiting.postMessage({type: 'SKIP_WAITING'});
-      registrationWaiting.addEventListener('statechange', () => {
-        window.location.reload()
+      registrationWaiting.addEventListener('statechange', e => {
+        if (e.target.state === 'activated') {
+          window.location.reload()
+        }
       });
     }
   };
