@@ -50,13 +50,18 @@ body{
 }
 
 .AppUpdated {
-  margin: 0;
-  position: fixed;
+  margin: 0px;
+  padding: 25px;
+  background: white;
+  position: absolute;
+  align-items: center;
   top: 50%;
   left: 50%;
-  width: 20%;
-  height: 15%;
+  width: 40%;
+  height: 25%;
   z-index: 9999;
+  border-width: 50px;
+  transform: translate(-50%, -50%);
 }
 
 

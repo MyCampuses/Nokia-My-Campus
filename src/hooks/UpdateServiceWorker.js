@@ -19,7 +19,7 @@ const UpdateApp = ({type, onUpdate}) => {
   }, []);// eslint-disable-line
 
   return (
-        <UpdateDialog onUpdate={onUpdate}/>
+        <UpdateDialog {...onUpdate}/>
   )
 };
 
