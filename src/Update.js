@@ -16,26 +16,11 @@ const Update = () => {
       state => state.serviceWorkerRegistration);
   const updateServiceWorker = () => {
     const registrationWaiting = serviceWorkerRegistration.waiting;
-    const addAlert = ({onClose}) => {
-      const handleClick = () => {
-        window.location.reload();
-        onClose();
-      };
-      return (
-          <div className="AppUpdated">
-            <h1>App Updated</h1>
-            <p>Press Ok to update</p>
-            <div className="DialogButton">
-              <button onClick={handleClick}>Ok</button>
-            </div>
-          </div>
-      );
-    };
     // If new update is waiting, reload current window with the new content
     if (registrationWaiting) {
       registrationWaiting.postMessage({type: 'SKIP_WAITING'});
       registrationWaiting.addEventListener('statechange', () => {
-        confirmAlert({customUI: addAlert});
+        window.location.reload()
       });
     }
   };
