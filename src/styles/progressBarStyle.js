@@ -22,8 +22,8 @@ const ProgressBarStyle = () => {
             },
             MuiTypography:{
                 body1:{
-                    color:"white",
-                    minWidth:"200%"
+                    minWidth:"200%",
+                    color: "white"
                 }
             },
             MuiGrid: {

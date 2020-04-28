@@ -31,3 +31,4 @@ serviceWorker.register({
   onUpdate: registration => store.dispatch(
       {type: SW_UPDATE, payload: registration}),
 });
+
