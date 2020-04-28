@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import UpdateDialog from '../views/UpdateDialog'
 
+
 // Update app via redux
 const UpdateApp = ({type, onUpdate}) => {
   // Redux dispatch, type is either SW_INIT or SW_UPDATE, comes from Update.js when serviceworker is updated
