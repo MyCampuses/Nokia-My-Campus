@@ -76,13 +76,16 @@ const ChartFragment = () => {
             const [max, setMax] = useState(undefined);
 
             useEffect(() => {
-                if (props.location === "electric") {
+                if (props.location === "restaurant") {
+                    getChartData(dailyRestaurantUrl, '', propsDate).then(json => dataToChartRestaurant(json)).then(json => setChartData(json))
+                } else if (props.location === "electric") {
                     getChartData(dailyParkingUrl, 'P10TOP/', propsDate).then(json => chartEstData(json.samples)).then(json => setChartData(json))
                 } else {
                     getChartData(dailyParkingUrl, props.location, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
                 }
             }, [props]); // eslint-disable-line
 
+            //Filters data to only have datapoints between 06:00 and 18:00
             const filterTime = (element) => {
                 if (element.x >= "06:00" && element.x <= "18:00") {
                     return element;
@@ -99,14 +102,20 @@ const ChartFragment = () => {
                 let tempArray = [];
                 let highest = 0;
                 for (let i = 1; i < array.length; i++) {
-                    let dataObject = (checkIfMissingTime(i, array.length - 1, array[i - 1], array[i]));
+                    let dataObject = undefined;
+                    if (props.location === "restaurant") {
+                        dataObject = (checkIfMissingTimeRestaurant(i, array.length - 1, array[i - 1], array[i]));
+                    } else {
+                        dataObject = (checkIfMissingTime(i, array.length - 1, array[i - 1], array[i]));
+                    }
                     if (array[i].y > highest) {
                         highest = array[i].y;
                     }
-                    if (dataObject !== -1) {
+                    if (dataObject !== -1 && dataObject !== undefined) {
                         tempArray.push(dataObject);
                     }
                 }
+
                 setMax(highest);
                 returnArray = array.concat(tempArray);
                 returnArray.sort(sortCompareFunction);
@@ -141,9 +150,26 @@ const ChartFragment = () => {
                 } else return -1;
             };
 
+            const checkIfMissingTimeRestaurant = (index, lastIndex, prevElement, element) => {
+                if (element.x < "08:30" && index === 1 && prevElement.x > "08:00") {
+                    return {x: "08:00", y: element.y, pv: 100};
+                } else if (prevElement.x < "10:00" && element.x > "10:00") {
+                    let yValue = getAverage(prevElement.y, element.y);
+                    return {x: "10:00", y: yValue, pv: 100};
+                } else if (prevElement.x < "12:00" && element.x > "12:00") {
+                    let yValue = getAverage(prevElement.y, element.y);
+                    return {x: "12:00", y: yValue, pv: 100};
+                } else if (prevElement.x < "14:00" && element.x > "14:00") {
+                    let yValue = getAverage(prevElement.y, element.y);
+                    return {x: "14:00", y: yValue, pv: 100};
+                } else if (index === lastIndex && element.x < "16:00" && prevElement.x > "15:50") {
+                    return {x: "16:00", y: element.y, pv: 100};
+                } else return -1;
+            };
+
             //Parses retrieved data to only points between 06:00 and 18:00, saves highest utilization point from those data points as well
-            //Possible TODO: limit how many times the useeffect runs if no changes to chartdata has occurred
-            //TODO: if checking time someimtes outside of 06:00 - 18:00 the chart pages are empty
+            //Possible TODO: limit how many times the useEffect runs if no changes to chartdata has occurred
+            //TODO: if checking time sometimes outside of 06:00 - 18:00 the chart pages are empty
             useEffect(() => {
                 if (chartData !== undefined) {
                     let tempChartData = chartData.filter(filterTime);
@@ -173,43 +199,10 @@ const ChartFragment = () => {
 
 // Chart for Restaurant History
         /*eslint-disable */
-        const RestaurantChart = (props) => {
-            const propsDate = formattedFullDate(props.date);
-            const [chartData, setChartData] = useState(undefined);
-            const [max, setMax] = useState(undefined);
 
-            useEffect(() => {
-                getChartData(dailyRestaurantUrl, '', propsDate)
-                    .then(json => dataToChartRestaurant(json))
-                    .then(json => setChartData(json))
-            }, [props]); // eslint-disable-line
-
-            useEffect(() => {
-                if (chartData !== undefined) {
-                    let highest = 0;
-                    chartData.forEach(element => {
-                            if (element.y > highest) {
-                                highest = element.y;
-                            }
-                        }
-                    );
-                    setMax(highest);
-                }
-            }, [chartData]);
-
-            return (
-                <Fragment>
-                    <Container className={classes.RestaurantBox}>
-                        <p>Utilization Records for {propsDate}</p>
-                        {renderChart(chartData, max)}
-                    </Container>
-                </Fragment>
-            );
-        };
 
         return {
             Chart: Chart,
-            RestaurantChart: RestaurantChart,
         };
     }
 ;

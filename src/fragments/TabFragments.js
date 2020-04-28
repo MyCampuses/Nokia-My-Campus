@@ -368,7 +368,7 @@ const TabFragments = (props) => {
                         />
                     </MuiPickersUtilsProvider>
                 </ThemeProvider>
-                <RestaurantChart date={selectedDate}/>
+                <Chart date={selectedDate} location={"restaurant"}/>
             </div>
         );
     }
