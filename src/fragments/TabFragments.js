@@ -22,7 +22,7 @@ import {ThemeProvider} from '@material-ui/core';
 const {parkingP5Url} = ApiUrls();
 
 const TabFragments = (props) => {
-    const {Chart, RestaurantChart} = ChartFragment();
+    const {Chart} = ChartFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
 
