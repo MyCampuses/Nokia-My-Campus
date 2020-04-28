@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
+import UpdateDialog from '../views/UpdateDialog'
 
 // Update app via redux
 const UpdateApp = ({type, onUpdate}) => {
@@ -17,13 +18,7 @@ const UpdateApp = ({type, onUpdate}) => {
   }, []);// eslint-disable-line
 
   return (
-        <div className="AppUpdated">
-          <h1>App Updated</h1>
-          <p>Press Ok to update</p>
-          <div className="DialogButton">
-            <button onClick={ () => onUpdate}>Ok</button>
-          </div>
-        </div>
+        <UpdateDialog onUpdate={onUpdate}/>
   )
 };
 
