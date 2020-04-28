@@ -19,10 +19,15 @@ const Update = () => {
     if (registrationWaiting) {
       registrationWaiting.postMessage({type: 'SKIP_WAITING'});
       registrationWaiting.addEventListener('statechange', () => {
-          window.location.reload()
+        const timer = setTimeout(() => {
+          alert('App has been updated, please wait')
+        }, 2000)
+        // Clear timeout so timer works correctly every time
+        clearTimeout(timer)
+        window.location.reload()
       });
     }
-  };
+  }
   return (
       // UpdateApp in UpdateServiceWorker.js, SW_INIT and SW_UPDATE is used with redux dispatch depending on serviceworker state
       <div>
