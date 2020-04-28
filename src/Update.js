@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import Data from './hooks/Data';
 import UpdateApp from './hooks/UpdateServiceWorker'
 const {SW_INIT, SW_UPDATE} = Data();
+const {confirmAlert} = 'react-confirm-alert'
 
 const Update = () => {
   // Defining constants for redux depending on serviceworker state
@@ -19,11 +20,10 @@ const Update = () => {
     if (registrationWaiting) {
       registrationWaiting.postMessage({type: 'SKIP_WAITING'});
       registrationWaiting.addEventListener('statechange', () => {
-        const timer = setTimeout(() => {
-          alert('App has been updated, please wait')
-        }, 2000)
-        // Clear timeout so timer works correctly every time
-        clearTimeout(timer)
+        confirmAlert({
+          title: 'App Update',
+          message: 'App has been Updated, refreshing app',
+        })
         window.location.reload()
       });
     }
@@ -42,6 +42,7 @@ const Update = () => {
                 onUpdate={updateServiceWorker()}
             />
         )}
+
       </div>
 
   );
