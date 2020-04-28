@@ -11,7 +11,7 @@ const UpdateApp = ({type, onUpdate}) => {
       // 2 second timeout and dispatch
       const timer = setTimeout(() => {
         dispatch({type});
-      }, 2000)
+      }, 6000)
       // Clear timeout so timer works correctly every time
       return () => clearTimeout(timer)
     }
