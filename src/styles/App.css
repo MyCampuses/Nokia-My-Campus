@@ -48,17 +48,12 @@ body{
   max-height: 700px;
   margin-bottom: 40px;
 }
-.react-confirm-alert-overlay {
-  background: rgba(0,0,0,1)
-}
-.react-confirm-alert {
-  background: #108EE9;
-}
-.DialogButton {
-  float: inside;
-}
+
 .AppUpdated {
-  margin: 1;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%
 }
 
 
