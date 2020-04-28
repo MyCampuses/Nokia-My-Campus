@@ -165,7 +165,7 @@ let strings = new LocalizedStrings({
         toConfirmation:"Tilin vahvistus",
         toPasswordReset: "Salasanan palautukseen",
         lines: "Linjasto",
-        currentStatsAre:""
+        currentStatsAre:"Tämän hetken tilastot kampuksella:"
     },
 
     se:{
@@ -245,7 +245,7 @@ let strings = new LocalizedStrings({
         toConfirmation:"Konto Konfirmation",
         toPasswordReset: "Till lösenord återställning",
         lines: "Linjer",
-        currentStatsAre:""
+        currentStatsAre:"Nuvarande statistik på kampus:"
     }
 });
 
