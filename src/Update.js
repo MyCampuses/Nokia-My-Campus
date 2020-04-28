@@ -33,32 +33,35 @@ const Update = () => {
           return (
               <div className="AppUpdated">
                 <h1>App Updated</h1>
-                <p>App has been Updated, refreshing app</p>
+                <p>Press Ok to update</p>
                 <div className="DialogButton">
                   <button onClick={handleClick}>Ok</button>
                 </div>
-            </div>
-          )
-        }
-        confirmAlert({ customUI: addAlert})
+              </div>
+          );
+        };
+        confirmAlert({customUI: addAlert});
+      });
+    }
+  };
 
-        return (
-        // UpdateApp in UpdateServiceWorker.js, SW_INIT and SW_UPDATE is used with redux dispatch depending on serviceworker state
-        <div>
+  return (
+      // UpdateApp in UpdateServiceWorker.js, SW_INIT and SW_UPDATE is used with redux dispatch depending on serviceworker state
+      <div>
         {isServiceWorkerInitialized && (
-        <UpdateApp
-        type={SW_INIT}
-        />
+            <UpdateApp
+                type={SW_INIT}
+            />
         )}
         {isServiceWorkerUpdated && (
-        <UpdateApp
-        type={SW_UPDATE}
-        onUpdate={updateServiceWorker()}
-        />
+            <UpdateApp
+                type={SW_UPDATE}
+                onUpdate={updateServiceWorker()}
+            />
         )}
 
-        </div>
+      </div>
 
-        );
-        };
-        export default Update;
+  );
+};
+export default Update;
