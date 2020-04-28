@@ -9,6 +9,9 @@ import YAxis from 'recharts/lib/cartesian/YAxis';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import GlobalFunctions from '../hooks/GlobalFunctions';
+import {scaleTime} from 'd3-scale';
+import {utcHour} from 'd3-time';
+import format from 'date-fns/format'
 
 
 const useStyle = makeStyles((theme) => ({
@@ -40,7 +43,7 @@ const ChartFragment = () => {
 
         // Convert data to be used in chart
         // Check recharts.org for documentation
-        const renderChart = (data, maxValue) => (
+        const renderChart = (data, maxValue, ticks) => (
             // Responsivecontainer for flexible chart size
             <ResponsiveContainer width="100%" height="100%">
                 <AreaChart minWidth={200} minHeight={200}
@@ -49,11 +52,10 @@ const ChartFragment = () => {
                     <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
                     <Area dataKey="y" fill="#0000FF"/>
                     <XAxis dataKey="x" padding={{right: 0}} allowDataOverflow={false}
-                           interval={0} ticks={["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]}
+                           interval={0} ticks={ticks}
                            tickSize={6} type='category'/>
                     <YAxis fill="#8884d8" dataKey="pv" type="number" domain={[0, values => {
-                        // If data does not contain values 50 or higher, Y-axis is set to 0-50%, otherwise 0-100%
-                        console.log(data); //TODO: remove
+                        // If data does not contain percentage values 50 or higher, Y-axis is set to 0-50%, otherwise 0-100%
                         if (maxValue < 50) {
                             return 50
                         } else {
@@ -70,6 +72,7 @@ const ChartFragment = () => {
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
             const [dataForRender, setDataForRender] = useState(undefined);
+            const [ticksForRender, setTicksForRender] = useState(undefined);
             const [max, setMax] = useState(undefined);
 
             useEffect(() => {
@@ -92,70 +95,68 @@ const ChartFragment = () => {
             };
 
             const fixTimes = (array) => {
+                let returnArray = [];
                 let tempArray = [];
-
+                let highest = 0;
                 for (let i = 1; i < array.length; i++) {
-
-                    let x =(checkIf(i, array.length -1, array[i - 1], array[i]));
-                    if(x !== -1) {
-                        tempArray.push(x);
+                    let dataObject = (checkIfMissingTime(i, array.length - 1, array[i - 1], array[i]));
+                    if (array[i].y > highest) {
+                        highest = array[i].y;
+                    }
+                    if (dataObject !== -1) {
+                        tempArray.push(dataObject);
                     }
                 }
-
-                let tempReturnableArray = array.concat(tempArray);
-                tempReturnableArray.sort(sortCompareFunction);
-                return tempReturnableArray;
+                setMax(highest);
+                returnArray = array.concat(tempArray);
+                returnArray.sort(sortCompareFunction);
+                return returnArray;
             };
 
             //TODO: add type checks
             const getAverage = (x1, x2) => {
-                return (x1 + x2)/2;
+                return (x1 + x2) / 2;
             };
 
-            const checkIf = (index, lastIndex, prevElement, element) => {
-                if(index === 1 && prevElement.x > "06:00") {
+            const checkIfMissingTime = (index, lastIndex, prevElement, element) => {
+                if (index === 1 && prevElement.x > "06:00") {
                     return {x: "06:00", y: prevElement.y, pv: 100};
-                }
-                if(prevElement.x < "08:00" && element.x > "08:00") {
+                } else if (prevElement.x < "08:00" && element.x > "08:00") {
                     let yValue = getAverage(prevElement.y, element.y);
                     return {x: "08:00", y: yValue, pv: 100};
-                }
-                if(prevElement.x < "10:00" && element.x > "10:00") {
+                } else if (prevElement.x < "10:00" && element.x > "10:00") {
                     let yValue = getAverage(prevElement.y, element.y);
                     return {x: "10:00", y: yValue, pv: 100};
-                }
-                if(prevElement.x < "12:00" && element.x > "12:00") {
+                } else if (prevElement.x < "12:00" && element.x > "12:00") {
                     let yValue = getAverage(prevElement.y, element.y);
                     return {x: "12:00", y: yValue, pv: 100};
-                }
-                if(prevElement.x < "14:00" && element.x > "14:00") {
+                } else if (prevElement.x < "14:00" && element.x > "14:00") {
                     let yValue = getAverage(prevElement.y, element.y);
                     return {x: "14:00", y: yValue, pv: 100};
-                }
-                if(prevElement.x < "16:00"  && element.x > "16:00") {
+                } else if (prevElement.x < "16:00" && element.x > "16:00") {
                     let yValue = getAverage(prevElement.y, element.y);
                     return {x: "16:00", y: yValue, pv: 100};
-                }
-                if(index === lastIndex  && element.x < "18:00") {
+                } else if (index === lastIndex && element.x < "18:00" && prevElement.x > "17:50") {
                     return {x: "18:00", y: element.y, pv: 100};
-                }
-                else return -1;
+                } else return -1;
             };
 
             //Parses retrieved data to only points between 06:00 and 18:00, saves highest utilization point from those data points as well
             //Possible TODO: limit how many times the useeffect runs if no changes to chartdata has occurred
+            //TODO: if checking time someimtes outside of 06:00 - 18:00 the chart pages are empty
             useEffect(() => {
                 if (chartData !== undefined) {
                     let tempChartData = chartData.filter(filterTime);
-                    tempChartData = fixTimes(tempChartData);
-                    let highest = 0;
-                    tempChartData.forEach(element => {
-                            if (element.y > highest) {
-                                highest = element.y;
-                            }
-                        }
-                    );
-                    setMax(highest);
+                    let fixTimesArray = fixTimes(tempChartData);
+                    let domain = [];
+                    let timeFormat = (time => format(time, "HH:mm"));
+                    if (fixTimesArray.length > 0) {
+                        domain = [new Date('1970/01/01 ' + fixTimesArray[0].x), new Date('1970/01/01 ' + fixTimesArray[fixTimesArray.length - 1].x)];
+                    }
+                    let scale = scaleTime().domain(domain);
+                    let ticks = scale.ticks(utcHour.every(2)).map(item => timeFormat(item));
+                    tempChartData = fixTimesArray;
+                    setTicksForRender(ticks);
                     setDataForRender(tempChartData);
                 }
             }, [chartData]); //eslint-disable-line
@@ -164,7 +165,7 @@ const ChartFragment = () => {
                 <Fragment>
                     <Container className={classes.p10Box}>
                         <p>Utilization Records for {propsDate}</p>
-                        {renderChart(dataForRender, max)}
+                        {renderChart(dataForRender, max, ticksForRender)}
                     </Container>
                 </Fragment>
             );
@@ -193,7 +194,8 @@ const ChartFragment = () => {
                         }
                     );
                     setMax(highest);
-                }}, [chartData]);
+                }
+            }, [chartData]);
 
             return (
                 <Fragment>
