@@ -23,8 +23,13 @@ const Update = () => {
         confirmAlert({
           title: 'App Update',
           message: 'App has been Updated, refreshing app',
+          buttons: [
+            {
+              label: 'Ok',
+              onClick: window.location.reload()
+            }
+          ]
         })
-        window.location.reload()
       });
     }
   }
