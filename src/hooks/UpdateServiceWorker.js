@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import UpdateDialog from '../views/UpdateDialog'
+import UpdateDialog from '../views/UpdateDialog';
 
 
 // Update app via redux
 const UpdateApp = ({type, onUpdate}) => {
   // Redux dispatch, type is either SW_INIT or SW_UPDATE, comes from Update.js when serviceworker is updated
   const dispatch = useDispatch();
+  // Define parameters to be sent as params to UpdateDialog component
+  const params = {onUpdate}
   useEffect(() => {
     if (!onUpdate) {
       // 2 second timeout and dispatch
@@ -19,7 +21,7 @@ const UpdateApp = ({type, onUpdate}) => {
   }, []);// eslint-disable-line
 
   return (
-        <UpdateDialog {...onUpdate}/>
+        <UpdateDialog {...params}/>
   )
 };
 

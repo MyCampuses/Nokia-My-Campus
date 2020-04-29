@@ -1,5 +1,6 @@
 import strings from "../localization";
 
+// Holds arrays, constants etc. to be used elsewhere in the app
 const Data = () => {
 
     //Mathces received line id number to string
@@ -20,6 +21,7 @@ const Data = () => {
     // Serviceworker state types, check Update.js for more information
     const SW_INIT = 'SW_INIT';
     const SW_UPDATE = 'SW_UPDATE';
+    const SW_CONFIRM = 'SW_CONFIRM';
 
     return {
         lines,
@@ -27,6 +29,7 @@ const Data = () => {
         colours,
         SW_INIT,
         SW_UPDATE,
+        SW_CONFIRM,
 
     };
 };
