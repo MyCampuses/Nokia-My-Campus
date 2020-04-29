@@ -11,11 +11,11 @@
 
 .MuiTab-textColorInherit.Mui-selected {
     color: white !important;
-    background: #108EE9;
+    background: #124191;
 }
 
 .MuiTab-textColorInherit {
-    color: #108EE9 !important;
+    color: #124191 !important;
 }
 
 .MuiTab-root {
