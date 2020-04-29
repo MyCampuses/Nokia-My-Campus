@@ -90,6 +90,7 @@ const Home = (props) => {
                  {strings.currentStatsAre}
                </h3>
               </Grid>
+              <UpdateDialog/>
               {ProgressBar(restaurantBarData)}
               {ProgressBar(p5BarData)}
               {ProgressBar(p10insideData)}
