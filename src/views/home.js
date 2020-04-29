@@ -15,6 +15,7 @@ import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
 import blue from '@material-ui/core/colors/blue';
+import UpdateDialog from './UpdateDialog';
 
 const Home = (props) => {
   const {getUsageData} = API();
@@ -89,12 +90,14 @@ const Home = (props) => {
                  {strings.currentStatsAre}
                </h3>
               </Grid>
+              <UpdateDialog/>
               {ProgressBar(restaurantBarData)}
               {ProgressBar(p5BarData)}
               {ProgressBar(p10insideData)}
               {ProgressBar(p10roofData)}
               {ProgressBar(p10electricData)}
             </Grid>
+
           </Container>
         </ThemeProvider>
     );
