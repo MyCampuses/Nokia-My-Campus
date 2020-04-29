@@ -36,7 +36,7 @@ const Update = () => {
         {isServiceWorkerUpdated && (
             <UpdateApp
                 type={SW_UPDATE}
-                onUpdate={updateServiceWorker()}
+                onUpdate={() => updateServiceWorker()}
             />
         )}
 

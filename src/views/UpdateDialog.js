@@ -6,7 +6,7 @@ const UpdateDialog = (params) => {
         <div className="AppUpdated">
           <h1 className="AppUpdatedHeading">There's a new update,
           press ok to continue.</h1>
-          <button className="AppUpdatedButton" onClick={() => params.onUpdate}>OK</button>
+          <button className="AppUpdatedButton" onClick={params.onUpdate}>OK</button>
         </div>
   );
 };
