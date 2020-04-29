@@ -22,7 +22,7 @@ const useStyle = makeStyles((theme) => ({
     },
     appBar: {
         position: "static",
-        backgroundColor: "#108EE9",
+        backgroundColor: '#124191',
     },
     iconButton: {
         color: "white",

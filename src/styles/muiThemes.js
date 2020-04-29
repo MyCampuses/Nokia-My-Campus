@@ -109,10 +109,10 @@ const MuiThemes = () => {
                     width: '100%',
                 },
                 colorPrimary:{
-                    backgroundColor: blue[400]
+                    backgroundColor: '#124191'
                 },
                 barColorPrimary:{
-                    backgroundColor: blue[900]
+                    backgroundColor: blue[300]
                 }
             },
             MuiTypography:{
