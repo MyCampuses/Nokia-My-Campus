@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
-
+/*
+    This file contains the view for the restaurant view with authorisation check
+ */
 import React from 'react';
 import Authentication from '../hooks/Authentication';
 import NaviBar from "../fragments/TopNavigationBarFragment";

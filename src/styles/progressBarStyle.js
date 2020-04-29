@@ -1,3 +1,6 @@
+/*
+    This file contains the style for progress bars for P5 & P10
+ */
 import {createMuiTheme} from "@material-ui/core";
 import {blue} from "@material-ui/core/colors";
 

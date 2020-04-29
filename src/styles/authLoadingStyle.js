@@ -1,3 +1,8 @@
+/*
+    This file contains the CSS for the authLoading page,
+    centering the circle progress bar
+ */
+
 const AuthLoadingStyles = () => {
 
     const centered = {

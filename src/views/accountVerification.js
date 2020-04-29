@@ -1,3 +1,7 @@
+/*
+    This file contains the view for the home page.
+    Importing some elements from other files
+ */
 /* eslint-disable no-unused-vars */
 import MuiThemes from '../styles/muiThemes'
 import React, {useState, useEffect} from 'react';
@@ -12,7 +16,6 @@ import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import {navigate,useQueryParams} from 'hookrouter';
 import LocalStorageOperations from "../hooks/LocalStorageOperations";
-
 
 const AccountVerification = (props) =>{
 

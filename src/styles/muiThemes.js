@@ -1,9 +1,9 @@
-import {createMuiTheme} from "@material-ui/core";
-import {blue} from "@material-ui/core/colors";
 /*
     Contains the Theme used in all the forms in the application and the function
     to set the background for login,register and forgot password
  */
+import {createMuiTheme} from "@material-ui/core";
+import {blue} from "@material-ui/core/colors";
 
 const MuiThemes = () => {
 
