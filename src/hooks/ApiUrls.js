@@ -1,5 +1,5 @@
 /*
-    This file just contains all the Urls used by the API
+    This file contains all the Urls used by the API
 */
 
 const ApiUrls = () => {

@@ -1,7 +1,10 @@
+/*
+  This file contains the data update with Redux
+  Alpha phase
+ */
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import UpdateDialog from '../views/UpdateDialog';
-
 
 // Update app via redux
 const UpdateApp = ({type, onUpdate}) => {

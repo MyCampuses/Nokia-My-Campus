@@ -1,13 +1,13 @@
+/*
+    This class holds the style for the top navigation bar and
+    all the elements in the top bar are here, including menu items.
+*/
 import React, {Fragment, useState} from 'react';
 import {AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Logout from "../hooks/Logout";
 import strings from "../localization";
-
-// Class Comment, all the functionality:
-// The style for the top navigation bar
-// All the elements in the top bar are here, including menu items.
 
 //Styles for the Top Navigation Bar
 const useStyle = makeStyles((theme) => ({
@@ -22,7 +22,7 @@ const useStyle = makeStyles((theme) => ({
     },
     appBar: {
         position: "static",
-        backgroundColor: "#108EE9",
+        backgroundColor: '#124191',
     },
     iconButton: {
         color: "white",

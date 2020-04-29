@@ -1,7 +1,12 @@
+/*
+    This file contains the style for progress bars for P5 & P10
+ */
 import {createMuiTheme} from "@material-ui/core";
-import {blue} from "@material-ui/core/colors";
+import Colors from "./appColors";
 
 const ProgressBarStyle = () => {
+
+    const {NokiaBlue, LightBlue} = Colors();
 
     const P5P10ProgressBar = createMuiTheme({
         flexGrow: 1,
@@ -14,10 +19,10 @@ const ProgressBarStyle = () => {
                     width: '100%',
                 },
                 colorPrimary:{
-                    backgroundColor: blue[400]
+                    backgroundColor: NokiaBlue
                 },
                 barColorPrimary:{
-                    backgroundColor: blue[900]
+                    backgroundColor: LightBlue
                 }
             },
             MuiTypography:{
@@ -46,6 +51,7 @@ const ProgressBarStyle = () => {
                     paddingRight: '4px',
                 },
             },
+
         },
     });
 

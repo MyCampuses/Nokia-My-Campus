@@ -1,3 +1,6 @@
+/*
+    This file contains the service worker for the app
+ */
 import Data from './Data';
 
 const {SW_INIT, SW_UPDATE} = Data();
