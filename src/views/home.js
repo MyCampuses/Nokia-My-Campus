@@ -87,7 +87,7 @@ const Home = (props) => {
                   justify="space-between">
               <Grid item xs={12}>
                <h3 className={barTheme.headLine}>
-                 {strings.currentStatsAre}
+                 {strings.currentStatsAre} as
                </h3>
               </Grid>
               {ProgressBar(restaurantBarData)}
