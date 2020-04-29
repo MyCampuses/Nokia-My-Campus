@@ -59,6 +59,7 @@ body{
   position: absolute;
   transform: translate(-50%, -50%);
   background-color: #000000;
+  border-radius: 8px;
 }
 .AppUpdatedHeading {
   color: white;
