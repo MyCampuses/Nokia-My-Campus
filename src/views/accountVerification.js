@@ -38,7 +38,7 @@ const AccountVerification = (props) =>{
         } = queryParams;
 
         setEmail(queryParams.email)
-    });
+    },[queryParams.email]); // eslint-disable-line
 
 
     const handleSubmit = () =>{
