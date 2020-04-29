@@ -1,5 +1,5 @@
 /*
-    This file just contains some functions that might be used in many parts of the app
+    This file contains some functions that are being used in many parts of the app
 */
 
 import {format} from 'date-fns';
