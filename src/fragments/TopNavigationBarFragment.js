@@ -8,7 +8,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Logout from "../hooks/Logout";
 import strings from "../localization";
-import {blue} from "@material-ui/core/colors";
 
 //Styles for the Top Navigation Bar
 const useStyle = makeStyles((theme) => ({
@@ -23,7 +22,7 @@ const useStyle = makeStyles((theme) => ({
     },
     appBar: {
         position: "static",
-        backgroundColor: blue[900],
+        backgroundColor: '#124191',
     },
     iconButton: {
         color: "white",

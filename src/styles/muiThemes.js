@@ -1,9 +1,9 @@
-import {createMuiTheme} from "@material-ui/core";
-import {blue} from "@material-ui/core/colors";
 /*
     Contains the Theme used in all the forms in the application and the function
     to set the background for login,register and forgot password
  */
+import {createMuiTheme} from "@material-ui/core";
+import {blue} from "@material-ui/core/colors";
 
 const MuiThemes = () => {
 
@@ -109,10 +109,10 @@ const MuiThemes = () => {
                     width: '100%',
                 },
                 colorPrimary:{
-                    backgroundColor: blue[400]
+                    backgroundColor: '#124191'
                 },
                 barColorPrimary:{
-                    backgroundColor: blue[900]
+                    backgroundColor: blue[300]
                 }
             },
             MuiTypography:{

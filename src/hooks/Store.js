@@ -1,3 +1,6 @@
+/*
+  This file contains the Redux alpha phase
+ */
 import {createStore} from 'redux';
 import rootReducer from './RootReducer';
 
