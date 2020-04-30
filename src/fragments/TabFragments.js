@@ -373,7 +373,6 @@ const TabFragments = (props) => {
         );
     }
 
-
     return {
         TabFragmentHistory: TabFragmentHistory,
         TabFragmentLive: TabFragmentLive,

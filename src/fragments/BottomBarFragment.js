@@ -10,6 +10,7 @@ import commonStyles from "../styles/commonStyles";
 import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
+import RestaurantHeatMapView from "../views/restaurantHeatMap";
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
@@ -111,11 +112,12 @@ const BottomBarTabFragment = (props) => {
         const handleDateChange = (data) => {
             setDate(data);
         };
-
+//
         return (
             <div style={{paddingBottom:"50px"}}>
                 <TabRestaurantLines value={valueRestaurant} index={0}/>
                 <TabRestaurantChart value={valueRestaurant} index={1} onDateChange={handleDateChange} date={date}/>
+                <RestaurantHeatMapView value={valueRestaurant} index={2}/>
                 <Tabs
                     value={valueRestaurant}
                     onChange={handleChange}
@@ -125,6 +127,7 @@ const BottomBarTabFragment = (props) => {
                 >
                     <Tab id="lines" label={strings.lines}/>
                     <Tab id="graph" label={strings.live+ " "+strings.graph}/>
+                    <Tab id="restaurantHeatMap" label={"Heatmap"}/>
                 </Tabs>
             </div>
         );

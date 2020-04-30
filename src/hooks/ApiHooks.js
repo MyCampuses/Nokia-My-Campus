@@ -53,6 +53,7 @@ const fetchGetUrl = async (url, userKey) => {
 };
 
 const API = () => {
+
     // Handles Login.
     const loginAsync = async (loginData,props) =>{
         return fetchPostUrl(loginUrl, loginData)
@@ -167,7 +168,7 @@ const API = () => {
         chartEstData,
         dataToChartRestaurant,
         confirmAccountAsync,
-        resendEmailAsync
+        resendEmailAsync,
     }
 
 };
