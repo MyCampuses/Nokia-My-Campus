@@ -19,8 +19,7 @@ const ApiUrls = () => {
   const parkingP5Url = apiUrl + 'parking/status/P5';
   const parkingP10Url = apiUrl + 'parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'parking/status/P10TOP';
-
-  const heatMapUrl = apiUrl + 'restaurant/Midpoint/heatmapImage'
+  const heatMapUrl = apiUrl + 'restaurant/Midpoint/heatmapImage';
 
   // Const used with Api fetch, define location and date
   const selectDate = (locUrl, loc, date) => {

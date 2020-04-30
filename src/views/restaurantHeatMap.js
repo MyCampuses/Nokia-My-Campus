@@ -1,7 +1,8 @@
 /*
     This file is the component that renders the Restaurant heat map
  */
-import React from 'react'; //eslint-disable-line
+import React from 'react';
+import HeatMap from "../fragments/HeatMap"; //eslint-disable-line
 
 
 const RestaurantHeatMapView = (props) => {
@@ -12,10 +13,10 @@ const RestaurantHeatMapView = (props) => {
              id={`tabfragmentp5map-${index}`}
              aria-labelledby={`tab-${index}`}
              {...other}>
-
+            <HeatMap/>
 
         </div>
     )
-}
+};
 
 export default RestaurantHeatMapView

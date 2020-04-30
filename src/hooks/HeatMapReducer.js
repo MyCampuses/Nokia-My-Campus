@@ -22,9 +22,8 @@ export default function HeatMapReducer(state = {
         // Done, set loading to false
         // Replace heatmap from the api
         ...state,
-        error: null,
         loading: false,
-        map: action.payload.heatmap,
+        map: action.payload.heatmap
       };
     case FETCH_HEATMAP_FAILURE:
       return {
@@ -33,7 +32,7 @@ export default function HeatMapReducer(state = {
         ...state,
         loading: false,
         error: action.payload.error,
-        map: null,
+        map: null
       };
     default:
       return state;
