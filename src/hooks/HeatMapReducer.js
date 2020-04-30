@@ -3,7 +3,7 @@ import Data from './Data';
 const { FETCH_HEATMAP_BEGIN, FETCH_HEATMAP_SUCCESS, FETCH_HEATMAP_FAILURE } = Data();
 
 export default function HeatMapReducer(state = {
-  heatmap: null,
+  map: null,
   loading: false,
   error: null
 }, action) {
@@ -18,14 +18,13 @@ export default function HeatMapReducer(state = {
       };
 // Serviceworker update
     case FETCH_HEATMAP_SUCCESS:
-
       return {
         // Done, set loading to false
         // Replace heatmap from the api
         ...state,
         error: null,
         loading: false,
-        heatmap: action.payload.heatmap,
+        map: action.payload.heatmap,
       };
     case FETCH_HEATMAP_FAILURE:
       return {
@@ -34,7 +33,7 @@ export default function HeatMapReducer(state = {
         ...state,
         loading: false,
         error: action.payload.error,
-        heatmap: null,
+        map: null,
       };
     default:
       return state;

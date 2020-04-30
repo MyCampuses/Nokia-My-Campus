@@ -1,31 +1,35 @@
-import React, {useEffect} from 'react'
-import { connect } from 'react-redux'
-import { fetchHeatMap } from '../hooks/HeatMapActions';
+import React, {useEffect} from 'react';
+import {connect, useDispatch} from 'react-redux';
+import {fetchHeatMap} from '../hooks/HeatMapActions';
 
+// NOT WORKING
 const HeatMap = (props) => {
-  const { error, loading, heatmap } = props
+  // Define parameters to be sent as params to UpdateDialog component
+  const {error, loading, heatmap} = props
+      const dispatch = useDispatch();
   useEffect(() => {
-    props.dispatch(fetchHeatMap())
-  },[props])
+      dispatch(fetchHeatMap());
+      // Clear timeout so timer works correctly every time
+  });
   if (error) {
     return (
         <div>{error.message}</div>
-    )
-  }
-  if (loading) {
+    );
+    }
+    if (loading) {
+      return (
+          <div>Loading heatmap...</div>
+      );
+    }
     return (
-        <div>Loading heatmap...</div>
-    )
-  }
-  return (
-      <div>
-        <p>This is heatmap {heatmap}</p>
-      </div>
-  )
-}
-const mapStateToProps = (state) => ({
-  heatmap: state.heatmap,
-  loading: state.loading,
-  error: state.error
-})
-export default connect(mapStateToProps)(HeatMap);
+        <div>
+          <p>This is heatmap {heatmap}</p>
+        </div>
+    );
+  };
+  const mapStateToProps = (state) => ({
+    heatmap: state.heatmap,
+    loading: state.heatmap,
+    error: state.heatmap,
+  });
+  export default connect(mapStateToProps)(HeatMap);

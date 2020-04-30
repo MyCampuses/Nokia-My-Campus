@@ -26,10 +26,9 @@ export function fetchHeatMap() {
       headers: {
         authorization: userToken.token,
       },
-    }).then(handleErrors).then(res => {
-      dispatch(fetchHeatMapSuccess(res));
-      console.log(res)
-      return res;
+    }).then(handleErrors).then(json => {
+      dispatch(fetchHeatMapSuccess(json.heatmap));
+      return json.heatmap
     }).catch(error => dispatch(fetchHeatMapFailure(error)));
   };
 
