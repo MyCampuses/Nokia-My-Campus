@@ -112,7 +112,7 @@ const BottomBarTabFragment = (props) => {
         const handleDateChange = (data) => {
             setDate(data);
         };
-
+//
         return (
             <div style={{paddingBottom:"50px"}}>
                 <TabRestaurantLines value={valueRestaurant} index={0}/>
@@ -127,7 +127,7 @@ const BottomBarTabFragment = (props) => {
                 >
                     <Tab id="lines" label={strings.lines}/>
                     <Tab id="graph" label={strings.live+ " "+strings.graph}/>
-                    <Tab id="restaurantHeatMap" label={"HeatMap"}/>
+                    <Tab id="restaurantHeatMap" label={"Heatmap"}/>
                 </Tabs>
             </div>
         );
