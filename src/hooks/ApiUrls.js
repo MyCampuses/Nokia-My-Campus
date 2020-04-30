@@ -10,8 +10,6 @@ const ApiUrls = () => {
   const resendVerificationUrl = 'https://mycampus-server.karage.fi/auth/resend';
   const resetPassUrl = 'https://mycampus-server.karage.fi/auth/reset_password';
   const confirmUrl = 'https://mycampus-server.karage.fi/auth/confirmation';
-  //Restaurants heat map from the API
-  const restaurantHeatMapUrl = 'https://mycampus-server.karage.fi/api/common/restaurant/Midpoint/heatmapImage';
 
   const restaurantUrl = apiUrl +
       'restaurant/Midpoint?select=fill_percent';
@@ -21,6 +19,8 @@ const ApiUrls = () => {
   const parkingP5Url = apiUrl + 'parking/status/P5';
   const parkingP10Url = apiUrl + 'parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'parking/status/P10TOP';
+
+  const heatMapUrl = apiUrl + 'restaurant/Midpoint/heatmapImage'
 
   // Const used with Api fetch, define location and date
   const selectDate = (locUrl, loc, date) => {
@@ -43,7 +43,7 @@ const ApiUrls = () => {
     resendVerificationUrl,
     resetPassUrl,
     confirmUrl,
-    restaurantHeatMapUrl
+    heatMapUrl
   };
 };
 export default ApiUrls;
