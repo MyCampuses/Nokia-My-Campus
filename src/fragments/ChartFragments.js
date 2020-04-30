@@ -17,19 +17,19 @@ import format from 'date-fns/format'
 const useStyle = makeStyles((theme) => ({
     p5Box: {
         width: '100%',
-        height: '50vh',
+        height: '45vh',
         marginTop: '5%',
         display: 'block',
     },
     p10Box: {
         width: '100%',
-        height: '50vh',
+        height: '45vh',
         marginTop: '5%',
         display: 'block',
     },
     RestaurantBox: {
         width: '100%',
-        height: '50vh',
+        height: '45vh',
         marginTop: '5%',
         display: 'block',
     }
