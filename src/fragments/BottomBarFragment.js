@@ -113,7 +113,7 @@ const BottomBarTabFragment = (props) => {
         };
 
         return (
-            <div>
+            <div style={{paddingBottom:"50px"}}>
                 <TabRestaurantLines value={valueRestaurant} index={0}/>
                 <TabRestaurantChart value={valueRestaurant} index={1} onDateChange={handleDateChange} date={date}/>
                 <Tabs

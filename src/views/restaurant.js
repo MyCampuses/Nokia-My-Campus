@@ -16,9 +16,7 @@ const Restaurant = () => {
     const RestaurantPage = () => {
         return (
             <div>
-                <div>
-                    {TopNavigationBar()}
-                </div>
+                {TopNavigationBar()}
                 {RestaurantBottomTab()}
             </div>
         )
