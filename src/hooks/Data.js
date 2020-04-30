@@ -22,6 +22,9 @@ const Data = () => {
     const SW_INIT = 'SW_INIT';
     const SW_UPDATE = 'SW_UPDATE';
     const SW_CONFIRM = 'SW_CONFIRM';
+    const FETCH_HEATMAP_BEGIN = 'FETCH_HEATMAP_BEGIN';
+    const FETCH_HEATMAP_SUCCESS = 'FETCH_HEATMAP_SUCCESS';
+    const FETCH_HEATMAP_FAILURE = 'FETCH_HEATMAP_FAILURE';
 
     return {
         lines,
@@ -30,6 +33,9 @@ const Data = () => {
         SW_INIT,
         SW_UPDATE,
         SW_CONFIRM,
+        FETCH_HEATMAP_SUCCESS,
+        FETCH_HEATMAP_BEGIN,
+        FETCH_HEATMAP_FAILURE
 
     };
 };
