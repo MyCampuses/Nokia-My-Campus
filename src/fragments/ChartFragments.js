@@ -23,7 +23,7 @@ const useStyle = makeStyles((theme) => ({
     },
     p10Box: {
         width: '100%',
-        height: '30vh',
+        height: '50vh',
         marginTop: '5%',
         display: 'block',
     },
