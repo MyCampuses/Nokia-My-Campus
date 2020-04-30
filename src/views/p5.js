@@ -7,7 +7,6 @@ import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import BottomBarTabFragment from "../fragments/BottomBarFragment";
 import ProgressBarStyle from "../styles/progressBarStyle";
-import UpdateDialog from './UpdateDialog';
 
 const P5 = (props) => {
     const {TopNavigationBar} = NaviBar();

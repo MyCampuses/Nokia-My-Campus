@@ -8,7 +8,7 @@ import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
 import GlobalFunctions from './GlobalFunctions';
 
-const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl } = ApiUrls();
+const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl,restaurantHeatMapUrl } = ApiUrls();
 const {convertTime, formattedDate } = GlobalFunctions();
 // Basic Fetch template for post messages
 const fetchPostUrl = async (url,data) => {
@@ -53,6 +53,7 @@ const fetchGetUrl = async (url, userKey) => {
 };
 
 const API = () => {
+
     // Handles Login.
     const loginAsync = async (loginData,props) =>{
         return fetchPostUrl(loginUrl, loginData)
@@ -155,6 +156,17 @@ const API = () => {
         }
     };
 
+    // This function gets the heat map from the api, in order to show it on the restaurant page.
+    const getRestaurantHeatMap = () => {
+        return fetchGetUrl(restaurantHeatMapUrl ,'user').then((json)=>{
+            if (json) {
+                return json
+            } else {
+                throw Error("No Token, getUsageData")
+            }
+        })
+    };
+
     return {
         loginAsync,
         registerAsync,
@@ -167,7 +179,8 @@ const API = () => {
         chartEstData,
         dataToChartRestaurant,
         confirmAccountAsync,
-        resendEmailAsync
+        resendEmailAsync,
+        getRestaurantHeatMap
     }
 
 };
