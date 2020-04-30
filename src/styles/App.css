@@ -157,3 +157,8 @@ body {
 }
 
 
+@media only screen and (orientation: landscape) {
+  html{
+    height: 75vw
+  }
+}
