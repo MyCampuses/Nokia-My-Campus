@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
-import { fetchHeatMap } from './HeatMapActions';
+import { fetchHeatMap } from '../hooks/HeatMapActions';
 
 const HeatMap = (props) => {
   const { error, loading, heatmap } = props
   useEffect(() => {
     props.dispatch(fetchHeatMap())
-  },[])
+  },[props])
   if (error) {
     return (
         <div>{error.message}</div>
@@ -23,9 +23,9 @@ const HeatMap = (props) => {
       </div>
   )
 }
-const stateToProps = state => ({
-  heatmap: state.heatmap.map,
-  loading: state.heatmap.loading,
-  error: state.heatmap.error
+const mapStateToProps = (state) => ({
+  heatmap: state.heatmap,
+  loading: state.loading,
+  error: state.error
 })
-export default connect(stateToProps)(HeatMap)
+export default connect(mapStateToProps)(HeatMap);

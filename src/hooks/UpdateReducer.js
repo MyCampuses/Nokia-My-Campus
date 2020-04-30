@@ -6,8 +6,8 @@ import Data from './Data';
 const {SW_INIT, SW_UPDATE} = Data();
 
 // Switch cases for redux store state change
-function updateReducer(
-    state: { serviceWorkerInitialized: false, serviceWorkerUpdated: false, serviceWorkerRegistration: null, } = {}, action) {
+export default function updateReducer(
+    state = { serviceWorkerInitialized: false, serviceWorkerUpdated: false, serviceWorkerRegistration: null}, action) {
   switch (action.type) {
       // Serviceworker initialization
     case SW_INIT:
@@ -27,8 +27,6 @@ function updateReducer(
       return state;
   }
 }
-
-export default updateReducer;
 
 
 

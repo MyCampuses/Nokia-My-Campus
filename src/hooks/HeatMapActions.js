@@ -1,32 +1,36 @@
 import ApiUrls from '../hooks/ApiUrls';
-import API from './ApiHooks';
 import Data from './Data';
+import LocalStorageOperations from './LocalStorageOperations';
 
 export function fetchHeatMap() {
   const {FETCH_HEATMAP_BEGIN, FETCH_HEATMAP_SUCCESS, FETCH_HEATMAP_FAILURE} = Data();
+  const {read} = LocalStorageOperations()
 
   const fetchHeatMapBegin = () => ({
     type: FETCH_HEATMAP_BEGIN,
   });
-  const fetchHeatMapSuccess = (heatmap) => ({
+  const fetchHeatMapSuccess = heatmap => ({
     type: FETCH_HEATMAP_SUCCESS,
     payload: {heatmap},
   });
-  const fetchHeatMapFailure = (error) => ({
+  const fetchHeatMapFailure = error => ({
     type: FETCH_HEATMAP_FAILURE,
     payload: {error},
   });
   const {heatMapUrl} = ApiUrls();
-  const {fetchGetUrl} = API();
   return dispatch => {
+    const userToken = read('user');
     dispatch(fetchHeatMapBegin());
-    return fetchGetUrl(heatMapUrl).
-        then(handleErrors).
-        then(res => {
-          dispatch(fetchHeatMapSuccess(res.heatmap));
-          return res.heatmap;
-        }).
-        catch(error => dispatch(fetchHeatMapFailure(error)));
+    return fetch(heatMapUrl, {
+      method: 'GET',
+      headers: {
+        authorization: userToken.token,
+      },
+    }).then(handleErrors).then(res => {
+      dispatch(fetchHeatMapSuccess(res));
+      console.log(res)
+      return res;
+    }).catch(error => dispatch(fetchHeatMapFailure(error)));
   };
 
   function handleErrors(res) {
