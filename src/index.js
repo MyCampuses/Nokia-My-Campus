@@ -9,11 +9,12 @@ import {CssBaseline} from '@material-ui/core';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import Data from './hooks/Data'
-import rootReducer from './hooks/RootReducer';
 import {applyMiddleware, createStore} from 'redux';
+import RootReducer from './hooks/RootReducer';
 import thunk from 'redux-thunk';
 const {SW_INIT, SW_UPDATE} = Data();
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(RootReducer,
+    applyMiddleware(thunk));
 
 ReactDOM.render(
     // Provider makes redux store available to any nested component

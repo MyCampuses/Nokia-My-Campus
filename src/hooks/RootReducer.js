@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import heatMapReducer from './HeatMapReducer'
-import updateReducer from './updateReducer'
+import HeatMapReducer from './HeatMapReducer'
+import UpdateReducer from './UpdateReducer'
 
 // combines update and heatmap reducers
-const rootReducer = combineReducers({ heatMapReducer, updateReducer})
-export default rootReducer;
+export default combineReducers({ HeatMapReducer, UpdateReducer})

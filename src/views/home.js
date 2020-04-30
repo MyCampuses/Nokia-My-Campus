@@ -15,7 +15,7 @@ import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
 import blue from '@material-ui/core/colors/blue';
-import UpdateDialog from './UpdateDialog';
+import HeatMap from '../fragments/HeatMap';
 
 const Home = (props) => {
   const {getUsageData} = API();

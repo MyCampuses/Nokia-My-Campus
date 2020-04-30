@@ -1,30 +1,32 @@
 import Data from './Data';
 
-const {FETCH_HEATMAP_BEGIN, FETCH_HEATMAP_SUCCESS, FETCH_HEATMAP_FAILURE} = Data();
+const { FETCH_HEATMAP_BEGIN, FETCH_HEATMAP_SUCCESS, FETCH_HEATMAP_FAILURE } = Data();
 
-function heatMapReducer(state: {heatmap: null, loading: false, error: null} = {}, action) {
+export default function HeatMapReducer(state = {
+  map: null,
+  loading: false,
+  error: null
+}, action) {
   switch (action.type) {
-    case
-    FETCH_HEATMAP_BEGIN:
+    case FETCH_HEATMAP_BEGIN:
       return {
         // Mark the state as "loading"
         // Reset errors
         ...state,
         loading: true,
-        error: null,
+        error: null
       };
 // Serviceworker update
-    case
-    FETCH_HEATMAP_SUCCESS:
+    case FETCH_HEATMAP_SUCCESS:
       return {
         // Done, set loading to false
         // Replace heatmap from the api
         ...state,
+        error: null,
         loading: false,
         map: action.payload.heatmap,
       };
-    case
-    FETCH_HEATMAP_FAILURE:
+    case FETCH_HEATMAP_FAILURE:
       return {
         // Fetch request failed, save error. Heatmap is set to null since
         // it does not exist
@@ -37,5 +39,3 @@ function heatMapReducer(state: {heatmap: null, loading: false, error: null} = {}
       return state;
   }
 }
-
-export default heatMapReducer;
