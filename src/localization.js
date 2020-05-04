@@ -212,11 +212,14 @@ let strings = new LocalizedStrings({
         topBarMenuItemP10: "P10",
         topBarMenuItemInfo: "Info",
         topBarMenuItemLogout: "Logga ut",
-        infoPageHeading: "MyCampus är en portal som ger åtkomst till applikationen skapad av anställda på Nokia,\n" +
-            "    Quja start ups och andra partners i ekosystemet. Huvud möjliggöraren är Nokia Innovation Platform (NIP).\n" +
-            "    För nya idéer och frågor kontakta: mikael.lindblad@nokia.com",
-        infoPageP1: "Värmekamerasensorer täcker restaurangens centrum och appen visar aktuellt beläggning och ger historiska data",
-        infoPageP2: "Biltal tillhandahålls av  by time-of-flight sensorer och värmekameror på bottennivåer i parkering P5 och olika våningsnivåer i parkering P10",
+        infoPageHeading: "MyCampus är en applikation för Nokia anställda som visar specifik data från Esbo Nokia Kampus.\n" +
+            "    Start up nämned Levitezer i samarbete med Nokia har skapat MyCampus.\n" +
+            "    Studerande från Metropolia University of Applied Sciences har varit med i skapandet av mobil applikationen",
+        infoPageP1: "Värmekamerasensorer täcker centern av anställdas restaurang. I applikationen finns det utnyttjandegrad, "+
+                "kötidslängd och historisk data för användning för restaurangen är tillgängliga.",
+        infoPageP2: "Vid parkering P5 och P10 upptäcker flera olika sensorer bilar som kör in och ut. Detta möjliggör applikation\n" +
+            "för att visa fyllningshastighet för parkering och även visa om det finns \n " +
+            "tillgängliga laddningsstationer för e-bilar på taket av P10. För nya idéer kontakta: mikael.lindblad@nokia.com\",",
         liveUtilization: "Live Utilization",
         insideLevelsP5: "Inre nivå av P5",
         insideLevels: "Inre nivåer",
