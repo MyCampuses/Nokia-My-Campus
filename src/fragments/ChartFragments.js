@@ -13,7 +13,6 @@ import {scaleTime} from 'd3-scale';
 import {utcHour} from 'd3-time';
 import format from 'date-fns/format'
 
-
 const useStyle = makeStyles((theme) => ({
     p5Box: {
         width: '100%',
@@ -199,7 +198,6 @@ const ChartFragment = () => {
 
 // Chart for Restaurant History
         /*eslint-disable */
-
 
         return {
             Chart: Chart,
