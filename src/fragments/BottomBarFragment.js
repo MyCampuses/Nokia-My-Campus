@@ -5,7 +5,7 @@
 import Tab from "@material-ui/core/Tab";
 import strings from "../localization";
 import Tabs from "@material-ui/core/Tabs";
-import React, {useMemo, useState} from "react";
+import React, {useMemo, useState, Fragment} from "react";
 import commonStyles from "../styles/commonStyles";
 import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
@@ -81,6 +81,7 @@ const BottomBarTabFragment = (props) => {
         );
 
         return (
+            <Fragment>
             <div>
                 {tabLiveP5}
                 {tabHistoryP5}
@@ -97,6 +98,7 @@ const BottomBarTabFragment = (props) => {
                     <Tab id="p5map" label={strings.map}/>
                 </Tabs>
             </div>
+            </Fragment>
         );
     };
 

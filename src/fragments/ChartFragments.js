@@ -19,18 +19,21 @@ const useStyle = makeStyles((theme) => ({
         height: '45vh',
         marginTop: '5%',
         display: 'block',
+
     },
     p10Box: {
         width: '100%',
         height: '45vh',
         marginTop: '5%',
         display: 'block',
+
     },
     RestaurantBox: {
         width: '100%',
         height: '45vh',
         marginTop: '5%',
         display: 'block',
+
     }
 }));
 // Holds all the fragments for charts

@@ -157,9 +157,10 @@ body {
 }
 
 
-@media only screen and (orientation: landscape) {
+@media only screen and (orientation: landscape) and (max-width: 1000px){
   html{
-    height: 75vw
-  }
+    height: 75vw;
 
+  }
 }
+
