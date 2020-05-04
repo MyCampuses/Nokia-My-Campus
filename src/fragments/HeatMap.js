@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import {fetchHeatMap} from '../hooks/HeatMapActions';
 
 const HeatMap = (props) => {
-    // Define parameters to be sent as params to UpdateDialog component
+    // set props for each of the heatmap parts
     const {error, loading, heatmap} = props;
 
+    //Fetches data and adds timer for periodic heatmap update, 30 second interval.
     useEffect(() => {
         props.dispatch(fetchHeatMap());
         let interval = setInterval(function() {props.dispatch(fetchHeatMap())}
@@ -15,6 +16,7 @@ const HeatMap = (props) => {
             clearInterval(interval);
         }
     }, []); // eslint-disable-line
+
     if (error) {
         return (
             <div>{error.message}</div>
@@ -37,8 +39,8 @@ const HeatMap = (props) => {
             </div>
         );
     }
-
 };
+
 const mapStateToProps = (state) => (
     {
     heatmap: state.HeatMapReducer.map,
