@@ -94,11 +94,13 @@ const ChartFragment = () => {
                 }
             };
 
+            //Sort function for time.
             const sortCompareFunction = (a, b) => {
                 return (new Date('1970/01/01 ' + a.x) - new Date('1970/01/01 ' + b.x));
 
             };
 
+            //Looks at array and adds missing data points for certain hour marks.
             const fixTimes = (array) => {
                 let returnArray = [];
                 let tempArray = [];
@@ -124,11 +126,12 @@ const ChartFragment = () => {
                 return returnArray;
             };
 
-            //TODO: add type checks
+            //Return an average of two values
             const getAverage = (x1, x2) => {
                 return (x1 + x2) / 2;
             };
 
+            //Returns a data point for possible missing hour mark
             const checkIfMissingTime = (index, lastIndex, prevElement, element) => {
                 if (index === 1 && prevElement.x > "06:00") {
                     return {x: "06:00", y: prevElement.y, pv: 100};
@@ -152,6 +155,7 @@ const ChartFragment = () => {
                 } else return -1;
             };
 
+            //Returns a data point for possible missing hour mark. Intended for restaurant data.
             const checkIfMissingTimeRestaurant = (index, lastIndex, prevElement, element) => {
                 if (element.x < "08:30" && index === 1 && prevElement.x > "08:00") {
                     return {x: "08:00", y: element.y, pv: 100};
@@ -170,8 +174,6 @@ const ChartFragment = () => {
             };
 
             //Parses retrieved data to only points between 06:00 and 18:00, saves highest utilization point from those data points as well
-            //Possible TODO: limit how many times the useEffect runs if no changes to chartdata has occurred
-            //TODO: if checking time sometimes outside of 06:00 - 18:00 the chart pages are empty
             useEffect(() => {
                 if (chartData !== undefined) {
                     let tempChartData = chartData.filter(filterTime);
@@ -201,7 +203,6 @@ const ChartFragment = () => {
 
 // Chart for Restaurant History
         /*eslint-disable */
-
         return {
             Chart: Chart,
         };

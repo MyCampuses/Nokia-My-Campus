@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {fetchHeatMap} from '../hooks/HeatMapActions';
 
-// NOT WORKING
 const HeatMap = (props) => {
     // Define parameters to be sent as params to UpdateDialog component
     const {error, loading, heatmap} = props;
@@ -13,10 +12,8 @@ const HeatMap = (props) => {
         , 30000);
 
         return function cleanUpInterval() {
-            console.log("hi");
             clearInterval(interval);
         }
-        // Clear timeout so timer works correctly every time
     }, []); // eslint-disable-line
     if (error) {
         return (

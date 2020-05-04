@@ -34,7 +34,6 @@ export function fetchHeatMap() {
                 authorization: userToken.token
             }
         }).then(json => {
-            console.log(json);
             handleErrors(json);
             return json.blob();
         }).then(res => {
