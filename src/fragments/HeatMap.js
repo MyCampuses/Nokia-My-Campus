@@ -10,7 +10,7 @@ const HeatMap = (props) => {
     useEffect(() => {
         props.dispatch(fetchHeatMap());
         // Clear timeout so timer works correctly every time
-    }, []);
+    }, []); // eslint-disable-line
     if (error) {
         return (
             <div>{error.message}</div>
@@ -24,7 +24,12 @@ const HeatMap = (props) => {
     else {
         return (
             <div>
-                <img src={heatmap} alt="Restaurant Heatmap"/>
+                <img src={heatmap} alt="Restaurant Heatmap"
+                     style={{
+                         alignSelf: "center",
+                         width: "100%",
+                         height: "100%"
+                     }}/>
             </div>
         );
     }
