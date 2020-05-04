@@ -4,7 +4,7 @@ import LocalStorageOperations from './LocalStorageOperations';
 
 export function fetchHeatMap() {
     const {FETCH_HEATMAP_BEGIN, FETCH_HEATMAP_SUCCESS, FETCH_HEATMAP_FAILURE} = Data();
-    const {read} = LocalStorageOperations()
+    const {read} = LocalStorageOperations();
 
     const fetchHeatMapBegin = () => ({
         type: FETCH_HEATMAP_BEGIN,
@@ -34,6 +34,7 @@ export function fetchHeatMap() {
                 authorization: userToken.token
             }
         }).then(json => {
+            console.log(json);
             handleErrors(json);
             return json.blob();
         }).then(res => {

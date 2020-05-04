@@ -9,6 +9,13 @@ const HeatMap = (props) => {
 
     useEffect(() => {
         props.dispatch(fetchHeatMap());
+        let interval = setInterval(function() {props.dispatch(fetchHeatMap())}
+        , 30000);
+
+        return function cleanUpInterval() {
+            console.log("hi");
+            clearInterval(interval);
+        }
         // Clear timeout so timer works correctly every time
     }, []); // eslint-disable-line
     if (error) {
