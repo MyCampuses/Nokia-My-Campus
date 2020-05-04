@@ -8,11 +8,11 @@ const {SW_INIT, SW_UPDATE} = Data();
 const Update = () => {
   // Defining constants for redux depending on serviceworker state
   const isServiceWorkerInitialized = useSelector(
-      state => state.serviceWorkerInitialized);
+      state => state.UpdateReducer.serviceWorkerInitialized);
   const isServiceWorkerUpdated = useSelector(
-      state => state.serviceWorkerUpdated);
+      state => state.UpdateReducer.serviceWorkerUpdated);
   const serviceWorkerRegistration = useSelector(
-      state => state.serviceWorkerRegistration);
+      state => state.UpdateReducer.serviceWorkerRegistration);
   const updateServiceWorker = () => {
     const registrationWaiting = serviceWorkerRegistration.waiting;
     // If new update is waiting, reload current window with the new content
