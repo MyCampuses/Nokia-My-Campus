@@ -1,38 +1,22 @@
+/*
+    This is the Main app itself.
+    The routes are nested here.
+*/
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {useRoutes} from 'hookrouter';
+import './styles/App.css';
+import routes from './hooks/Routes';
+import Update from './Update';
 
-function App() {
+const App = () => {
+  const routeResult = useRoutes(routes);
+  // Update component is used with App-div to enable serviceworker automatic updates
+  // routeResult handles the navigation using hookrouter, check Routes.js for editing
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <h1>
-          Testing Dev
-        </h1>
-        <h1>
-          Another Test
-        </h1>
-        <h1>
-          Pipe Test
-        </h1>
-        <h1>
-          PWA App Test
-        </h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <Update/>
+        {routeResult}
+      </div>
   );
-}
-
+};
 export default App;

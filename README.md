@@ -1,4 +1,27 @@
+# Nokia MyCampus Progressive Web Application
+
+## What is it?
+This is a Mobile Solution course project to re do Nokias old MyCampus web application that displays usage data from different parking carages and a restaurant and make the old web application more modern and mobile friendly. We decided to make the application a progressive web application so it's platform agnostic (works well on any device and platform but still mobile first design)
+
+## Tools Used.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Other Tools:
+- Material UI
+- Postman (API testing)
+- Travis CI, Lightouse CI, Netlify (CI/CD Pipeline)
+- WebStorm IDE
+- Chrome DevTools 
+- Languages: Javascript (React), Css, Html
+- Scrum
+
+## Pwa Audits as of 27.04.2020
+
+![PWA Audit](https://i.imgur.com/IQNnpr3.png)
+![PWA Audit](https://i.imgur.com/ZIdB8AW.png)
+
+## Issues
+There is an issue with Lighthouse CI and it doesn't work in conjunction with Travis CI. This is most likely caused by the routing library hookrouter. It's happening because it's trying to audit while the routing is trying to route the app to a different view. PWA Audits can be still done manually on the deployed version by pressing F12, going to Audits and pressing Generate Report
 
 ## Available Scripts
 
@@ -37,32 +60,4 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
