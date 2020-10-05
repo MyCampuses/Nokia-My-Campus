@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "./static/css/main.17307585.chunk.css",
+    "main.js": "./static/js/main.e65a5f8a.chunk.js",
+    "main.js.map": "./static/js/main.e65a5f8a.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.423e33cc.js",
+    "runtime-main.js.map": "./static/js/runtime-main.423e33cc.js.map",
+    "static/js/2.2224df1d.chunk.js": "./static/js/2.2224df1d.chunk.js",
+    "static/js/2.2224df1d.chunk.js.map": "./static/js/2.2224df1d.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.e73b1498515d002f37d0f484b446dff5.js": "./precache-manifest.e73b1498515d002f37d0f484b446dff5.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.17307585.chunk.css.map": "./static/css/main.17307585.chunk.css.map",
+    "static/js/2.2224df1d.chunk.js.LICENSE.txt": "./static/js/2.2224df1d.chunk.js.LICENSE.txt",
+    "static/media/campus_map_P10.webp": "./static/media/campus_map_P10.4a2c0449.webp",
+    "static/media/campus_map_P5.webp": "./static/media/campus_map_P5.dc26fde9.webp",
+    "static/media/App.css": "./static/media/loginBackground.019333e4.png",
+    "static/media/logo_mycampus.webp": "./static/media/logo_mycampus.e8cf586f.webp"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.423e33cc.js",
+    "static/js/2.2224df1d.chunk.js",
+    "static/css/main.17307585.chunk.css",
+    "static/js/main.e65a5f8a.chunk.js"
+  ]
+}

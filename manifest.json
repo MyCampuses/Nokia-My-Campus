@@ -1,0 +1,27 @@
+{
+  "short_name": "Nokia MyCampus",
+  "name": "Nokia MyCampus",
+  "icons": [
+    {
+      "src": "mycampusicon.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "mycampus192x192white.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "mycampus512x512white.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "orientation": "portrait"
+}
