@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "./static/css/main.be6fad5d.chunk.css",
-    "main.js": "./static/js/main.d495c16a.chunk.js",
-    "main.js.map": "./static/js/main.d495c16a.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.423e33cc.js",
-    "runtime-main.js.map": "./static/js/runtime-main.423e33cc.js.map",
-    "static/js/2.0c008f9e.chunk.js": "./static/js/2.0c008f9e.chunk.js",
-    "static/js/2.0c008f9e.chunk.js.map": "./static/js/2.0c008f9e.chunk.js.map",
-    "index.html": "./index.html",
-    "precache-manifest.cf2f30a8f7be7a2e1e7abd4772106d38.js": "./precache-manifest.cf2f30a8f7be7a2e1e7abd4772106d38.js",
-    "service-worker.js": "./service-worker.js",
-    "static/css/main.be6fad5d.chunk.css.map": "./static/css/main.be6fad5d.chunk.css.map",
-    "static/js/2.0c008f9e.chunk.js.LICENSE.txt": "./static/js/2.0c008f9e.chunk.js.LICENSE.txt",
-    "static/media/campus_map_P10.webp": "./static/media/campus_map_P10.4a2c0449.webp",
-    "static/media/campus_map_P5.webp": "./static/media/campus_map_P5.dc26fde9.webp",
-    "static/media/App.css": "./static/media/loginBackground.019333e4.png",
-    "static/media/logo_mycampus.webp": "./static/media/logo_mycampus.e8cf586f.webp"
+    "main.css": "/Nokia-My-Campus/static/css/main.1087c0aa.chunk.css",
+    "main.js": "/Nokia-My-Campus/static/js/main.8f49b809.chunk.js",
+    "main.js.map": "/Nokia-My-Campus/static/js/main.8f49b809.chunk.js.map",
+    "runtime-main.js": "/Nokia-My-Campus/static/js/runtime-main.d6b26c2c.js",
+    "runtime-main.js.map": "/Nokia-My-Campus/static/js/runtime-main.d6b26c2c.js.map",
+    "static/js/2.647e1a09.chunk.js": "/Nokia-My-Campus/static/js/2.647e1a09.chunk.js",
+    "static/js/2.647e1a09.chunk.js.map": "/Nokia-My-Campus/static/js/2.647e1a09.chunk.js.map",
+    "index.html": "/Nokia-My-Campus/index.html",
+    "precache-manifest.913828ab0bbf82154c1775495dcb9093.js": "/Nokia-My-Campus/precache-manifest.913828ab0bbf82154c1775495dcb9093.js",
+    "service-worker.js": "/Nokia-My-Campus/service-worker.js",
+    "static/css/main.1087c0aa.chunk.css.map": "/Nokia-My-Campus/static/css/main.1087c0aa.chunk.css.map",
+    "static/js/2.647e1a09.chunk.js.LICENSE.txt": "/Nokia-My-Campus/static/js/2.647e1a09.chunk.js.LICENSE.txt",
+    "static/media/campus_map_P10.webp": "/Nokia-My-Campus/static/media/campus_map_P10.4a2c0449.webp",
+    "static/media/campus_map_P5.webp": "/Nokia-My-Campus/static/media/campus_map_P5.dc26fde9.webp",
+    "static/media/App.css": "/Nokia-My-Campus/static/media/loginBackground.019333e4.png",
+    "static/media/logo_mycampus.webp": "/Nokia-My-Campus/static/media/logo_mycampus.e8cf586f.webp"
   },
   "entrypoints": [
-    "static/js/runtime-main.423e33cc.js",
-    "static/js/2.0c008f9e.chunk.js",
-    "static/css/main.be6fad5d.chunk.css",
-    "static/js/main.d495c16a.chunk.js"
+    "static/js/runtime-main.d6b26c2c.js",
+    "static/js/2.647e1a09.chunk.js",
+    "static/css/main.1087c0aa.chunk.css",
+    "static/js/main.8f49b809.chunk.js"
   ]
 }
