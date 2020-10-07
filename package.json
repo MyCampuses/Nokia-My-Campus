@@ -1,6 +1,6 @@
 {
   "name": "nokiamycampus",
-  "homepage": ".",
+  "homepage": "https://atholos.github.io/Nokia-My-Campus/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,7 @@
     "d3-scale": "^3.2.1",
     "d3-time": "latest",
     "date-fns": "^2.11.1",
+    "gh-pages": "^3.1.0",
     "hookrouter": "^1.2.3",
     "package.json": "^2.0.1",
     "react": "^16.13.1",
@@ -35,7 +36,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d ."
   },
   "eslintConfig": {
     "extends": "react-app"
