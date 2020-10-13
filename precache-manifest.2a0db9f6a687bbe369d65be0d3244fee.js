@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9f07c446e6c110a7bfe049c722618182",
+    "revision": "5699200bd27f4b3549124f7e0c7da0c2",
     "url": "/Nokia-My-Campus/index.html"
   },
   {
-    "revision": "c17bc04a271380b08871",
-    "url": "/Nokia-My-Campus/static/css/main.1087c0aa.chunk.css"
+    "revision": "18f99754f2fd44fd1919",
+    "url": "/Nokia-My-Campus/static/css/main.3bc884cb.chunk.css"
   },
   {
-    "revision": "c1117ccbd9f8f4cc02d6",
-    "url": "/Nokia-My-Campus/static/js/2.647e1a09.chunk.js"
+    "revision": "ec7e625e45d15da839b7",
+    "url": "/Nokia-My-Campus/static/js/2.8be104a9.chunk.js"
   },
   {
     "revision": "1dbbf49ed49c0f8322d38f5475b4e94e",
-    "url": "/Nokia-My-Campus/static/js/2.647e1a09.chunk.js.LICENSE.txt"
+    "url": "/Nokia-My-Campus/static/js/2.8be104a9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c17bc04a271380b08871",
-    "url": "/Nokia-My-Campus/static/js/main.8f49b809.chunk.js"
+    "revision": "18f99754f2fd44fd1919",
+    "url": "/Nokia-My-Campus/static/js/main.4cdad6fa.chunk.js"
   },
   {
     "revision": "bffb2224039540f6ddb6",
