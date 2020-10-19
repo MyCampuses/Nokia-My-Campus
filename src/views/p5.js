@@ -14,7 +14,6 @@ const P5 = (props) => {
     const {P5BottomTab} = BottomBarTabFragment();
     const {P5P10ProgressBar} = ProgressBarStyle()
 
-
     const P5Page = () => {
         return (
             <ThemeProvider theme={P5P10ProgressBar}>
