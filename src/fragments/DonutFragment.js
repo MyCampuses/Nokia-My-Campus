@@ -38,9 +38,6 @@ const DonutFragment = () => {
         const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
         const {formattedFullDate} = GlobalFunctions();
 
-        // Convert data to be used in chart
-        // Check recharts.org for documentation
-
         //this renders a pie chart from the values in yKey
         const renderPie = (data, value) => (
             // Responsivecontainer for flexible chart size
