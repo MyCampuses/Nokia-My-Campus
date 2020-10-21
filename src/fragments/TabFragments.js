@@ -3,7 +3,7 @@
     Each components have a bit more explanation what they are.
 */
 
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import ChartFragment from "./ChartFragments";
 import DonutFragment from "./DonutFragment";
@@ -19,6 +19,7 @@ import Data from "../hooks/Data";
 import Typography from "@material-ui/core/Typography";
 import blue from '@material-ui/core/colors/blue';
 import {ThemeProvider} from '@material-ui/core';
+import Carousel from "react-material-ui-carousel";
 
 const {parkingP5Url} = ApiUrls();
 
@@ -348,6 +349,7 @@ const TabFragments = (props) => {
         };
 
         return (
+
             <div role="tabfragment"
                  hidden={value !== index}
                  id={`tabfragment-${index}`}

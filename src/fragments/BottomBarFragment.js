@@ -11,11 +11,13 @@ import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
 import RestaurantHeatMapView from "../views/restaurantHeatMap";
+import Carousel from "react-material-ui-carousel";
 
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
-    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5, TabRestaurantLines, TabRestaurantChart, TabRestaurantDonut} = TabFragments();
+    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5,
+        TabRestaurantLines, TabRestaurantChart, TabRestaurantDonut, TabCarousel} = TabFragments();
 
     //P10 bottom tab
     const P10BottomTab = () => {
@@ -107,33 +109,20 @@ const BottomBarTabFragment = (props) => {
     const RestaurantBottomTab = () => {
         const [valueRestaurant, setValueRestaurant] = useState(0);
         const [date, setDate] = useState(new Date());
-
-        const handleChange = (event, newValue) => {
-            setValueRestaurant(newValue);
-        };
-
         const handleDateChange = (data) => {
             setDate(data);
         };
 //
         return (
             <div style={{paddingBottom:"50px"}}>
+                <Fragment>
+                    <Carousel>
                 <TabRestaurantLines value={valueRestaurant} index={0}/>
-                <TabRestaurantChart value={valueRestaurant} index={1} onDateChange={handleDateChange} date={date}/>
-                <RestaurantHeatMapView value={valueRestaurant} index={2}/>
-                <TabRestaurantDonut value={valueRestaurant} index={3} onDateChange={handleDateChange} date={date}/>
-                <Tabs
-                    value={valueRestaurant}
-                    onChange={handleChange}
-                    className={commonClasses.bottomTabs}
-                    variant="fullWidth"
-                    indicatorColor="primary"
-                >
-                    <Tab id="lines" label={strings.lines}/>
-                    <Tab id="graph" label={strings.live+ " "+strings.graph}/>
-                    <Tab id="restaurantHeatMap" label={"Heatmap"}/>
-                    <Tab id="donut" label={strings.donut+ " "+strings.graph}/>
-                </Tabs>
+                <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
+                <RestaurantHeatMapView value={valueRestaurant} index={0}/>
+                <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
+                    </Carousel>
+                </Fragment>
             </div>
         );
     };
