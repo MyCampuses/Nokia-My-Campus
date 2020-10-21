@@ -29,7 +29,14 @@ const useStyle = makeStyles((theme) => ({
         marginTop: '5%',
         display: 'block',
 
-    }
+    },
+    DonutContainer:{
+        textAlign: 'center',
+        width: '100%',
+        height: '45vh',
+        marginTop: '5%',
+        display: 'block',
+    },
 }));
 // Holds all the fragments for charts
 const DonutFragment = () => {
@@ -41,13 +48,11 @@ const DonutFragment = () => {
         //this renders a pie chart from the values in yKey
         const renderPie = (data, value) => (
             // Responsivecontainer for flexible chart size
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer id="this right here" width="100%" height="100%">
                 <PieChart minWidth={200} minHeight={200}>
                     <Pie
                         data={data}
                         name="usage"
-                        cx={400}
-                        cy={200}
                         innerRadius={60}
                         outerRadius={80}
                         startAngle={90}
@@ -62,7 +67,8 @@ const DonutFragment = () => {
                         </Label>
                     </Pie>
                 </PieChart>
-            </ResponsiveContainer>);
+            </ResponsiveContainer>
+        );
 
         // Common chart to be used, needs a date and location(path)
         const Donut = (props) => {
@@ -206,7 +212,7 @@ const DonutFragment = () => {
 
             return (
                 <Fragment>
-                    <Container className={classes.p10Box}>
+                    <Container className={classes.DonutContainer}>
                         <p>Current usage</p>
                         {renderPie(dataDonutFormat, yKey)}
                     </Container>

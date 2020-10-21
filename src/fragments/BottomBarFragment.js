@@ -116,7 +116,7 @@ const BottomBarTabFragment = (props) => {
         return (
             <div style={{paddingBottom:"50px"}}>
                 <Fragment>
-                    <Carousel>
+                    <Carousel navButtonsAlwaysVisible={true} autoPlay={false}>
                 <TabRestaurantLines value={valueRestaurant} index={0}/>
                 <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
                 <RestaurantHeatMapView value={valueRestaurant} index={0}/>
