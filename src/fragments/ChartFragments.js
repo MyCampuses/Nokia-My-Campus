@@ -36,12 +36,13 @@ const useStyle = makeStyles((theme) => ({
 
     }
 }));
+
+
 // Holds all the fragments for charts
 const ChartFragment = () => {
-        const classes = useStyle();
-        const {getChartData, dataToChart, chartEstData, dataToChartRestaurant} = API();
-        const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
-        const {formattedFullDate} = GlobalFunctions();
+    const {formattedFullDate} = GlobalFunctions();
+    const {getChartData, dataToChart, chartEstData, dataToChartRestaurant} = API();
+    const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
 
         // Convert data to be used in chart
         // Check recharts.org for documentation
@@ -193,7 +194,7 @@ const ChartFragment = () => {
 
             return (
                 <Fragment>
-                    <Container className={classes.p10Box}>
+                    <Container className={useStyle().p10Box}>
                         <p>Utilization Records for {propsDate}</p>
                         {renderChart(dataForRender, max, ticksForRender)}
                     </Container>

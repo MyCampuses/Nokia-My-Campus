@@ -1,6 +1,6 @@
 /*
     This class holds the style for the top navigation bar and
-    all the elements in the top bar are here, including menu items.
+    all the elements in it, including menu items.
 */
 import React, {Fragment, useState} from 'react';
 import {AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
@@ -44,7 +44,6 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const NaviBar = () => {
-
     //Top navigation bar elements & menu bar elements
     const TopNavigationBar = () => {
         const classes = useStyle();

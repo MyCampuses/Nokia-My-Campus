@@ -15,6 +15,7 @@ import RestaurantHeatMapView from "../views/restaurantHeatMap";
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
     const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5, TabRestaurantLines, TabRestaurantChart} = TabFragments();
+    
 
     //P10 bottom tab
     const P10BottomTab = () => {
