@@ -3,9 +3,12 @@ import * as ReactDOM from 'react-dom';
 import Restaurant from '../views/restaurant';
 import NaviBar from "../fragments/TopNavigationBarFragment";
 import BottomBarTabFragment from "../fragments/BottomBarFragment";
+import Home from '../views/home';
 
 
 let container;
+//let user;
+//let usertoken;
 
 beforeEach(() => {
     container = document.createElement('div');
@@ -17,6 +20,11 @@ beforeEach(() => {
     document.body.removeChild(container);
     container = null;
   });
+
+
+test('Login', () => {
+
+});
 
 
 //This test should ALWAYS go through, it's proof that testing works.
@@ -43,5 +51,16 @@ test('Restaurant bottom navigation bar', () => {
     console.log("bottombar exists");
   } else {
     console.log("bottombar does not exist");
+  };
+});
+
+test('Navigation from homepage to all different pages', () => {
+  const wrapper = (<Home />);
+  ReactDOM.render(wrapper, container);
+  const nbtrue = expect.objectContaining(NaviBar);
+  if(nbtrue){
+    console.log('Navibar exists');
+  } else {
+    console.log('there is no navibar');
   };
 });
