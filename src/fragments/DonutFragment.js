@@ -41,7 +41,7 @@ const useStyle = makeStyles((theme) => ({
 // Holds all the fragments for charts
 const DonutFragment = () => {
         const classes = useStyle();
-        const {getChartData, dataToChart, chartEstData, dataToChartRestaurant} = API();
+        const {getChartData, dataToChart, chartEstData, dataToChartRestaurant, menuByDate} = API();
         const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
         const {formattedFullDate} = GlobalFunctions();
 
@@ -72,6 +72,7 @@ const DonutFragment = () => {
 
         // Common chart to be used, needs a date and location(path)
         const Donut = (props) => {
+            console.log(menuByDate());
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
             const [dataForRender, setDataForRender] = useState(undefined);
