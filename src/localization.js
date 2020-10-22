@@ -86,8 +86,8 @@ let strings = new LocalizedStrings({
         toConfirmation: "Account Confirmation",
         toPasswordReset: "To password reset",
         lines: "Lines",
-        currentStatsAre: "Current campus statistics are:"
-
+        currentStatsAre: "Current campus statistics are:",
+        newspage: "Campus News", 
     },
 
     fi:{
@@ -170,7 +170,8 @@ let strings = new LocalizedStrings({
         toConfirmation:"Tilin vahvistus",
         toPasswordReset: "Salasanan palautukseen",
         lines: "Linjasto",
-        currentStatsAre:"Tämän hetken tilastot kampuksella:"
+        currentStatsAre:"Tämän hetken tilastot kampuksella:",
+        newspage: "Campus Uutiset", 
     },
 
     se:{
@@ -253,7 +254,8 @@ let strings = new LocalizedStrings({
         toConfirmation:"Konto Konfirmation",
         toPasswordReset: "Till lösenord återställning",
         lines: "Linjer",
-        currentStatsAre:"Nuvarande statistik på kampus:"
+        currentStatsAre:"Nuvarande statistik på kampus:",
+        newspage: "Campus nyheter", 
     }
 });
 
