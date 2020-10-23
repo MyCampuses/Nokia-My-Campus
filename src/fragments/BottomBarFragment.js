@@ -17,7 +17,7 @@ import Carousel from "react-material-ui-carousel";
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
     const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5,
-        TabRestaurantLines, TabRestaurantChart, TabRestaurantDonut, TabCarousel} = TabFragments();
+        TabRestaurantLines, TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu} = TabFragments();
 
     //P10 bottom tab
     const P10BottomTab = () => {
@@ -122,6 +122,7 @@ const BottomBarTabFragment = (props) => {
                 <RestaurantHeatMapView value={valueRestaurant} index={0}/>
                 <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
                     </Carousel>
+                    <TabRestaurantMenu value={valueRestaurant}/>
                 </Fragment>
             </div>
         );

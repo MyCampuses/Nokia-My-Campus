@@ -7,6 +7,7 @@ import React, {Fragment, useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import ChartFragment from "./ChartFragments";
 import DonutFragment from "./DonutFragment";
+import MenuFragment from "./MenuFragment";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
@@ -26,6 +27,7 @@ const {parkingP5Url} = ApiUrls();
 const TabFragments = (props) => {
     const {Chart} = ChartFragment();
     const {Donut} = DonutFragment();
+    const {Menu} = MenuFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
 
@@ -393,6 +395,21 @@ const TabFragments = (props) => {
         );
     }
 
+    // Renders the restaurant Menu
+    function TabRestaurantMenu(props) {
+        const {children, value, index, ...other} = props;
+        return (
+            <div role="tabfragment"
+                 hidden={value !== index}
+                 id={`tabfragment-${index}`}
+                 aria-labelledby={`tab-${index}`}
+                 inputstyle={{textAlign: 'center'}}
+                 {...other}>
+                <Menu location={"restaurant"}/>
+            </div>
+        );
+    }
+
     return {
         TabFragmentHistory: TabFragmentHistory,
         TabFragmentLive: TabFragmentLive,
@@ -401,6 +418,7 @@ const TabFragments = (props) => {
         TabRestaurantLines: TabRestaurantLines,
         TabRestaurantChart: TabRestaurantChart,
         TabRestaurantDonut: TabRestaurantDonut,
+        TabRestaurantMenu: TabRestaurantMenu,
     };
 
 };

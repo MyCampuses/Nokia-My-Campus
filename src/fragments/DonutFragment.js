@@ -72,7 +72,6 @@ const DonutFragment = () => {
 
         // Common chart to be used, needs a date and location(path)
         const Donut = (props) => {
-            console.log(menuByDate());
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
             const [dataForRender, setDataForRender] = useState(undefined);
@@ -99,7 +98,6 @@ const DonutFragment = () => {
             //Sort function for time.
             const sortCompareFunction = (a, b) => {
                 return (new Date('1970/01/01 ' + a.x) - new Date('1970/01/01 ' + b.x));
-
             };
 
             //Looks at array and adds missing data points for certain hour marks.
@@ -128,17 +126,16 @@ const DonutFragment = () => {
                 return returnArray;
             };
 
-
             //check that the info from the backend is received before trying to create the variable
             //this prevents the app from crashing
             let yKey;
+
             if(dataForRender !== undefined){
                 yKey = dataForRender[dataForRender.length - 1].y;
             }
             else{
                 console.log('hold on');
             }
-
 
             //data from backend put into a format the donut chart can read
             const dataDonutFormat =[
