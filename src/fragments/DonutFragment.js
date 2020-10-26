@@ -80,11 +80,19 @@ const DonutFragment = () => {
 
             useEffect(() => {
                 if (props.location === "restaurant") {
-                    getChartData(dailyRestaurantUrl, '', propsDate).then(json => dataToChartRestaurant(json)).then(json => setChartData(json))
+                    getChartData(dailyRestaurantUrl, '', propsDate)
+                        .then(json => dataToChartRestaurant(json))
+                        .then(json => setChartData(json))
+
                 } else if (props.location === "electric") {
-                    getChartData(dailyParkingUrl, 'P10TOP/', propsDate).then(json => chartEstData(json.samples)).then(json => setChartData(json))
+                    getChartData(dailyParkingUrl, 'P10TOP/', propsDate)
+                        .then(json => chartEstData(json.samples))
+                        .then(json => setChartData(json))
+
                 } else {
-                    getChartData(dailyParkingUrl, props.location, propsDate).then(json => dataToChart(json.samples)).then(json => setChartData(json))
+                    getChartData(dailyParkingUrl, props.location, propsDate)
+                        .then(json => dataToChart(json.samples))
+                        .then(json => setChartData(json))
                 }
             }, [props]); // eslint-disable-line
 
@@ -207,6 +215,7 @@ const DonutFragment = () => {
                     setDataForRender(tempChartData);
                 }
             }, [chartData]); //eslint-disable-line
+            console.log(dataForRender);
 
             return (
                 <Fragment>

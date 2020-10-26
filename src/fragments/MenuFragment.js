@@ -8,6 +8,7 @@ import DonutFragment from "./DonutFragment";
 import format from "date-fns/format";
 import {scaleTime} from "d3-scale";
 import {utcHour} from "d3-time";
+import {ResponsiveContainer} from "recharts";
 
 const useStyle = makeStyles((theme) => ({
     p5Box: {
@@ -41,38 +42,60 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const MenuFragment = () =>{
+    let menuItems ="";
 
     const {menuByDate} = API();
 
     const classes = useStyle();
     let date = new Date();
-    let menuItems = menuByDate(date);
 
     const renderMenu = (item) => (
-        <p>
-        </p>
+        <div>
+            {item}
+        </div>
     );
 
     const Menu = (props) => {
 
-        const [menuData, setMenuData] = useState(undefined);
+        const [tempData, setTempData] = useState(undefined);
         const [dataForRender, setDataForRender] = useState(undefined);
 
         useEffect(() => {
-                menuByDate(date).then(json => setMenuData(json));
+                menuByDate(date)
+                    .then(json => setTempData(json));
         }, [props]);
 
         useEffect(() => {
-            if (menuData !== undefined) {
-                setDataForRender(menuItems);
+            if (tempData !== undefined) {
+                setDataForRender(tempData);
             }
-        }, [menuData]);
+        }, [tempData]);
 
-        return (
+        let tempBG;
+
+        if(dataForRender !== undefined){
+            tempBG = dataForRender;
+        }
+        else{
+            tempBG = {
+                courses:
+                    {
+                        1: { title_fi: "hold on"},
+                        2: { title_fi: "hold on"},
+                        3: { title_fi: "hold on"},
+                    }
+            }
+        }
+
+         return (
             <Fragment>
                 <Container className={classes.menuContainer}>
-                    <p>asd</p>
-                    {renderMenu(menuData)}
+                    <p> Menu for the day</p>
+                    {renderMenu(tempBG.courses[1].title_fi)}
+                    -----------------
+                    {renderMenu(tempBG.courses[2].title_fi)}
+                    -----------------
+                    {renderMenu(tempBG.courses[3].title_fi)}
                 </Container>
             </Fragment>
         );
