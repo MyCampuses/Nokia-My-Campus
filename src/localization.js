@@ -86,6 +86,7 @@ let strings = new LocalizedStrings({
         toConfirmation: "Account Confirmation",
         toPasswordReset: "To password reset",
         lines: "Lines",
+        donut: "pie",
         currentStatsAre: "Current campus statistics are:"
 
     },
@@ -170,6 +171,7 @@ let strings = new LocalizedStrings({
         toConfirmation:"Tilin vahvistus",
         toPasswordReset: "Salasanan palautukseen",
         lines: "Linjasto",
+        donut: "piirakka",
         currentStatsAre:"Tämän hetken tilastot kampuksella:"
     },
 
@@ -253,6 +255,7 @@ let strings = new LocalizedStrings({
         toConfirmation:"Konto Konfirmation",
         toPasswordReset: "Till lösenord återställning",
         lines: "Linjer",
+        donut: "asdf",
         currentStatsAre:"Nuvarande statistik på kampus:"
     }
 });

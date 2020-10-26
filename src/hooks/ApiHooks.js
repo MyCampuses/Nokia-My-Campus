@@ -8,8 +8,8 @@ import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
 import GlobalFunctions from './GlobalFunctions';
 
-const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl } = ApiUrls();
-const {convertTime, formattedDate } = GlobalFunctions();
+const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl, sodexoDailyUrl } = ApiUrls();
+const {convertTime, formattedDate, sodexoDate } = GlobalFunctions();
 // Basic Fetch template for post messages
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
@@ -156,6 +156,14 @@ const API = () => {
         }
     };
 
+    //
+    const menuByDate = (date) =>{
+         const menu = fetch(sodexoDailyUrl(sodexoDate(date)))
+             .then(res => res.json());
+         return menu;
+    };
+
+
     return {
         loginAsync,
         registerAsync,
@@ -169,6 +177,7 @@ const API = () => {
         dataToChartRestaurant,
         confirmAccountAsync,
         resendEmailAsync,
+        menuByDate,
     }
 
 };

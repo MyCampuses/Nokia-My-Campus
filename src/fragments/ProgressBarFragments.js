@@ -63,6 +63,6 @@ const ProgressBarFragments = (props) => {
     return {
         ProgressBar:ProgressBar
     };
-}
+};
 
 export default ProgressBarFragments;

@@ -14,7 +14,7 @@ const MuiThemes = () => {
     // Background image behaviour is buggy atm so using a solid color instead for now
     const setBackgroundBlue = () => {
         let root = document.getElementById('root-body');
-        root.style.backgroundColor="#0d47a1"
+        root.style.backgroundColor="#0d47a1";
         root.style.backgroundSize = "cover";
         root.style.backgroundRepeat = "no-repeat";
     };
@@ -142,6 +142,7 @@ const MuiThemes = () => {
             },
         },
     });
+
 
 
     return{

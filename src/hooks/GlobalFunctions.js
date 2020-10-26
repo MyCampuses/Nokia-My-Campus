@@ -26,12 +26,18 @@ const GlobalFunctions = () => {
   // Returns the current date in chart-friendly format
   const thisDate = format(new Date(), 'dd-MM-yyyy');
 
+  //Returns a date in sodexo compatible format
+  const sodexoDate = (timestamp) =>{
+    return timestamp.toISOString().slice(0,10)
+  };
+
   return {
     onItemClickNavigate,
     convertTime,
     formattedDate,
     formattedFullDate,
     thisDate,
+    sodexoDate,
   };
 };
 export default GlobalFunctions;
