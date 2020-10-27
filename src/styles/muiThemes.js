@@ -27,6 +27,12 @@ const MuiThemes = () => {
             secondary: {
                 main: blue[50],
             },
+            background: {
+                default: "#222222"
+              },
+              text: {
+                primary: "#ffffff"
+              }
         },
         typography: {
             fontSize: 12,
@@ -97,6 +103,12 @@ const MuiThemes = () => {
     // MUI theme for Home, Restaurant, P5 & P10
     const PageTheme = createMuiTheme({
         flexGrow: 1,
+        palette: {
+            background: {
+                default: "#e4f0e2"
+              }
+
+        },
         overrides: {
 
             h3:{

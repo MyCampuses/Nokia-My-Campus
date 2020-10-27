@@ -7,11 +7,11 @@ import "date-fns";
 import NaviBar from "../fragments/TopNavigationBarFragment";
 import Authentication from "../hooks/Authentication";
 import AuthLoading from "./authLoading";
-import { ThemeProvider } from "@material-ui/core";
-import InfoStyles from "../styles/infoStyles";
+import {ThemeProvider} from "@material-ui/core";
 import strings from "../localization";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import Paper from "@material-ui/core/Paper";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -23,11 +23,14 @@ import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Chip from "@material-ui/core/Chip";
+import MuiThemes from '../styles/muiThemes';
+import {CssBaseline} from '@material-ui/core';
 
 // Testing grid list
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
+import { navigate } from "hookrouter";
 
 /*eslint-enable */
 
@@ -65,6 +68,9 @@ const useStyles2 = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
+    margin: 10,
+    maxWidth: 1000,
+    maxHeight: 1000,
   },
   gridList: {
     flexWrap: "nowrap",
@@ -81,46 +87,60 @@ const useStyles2 = makeStyles((theme) => ({
 }));
 
 const News = () => {
+  const {PageTheme} = MuiThemes();
   const { isLoggedIn } = Authentication();
   const { TopNavigationBar } = NaviBar();
-  const { infoStyle } = InfoStyles;
   const classes = useStyles();
 
   const NewsPage = () => {
     return (
-      <div className={infoStyle}>
+      <ThemeProvider Theme = {PageTheme}>
+        <CssBaseline/>
         {TopNavigationBar()}
-        <h3>{strings.newspage}</h3>
+        
         <HighlightItem />
-        <h3>{"Selaa uutisia"}</h3>
+        <Typography variant="h5" color="textSecondary" component="h3" margin="10" >
+              {"Selaa Uutisia"}
+        </Typography>
         <SingleLineGridList />
-      </div>
+      </ThemeProvider>
     );
   };
 
   const HighlightItem = () => {
+    const highlight = {
+      title: "Halloween party",
+      description: "Nokia halloween party this saturday at dream cafe! Come join us for some eerie fun",
+      timestamp: "October 20, 2020",
+      imgUrl: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
+      imgTitle: "Halloween Party",
+      paragraphs: ["This is the world we live in", "Come join us in death", "Hehou hahau"]
+    }
+
     return (
-      <Card className={classes.root}>
-        <CardActionArea onClick={() => {console.log("Hello Darkness my old friend!")}}>
+      <Paper elevation = {0} className={classes.root}>
+        <CardActionArea onClick={() => {
+          console.log(`navigating to highlight article ${highlight.title}`)
+          navigate("/news_article",false, {article: highlight})}}>
         <CardHeader
           className={classes.header}
           avatar={<Chip label="Highlight" color="primary" />}
           titleTypographyProps={{ variant: "h4" }}
-          title="Halloween party"
+          title= {highlight.title}
         />
         <CardMedia
           className={classes.media}
-          image={require("../assets/pexels-wilson-vitorino-3230473.jpg")}
-          title="Halloween"
+          image={highlight.imgUrl}
+          title={highlight.imgTitle}
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            Nokia halloween party this saturday at dream cafe!
+              {highlight.description}
           </Typography>
         </CardContent>
         </CardActionArea>
         <CardActions disableSpacing>
-          <Typography>October 20, 2020</Typography>
+          <Typography>{highlight.timestamp}</Typography>
           <IconButton aria-label="Vote Up" className={classes.thumbsup}>
             <ThumbUpIcon style={{ color: green[500] }} />
           </IconButton>
@@ -128,7 +148,7 @@ const News = () => {
             <ThumbDownIcon style={{ color: red[500] }} />
           </IconButton>
         </CardActions>
-      </Card>
+      </Paper>
     );
   };
 
@@ -140,33 +160,45 @@ const News = () => {
       return <AuthLoading />;
     }
   };
-
   return <AuthNews />;
 };
 
 const SingleLineGridList = () => {
-  const classes = useStyles2();
 
+  const classes = useStyles2();
   const tileData = [
     {
-      img: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
       title: "Halloween party",
-      author: "author",
+      description: "Nokia halloween party this saturday at dream cafe! Come join us for some eerie fun",
+      timestamp: "October 20, 2020",
+      imgUrl: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
+      imgTitle: "Halloween Party",
+      paragraphs: ["This is the world we live in", "Come join us in death", "Hehou hahau"]
+    
     },
     {
-      img: require("../assets/pexels-johannes-plenio-1165982.jpg"),
       title: "Forestroad ride",
-      author: "author2",
+      description: "Nice ride inside a forest! Come join us",
+      timestamp: "October 25, 2020",
+      imgUrl: require("../assets/pexels-johannes-plenio-1165982.jpg"),
+      imgTitle:  "Forestroad ride",
+      paragraphs: ["This is the world we live in", "Come join us in death", "Hehou hahau"]   
     },
     {
-      img: require("../assets/pexels-pixabay-289367.jpg"),
       title: "Dark forest",
-      author: "author3",
+      description: "Inside the dark forest we go! Time for some spooky ghosts to appear.",
+      timestamp: "December 5, 2020",
+      imgUrl: require("../assets/pexels-pixabay-289367.jpg"),
+      imgTitle:  "Dark forest",
+      paragraphs: ["This is the world we live in", "Come join us in death", "Hehou hahau"]    
     },
     {
-      img: require("../assets/pexels-tobias-bjørkli-1693095.jpg"),
       title: "Splendid Auroras",
-      author: "author4",
+      description: "Northern lights in their full glory. Come enjoy the spectacle with good company",
+      timestamp: "December 26, 2020",
+      imgUrl: require("../assets/pexels-tobias-bjørkli-1693095.jpg"),
+      imgTitle: "Splendid Auroras",
+      paragraphs: ["This is the world we live in", "Come join us in death", "Hehou hahau"]   
     },
   ];
 
@@ -174,8 +206,10 @@ const SingleLineGridList = () => {
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
         {tileData.map((tile) => (
-          <GridListTile key={tile.img}  onClick={() => {console.log("Gridtile!")}}>
-            <img src={tile.img} alt={tile.title} />
+          <GridListTile key={tile.imgUrl}  onClick={() => {console.log(`navigating to article ${tile.title}`)
+          navigate("/news_article",false, {article: tile})
+          }}>
+            <img src={tile.imgUrl} alt={tile.title} />
             <GridListTileBar
               title={tile.title}
               classes={{
