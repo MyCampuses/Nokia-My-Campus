@@ -15,6 +15,7 @@ const MuiThemes = () => {
     const setBackgroundBlue = () => {
         let root = document.getElementById('root-body');
         root.style.backgroundColor="#0d47a1";
+
         root.style.backgroundSize = "cover";
         root.style.backgroundRepeat = "no-repeat";
     };

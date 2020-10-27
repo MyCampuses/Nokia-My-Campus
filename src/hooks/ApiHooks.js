@@ -10,6 +10,7 @@ import GlobalFunctions from './GlobalFunctions';
 
 const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl, sodexoDailyUrl } = ApiUrls();
 const {convertTime, formattedDate, sodexoDate } = GlobalFunctions();
+
 // Basic Fetch template for post messages
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
