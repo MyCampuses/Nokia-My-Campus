@@ -4,11 +4,22 @@ import Restaurant from '../views/restaurant';
 import NaviBar from "../fragments/TopNavigationBarFragment";
 import BottomBarTabFragment from "../fragments/BottomBarFragment";
 import Home from '../views/home';
+import Login from '../views/login';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import API from '../hooks/ApiHooks';
 
 
 let container;
-//let user;
-//let usertoken;
+let user;
+let usertoken;
+const {loginAsync} = API();
+
+configure({ adapter: new Adapter() });
+
+
+const email = 'team4.metropolia@nokia.com';
+const pw = '!t4Mycampus2020';
 
 beforeEach(() => {
     container = document.createElement('div');
@@ -22,8 +33,19 @@ beforeEach(() => {
   });
 
 
-test('Login', () => {
-
+test('Login to myCampus', () => {
+  const loginData = {
+    email: email,
+    password: pw,
+  };
+  const login = loginAsync(loginData);
+  if(login){
+    console.log('Login complete');
+  } else {
+    console.log('Login failed');
+  };
+  console.log(login);
+  
 });
 
 
