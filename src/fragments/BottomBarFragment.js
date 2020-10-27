@@ -124,7 +124,7 @@ const BottomBarTabFragment = (props) => {
                 <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
                     </Carousel>
                     </div>
-                    <div style={{height: "30%", position: "absolute", bottom: "0px"}}>
+                    <div style={{height: "33%", position: "absolute", bottom: "0px"}}>
                     <TabRestaurantMenu index={0} value={valueRestaurant}/>
                     </div>
                     </Fragment>

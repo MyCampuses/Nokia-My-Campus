@@ -60,7 +60,7 @@ const DonutFragment = () => {
                         fill="#8884d8"
                     >
                         {
-                            data.map((entry, index) => <Cell fill={entry.color} />)
+                            data.map(entry => <Cell fill={entry.color} />)
                         }
                         <Label width={30} position="center" fontSize={25}>
                             {value + "%"}
