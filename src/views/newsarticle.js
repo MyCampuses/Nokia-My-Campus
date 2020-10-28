@@ -9,25 +9,19 @@ import { ThemeProvider } from "@material-ui/core";
 import InfoStyles from "../styles/infoStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { blue, green, red } from "@material-ui/core/colors";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import Chip from "@material-ui/core/Chip";
 import { useQueryParams } from "hookrouter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 1000,
-    width: "96%",
-    margin: 10,
-    justifyContent: "center",
+    marginTop: 10,
   },
   media: {
     height: 0,
@@ -47,6 +41,13 @@ const useStyles = makeStyles((theme) => ({
   header: {
     fontSize: "large",
   },
+  typography:{
+    textAlign: "left",
+    margin: 10,
+  },
+  cardactions: {
+    justifyContent: "space-between"
+  },
 }));
 
 const NewsArticle = (props) => {
@@ -55,10 +56,12 @@ const NewsArticle = (props) => {
   const [articleData, setArticleData] = useState({
     title: "",
     description: "",
+    highlight: false,
     timestamp: "",
     imgUrl: "",
     imgTitle: "",
-    paragraphs: [],
+    paragraphs: {},
+    paragraphImg: {},
   });
   
   useEffect(() => {
@@ -67,10 +70,12 @@ const NewsArticle = (props) => {
     setArticleData({
       title: article.title,
       description: article.description,
+      highlight: article.highlight,
       timestamp: article.timestamp,
       imgUrl: article.imgUrl,
       imgTitle: article.imgTitle,
       paragraphs: article.paragraphs,
+      paragraphImg: article.paragraphImg,
     });
     
   }, [queryParams]);
@@ -94,34 +99,32 @@ const NewsArticle = (props) => {
     return (
       <ThemeProvider> 
       <Paper elevation = {0} className={classes.root}>
-        <CardHeader
-          className={classes.header}
-          avatar={<Chip label="Highlight" color="primary" />}
-          titleTypographyProps={{ variant: "h4" }}
-          title={articleData.title}
-        />
+        <CardActions disableSpacing className = {classes.cardactions}>
+          <Typography>{articleData.timestamp}</Typography>
+          {articleData.highlight !== false ? <Chip label="Highlight" color="primary" /> : <div/>}
+        </CardActions>
         <CardMedia
           className={classes.media}
           image={articleData.imgUrl}
           title={articleData.imgTitle}
         />
+        <CardHeader
+          className={classes.header}
+          titleTypographyProps={{ variant: "h4" }}
+          title={articleData.title}
+        />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {articleData.description}
-          </Typography>
-          {(articleData.paragraphs || []).map(paragraph => (
-            <Typography key={paragraph} variant="body2" color="textSecondary" component="p">{paragraph}</Typography>
+          {(Object.keys(articleData.paragraphs) || {}).map(paragraph => (
+           <>
+            {articleData.paragraphImg[paragraph] &&
+            <CardMedia
+                className={classes.media}
+                image={articleData.paragraphImg[paragraph]}
+            />}
+            <Typography className = {classes.typography} key={paragraph} variant="body2" color="textSecondary" component="p">{articleData.paragraphs[paragraph]}</Typography>
+            </>
           ))}
         </CardContent>
-        <CardActions disableSpacing>
-          <Typography>{articleData.timestamp}</Typography>
-          <IconButton aria-label="Vote Up" className={classes.thumbsup}>
-            <ThumbUpIcon style={{ color: green[500] }} />
-          </IconButton>
-          <IconButton aria-label="Vote down" className={classes.thumbsdown}>
-            <ThumbDownIcon style={{ color: red[500] }} />
-          </IconButton>
-        </CardActions>
       </Paper>
       </ThemeProvider>
     );
