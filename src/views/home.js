@@ -15,9 +15,10 @@ import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
 import blue from '@material-ui/core/colors/blue';
-import HeatMap from '../fragments/HeatMap';
+import Widgets from '../fragments/WidgetFragment';
 
 const Home = (props) => {
+  const {HomepageWidget} = Widgets();
   const {getUsageData} = API();
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
@@ -90,6 +91,7 @@ const Home = (props) => {
                  {strings.currentStatsAre}
                </h3>
               </Grid>
+              {HomepageWidget()}
               {ProgressBar(restaurantBarData)}
               {ProgressBar(p5BarData)}
               {ProgressBar(p10insideData)}

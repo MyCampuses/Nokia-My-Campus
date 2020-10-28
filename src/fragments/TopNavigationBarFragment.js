@@ -78,13 +78,13 @@ const NaviBar = () => {
                          <section className={classes.rightToolbar}>
 
                             <IconButton className={classes.menu}
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
+                                        aria-controls='menu-appbar'
+                                        aria-haspopup='true'
                                         onClick={handleClick}>
                                 <MenuIcon/>
                             </IconButton>
                                 <Menu
-                                    id="simple-menu"
+                                    id='simple-menu'
                                     anchorEl={anchorEl}
                                     elevation={3}
                                     getContentAnchorEl={null}
