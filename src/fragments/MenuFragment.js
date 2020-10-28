@@ -36,7 +36,6 @@ const useStyle = makeStyles((theme) => ({
         textAlign: 'center',
         width: '100%',
         height: '45vh',
-        marginTop: '5%',
         display: 'block',
     },
 }));
@@ -49,11 +48,11 @@ const MenuFragment = () =>{
     let date = new Date();
 
     const renderMenu = (item) => (
-        <div style={{minWidth:"100%"}}>
+        <div style={{minWidth:"100%", height:"100%"}} id="menuDiv">
             {(Object.keys(item) || []).map(key =>
                 (
                 <div key={key}
-                     style={{backgroundColor:"#124191", color:"white", height:"52px", fontSize:"3vw"}}>
+                     style={{backgroundColor:"#124191", color:"white", height:"30%", width:"100%", fontSize:"4vw"}}>
                     <p>
                         {item[key].title_fi + " "}
                     </p>
@@ -110,7 +109,7 @@ const MenuFragment = () =>{
 
         return (
             <Fragment>
-                <Container className={classes.menuContainer}>
+                <Container className={classes.DonutContainer}>
                     <h3> Menu for the day</h3>
                     {renderMenu(dataForRender.courses)}
                 </Container>

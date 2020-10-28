@@ -5,7 +5,7 @@ import Login from '../views/login';
 import {PieChart, Pie, Cell, Label, ResponsiveContainer, AreaChart} from 'recharts';
 import Carousel from "react-material-ui-carousel";
 import Grid from "@material-ui/core/Grid";
-
+const menu = document.getElementsByTagName('TabRestaurantMenu');
 
 let container;
 
@@ -70,12 +70,21 @@ test('Rendering restaurant', () => {
     const nbtrue = expect.objectContaining(Grid);
     if(nbtrue){
         console.log("lines exists");
+        console.log(menu.value);
     } else {
         console.log("lines does not exist");
     };
 });
 
-test('Rendering login', () => {
-    ReactDOM.render(<Login />, container);
 
-});
+/*
+test('Rendering restaurant', () => {
+    ReactDOM.render(<Restaurant />, container);
+    console.log("Checking if Piechart Exists in restaurant");
+    const nbtrue = expect(menu).toHaveProperty('menuDiv');
+    if(nbtrue){
+        console.log('menu exists');
+    } else {
+        console.log("menu does not exist");
+    };
+});*/
