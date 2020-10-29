@@ -1,36 +1,28 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import {act} from 'react-dom/test-utils';
+import {createMount, createRender, createShallow} from '@material-ui/core/test-utils'
+import Enzyme, {shallow, mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Restaurant from "../views/restaurant";
 
-let container;
+Enzyme.configure({ adapter: new Adapter() });
 
-beforeEach( () =>{
-    container = document.createElement('div');
-    document.body.appendChild(container);
-});
+describe('Restaurant', () =>{
+    let shallow;
+    let mount;
 
-afterEach( () =>{
-   ReactDOM.unmountComponentAtNode(container);
-   document.body.removeChild(container);
-   container = null;
-});
-
-test('render div', () =>{
-    act( () =>{
-        ReactDOM.render(<h1>asdfasdaf</h1>, container)
+    beforeEach( () =>{
+        shallow = createShallow();
+        mount = createMount();
     });
-});
 
-test('render restaurant', () =>{
-    act( () =>{
-        ReactDOM.render(<Restaurant/>, container)
+    it('renders', () =>{
+        shallow(<Restaurant/>);
     });
-});
-
-test('Render carousel', () =>{
-   act( () =>{
-       ReactDOM.render(<Restaurant/>, container)
-   });
-   const carousel = container.querySelector('Carousel');
+    it('does something', () =>{
+        const wrapper = mount(<Restaurant/>);
+        const garbage = wrapper.find("div");
+        expect(wrapper.contains(garbage)).toEqual(true);
+    });
 });

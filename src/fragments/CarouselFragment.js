@@ -31,7 +31,7 @@ const CarouselFragment = (props) => {
         return (
             <div style={{height:"500px", paddingBottom:"50px"}}>
                 <Fragment>
-                    <div style={{height:"600px", minHeight: "100%"}}>
+                    <div style={{height:"600px", minHeight: "100%"}} id="carouselDiv">
                         <Carousel autoPlay={false} navButtonsAlwaysVisible={true}
                                   animation="slide" indicators={true} className={classes.Carousel}
                                   style={{height:"100%", minHeight: "100%", maxHeight:"444px", top: "0px"}}>
