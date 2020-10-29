@@ -1,7 +1,6 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import Restaurant from '../views/restaurant';
-import Login from '../views/login';
 import {PieChart, Pie, Cell, Label, ResponsiveContainer, AreaChart} from 'recharts';
 import Carousel from "react-material-ui-carousel";
 import Grid from "@material-ui/core/Grid";
