@@ -8,12 +8,12 @@ const widgetStyle = makeStyles((theme) => ({
     },
     card: {
         position: 'center',
-        maxHeight: '10%',
+        maxHeight: '20%',
         alignItems: 'center',
         width: '100%'
     },
     logo: {
-        objectFit: 'cover'
+        height: 100,
     }
 }));
 

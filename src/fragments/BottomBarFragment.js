@@ -13,7 +13,6 @@ import P5MapView from "../views/p5MapView";
 import RestaurantHeatMapView from "../views/restaurantHeatMap";
 import Carousel from "react-material-ui-carousel";
 
-
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
     const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5,
@@ -117,7 +116,7 @@ const BottomBarTabFragment = (props) => {
             <div style={{paddingBottom:"50px"}}>
                 <Fragment>
                     <div style={{height: "60%"}}>
-                    <Carousel navButtonsAlwaysVisible={true} autoPlay={false} animation="slide" indicators={false}>
+                    <Carousel navButtonsAlwaysVisible={false} autoPlay={false} animation="slide" indicators={true}>
                 <TabRestaurantLines value={valueRestaurant} index={0}/>
                 <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
                 <RestaurantHeatMapView value={valueRestaurant} index={0}/>
