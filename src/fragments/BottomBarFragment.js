@@ -11,6 +11,7 @@ import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
 
+
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
     const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5} = TabFragments();

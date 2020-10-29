@@ -87,7 +87,8 @@ let strings = new LocalizedStrings({
         toPasswordReset: "To password reset",
         lines: "Lines",
         donut: "pie",
-        currentStatsAre: "Current campus statistics are:"
+        currentStatsAre: "Current campus statistics are:",
+        newspage: "Campus News", 
 
     },
 
@@ -172,7 +173,8 @@ let strings = new LocalizedStrings({
         toPasswordReset: "Salasanan palautukseen",
         lines: "Linjasto",
         donut: "piirakka",
-        currentStatsAre:"Tämän hetken tilastot kampuksella:"
+        currentStatsAre:"Tämän hetken tilastot kampuksella:",
+        newspage: "Campus Uutiset",
     },
 
     se:{
@@ -256,7 +258,8 @@ let strings = new LocalizedStrings({
         toPasswordReset: "Till lösenord återställning",
         lines: "Linjer",
         donut: "asdf",
-        currentStatsAre:"Nuvarande statistik på kampus:"
+        currentStatsAre:"Nuvarande statistik på kampus:",
+        newspage: "Campus nyheter",
     }
 });
 

@@ -15,9 +15,10 @@ import ApiUrls from "../hooks/ApiUrls";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
 import blue from '@material-ui/core/colors/blue';
-import HeatMap from '../fragments/HeatMap';
+import Widgets from '../fragments/WidgetFragment';
 
 const Home = (props) => {
+  //const {HomepageWidget} = Widgets();
   const {getUsageData} = API();
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
@@ -46,7 +47,7 @@ const Home = (props) => {
     //Styles for the ProgressBars
     //makeStyles, createStyles can not be in another folder and imported
     //the styles have to be in the same file where they are used.
-    const colorB = blue[500]
+    const colorB = blue[500];
     const useStyles = makeStyles({
       root: {
         flexGrow: 1,

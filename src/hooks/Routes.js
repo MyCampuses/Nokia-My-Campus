@@ -7,7 +7,8 @@
 import React from 'react';
 import Home from '../views/home';
 import Login from '../views/login';
-import Info from '../views/info'
+import Info from '../views/info';
+import News from '../views/news';
 import P5 from '../views/p5';
 import P10 from '../views/p10';
 import Restaurant from '../views/restaurant';
@@ -18,6 +19,7 @@ import P5MapView from "../views/p5MapView";
 import P10MapView from "../views/p10MapView";
 import ResetPassword from "../views/resetPassword";
 import AccountVerification from "../views/accountVerification";
+import ArticlePage from "../views/newsarticle";
 
 // Navigation hookrouter, navigation url and the corresponding component
 // Used in App.js, routeResult
@@ -34,6 +36,8 @@ const routes = {
   '/auth':()=> <AuthLoading/>,
   '/p5map': ()=> <P5MapView/>,
   '/p10map': () => <P10MapView/>,
+  '/news': () => <News/>,
+  '/news_article': (article) => <ArticlePage article={article}/>,
   '/reset_password': (email) => <ResetPassword email={email}/>,
   '/verify_account': (email)=> <AccountVerification email={email}/>
 };

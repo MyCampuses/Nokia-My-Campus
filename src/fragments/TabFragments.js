@@ -351,7 +351,6 @@ const TabFragments = (props) => {
         };
 
         return (
-
             <div role="tabfragment"
                  hidden={value !== index}
                  id={`tabfragment-${index}`}
