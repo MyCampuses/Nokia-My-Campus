@@ -4,7 +4,6 @@ import Authentication from "../hooks/Authentication";
 import AuthLoading from "./authLoading";
 import NewsItem from "../fragments/NewsItem";
 import { useQueryParams } from "hookrouter";
-import { ThemeProvider } from '@material-ui/core';
 
 
 // This is the news article page for viewing the detailed article user has selected
