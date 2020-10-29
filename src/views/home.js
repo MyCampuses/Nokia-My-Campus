@@ -18,7 +18,7 @@ import blue from '@material-ui/core/colors/blue';
 import Widgets from '../fragments/WidgetFragment';
 
 const Home = (props) => {
-  const {HomepageWidget} = Widgets();
+  //const {HomepageWidget} = Widgets();
   const {getUsageData} = API();
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
@@ -91,7 +91,6 @@ const Home = (props) => {
                  {strings.currentStatsAre}
                </h3>
               </Grid>
-              {HomepageWidget()}
               {ProgressBar(restaurantBarData)}
               {ProgressBar(p5BarData)}
               {ProgressBar(p10insideData)}
