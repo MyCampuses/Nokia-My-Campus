@@ -1,35 +1,21 @@
-
-import React from 'react';
-import * as ReactDOM from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import React from 'react'
+import { createMount } from '@material-ui/core/test-utils';
 import News from './../views/news';
 
+describe('News', () => {
+  let mount;
 
+  beforeAll(() => {
+    mount = createMount();
+  });
 
+  afterAll(() => {
+    mount.cleanUp();
+  });
 
-let container;
-
-beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-});
-
-afterEach(() => {
-    ReactDOM.unmountComponentAtNode(container);
-    document.body.removeChild(container);
-    container = null;
-});
-
-//This test should ALWAYS go through, it's proof that testing works.
-test('Test rendering a div', () => {
-    act(() => {
-        ReactDOM.render(<h1>Kek</h1>, container);
-    },);
-});
-test('Rendering News 0', () => {
-    act(() => {
-        ReactDOM.render(<News/>, container);
-    },);
-   const highlight = container.querySelector('Typography');
-   expect(highlight.textContent).toBe("Selaa Uutisia");
+  it('should work', () => {
+    const wrapper = mount(<News/>);
+    console.log(wrapper);
+    //expect(wrapper).to.have.property('highlight');
+  });
 });
