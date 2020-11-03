@@ -18,7 +18,7 @@ import blue from '@material-ui/core/colors/blue';
 import Widgets from '../fragments/WidgetFragment';
 
 const Home = (props) => {
-  const {HomepageWidget} = Widgets();
+  const {HomepageWidget} = Widgets(props);
   const {getUsageData} = API();
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
