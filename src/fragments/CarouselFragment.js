@@ -2,7 +2,6 @@
 
 
 import {makeStyles} from "@material-ui/core";
-import commonStyles from "../styles/commonStyles";
 import TabFragments from "./TabFragments";
 import React, {Fragment, useState} from "react";
 import Carousel from "react-material-ui-carousel";
@@ -22,8 +21,9 @@ const CarouselFragment = (props) => {
     const {TabRestaurantLines, TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu} = TabFragments();
 
     const Restaurant = () => {
-        const [valueRestaurant, setValueRestaurant] = useState(0);
+        const [valueRestaurant] = useState(0);
         const [date, setDate] = useState(new Date());
+
         const handleDateChange = (data) => {
             setDate(data);
         };
@@ -31,7 +31,7 @@ const CarouselFragment = (props) => {
         return (
             <div style={{height:"500px", paddingBottom:"50px"}}>
                 <Fragment>
-                    <div style={{height:"600px", minHeight: "100%"}} id="carouselDiv">
+                    <div style={{height:"600px", minHeight: "100%"}}>
                         <Carousel autoPlay={false} navButtonsAlwaysVisible={true}
                                   animation="slide" indicators={true} className={classes.Carousel}
                                   style={{height:"100%", minHeight: "100%", maxHeight:"444px", top: "0px"}}>

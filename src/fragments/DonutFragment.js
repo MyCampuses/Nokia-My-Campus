@@ -138,10 +138,16 @@ const DonutFragment = () => {
             let yKey;
 
             if(dataForRender !== undefined){
-                yKey = dataForRender[dataForRender.length - 1].y;
+                if(dataForRender.length !== 0) {
+                    yKey = dataForRender[dataForRender.length - 1].y;
+                }
+                else{
+                    yKey = 0;
+                }
             }
             else{
-                console.log('hold on');
+                yKey = 0;
+                console.log('data is fucked');
             }
 
             //data from backend put into a format the donut chart can read
@@ -214,7 +220,6 @@ const DonutFragment = () => {
                     setDataForRender(tempChartData);
                 }
             }, [chartData]); //eslint-disable-line
-            console.log(dataForRender);
 
             return (
                 <Fragment>
@@ -231,7 +236,6 @@ const DonutFragment = () => {
         return {
             Donut: Donut,
         };
-    }
-;
+    };
 
 export default DonutFragment;

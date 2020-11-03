@@ -105,7 +105,6 @@ const MenuFragment = () =>{
             setDataForRender(temp);
         }, [temp]);
 
-        console.log(dataForRender);
 
         return (
             <Fragment>
