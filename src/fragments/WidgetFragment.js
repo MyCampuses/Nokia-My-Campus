@@ -3,33 +3,36 @@
     like Homepage 
 */
 import React, { Fragment, useState } from 'react';
-import { Card, Dialog, DialogTitle, List, ListItem, ListItemText  } from '@material-ui/core';
+import { Card, Dialog, DialogTitle, List, ListItem, ListItemText, CardHeader  } from '@material-ui/core';
 import strings from '../localization';
 import WidgetStyle from '../styles/widgetStyle';
 import PropTypes from 'prop-types';
 
-const Widgets = (props) => {
-    const widgetElements = ['restaurant', 'tuuttuut', 'testing3']
+const Widgets = () => {
+    const widgetElements = ['Restaurant', 'Tuuttuut', 'Testing3']
     const classes = WidgetStyle().widgetStyle();
-    const { onClose, selectedValue, open } = props;
 
-    const handleClose = () => {
-         onClose(selectedValue);
-    };
+    // Creates a item of every widget for the Dialog on front page
+    const SelectViewDialog = (props) => {
+        const { onClose, selectedValue, open } = props;
 
-    const handleListItemClick = (value) => {
-        onClose(value);
-    };
-    
-
-    const SelectViewDialog = () => {
+        const handleClose = () => {
+            onClose(selectedValue);
+       };
+   
+       const handleListItemClick = (value) => {
+           onClose(value);
+       };
+       console.log(widgetElements)
         return (
             <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-                <DialogTitle id="simple-dialog-title">localization.dialogTitel</DialogTitle>
+                <DialogTitle id="simple-dialog-title">{strings.dialogTitel}</DialogTitle>
                 <List>
-                    {widgetElements.map((widgetElements) => (
-                        <ListItem button onClick={() => handleListItemClick(widgetElements)} key={widgetElements}>
-                            <ListItemText primary={widgetElements}/>
+                    {widgetElements.map((widgetElement) => (
+                        <ListItem button onClick={() => handleListItemClick(widgetElement)} key={widgetElement}>
+
+                            <ListItemText secondary={widgetElement} />
+
                         </ListItem>
                     ))};
                 </List>
@@ -46,8 +49,8 @@ const Widgets = (props) => {
 
     //Default homepage widget view
     const HomepageWidget = () => {
-        const [open, setOpen] = useState(false);
         const [selectedValue, setSelectedValue] = useState(widgetElements[1]);
+        const [open, setOpen] = useState(false); 
 
         const handleClickOpen = () => {
             setOpen(true);
@@ -55,17 +58,20 @@ const Widgets = (props) => {
         
           const handleClose = (value) => {
             setOpen(false);
-          //  setSelectedValue(value);
+            setSelectedValue(value);
           };
 
         return (
             <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>
+                    <CardHeader
+                        titel={selectedValue}
+                    />
                     <img src={require('../assets/plus_sign.png')}
                         alt={strings.logoAlt} className={classes.logo}
                     />
-                    <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
                 </Card>
+                <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
         )
     };
