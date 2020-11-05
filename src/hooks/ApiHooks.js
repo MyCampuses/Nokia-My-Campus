@@ -83,6 +83,7 @@ const API = () => {
     const getUsageData = (url, props) => {
         return fetchGetUrl(url ,'user').then((json)=>{
             if (json) {
+                console.log(json);
                 return json
             } else {
                 throw Error("No Token, getUsageData")

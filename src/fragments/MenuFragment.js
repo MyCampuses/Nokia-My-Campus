@@ -2,13 +2,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Container, makeStyles} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
-import ApiUrls from '../hooks/ApiUrls';
-import GlobalFunctions from '../hooks/GlobalFunctions';
-import DonutFragment from "./DonutFragment";
-import format from "date-fns/format";
-import {scaleTime} from "d3-scale";
-import {utcHour} from "d3-time";
-import {ResponsiveContainer} from "recharts";
+
 
 const useStyle = makeStyles((theme) => ({
     p5Box: {
@@ -49,8 +43,7 @@ const MenuFragment = () =>{
 
     const renderMenu = (item) => (
         <div style={{minWidth:"100%", height:"100%"}} id="menuDiv">
-            {(Object.keys(item) || []).map(key =>
-                (
+            {(Object.keys(item) || []).map(key => (
                 <div key={key}
                      style={{backgroundColor:"#124191", color:"white", height:"30%", width:"100%", fontSize:"4vw"}}>
                     <p>
@@ -62,8 +55,7 @@ const MenuFragment = () =>{
                             { " " + item[key].price + " "}
                     </p>
                 </div>
-                )
-            )}
+                ))}
         </div>
     );
 
