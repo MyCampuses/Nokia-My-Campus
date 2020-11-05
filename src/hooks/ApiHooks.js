@@ -10,7 +10,6 @@ import GlobalFunctions from './GlobalFunctions';
 
 const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl, sodexoDailyUrl } = ApiUrls();
 const {convertTime, formattedDate, sodexoDate } = GlobalFunctions();
-
 // Basic Fetch template for post messages
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
@@ -125,6 +124,21 @@ const API = () => {
         }
     };
 
+    const dataToChartRawCount = (json, maximum) => {
+        if (json !== undefined) {
+            const chart = [];
+            for (let key in json) {
+                const timeStamp = convertTime(json[key].date);
+                const fromUnixTime = formattedDate(timeStamp);
+                let yc = (json[key].count)/maximum*100;
+                let tempJson = {x: fromUnixTime, y: yc, pv: 100};
+                chart.push(tempJson);
+                // Set the data to a chart json and return it
+            }
+            return chart;
+        }
+    };
+
     const dataToChartRestaurant = (json) => {
         if (json !== undefined) {
             const chart = [];
@@ -172,6 +186,7 @@ const API = () => {
         getUsageDataNoProps,
         getChartData,
         dataToChart,
+        dataToChartRawCount,
         forgotPassAsync,
         resetPasswordAsync,
         chartEstData,

@@ -21,6 +21,10 @@ const widgetStyle = makeStyles((theme) => ({
         fontSize: 'large',
         textColor: 'black',
       },
+      plus: {
+        maxHeight: '40%',
+        maxWidth: '40%'
+      },
 }));
 
 const barTheme = makeStyles({
@@ -44,7 +48,7 @@ const barTheme = makeStyles({
       maxHeight: '100px',
       height: '15vh',
       justifyContent: 'flex-start',
-    },
+    }, 
 
   });
 

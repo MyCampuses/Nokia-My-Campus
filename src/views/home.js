@@ -92,11 +92,6 @@ const Home = (props) => {
                </h3>
               </Grid>
               {HomepageWidget()}
-              {ProgressBar(restaurantBarData)}
-              {ProgressBar(p5BarData)}
-              {ProgressBar(p10insideData)}
-              {ProgressBar(p10roofData)}
-              {ProgressBar(p10electricData)}
             </Grid>
 
           </Container>

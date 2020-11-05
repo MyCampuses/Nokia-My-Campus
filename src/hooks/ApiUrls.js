@@ -10,9 +10,7 @@ const ApiUrls = () => {
   const resendVerificationUrl = 'https://mycampus-server.karage.fi/auth/resend';
   const resetPassUrl = 'https://mycampus-server.karage.fi/auth/reset_password';
   const confirmUrl = 'https://mycampus-server.karage.fi/auth/confirmation';
-
   const sodexoUrl = 'https://www.sodexo.fi/en/ruokalistat/output/';
-
 
   const restaurantUrl = apiUrl +
       'restaurant/Midpoint?select=fill_percent';
