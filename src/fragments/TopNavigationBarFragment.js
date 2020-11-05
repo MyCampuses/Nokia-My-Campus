@@ -72,7 +72,7 @@ const NaviBar = () => {
                     <Toolbar className={classes.toolBar}>
                         <img src={require('../assets/logo_mycampus.webp')}
                              alt={strings.logoAlt} className={classes.logo}
-                             onClick={() => onItemClickNavigate('home')}
+                             onClick={() => onItemClickNavigate('/home')}
                         />
 
                          <section className={classes.rightToolbar}>
@@ -101,11 +101,10 @@ const NaviBar = () => {
                                     onClose={handleClose}
                                 >
 
-                                    <MenuItem onClick={() => onItemClickNavigate('info')}>{strings.topBarMenuItemInfo}</MenuItem>
-                                    <MenuItem onClick={() => onItemClickNavigate('home')}>{strings.topBarMenuItemHome}</MenuItem>
-                                    <MenuItem onClick={() => onItemClickNavigate('restaurant')}>{strings.topBarMenuItemRestaurant}</MenuItem>
-                                    <MenuItem onClick={() => onItemClickNavigate('p5')}>{strings.topBarMenuItemP5}</MenuItem>
-                                    <MenuItem onClick={() => onItemClickNavigate('p10')}>{strings.topBarMenuItemP10}</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('/info')}>{strings.topBarMenuItemInfo}</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('/home')}>{strings.topBarMenuItemHome}</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('/restaurant')}>{strings.topBarMenuItemRestaurant}</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('/parking')}>{strings.topBarMenuItemParking}</MenuItem>
                                     <MenuItem onClick={() => logoutOnClick()}>{strings.topBarMenuItemLogout}</MenuItem>
                                 </Menu>
                          </section>

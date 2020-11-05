@@ -20,7 +20,6 @@ import Data from "../hooks/Data";
 import Typography from "@material-ui/core/Typography";
 import blue from '@material-ui/core/colors/blue';
 import {ThemeProvider} from '@material-ui/core';
-import Carousel from "react-material-ui-carousel";
 
 const {parkingP5Url} = ApiUrls();
 
