@@ -95,6 +95,7 @@ let strings = new LocalizedStrings({
         currentStatsAre: "Current campus statistics are:",
         newspage: "Campus News",
         dialogTitel: "Choose your widgets!",
+        donut: "pie",
     },
 
     fi:{
@@ -186,6 +187,7 @@ let strings = new LocalizedStrings({
         currentStatsAre:"Tämän hetken tilastot kampuksella:",
         newspage: "Campus Uutiset",
         dialogTitel: "Valitse vempain",
+        donut: "piirakka",
     },
 
     se:{
@@ -271,6 +273,7 @@ let strings = new LocalizedStrings({
         currentStatsAre:"Nuvarande statistik på kampus:",
         newspage: "Campus nyheter", 
         dialogTitel: "Välj din widget",
+        donut: "Donits",
     }
 });
 

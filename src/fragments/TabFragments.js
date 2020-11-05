@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import ChartFragment from "./ChartFragments";
 import DonutFragment from "./DonutFragment";
 import MenuFragment from "./MenuFragment";
+import LineFragment from "./LineFragment";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
@@ -28,6 +29,7 @@ const TabFragments = (props) => {
     const {Chart} = ChartFragment();
     const {Donut} = DonutFragment();
     const {Menu} = MenuFragment();
+    const {Lines} = LineFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
 
@@ -282,20 +284,6 @@ const TabFragments = (props) => {
     // Renders the restaurant lines page that shows individual lines and their wait times
     function TabRestaurantLines(props) {
         const {children, value, index, ...other} = props;
-        const [queueTimes, setQueueTimes] = useState(new Map());
-        const {getUsageDataNoProps} = API();
-        const {restaurantQueueUrl} = ApiUrls();
-        const {lines, times, colours} = Data();
-
-        const getQueueTimes = async () => {
-            for (let i = 1; i < 9; i++) {
-                getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueueTimes(new Map(queueTimes.set(i, result))))
-            }
-        };
-
-        useEffect(() => {
-            getQueueTimes().then()
-        }, []);// eslint-disable-line
 
         return (
             <div role="tabfragment"
@@ -305,37 +293,7 @@ const TabFragments = (props) => {
                  inputstyle={{textAlign: 'center'}}
                  {...other}>
                 <h3 className={barTheme.headLine}>{strings.restaurantPageTitle}</h3>
-                <Box>
-                    {[...lines.keys()].map(mapKey => (
-                        <div key={mapKey}>
-                            {queueTimes.get(mapKey) != null &&
-                            <Box className="lineDiv"
-                                 border={1}
-                                 p={1}
-                                 m={1}
-                                 bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
-                                 borderColor="#E9E9E9">
-                                <Grid container direction="row"
-                                      justify="space-between"
-                                      alignItems="center">
-                                    <Grid>
-                                        <Typography>
-                                            {lines.get(mapKey)}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid>
-                                        {queueTimes.get(mapKey) != null &&
-                                        <Typography>
-                                            {times.get(parseInt(queueTimes.get(mapKey).queue_time))}
-                                        </Typography>
-                                        }
-                                    </Grid>
-                                </Grid>
-                            </Box>
-                            }
-                        </div>
-                    ))}
-                </Box>
+                <Lines location={"restaurant"}/>
             </div>
         )
     }

@@ -102,6 +102,7 @@ const API = () => {
     const getChartData = (url, location, date) => {
         return getUsageData(url + location + date).then((json) => {
             if (json) {
+                console.log(json);
                 return json
             } else {
                 throw Error("No Token, getUsageData")
@@ -177,7 +178,6 @@ const API = () => {
              .then(res => res.json());
          return menu;
     };
-
 
     return {
         loginAsync,

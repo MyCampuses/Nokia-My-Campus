@@ -34,7 +34,6 @@ const useStyle = makeStyles((theme) => ({
         textAlign: 'center',
         width: '100%',
         height: '45vh',
-        marginTop: '5%',
         display: 'block',
     },
 }));
@@ -48,7 +47,7 @@ const DonutFragment = () => {
         //this renders a pie chart from the values in yKey
         const renderPie = (data, value) => (
             // Responsivecontainer for flexible chart size
-            <ResponsiveContainer id="this right here" width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%">
                 <PieChart minWidth={200} minHeight={200}>
                     <Pie
                         data={data}
@@ -60,7 +59,7 @@ const DonutFragment = () => {
                         fill="#8884d8"
                     >
                         {
-                            data.map((entry, index) => <Cell fill={entry.color} />)
+                            data.map(entry => <Cell fill={entry.color} />)
                         }
                         <Label width={30} position="center" fontSize={25}>
                             {value + "%"}
@@ -139,10 +138,16 @@ const DonutFragment = () => {
             let yKey;
 
             if(dataForRender !== undefined){
-                yKey = dataForRender[dataForRender.length - 1].y;
+                if(dataForRender.length !== 0) {
+                    yKey = dataForRender[dataForRender.length - 1].y;
+                }
+                else{
+                    yKey = 0;
+                }
             }
             else{
-                console.log('hold on');
+                yKey = 0;
+                console.log('data is fucked');
             }
 
             //data from backend put into a format the donut chart can read
@@ -215,7 +220,6 @@ const DonutFragment = () => {
                     setDataForRender(tempChartData);
                 }
             }, [chartData]); //eslint-disable-line
-            console.log(dataForRender);
 
             return (
                 <Fragment>
@@ -232,7 +236,6 @@ const DonutFragment = () => {
         return {
             Donut: Donut,
         };
-    }
-;
+    };
 
 export default DonutFragment;
