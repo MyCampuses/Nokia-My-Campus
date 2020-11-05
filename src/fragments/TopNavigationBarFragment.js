@@ -105,6 +105,7 @@ const NaviBar = () => {
                                     <MenuItem onClick={() => onItemClickNavigate('/home')}>{strings.topBarMenuItemHome}</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('/restaurant')}>{strings.topBarMenuItemRestaurant}</MenuItem>
                                     <MenuItem onClick={() => onItemClickNavigate('/parking')}>{strings.topBarMenuItemParking}</MenuItem>
+                                    <MenuItem onClick={() => onItemClickNavigate('news')}>{strings.newspage}</MenuItem>
                                     <MenuItem onClick={() => logoutOnClick()}>{strings.topBarMenuItemLogout}</MenuItem>
                                 </Menu>
                          </section>

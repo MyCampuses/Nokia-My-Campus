@@ -94,8 +94,7 @@ let strings = new LocalizedStrings({
         lines: "Lines",
         currentStatsAre: "Current campus statistics are:",
         newspage: "Campus News",
-        dialogTitel: "Choose your widget",
-        donut: "pie",
+        dialogTitel: "Choose your widgets!",
     },
 
     fi:{
