@@ -41,6 +41,7 @@ let strings = new LocalizedStrings({
         topBarMenuItemRestaurant: "Restaurant",
         topBarMenuItemP5: "P5",
         topBarMenuItemP10: "P10",
+        topBarMenuItemParking: "Parking",
         topBarMenuItemInfo: "Info",
         topBarMenuItemLogout: "Logout",
         infoPageHeading: "MyCampus is an application for Nokia employees providing specific data from Espoo Nokia Campus. " +
@@ -72,6 +73,11 @@ let strings = new LocalizedStrings({
         p10insideutil: "Inside Utilization",
         p10rooftoputil:"Rooftop Utilization",
         p10electricutil:"Electric Utilization(est.)",
+		parkingUtilization: "{0} of {1} spaces available.",
+		parkingUtilizationEstimate: "{0} of {1} spaces available. (estimate)",
+		parkingCategoryParking: "Parking",
+		parkingCategoryEV: "Electric vehicle charging",
+		loading: "Loading",
         level:"Level",
         passwordWasReset: "Password changed successfully",
         requestError: "Something went wrong with your request. Please try again.",
@@ -87,7 +93,9 @@ let strings = new LocalizedStrings({
         toPasswordReset: "To password reset",
         lines: "Lines",
         currentStatsAre: "Current campus statistics are:",
-        newspage: "Campus News", 
+        newspage: "Campus News",
+        dialogTitel: "Choose your widgets!",
+        donut: "pie",
     },
 
     fi:{
@@ -127,6 +135,7 @@ let strings = new LocalizedStrings({
         topBarMenuItemRestaurant: "Ravintola",
         topBarMenuItemP5: "P5",
         topBarMenuItemP10: "P10",
+        topBarMenuItemParking: "Pysäköinti",
         topBarMenuItemLogout: "Kirjaudu Ulos",
         infoPageHeading: "MyCampus on Nokian työntekijöille tarkoitettu sovellus, joka tarjoaa tiettyä dataa Nokian Espoon kampukselta. Levitezer-niminen startup, yhteistyössä Nokian kanssa,"+
         "on ollut tekemässä MyCampusta. Opiskelijat Metropolia Ammattikorkeakoulusta ovat olleet tekemässä mobiilisovellusta.",
@@ -156,6 +165,11 @@ let strings = new LocalizedStrings({
         p10insideutil: "Sisätason käyttöaste",
         p10rooftoputil:"Kattotason käyttöaste",
         p10electricutil:"Sähköpaikat käyttöaste (arvio)",
+		parkingUtilization: "{1} paikkaa joista {0} vapaana.",
+		parkingUtilizationEstimate: "{1} paikkaa joista {0} vapaana. (arvio)",
+		parkingCategoryParking: "Pysäköinti",
+		parkingCategoryEV: "Sähköajoneuvon lataus",
+		loading: "Ladataan",
         level:"Taso",
         graph: "Graafi",
         passwordWasReset: "Salasanan vaihto onnistui!",
@@ -171,7 +185,9 @@ let strings = new LocalizedStrings({
         toPasswordReset: "Salasanan palautukseen",
         lines: "Linjasto",
         currentStatsAre:"Tämän hetken tilastot kampuksella:",
-        newspage: "Campus Uutiset", 
+        newspage: "Campus Uutiset",
+        dialogTitel: "Valitse vempain",
+        donut: "piirakka",
     },
 
     se:{
@@ -256,6 +272,8 @@ let strings = new LocalizedStrings({
         lines: "Linjer",
         currentStatsAre:"Nuvarande statistik på kampus:",
         newspage: "Campus nyheter", 
+        dialogTitel: "Välj din widget",
+        donut: "Donits",
     }
 });
 

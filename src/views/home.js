@@ -18,7 +18,7 @@ import blue from '@material-ui/core/colors/blue';
 import Widgets from '../fragments/WidgetFragment';
 
 const Home = (props) => {
-  //const {HomepageWidget} = Widgets();
+  const {HomepageWidget} = Widgets(props);
   const {getUsageData} = API();
   const {isLoggedIn} = Authentication();
   const {TopNavigationBar} = NaviBar();
@@ -47,7 +47,7 @@ const Home = (props) => {
     //Styles for the ProgressBars
     //makeStyles, createStyles can not be in another folder and imported
     //the styles have to be in the same file where they are used.
-    const colorB = blue[500]
+    const colorB = blue[500];
     const useStyles = makeStyles({
       root: {
         flexGrow: 1,
@@ -91,13 +91,8 @@ const Home = (props) => {
                  {strings.currentStatsAre}
                </h3>
               </Grid>
-              {ProgressBar(restaurantBarData)}
-              {ProgressBar(p5BarData)}
-              {ProgressBar(p10insideData)}
-              {ProgressBar(p10roofData)}
-              {ProgressBar(p10electricData)}
+              {HomepageWidget()}
             </Grid>
-
           </Container>
         </ThemeProvider>
     );
