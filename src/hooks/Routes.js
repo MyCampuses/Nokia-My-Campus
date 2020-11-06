@@ -11,6 +11,8 @@ import Info from '../views/info';
 import News from '../views/news';
 import P5 from '../views/p5';
 import P10 from '../views/p10';
+import Parking from '../views/parking';
+import ParkingInfo from '../views/parkingInfo';
 import Restaurant from '../views/restaurant';
 import ForgotPassword from '../views/forgotPass'
 import Register from "../views/register";
@@ -30,6 +32,11 @@ const routes = {
   '/login': () => <Login/>,
   '/p5': () => <P5/>,
   '/p10': () => <P10/>,
+  '/parking': () => <Parking/>,
+  '/parking/P5': () => <ParkingInfo/>,
+  '/parking/P10': () => <ParkingInfo/>,
+  '/parking/P10TOP': () => <ParkingInfo/>,
+  '/parking/P10EV': () => <ParkingInfo/>,
   '/restaurant': () => <Restaurant/>,
   '/register': () => <Register/>,
   '/forgot_password': () => <ForgotPassword/>,
