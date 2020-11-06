@@ -15,8 +15,7 @@ import Carousel from "react-material-ui-carousel";
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
-    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5,
-        TabRestaurantLines, TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu} = TabFragments();
+    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5} = TabFragments();
 
     //P10 bottom tab
     const P10BottomTab = () => {
@@ -104,6 +103,7 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
+<<<<<<< HEAD
     //Restaurant bottom tab
     const RestaurantBottomTab = () => {
         const [valueRestaurant, setValueRestaurant] = useState(0);
@@ -131,10 +131,11 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
+=======
+>>>>>>> 43857c9cba92ed5f02451a066fbd4dfda640cd80
     return {
         P10BottomTab: P10BottomTab,
         P5BottomTab: P5BottomTab,
-        RestaurantBottomTab: RestaurantBottomTab,
     };
 };
 

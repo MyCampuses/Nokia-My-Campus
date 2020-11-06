@@ -10,7 +10,6 @@ import GlobalFunctions from './GlobalFunctions';
 
 const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl, sodexoDailyUrl } = ApiUrls();
 const {convertTime, formattedDate, sodexoDate } = GlobalFunctions();
-
 // Basic Fetch template for post messages
 const fetchPostUrl = async (url,data) => {
     const response = await fetch(url,{
@@ -103,6 +102,7 @@ const API = () => {
     const getChartData = (url, location, date) => {
         return getUsageData(url + location + date).then((json) => {
             if (json) {
+                console.log(json);
                 return json
             } else {
                 throw Error("No Token, getUsageData")
@@ -117,6 +117,21 @@ const API = () => {
                 const timeStamp = convertTime(json[key].date);
                 const fromUnixTime = formattedDate(timeStamp);
                 let yc = json[key].percent;
+                let tempJson = {x: fromUnixTime, y: yc, pv: 100};
+                chart.push(tempJson);
+                // Set the data to a chart json and return it
+            }
+            return chart;
+        }
+    };
+
+    const dataToChartRawCount = (json, maximum) => {
+        if (json !== undefined) {
+            const chart = [];
+            for (let key in json) {
+                const timeStamp = convertTime(json[key].date);
+                const fromUnixTime = formattedDate(timeStamp);
+                let yc = (json[key].count)/maximum*100;
                 let tempJson = {x: fromUnixTime, y: yc, pv: 100};
                 chart.push(tempJson);
                 // Set the data to a chart json and return it
@@ -164,7 +179,6 @@ const API = () => {
          return menu;
     };
 
-
     return {
         loginAsync,
         registerAsync,
@@ -172,6 +186,7 @@ const API = () => {
         getUsageDataNoProps,
         getChartData,
         dataToChart,
+        dataToChartRawCount,
         forgotPassAsync,
         resetPasswordAsync,
         chartEstData,

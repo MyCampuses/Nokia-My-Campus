@@ -91,42 +91,42 @@ const Widgets = (props) => {
     /*
         The HomepageWidget gets a default value of selectedValue, which is a state,
         the default value of the state will be first on the barWidgets list which is at the start of the code
-        the default value should be plus_sign.png from src/assets folder
+        the default value should be plus_sign.png from src/assets folder so the first time users know
+        they can add something to the front page
     */
     const HomepageWidget = () => {
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
-        const [secondWidgetValue, setSecondWidgetValue] = useState(undefined);
-        const [thridWidgetValue, setThirdWidgetValue] = useState(undefined);
-        const [widgetAmount, setWidgetAmount] = useState(0);
+        const [widgetAmount, addWidgetAmount] = useState(0);
 
         const handleClickOpen = () => {
             setOpen(true);
           };
         
         const handleClose = (value) => {
-            setWidgetAmount(widgetAmount + 1);
+            if(widgetAmount < 3){
+                addWidgetAmount(widgetAmount + 1);
+            }
             setOpen(false);
             setSelectedValue(value);
           };
-          
         
         
         /*
-        The returned fragment is here, it get the values from above funtion SelectViewDialog
+        The returned fragment is here, it get the values from above function SelectViewDialog
         */
        if(selectedValue == defaultWidgetPicture) {
         return (
             <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
-                        <img src={defaultWidgetPicture} />
+                        <img className={classes.plus} src={defaultWidgetPicture} />
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
         )
-       } else if(widgetAmount<3)  {
+       }  else if (widgetAmount < 3) {
         return (
             <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>
@@ -135,24 +135,25 @@ const Widgets = (props) => {
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
-                        <img src={defaultWidgetPicture} />
+                        <img className={classes.plus} src={defaultWidgetPicture} />
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
         )} else {
-            return(
-                <Fragment>
+            return (
+            <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
                         {ProgressBar(selectedValue)}
                     </CardContent>
                 </Card>
+                <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
-            );
-        };
+            )};
     };
 
     return {

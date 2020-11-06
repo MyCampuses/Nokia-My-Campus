@@ -47,7 +47,7 @@ const Home = (props) => {
     //Styles for the ProgressBars
     //makeStyles, createStyles can not be in another folder and imported
     //the styles have to be in the same file where they are used.
-    const colorB = blue[500]
+    const colorB = blue[500];
     const useStyles = makeStyles({
       root: {
         flexGrow: 1,
@@ -92,13 +92,7 @@ const Home = (props) => {
                </h3>
               </Grid>
               {HomepageWidget()}
-              {ProgressBar(restaurantBarData)}
-              {ProgressBar(p5BarData)}
-              {ProgressBar(p10insideData)}
-              {ProgressBar(p10roofData)}
-              {ProgressBar(p10electricData)}
             </Grid>
-
           </Container>
         </ThemeProvider>
     );

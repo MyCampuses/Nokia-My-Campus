@@ -36,13 +36,11 @@ const useStyle = makeStyles((theme) => ({
         textAlign: 'center',
         width: '100%',
         height: '45vh',
-        marginTop: '5%',
         display: 'block',
     },
 }));
 
 const MenuFragment = () =>{
-    let menuItems ="";
 
     const {menuByDate} = API();
 
@@ -50,52 +48,69 @@ const MenuFragment = () =>{
     let date = new Date();
 
     const renderMenu = (item) => (
-        <div>
-            {item}
+        <div style={{minWidth:"100%", height:"100%"}} id="menuDiv">
+            {(Object.keys(item) || []).map(key =>
+                (
+                <div key={key}
+                     style={{backgroundColor:"#124191", color:"white", height:"30%", width:"100%", fontSize:"4vw"}}>
+                    <p>
+                        {item[key].title_fi + " "}
+                    </p>
+                        <p>
+                            { item[key].category + " "}
+                            ({item[key].properties})
+                            { " " + item[key].price + " "}
+                    </p>
+                </div>
+                )
+            )}
         </div>
     );
 
     const Menu = (props) => {
 
-        const [tempData, setTempData] = useState(undefined);
-        const [dataForRender, setDataForRender] = useState(undefined);
+        const [temp, setTemp] = useState({
+            courses: {
+                1:{
+                title_fi: "",
+                title_en: "",
+                category: "",
+                price: "",
+                properties: "",
+                },
+    }
+
+        });
+
+        const [dataForRender, setDataForRender] = useState({
+            courses: {
+                1:{
+                    title_fi: "",
+                    title_en: "",
+                    category: "",
+                    price: "",
+                    properties: "",
+                },
+            }
+
+        });
 
         useEffect(() => {
-                menuByDate(date)
-                    .then(json => setTempData(json));
+            menuByDate(date)
+                .then(json => setTemp(json));
         }, [props]);
 
         useEffect(() => {
-            if (tempData !== undefined) {
-                setDataForRender(tempData);
-            }
-        }, [tempData]);
+            //eslint-disable-line
+            setDataForRender(temp);
+        }, [temp]);
 
-        let tempBG;
 
-        if(dataForRender !== undefined){
-            tempBG = dataForRender;
-        }
-        else{
-            tempBG = {
-                courses:
-                    {
-                        1: { title_fi: "hold on"},
-                        2: { title_fi: "hold on"},
-                        3: { title_fi: "hold on"},
-                    }
-            }
-        }
-
-         return (
+        return (
             <Fragment>
-                <Container className={classes.menuContainer}>
-                    <p> Menu for the day</p>
-                    {renderMenu(tempBG.courses[1].title_fi)}
-                    -----------------
-                    {renderMenu(tempBG.courses[2].title_fi)}
-                    -----------------
-                    {renderMenu(tempBG.courses[3].title_fi)}
+                <Container className={classes.DonutContainer}>
+                    <h3> Menu for the day</h3>
+                    {renderMenu(dataForRender.courses)}
                 </Container>
             </Fragment>
         );
