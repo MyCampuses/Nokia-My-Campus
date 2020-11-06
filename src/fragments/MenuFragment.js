@@ -42,7 +42,7 @@ const MenuFragment = () =>{
     let date = new Date();
 
     const renderMenu = (item) => (
-        <div style={{minWidth:"100%", height:"100%"}} id="menuDiv">
+        <div style={{Width:"100%", height:"100%"}} id="menuDiv">
             {(Object.keys(item) || []).map(key => (
                 <div key={key}
                      style={{backgroundColor:"#124191", color:"white", height:"30%", width:"100%", fontSize:"4vw"}}>
