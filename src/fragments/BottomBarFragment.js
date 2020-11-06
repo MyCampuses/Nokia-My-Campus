@@ -116,12 +116,12 @@ const BottomBarTabFragment = (props) => {
             <div style={{paddingBottom:"50px"}}>
                 <Fragment>
                     <div style={{height: "60%"}}>
-                    <Carousel navButtonsAlwaysVisible={false} autoPlay={false} animation="slide" indicators={true}>
-                <TabRestaurantLines value={valueRestaurant} index={0}/>
-                <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                <RestaurantHeatMapView value={valueRestaurant} index={0}/>
-                <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                    </Carousel>
+                        <Carousel navButtonsAlwaysVisible={false} autoPlay={false} animation="slide" indicators={true}>
+                            <TabRestaurantLines value={valueRestaurant} index={0}/>
+                            <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
+                            <RestaurantHeatMapView value={valueRestaurant} index={0}/>
+                            <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
+                        </Carousel>
                     </div>
                     <div style={{height: "30%", position: "absolute", bottom: "0px"}}>
                     <TabRestaurantMenu index={0} value={valueRestaurant}/>

@@ -96,12 +96,16 @@ const Widgets = (props) => {
     const HomepageWidget = () => {
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
+        const [secondWidgetValue, setSecondWidgetValue] = useState(undefined);
+        const [thridWidgetValue, setThirdWidgetValue] = useState(undefined);
+        const [widgetAmount, setWidgetAmount] = useState(0);
 
         const handleClickOpen = () => {
             setOpen(true);
           };
         
         const handleClose = (value) => {
+            setWidgetAmount(widgetAmount + 1);
             setOpen(false);
             setSelectedValue(value);
           };
@@ -116,13 +120,13 @@ const Widgets = (props) => {
             <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
-                        <img src={selectedValue} />
+                        <img src={defaultWidgetPicture} />
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
         )
-       } else {
+       } else if(widgetAmount<3)  {
         return (
             <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>
@@ -131,8 +135,24 @@ const Widgets = (props) => {
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+                <Card className={classes.card} onClick={handleClickOpen}>
+                    <CardContent>
+                        <img src={defaultWidgetPicture} />
+                    </CardContent>
+                </Card>
+                <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
-        )};
+        )} else {
+            return(
+                <Fragment>
+                <Card className={classes.card} onClick={handleClickOpen}>
+                    <CardContent>
+                        {ProgressBar(selectedValue)}
+                    </CardContent>
+                </Card>
+            </Fragment>
+            );
+        };
     };
 
     return {
