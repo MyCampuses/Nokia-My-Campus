@@ -11,13 +11,11 @@ import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
 import RestaurantHeatMapView from "../views/restaurantHeatMap";
-//import Carousel from "react-material-ui-carousel";
-
+import Carousel from "react-material-ui-carousel";
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
-    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5,
-        TabRestaurantLines, TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu} = TabFragments();
+    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5} = TabFragments();
 
     //P10 bottom tab
     const P10BottomTab = () => {
@@ -105,35 +103,9 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
-    //Restaurant bottom tab
-    const RestaurantBottomTab = () => {
-        const [valueRestaurant, setValueRestaurant] = useState(0);
-        const [date, setDate] = useState(new Date());
-        const handleDateChange = (data) => {
-            setDate(data);
-        };
-//
-        return (
-            <div style={{paddingBottom:"50px"}}>
-                <Fragment>
-                    <div style={{height: "60%"}}>
-                <TabRestaurantLines value={valueRestaurant} index={0}/>
-                <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                <RestaurantHeatMapView value={valueRestaurant} index={0}/>
-                <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                    </div>
-                    <div style={{height: "30%", position: "absolute", bottom: "0px"}}>
-                    <TabRestaurantMenu index={0} value={valueRestaurant}/>
-                    </div>
-                    </Fragment>
-            </div>
-        );
-    };
-
     return {
         P10BottomTab: P10BottomTab,
         P5BottomTab: P5BottomTab,
-        RestaurantBottomTab: RestaurantBottomTab,
     };
 };
 

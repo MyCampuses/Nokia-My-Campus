@@ -6,18 +6,18 @@ import React from 'react';
 import Authentication from '../hooks/Authentication';
 import NaviBar from "../fragments/TopNavigationBarFragment";
 import AuthLoading from "./authLoading";
-import BottomBarTabFragment from "../fragments/BottomBarFragment";
+import CarouselFragment from "../fragments/CarouselFragment";
 
 const Restaurant = () => {
     const {isLoggedIn} = Authentication();
     const {TopNavigationBar} = NaviBar();
-    const {RestaurantBottomTab} = BottomBarTabFragment();
+    const {Restaurant} = CarouselFragment();
 
     const RestaurantPage = () => {
         return (
             <div>
                 {TopNavigationBar()}
-                {RestaurantBottomTab()}
+                {Restaurant()}
             </div>
         )
     };
