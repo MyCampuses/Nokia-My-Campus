@@ -5,33 +5,23 @@ import API from '../hooks/ApiHooks';
 
 
 const useStyle = makeStyles((theme) => ({
-    p5Box: {
+    MenuContainer:{
         width: '100%',
-        height: '45vh',
-        marginTop: '5%',
+        height: '100%',
         display: 'block',
+    },
+    menuDiv: {
+        width: '100%',
+        height: '100%',
+    },
+    menuStyle: {
+        backgroundColor:"#124191",
+        color:"white",
+        height:"30%",
+        width:"100%",
+        fontSize:"4vw"
+    },
 
-    },
-    p10Box: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    RestaurantBox: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    DonutContainer:{
-        textAlign: 'center',
-        width: '100%',
-        height: '45vh',
-        display: 'block',
-    },
 }));
 
 const MenuFragment = () =>{
@@ -42,17 +32,19 @@ const MenuFragment = () =>{
     let date = new Date();
 
     const renderMenu = (item) => (
-        <div style={{Width:"100%", height:"100%"}} id="menuDiv">
+        <div className={classes.MenuContainer}>
             {(Object.keys(item) || []).map(key => (
                 <div key={key}
-                     style={{backgroundColor:"#124191", color:"white", height:"30%", width:"100%", fontSize:"4vw"}}>
+                     className={classes.menuStyle}>
+                    <p>
+                        { item[key].category + " "}
+                    </p>
                     <p>
                         {item[key].title_fi + " "}
                     </p>
                         <p>
-                            { item[key].category + " "}
                             ({item[key].properties})
-                            { " " + item[key].price + " "}
+                            { " " + item[key].price}
                     </p>
                 </div>
                 ))}
@@ -100,7 +92,7 @@ const MenuFragment = () =>{
 
         return (
             <Fragment>
-                <Container className={classes.DonutContainer}>
+                <Container className={classes.MenuContainer}>
                     <h3> Menu for the day</h3>
                     {renderMenu(dataForRender.courses)}
                 </Container>

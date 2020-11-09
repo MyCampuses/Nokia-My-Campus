@@ -35,6 +35,7 @@ const useStyle = makeStyles((theme) => ({
         width: '100%',
         height: '45vh',
         display: 'block',
+        marginTop: '5%',
     },
 }));
 // Holds all the fragments for charts

@@ -12,9 +12,6 @@ const useStyle = makeStyles(() => ({
     Carousel: {
         height: "100%",
     },
-    Tab: {
-       height: "100%",
-    },
 }));
 
 const CarouselFragment = (props) => {
