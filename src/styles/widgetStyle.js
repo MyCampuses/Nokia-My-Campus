@@ -10,17 +10,11 @@ const widgetStyle = makeStyles((theme) => ({
     },
     card: {
         position: 'center',
-        maxHeight: '20%',
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        marginTop: '10%',
+        marginBottom: '10%',
     },
-    logo: {
-        height: 100,
-    },
-    header: {
-        fontSize: 'large',
-        textColor: 'black',
-      },
       plus: {
         maxHeight: '40%',
         maxWidth: '40%'

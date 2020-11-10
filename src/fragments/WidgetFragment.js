@@ -38,7 +38,7 @@ const Widgets = (props) => {
   
   /*
   barWidgets is the list which will be presented for SelectViewDialog and HomepageWidget.
-  This list is supposed to contain all widgets that are shown on the list whne clicking the '+' symbol
+  This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
   const barWidgets = [
     {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, barTheme},
@@ -97,23 +97,22 @@ const Widgets = (props) => {
     const HomepageWidget = () => {
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
-        const [widgetAmount, addWidgetAmount] = useState(0);
-
+        const [selectedWidgets, addSelectedWidgets] = useState([]);
+        
         const handleClickOpen = () => {
             setOpen(true);
           };
         
-        const handleClose = (value) => {
-            if(widgetAmount < 3){
-                addWidgetAmount(widgetAmount + 1);
-            }
+        const handleClose = (value) => {       
             setOpen(false);
             setSelectedValue(value);
+            addSelectedWidgets(selectedWidgets.concat(value));
           };
         
         
         /*
         The returned fragment is here, it get the values from above function SelectViewDialog
+        the returned value depends on the length of selectedWidgets array and what state selectedValue has
         */
        if(selectedValue == defaultWidgetPicture) {
         return (
@@ -126,15 +125,16 @@ const Widgets = (props) => {
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
         )
-       }  else if (widgetAmount < 3) {
+       }  else if (selectedWidgets.length < 3 & selectedWidgets.length > 0) {
         return (
             <Fragment>
-                <Card className={classes.card} onClick={handleClickOpen}>
-                    <CardContent>
-                        {ProgressBar(selectedValue)}
-                    </CardContent>
-                </Card>
-                <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+                {selectedWidgets.map((selectedWidget) => (
+                    <Card className={classes.card} onClick={handleClickOpen}>
+                        <CardContent>
+                            {ProgressBar(selectedWidget)}
+                        </CardContent>
+                    </Card>
+                ))};
 
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
@@ -146,12 +146,13 @@ const Widgets = (props) => {
         )} else {
             return (
             <Fragment>
-                <Card className={classes.card} onClick={handleClickOpen}>
-                    <CardContent>
-                        {ProgressBar(selectedValue)}
-                    </CardContent>
-                </Card>
-                <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+                {selectedWidgets.map((selectedWidget) => (
+                    <Card className={classes.card} onClick={handleClickOpen}>
+                        <CardContent>
+                            {ProgressBar(selectedWidget)}
+                        </CardContent>
+                    </Card>
+                ))};
             </Fragment>
             )};
     };

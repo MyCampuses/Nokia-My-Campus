@@ -10,8 +10,6 @@ import commonStyles from "../styles/commonStyles";
 import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
-import RestaurantHeatMapView from "../views/restaurantHeatMap";
-import Carousel from "react-material-ui-carousel";
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
@@ -103,36 +101,6 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
-<<<<<<< HEAD
-    //Restaurant bottom tab
-    const RestaurantBottomTab = () => {
-        const [valueRestaurant, setValueRestaurant] = useState(0);
-        const [date, setDate] = useState(new Date());
-        const handleDateChange = (data) => {
-            setDate(data);
-        };
-//
-        return (
-            <div style={{paddingBottom:"50px"}}>
-                <Fragment>
-                    <div style={{height: "60%"}}>
-                        <Carousel navButtonsAlwaysVisible={false} autoPlay={false} animation="slide" indicators={true}>
-                            <TabRestaurantLines value={valueRestaurant} index={0}/>
-                            <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                            <RestaurantHeatMapView value={valueRestaurant} index={0}/>
-                            <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                        </Carousel>
-                    </div>
-                    <div style={{height: "30%", position: "absolute", bottom: "0px"}}>
-                    <TabRestaurantMenu index={0} value={valueRestaurant}/>
-                    </div>
-                    </Fragment>
-            </div>
-        );
-    };
-
-=======
->>>>>>> 43857c9cba92ed5f02451a066fbd4dfda640cd80
     return {
         P10BottomTab: P10BottomTab,
         P5BottomTab: P5BottomTab,
