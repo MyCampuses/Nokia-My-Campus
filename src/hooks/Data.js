@@ -5,9 +5,9 @@ const Data = () => {
 
     //Mathces received line id number to string
     const lines = new Map([
-        [1, 'Favourites 1'], [2, 'Favourites 2'],
-        [3, 'Pizza'], [4, 'Round Table'], [5, 'Bowl'],
-        [6, 'Vege'], [7, 'Cafe Pickup Line'], [8, 'Salad/Nokia Coffee']]);
+        [1, 'FAVORITES 1'], [2, 'FAVORITES 2'],
+        [3, 'PIZZA'], [4, 'Round Table'], [5, 'BOWL'],
+        [6, 'VEGE'], [7, 'CAFE PICKUP LINE'], [8, 'SALAD/NOKIA COFFEE']]);
 
     //Wait time map, matching received wait time value to string
     const times = new Map([[1, strings.waitTime1], [2, strings.waitTime2],

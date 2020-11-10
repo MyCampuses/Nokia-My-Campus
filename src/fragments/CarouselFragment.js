@@ -1,6 +1,4 @@
 
-
-
 import {makeStyles} from "@material-ui/core";
 import TabFragments from "./TabFragments";
 import React, {Fragment, useState} from "react";
@@ -10,7 +8,7 @@ import RestaurantHeatMapView from "../views/restaurantHeatMap";
 
 const useStyle = makeStyles(() => ({
     Carousel: {
-        height: "100%",
+        minHeight: "91vh",
     },
 }));
 
@@ -29,7 +27,7 @@ const CarouselFragment = (props) => {
         return (
                 <Fragment>
                         <Carousel autoPlay={false} navButtonsAlwaysVisible={true}
-                                  animation="slide" indicators={true} className={classes.Carousel}>
+                                  animation="slide" className={classes.Carousel}>
                             <TabRestaurantMenu value={valueRestaurant} index={0}/>
                             <TabRestaurantLines value={valueRestaurant} index={0}/>
                             <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>

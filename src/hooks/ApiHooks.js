@@ -94,7 +94,7 @@ const API = () => {
             if (json) {
                 return json
             } else {
-                throw Error("No Token, getUsageData")
+                throw Error("No Token, getUsageDataNoProps")
             }
         })
     };
