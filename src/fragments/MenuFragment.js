@@ -6,6 +6,7 @@ import Data from "../hooks/Data";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ApiUrls from "../hooks/ApiUrls";
+import log from "d3-scale/src/log";
 
 
 const useStyle = makeStyles((theme) => ({
@@ -117,6 +118,10 @@ const MenuFragment = () =>{
 
     const Menu = (props) => {
 
+        const [queueTimes, setQueueTimes] = useState(new Map());
+        const {getUsageDataNoProps} = API();
+        const {restaurantQueueUrl} = ApiUrls();
+
         const [temp, setTemp] = useState({
             courses: {
                 1:{
@@ -126,8 +131,7 @@ const MenuFragment = () =>{
                 price: "",
                 properties: "",
                 },
-    }
-
+            }
         });
 
         const [dataForRender, setDataForRender] = useState({
@@ -140,8 +144,10 @@ const MenuFragment = () =>{
                     properties: "",
                 },
             }
-
         });
+
+        const [stopper, setStopper] = useState(undefined);
+        const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES 1']]));
 
         useEffect(() => {
             menuByDate(date)
@@ -155,10 +161,6 @@ const MenuFragment = () =>{
 
         //stuff for lines
 
-        const [queueTimes, setQueueTimes] = useState(new Map());
-        const {getUsageDataNoProps} = API();
-        const {restaurantQueueUrl} = ApiUrls();
-
         const getQueueTimes = async () => {
             for (let i = 1; i < 9; i++) {
                 getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueueTimes(new Map(queueTimes.set(i, result))))
@@ -169,12 +171,47 @@ const MenuFragment = () =>{
             getQueueTimes().then()
         }, []);
 
+        useEffect(() => {
+            let check = dataForRender.courses;
+
+            //length of dataForRender
+            let lengthy = Object.keys(dataForRender.courses).length + 1;
+
+            //size of queueTimes map
+            let queueLength = queueTimes.size;
+            let tempy = new Map;
+
+            // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
+            if(check[2] !== undefined && stopper === undefined && queueLength === 8){
+
+                //run for each entry from sodexo
+                for (let i = 1; i < lengthy; i++) {
+
+                    // run for each entry in Data.js
+                    for (let l = 1; l < 9; l++) {
+
+                        //check for matching values
+                        if (check[i].category === lines.get(l)){
+
+                            //set the values into the temporary Map
+                            tempy.set(l, queueTimes.get(l));
+                        }
+                    }
+                }
+                setUsedLines(tempy);
+                //this is to stop this loop from rerunning
+                setStopper(1);
+            }
+        }, [queueTimes]);
+
+        console.log(usedLines);
+
         return (
             <Fragment>
                 <Container className={classes.MenuContainer}>
                     <h3> Menu for the day</h3>
                     {renderMenu(dataForRender.courses)}
-                    {renderLines(queueTimes)}
+                    {renderLines(usedLines)}
                 </Container>
             </Fragment>
         );
