@@ -76,9 +76,14 @@ const ParkingCardFragment = (data) => {
 						utilizationString = strings.parkingUtilization.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
 					}
 				}
-				
+				let link;
+				if (area["linkId"] !== undefined) {
+					link = 'parking/'+area["linkId"];
+				} else {
+					link = 'parking/'+area["id"];
+				}
 				const areaItem = (
-					<ListItem button onClick={()=>onItemClickNavigate('parking/'+area["id"])}>
+					<ListItem button onClick={()=>onItemClickNavigate(link)}>
 						<ListItemAvatar>
 							<PieChart width={40} height={40}>
 								{(area.loading ? areaPie(0, 1) : areaPie(area.usageData.count, area.usageData.capacity))}
