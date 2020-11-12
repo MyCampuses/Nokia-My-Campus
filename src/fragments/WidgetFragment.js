@@ -2,7 +2,7 @@
     This function holds all the widgets for the app
     like Homepage 
 */
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useReducer } from 'react';
 import { Card, Dialog, DialogTitle, List, ListItem, ListItemText, CardContent  } from '@material-ui/core';
 import strings from '../localization';
 import WidgetStyle from '../styles/widgetStyle';
@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
+import EditButton from '../fragments/EditButton';
+import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
@@ -17,6 +19,8 @@ const Widgets = (props) => {
     const {ProgressBar} = ProgressBarFragments();
     const {getUsageData} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
+    const {EnabledButton, DisableButton} = EditButton();
+    const {create, del, read} = LocalStorageOperations();
 
 
     // States
@@ -95,26 +99,43 @@ const Widgets = (props) => {
         they can add something to the front page
     */
     const HomepageWidget = () => {
+        const key = 'widgets';
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
         const [selectedWidgets, addSelectedWidgets] = useState([]);
+
+            
         
         const handleClickOpen = () => {
             setOpen(true);
           };
         
+          //Closes the dialog window and saves the value in selectedwidgets array
         const handleClose = (value) => {       
             setOpen(false);
             setSelectedValue(value);
             addSelectedWidgets(selectedWidgets.concat(value));
           };
+
+        useEffect(()=>{
+            const localData = read(key);
+            if(localData) {
+                addSelectedWidgets(localData);
+            };
+        },[]);
+
+        useEffect(() => {
+            create(JSON.stringify(selectedWidgets), key)
+        }, [selectedWidgets]);
         
         
         /*
         The returned fragment is here, it get the values from above function SelectViewDialog
         the returned value depends on the length of selectedWidgets array and what state selectedValue has
+        with .map one can forEach every array element, which is why the fragment returns as many widgets
+        as are saved onto selectedWidgets state
         */
-       if(selectedValue == defaultWidgetPicture) {
+       if(selectedWidgets.length == 0) {
         return (
             <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>

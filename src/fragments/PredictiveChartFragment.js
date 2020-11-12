@@ -1,10 +1,7 @@
 
 import React from 'react';
-import {AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, ResponsiveContainer} from 'recharts';
-import {utcHour} from 'd3-time';
-import {scaleTime} from 'd3-scale';
-import format from 'date-fns/format'
-import API from '../hooks/ApiHooks';
+import {AreaChart, XAxis, YAxis, CartesianGrid, Area, ResponsiveContainer} from 'recharts';
+
 
 const PredictiveChartFragment = (data, expectedData, maximum) => {
 

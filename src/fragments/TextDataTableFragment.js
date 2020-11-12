@@ -1,7 +1,6 @@
 
-import React, {Fragment, useState, Component} from 'react';
+import React, {Component} from 'react';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
 class TextDataTable extends Component {

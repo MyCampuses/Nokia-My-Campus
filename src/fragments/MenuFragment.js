@@ -2,13 +2,6 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Container, makeStyles} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
-import ApiUrls from '../hooks/ApiUrls';
-import GlobalFunctions from '../hooks/GlobalFunctions';
-import DonutFragment from "./DonutFragment";
-import format from "date-fns/format";
-import {scaleTime} from "d3-scale";
-import {utcHour} from "d3-time";
-import {ResponsiveContainer} from "recharts";
 
 const useStyle = makeStyles((theme) => ({
     p5Box: {

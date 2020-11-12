@@ -3,7 +3,11 @@ const LocalStorageOperations=()=> {
 
     const myStorage = window.localStorage;
 
-    // Add a new data,key value
+    /* 
+    Add a new data,key value
+    the data key is the value that will be saved and
+    key will be the name of the data
+    */
     const create = (data,key) =>{
         myStorage.setItem(key,data);
     };
