@@ -12,7 +12,7 @@ import LineFragment from "./LineFragment";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import { Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
+import {Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";

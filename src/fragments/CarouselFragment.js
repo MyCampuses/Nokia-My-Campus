@@ -7,9 +7,7 @@ import RestaurantHeatMapView from "../views/restaurantHeatMap";
 
 const useStyle = makeStyles(() => ({
     Carousel: {
-        height: "620px",
-        minHeight: "620px",
-        maxHeight:"620px",
+        minHeight: "91vh",
     },
     Frag: {
         height:"100%", 
@@ -29,18 +27,17 @@ const CarouselFragment = (props) => {
             setDate(data);
         };
 //
-        return (          
-                <Fragment className={classes.Frag}>                    
-                        <Carousel autoPlay={false} navButtonsAlwaysVisible={false}
-                                  animation="slide" indicators={true} className={classes.Carousel}
-                                  style={{height:"100%", minHeight: "100%", maxHeight:"444px", top: "0px"}}>
-                            <TabRestaurantMenu style={{height:"500px", minHeight: "100%", paddingTop:"none", top:"0px"}} value={valueRestaurant} index={0}/>
-                            <TabRestaurantLines style={{height:"500px", minHeight: "100%"}} value={valueRestaurant} index={0}/>
-                            <TabRestaurantChart style={{height:"500px", minHeight: "100%"}} value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                            <RestaurantHeatMapView style={{height:"500px", minHeight: "100%"}} value={valueRestaurant} index={0}/>
-                            <TabRestaurantDonut style={{height:"500px", minHeight: "100%"}} value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                        </Carousel>                    
-                </Fragment>          
+        return (
+                <Fragment>
+                        <Carousel autoPlay={false} navButtonsAlwaysVisible={true}
+                                  animation="slide" className={classes.Carousel}>
+                            <TabRestaurantMenu value={valueRestaurant} index={0}/>
+                            <TabRestaurantLines value={valueRestaurant} index={0}/>
+                            <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
+                            <RestaurantHeatMapView value={valueRestaurant} index={0}/>
+                            <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
+                        </Carousel>
+                </Fragment>
         );
     };
 

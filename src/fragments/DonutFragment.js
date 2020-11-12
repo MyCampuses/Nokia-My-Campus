@@ -35,6 +35,7 @@ const useStyle = makeStyles((theme) => ({
         width: '100%',
         height: '45vh',
         display: 'block',
+        marginTop: '5%',
     },
 }));
 // Holds all the fragments for charts
@@ -76,6 +77,8 @@ const DonutFragment = () => {
             const [dataForRender, setDataForRender] = useState(undefined);
             const [ticksForRender, setTicksForRender] = useState(undefined);
             const [max, setMax] = useState(undefined);
+            const [dataDonutFormat, setDataDonutFormat] = useState([]);
+            const [yKey, setYKey] = useState(0);
 
             useEffect(() => {
                 if (props.location === "restaurant") {
@@ -132,29 +135,6 @@ const DonutFragment = () => {
                 returnArray.sort(sortCompareFunction);
                 return returnArray;
             };
-
-            //check that the info from the backend is received before trying to create the variable
-            //this prevents the app from crashing
-            let yKey;
-
-            if(dataForRender !== undefined){
-                if(dataForRender.length !== 0) {
-                    yKey = dataForRender[dataForRender.length - 1].y;
-                }
-                else{
-                    yKey = 0;
-                }
-            }
-            else{
-                yKey = 0;
-                console.log('data is fucked');
-            }
-
-            //data from backend put into a format the donut chart can read
-            const dataDonutFormat =[
-                {name: 'usage', value: yKey, color: "#519FF9"},
-                {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
-            ];
 
             //Return an average of two values
             const getAverage = (x1, x2) => {
@@ -220,6 +200,24 @@ const DonutFragment = () => {
                     setDataForRender(tempChartData);
                 }
             }, [chartData]); //eslint-disable-line
+
+            //check that the info from the backend is received before trying to create the variable
+
+            useEffect( () =>{
+                if(dataForRender !== undefined){
+                    if(dataForRender.length !== 0) {
+
+                        let key = dataForRender[dataForRender.length - 1].y;
+                        setYKey(key);
+
+                        //data from backend put into a format the donut chart can read
+                        setDataDonutFormat([
+                            {name: 'usage', value: key, color: "#519FF9"},
+                            {name: 'nonUsage', value: 100 - key, color: "#7A7A7A"}
+                            ])
+                    }
+                }
+            }, [dataForRender]); //eslint-disable-line
 
             return (
                 <Fragment>
