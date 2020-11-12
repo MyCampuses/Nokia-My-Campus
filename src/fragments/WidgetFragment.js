@@ -2,7 +2,7 @@
     This function holds all the widgets for the app
     like Homepage 
 */
-import React, { Fragment, useState, useEffect, useReducer } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Card, Dialog, DialogTitle, List, ListItem, ListItemText, CardContent  } from '@material-ui/core';
 import strings from '../localization';
 import WidgetStyle from '../styles/widgetStyle';
@@ -10,17 +10,14 @@ import PropTypes from 'prop-types';
 import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
-import EditButton from '../fragments/EditButton';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
-    const barTheme = WidgetStyle().barTheme();
     const {ProgressBar} = ProgressBarFragments();
     const {getUsageData} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-    const {EnabledButton, DisableButton} = EditButton();
-    const {create, del, read} = LocalStorageOperations();
+    const {create, read} = LocalStorageOperations();
 
 
     // States
@@ -45,11 +42,11 @@ const Widgets = (props) => {
   This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
   const barWidgets = [
-    {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, barTheme},
-    {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data, barTheme},
-    {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data, barTheme},
-    {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, barTheme},
-    {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, barTheme},
+    {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData},
+    {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data},
+    {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data},
+    {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData},
+    {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData},
   ];
 
   // This list contains only one picture, the symbol '+'
@@ -99,10 +96,10 @@ const Widgets = (props) => {
         they can add something to the front page
     */
     const HomepageWidget = () => {
-        const key = 'widgets';
+        const [selectedWidgets, addSelectedWidgets] = useState([]);
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
-        const [selectedWidgets, addSelectedWidgets] = useState([]);
+        const key = 'widgets';
 
             
         
@@ -117,12 +114,14 @@ const Widgets = (props) => {
             addSelectedWidgets(selectedWidgets.concat(value));
           };
 
-        useEffect(()=>{
-            const localData = read(key);
+        useEffect(() => {   
+            const localData = read(key);       
             if(localData) {
                 addSelectedWidgets(localData);
-            };
-        },[]);
+            } else {
+                addSelectedWidgets([]);
+            }
+        }, []);
 
         useEffect(() => {
             create(JSON.stringify(selectedWidgets), key)
@@ -135,12 +134,12 @@ const Widgets = (props) => {
         with .map one can forEach every array element, which is why the fragment returns as many widgets
         as are saved onto selectedWidgets state
         */
-       if(selectedWidgets.length == 0) {
+       if(selectedWidgets.length === 0) {
         return (
             <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
-                        <img className={classes.plus} src={defaultWidgetPicture} />
+                        <img className={classes.plus} src={defaultWidgetPicture} alt='placeholder'/>
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
@@ -159,7 +158,7 @@ const Widgets = (props) => {
 
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
-                        <img className={classes.plus} src={defaultWidgetPicture} />
+                        <img className={classes.plus} src={defaultWidgetPicture} alt='placeholder'/>
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
