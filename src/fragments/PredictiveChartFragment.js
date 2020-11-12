@@ -34,17 +34,17 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 		let predictionScalePoint = formattedData.length-1;
 		let predictionScaleFactor = 1;
 		console.log(formattedData);
-		if (data != null) {
+		if (data != null && formattedData.length > 0) {
 			//Calculate prediction scale factor and scale the prediction
 			if (formattedData.length < formattedExpectedData.length 
-			&& formattedData[predictionScalePoint].y > 5 
-			&& formattedExpectedData[predictionScalePoint].y > 5) {
+			&& formattedData[predictionScalePoint].y > 1 
+			&& formattedExpectedData[predictionScalePoint].y > 1) {
 				console.log("Prediction");
 				console.log(""+formattedData[predictionScalePoint].y+" "+formattedExpectedData[predictionScalePoint].y);
 				predictionScaleFactor = formattedData[predictionScalePoint].y / formattedExpectedData[predictionScalePoint].y;
 				console.log(predictionScaleFactor);
 				formattedExpectedData.forEach((item, index, array) => {
-					item.y = item.y*predictionScaleFactor;
+					item.y = Math.min(100, item.y*predictionScaleFactor);
 					array[index] = item;
 				});
 			}

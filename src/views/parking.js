@@ -65,7 +65,7 @@ class Parking extends Component {
 					zarray[zindex].usageData = usageData;
 					aarray[aindex].zones.parking = zarray;
 					if (zone.id == 'P10TOP') {
-						let p10ev = {count: Math.floor(usageData.count * 2.1), capacity: 98};
+						let p10ev = {count: Math.min(98, Math.floor(usageData.count * 2.1)), capacity: 98};
 						area.zones.ev_charging.forEach((evzone, evindex, evarray) => {
 							if (evzone.name == 'roof') {
 								evzone.usageData = p10ev;
