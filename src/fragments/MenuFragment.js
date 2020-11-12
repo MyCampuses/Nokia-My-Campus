@@ -6,26 +6,28 @@ import Data from "../hooks/Data";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ApiUrls from "../hooks/ApiUrls";
-import log from "d3-scale/src/log";
 
 
 const useStyle = makeStyles((theme) => ({
     MenuContainer:{
         width: '100%',
-        height: '100%',
+        height: '100%,'
+    },
+    overStyle: {
+        height:"100%",
+        width:"100%",
+        fontSize:"3vw",
     },
     menuStyle: {
         color: "black",
         height:"100%",
         width:"75%",
         fontSize:"3vw",
-        display: 'inline-block',
     },
     waitStyle: {
         width:"25%",
         height: "100%",
         fontSize:"3vw",
-        display: 'inline-block',
     },
     TopP: {
         color: "#124191",
@@ -50,67 +52,69 @@ const useStyle = makeStyles((theme) => ({
 const MenuFragment = () =>{
 
     const {menuByDate} = API();
+    const {lines, times, colours} = Data();
 
     const classes = useStyle();
     let date = new Date();
 
-    const renderMenu = (item) => (
-        <div className={classes.menuStyle}>
-            {(Object.keys(item) || []).map(key => (
-                <div key={key}>
-                    <p className={classes.TopP}>
-                        {item[key].category}
-                    </p>
-                    <Box className={classes.Card}>
-                    <Grid container direction="row"
-                          justify="space-between"
-                          alignItems="center">
-                        <Grid>
-                            <p className={classes.mItem}>
-                                {item[key].title_fi + " "}
-                            </p>
-                        </Grid>
-                        <Grid>
-                            <p className={classes.mInfo}>
-                                <p>
-                                    {item[key].properties}
-                                </p>
-                                <p>
-                                    {item[key].price}
-                                </p>
-                            </p>
-                        </Grid>
-                    </Grid>
-                    </Box>
-                </div>
-                ))}
-        </div>
-    );
-
-    const {lines, times, colours} = Data();
-
     const renderLines = (queueTimes) => (
-        <Box className={classes.waitStyle}>
-            {[...lines.keys()].map(mapKey => (
-                <div key={mapKey}>
+        <Box className={classes.menuContainer}>
+            {[...queueTimes.keys()].map(mapKey => (
+                <div key={mapKey} >
+
+                    <Grid container direction="row" className={classes.overStyle}>
+
+                        <Grid container direction="row" className={classes.menuStyle}>
+
+                            <Grid item>
+                        <p className={classes.TopP}>
+                            {queueTimes.get(mapKey)[1].category}
+                        </p>
+                        <Grid item className={classes.Card}>
+                        <Grid container direction="row">
+                            <Grid item>
+                                <p className={classes.mItem}>
+                                    {queueTimes.get(mapKey)[1].title_fi}
+                                </p>
+                            </Grid>
+                            <Grid item>
+                                <p className={classes.mInfo}>
+                                    <p>
+                                        {queueTimes.get(mapKey)[1].properties}
+                                    </p>
+                                    <p>
+                                        {queueTimes.get(mapKey)[1].price}
+                                    </p>
+                                </p>
+                            </Grid>
+                        </Grid>
+                        </Grid>
+                        </Grid>
+                        </Grid>
+
+                        <Grid item className={classes.waitStyle}>
                     {queueTimes.get(mapKey) != null &&
                     <Box className="lineDiv"
                          border={1}
                          p={1}
                          m={1}
-                         bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
-                         borderColor="#E9E9E9">
+                         bgcolor={colours.get(parseInt(queueTimes.get(mapKey)[0].queue_time))}
+                         borderColor="#E9E9E9" >
                         <Grid container direction="row"
                               justify="space-between"
                               alignItems="center">
                             <Grid>
                                 <Typography>
-                                    {times.get(parseInt(queueTimes.get(mapKey).queue_time))}
+                                    {times.get(parseInt(queueTimes.get(mapKey)[0].queue_time))}
                                 </Typography>
                             </Grid>
                         </Grid>
                     </Box>
                     }
+                        </Grid>
+
+
+                    </Grid>
                 </div>
             ))}
         </Box>
@@ -148,6 +152,7 @@ const MenuFragment = () =>{
 
         const [stopper, setStopper] = useState(undefined);
         const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES 1']]));
+        const [testLines, setTestLines] = useState(new Map([[1, ['a', 'b']]]));
 
         useEffect(() => {
             menuByDate(date)
@@ -180,6 +185,7 @@ const MenuFragment = () =>{
             //size of queueTimes map
             let queueLength = queueTimes.size;
             let tempy = new Map;
+            let tempp = new Map;
 
             // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
             if(check[2] !== undefined && stopper === undefined && queueLength === 8){
@@ -195,23 +201,27 @@ const MenuFragment = () =>{
 
                             //set the values into the temporary Map
                             tempy.set(l, queueTimes.get(l));
+                            tempp.set(
+                                l, [ queueTimes.get(l), check[i] ]
+                            );
                         }
                     }
                 }
                 setUsedLines(tempy);
+                setTestLines(tempp);
                 //this is to stop this loop from rerunning
                 setStopper(1);
             }
         }, [queueTimes]);
 
+        console.log(testLines);
         console.log(usedLines);
 
         return (
             <Fragment>
                 <Container className={classes.MenuContainer}>
                     <h3> Menu for the day</h3>
-                    {renderMenu(dataForRender.courses)}
-                    {renderLines(usedLines)}
+                    {renderLines(testLines)}
                 </Container>
             </Fragment>
         );

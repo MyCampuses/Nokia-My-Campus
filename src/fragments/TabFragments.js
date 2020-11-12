@@ -12,16 +12,14 @@ import LineFragment from "./LineFragment";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {Box, Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
+import {Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
 import MenuItem from "@material-ui/core/MenuItem";
-import Data from "../hooks/Data";
-import Typography from "@material-ui/core/Typography";
 import blue from '@material-ui/core/colors/blue';
 import {ThemeProvider} from '@material-ui/core';
-import Carousel from "react-material-ui-carousel";
+
 
 const {parkingP5Url} = ApiUrls();
 

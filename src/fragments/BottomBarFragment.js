@@ -10,8 +10,6 @@ import commonStyles from "../styles/commonStyles";
 import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
-import RestaurantHeatMapView from "../views/restaurantHeatMap";
-import Carousel from "react-material-ui-carousel";
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
