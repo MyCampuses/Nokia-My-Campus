@@ -3,7 +3,7 @@
     Each components have a bit more explanation what they are.
 */
 
-import React, {Fragment, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import ChartFragment from "./ChartFragments";
 import DonutFragment from "./DonutFragment";
@@ -19,7 +19,6 @@ import ApiUrls from "../hooks/ApiUrls";
 import MenuItem from "@material-ui/core/MenuItem";
 import blue from '@material-ui/core/colors/blue';
 import {ThemeProvider} from '@material-ui/core';
-
 
 const {parkingP5Url} = ApiUrls();
 

@@ -10,13 +10,14 @@ import PropTypes from 'prop-types';
 import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
+import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
-    const barTheme = WidgetStyle().barTheme();
     const {ProgressBar} = ProgressBarFragments();
     const {getUsageData} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
+    const {create, read} = LocalStorageOperations();
 
 
     // States
@@ -38,14 +39,14 @@ const Widgets = (props) => {
   
   /*
   barWidgets is the list which will be presented for SelectViewDialog and HomepageWidget.
-  This list is supposed to contain all widgets that are shown on the list whne clicking the '+' symbol
+  This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
   const barWidgets = [
-    {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, barTheme},
-    {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data, barTheme},
-    {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data, barTheme},
-    {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, barTheme},
-    {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, barTheme},
+    {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData},
+    {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data},
+    {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data},
+    {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData},
+    {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData},
   ];
 
   // This list contains only one picture, the symbol '+'
@@ -95,50 +96,69 @@ const Widgets = (props) => {
         they can add something to the front page
     */
     const HomepageWidget = () => {
+        const [selectedWidgets, addSelectedWidgets] = useState([]);
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
-        const [widgetAmount, addWidgetAmount] = useState(0);
+        const key = 'widgets';
 
+            
+        
         const handleClickOpen = () => {
             setOpen(true);
           };
         
-        const handleClose = (value) => {
-            if(widgetAmount < 3){
-                addWidgetAmount(widgetAmount + 1);
-            }
+          //Closes the dialog window and saves the value in selectedwidgets array
+        const handleClose = (value) => {       
             setOpen(false);
             setSelectedValue(value);
+            addSelectedWidgets(selectedWidgets.concat(value));
           };
+
+        useEffect(() => {   
+            const localData = read(key);       
+            if(localData) {
+                addSelectedWidgets(localData);
+            } else {
+                addSelectedWidgets([]);
+            }
+        }, []);
+
+        useEffect(() => {
+            create(JSON.stringify(selectedWidgets), key)
+        }, [selectedWidgets]);
         
         
         /*
         The returned fragment is here, it get the values from above function SelectViewDialog
+        the returned value depends on the length of selectedWidgets array and what state selectedValue has
+        with .map one can forEach every array element, which is why the fragment returns as many widgets
+        as are saved onto selectedWidgets state
         */
-       if(selectedValue == defaultWidgetPicture) {
+       if(selectedWidgets.length === 0) {
         return (
             <Fragment>
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
-                        <img className={classes.plus} src={defaultWidgetPicture} />
+                        <img className={classes.plus} src={defaultWidgetPicture} alt='placeholder'/>
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
         )
-       }  else if (widgetAmount < 3) {
+       }  else if (selectedWidgets.length < 3 & selectedWidgets.length > 0) {
         return (
             <Fragment>
-                <Card className={classes.card} onClick={handleClickOpen}>
-                    <CardContent>
-                        {ProgressBar(selectedValue)}
-                    </CardContent>
-                </Card>
-                <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+                {selectedWidgets.map((selectedWidget) => (
+                    <Card className={classes.card} onClick={handleClickOpen}>
+                        <CardContent>
+                            {ProgressBar(selectedWidget)}
+                        </CardContent>
+                    </Card>
+                ))};
 
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
-                        <img className={classes.plus} src={defaultWidgetPicture} />
+                        <img className={classes.plus} src={defaultWidgetPicture} alt='placeholder'/>
                     </CardContent>
                 </Card>
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
@@ -146,12 +166,13 @@ const Widgets = (props) => {
         )} else {
             return (
             <Fragment>
-                <Card className={classes.card} onClick={handleClickOpen}>
-                    <CardContent>
-                        {ProgressBar(selectedValue)}
-                    </CardContent>
-                </Card>
-                <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+                {selectedWidgets.map((selectedWidget) => (
+                    <Card className={classes.card} onClick={handleClickOpen}>
+                        <CardContent>
+                            {ProgressBar(selectedWidget)}
+                        </CardContent>
+                    </Card>
+                ))};
             </Fragment>
             )};
     };

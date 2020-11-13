@@ -8,8 +8,10 @@ import React, {Fragment} from 'react';
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Typography from "@material-ui/core/Typography";
 import '../styles/progressBar.css';
+import WidgetStyle from '../styles/widgetStyle';
 
 const ProgressBarFragments = (props) => {
+    const barTheme = WidgetStyle().barTheme();
     //Progressbar with props
     function HomeProgressBar(props) {
         return (
@@ -34,13 +36,13 @@ const ProgressBarFragments = (props) => {
             <Fragment>
                 <Grid item xs={12}
                       onClick={() => {onItemClickNavigate(barData.navigationUrl)}}>
-                    <Grid item container className={barData.barTheme.progressLabel}
+                    <Grid item container className={barTheme.progressLabel}
                           direction="row"
                           justify="space-between"
                           alignItems="center"
                           xs={12}>
                         <Grid item container alignItems="flex-start"
-                              className={barData.barTheme.labelLocation} xs={4}>
+                              className={barTheme.labelLocation} xs={4}>
                             <Typography className="alignLeft">
                                 {barData.barLabel}
                             </Typography>

@@ -1,4 +1,3 @@
-
 import {makeStyles} from "@material-ui/core";
 import TabFragments from "./TabFragments";
 import React, {Fragment, useState} from "react";
@@ -9,6 +8,10 @@ import RestaurantHeatMapView from "../views/restaurantHeatMap";
 const useStyle = makeStyles(() => ({
     Carousel: {
         minHeight: "91vh",
+    },
+    Frag: {
+        height:"100%", 
+
     },
 }));
 
