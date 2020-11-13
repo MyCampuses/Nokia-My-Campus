@@ -31,6 +31,7 @@ const useStyle = makeStyles((theme) => ({
     },
     TopP: {
         color: "#124191",
+        textAlign: "left",
     },
     Card: {
         boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
@@ -46,7 +47,22 @@ const useStyle = makeStyles((theme) => ({
         position: "relative",
         display: "inline-block",
     },
-
+    properties: {
+      color: "red",
+    },
+    stripe: {
+        width: "5%",
+    },
+    rightInfo: {
+        color: "#969696",
+        width: "50%",
+        textAlign: "right",
+    },
+    leftInfo: {
+        color: "#969696",
+        width: "50%",
+        textAlign: "left",
+    },
 }));
 
 const MenuFragment = () =>{
@@ -59,62 +75,63 @@ const MenuFragment = () =>{
 
     const renderLines = (queueTimes) => (
         <Box className={classes.menuContainer}>
+
             {[...queueTimes.keys()].map(mapKey => (
                 <div key={mapKey} >
 
+                    <p className={classes.TopP}>
+                        {queueTimes.get(mapKey)[1].category}
+                    </p>
+
+                    {queueTimes.get(mapKey) != null &&
                     <Grid container direction="row" className={classes.overStyle}>
 
-                        <Grid container direction="row" className={classes.menuStyle}>
+                        <Grid item container direction="column" className={classes.menuStyle}>
 
                             <Grid item>
-                        <p className={classes.TopP}>
-                            {queueTimes.get(mapKey)[1].category}
-                        </p>
-                        <Grid item className={classes.Card}>
-                        <Grid container direction="row">
-                            <Grid item>
-                                <p className={classes.mItem}>
-                                    {queueTimes.get(mapKey)[1].title_fi}
-                                </p>
+
+                                <Grid item className={classes.Card}>
+                                    <Grid container direction="row">
+                                        <Grid item className={classes.mItem}>
+                                            <p>
+                                                {queueTimes.get(mapKey)[1].title_fi}
+                                            </p>
+                                        </Grid>
+                                        <Grid item className={classes.mInfo}>
+                                            <p>
+                                                <p className={classes.properties}>
+                                                    {queueTimes.get(mapKey)[1].properties}
+                                                </p>
+                                                <p>
+                                                    {queueTimes.get(mapKey)[1].price}
+                                                </p>
+                                            </p>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <p className={classes.mInfo}>
-                                    <p>
-                                        {queueTimes.get(mapKey)[1].properties}
-                                    </p>
-                                    <p>
-                                        {queueTimes.get(mapKey)[1].price}
-                                    </p>
-                                </p>
-                            </Grid>
-                        </Grid>
-                        </Grid>
-                        </Grid>
                         </Grid>
 
                         <Grid item className={classes.waitStyle}>
-                    {queueTimes.get(mapKey) != null &&
-                    <Box className="lineDiv"
-                         border={1}
-                         p={1}
-                         m={1}
-                         bgcolor={colours.get(parseInt(queueTimes.get(mapKey)[0].queue_time))}
-                         borderColor="#E9E9E9" >
-                        <Grid container direction="row"
-                              justify="space-between"
-                              alignItems="center">
-                            <Grid>
-                                <Typography>
-                                    {times.get(parseInt(queueTimes.get(mapKey)[0].queue_time))}
-                                </Typography>
-                            </Grid>
+                            <Box className="lineDiv"
+                                 borderRadius="5px 5px 5px 5px"
+                                 p={1}
+                                 m={1}
+                                 bgcolor={colours.get(parseInt(queueTimes.get(mapKey)[0].queue_time))}
+                                 borderColor="#E9E9E9">
+                                <Grid container direction="row"
+                                      justify="space-between"
+                                      alignItems="center">
+                                    <Grid>
+                                        <Typography>
+                                            {times.get(parseInt(queueTimes.get(mapKey)[0].queue_time))}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Box>
                         </Grid>
-                    </Box>
-                    }
-                        </Grid>
-
-
                     </Grid>
+                    }
                 </div>
             ))}
         </Box>
@@ -214,13 +231,18 @@ const MenuFragment = () =>{
             }
         }, [queueTimes]);
 
-        console.log(testLines);
-        console.log(usedLines);
-
         return (
             <Fragment>
                 <Container className={classes.MenuContainer}>
                     <h3> Menu for the day</h3>
+                    <Grid container direction="row">
+                        <Grid item className={classes.leftInfo}>
+                            <Typography>Line</Typography>
+                        </Grid>
+                        <Grid item className={classes.rightInfo}>
+                            <Typography>Wait Time</Typography>
+                        </Grid>
+                    </Grid>
                     {renderLines(testLines)}
                 </Container>
             </Fragment>

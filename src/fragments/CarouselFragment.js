@@ -14,7 +14,7 @@ const useStyle = makeStyles(() => ({
 
 const CarouselFragment = (props) => {
     const classes = useStyle();
-    const {TabRestaurantLines, TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu} = TabFragments();
+    const {TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu} = TabFragments();
 
     const Restaurant = () => {
         const [valueRestaurant] = useState(0);
@@ -27,9 +27,8 @@ const CarouselFragment = (props) => {
         return (
                 <Fragment>
                         <Carousel autoPlay={false} navButtonsAlwaysVisible={true}
-                                  animation="slide" className={classes.Carousel}>
+                                  animation="slide" className={classes.Carousel} noWrap={true}>
                             <TabRestaurantMenu value={valueRestaurant} index={0}/>
-                            <TabRestaurantLines value={valueRestaurant} index={0}/>
                             <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
                             <RestaurantHeatMapView value={valueRestaurant} index={0}/>
                             <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>

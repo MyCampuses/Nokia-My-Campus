@@ -205,6 +205,7 @@ const DonutFragment = () => {
 
             useEffect( () =>{
                 if(dataForRender !== undefined){
+                    console.log(dataForRender);
                     if(dataForRender.length !== 0) {
 
                         let key = dataForRender[dataForRender.length - 1].y;
@@ -216,8 +217,23 @@ const DonutFragment = () => {
                             {name: 'nonUsage', value: 100 - key, color: "#7A7A7A"}
                             ])
                     }
+                    else{
+                        //data from backend put into a format the donut chart can read
+                        setDataDonutFormat([
+                            {name: 'usage', value: yKey, color: "#519FF9"},
+                            {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
+                        ])
+                    }
+                }
+                else{
+                    //data from backend put into a format the donut chart can read
+                    setDataDonutFormat([
+                        {name: 'usage', value: yKey, color: "#519FF9"},
+                        {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
+                    ])
                 }
             }, [dataForRender]); //eslint-disable-line
+
 
             return (
                 <Fragment>
