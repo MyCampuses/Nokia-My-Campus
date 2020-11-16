@@ -10,7 +10,8 @@ import ApiUrls from "../hooks/ApiUrls";
 const useStyle = makeStyles((theme) => ({
     MenuContainer:{
         width: '100%',
-        height: '100%,'
+        height: '100%',
+        display: "inline-block",
     },
     overStyle: {
         height:"100%",
@@ -38,6 +39,7 @@ const useStyle = makeStyles((theme) => ({
     },
     mItem:{
         width: "50%",
+        paddingLeft: "3%",
         position: "relative",
         display: "inline-block",
     },

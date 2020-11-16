@@ -26,6 +26,10 @@ const ApiUrls = () => {
     return sodexoUrl + 'daily_json/80/' + date;
   };
 
+  const sodexoWeeklyUrl = () =>{
+    return sodexoUrl + 'weekly_json/80';
+  };
+
   // Const used with Api fetch, define location and date
   const selectDate = (locUrl, loc, date) => {
     return locUrl + loc + '/' + date;
@@ -49,6 +53,7 @@ const ApiUrls = () => {
     confirmUrl,
     heatMapUrl,
     sodexoDailyUrl,
+    sodexoWeeklyUrl,
   };
 };
 export default ApiUrls;

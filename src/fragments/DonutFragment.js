@@ -34,8 +34,13 @@ const useStyle = makeStyles((theme) => ({
         textAlign: 'center',
         width: '100%',
         height: '45vh',
-        display: 'block',
-        marginTop: '5%',
+        display: 'inline-block',
+    },
+    Donut: {
+        width: '100%',
+        height: '100%',
+        minWidth: "200px",
+        minHeight: "200px",
     },
 }));
 // Holds all the fragments for charts
@@ -48,8 +53,8 @@ const DonutFragment = () => {
         //this renders a pie chart from the values in yKey
         const renderPie = (data, value) => (
             // Responsivecontainer for flexible chart size
-            <ResponsiveContainer width="100%" height="100%">
-                <PieChart minWidth={200} minHeight={200}>
+            <ResponsiveContainer className={classes.Donut}>
+                <PieChart>
                     <Pie
                         data={data}
                         name="usage"

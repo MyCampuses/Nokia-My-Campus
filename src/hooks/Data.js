@@ -7,7 +7,7 @@ const Data = () => {
     const lines = new Map([
         [1, 'FAVORITES 1'], [2, 'FAVORITES 2'],
         [3, 'PIZZA'], [4, 'Round Table'], [5, 'BOWL'],
-        [6, 'VEGE'], [7, 'CAFE PICKUP LINE'], [8, 'SALAD/NOKIA COFFEE']]);
+        [6, 'VEGE'], [7, 'CAFE PICKUP LINE'], [8, 'Green corner']]);
 
     //Wait time map, matching received wait time value to string
     const times = new Map([[1, strings.waitTime1], [2, strings.waitTime2],

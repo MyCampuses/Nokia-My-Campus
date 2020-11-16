@@ -25,7 +25,7 @@ const useStyle = makeStyles((theme) => ({
         width: '100%',
         height: '45vh',
         marginTop: '5%',
-        display: 'block',
+        display: 'inline-block',
 
     },
     RestaurantBox: {
@@ -34,7 +34,12 @@ const useStyle = makeStyles((theme) => ({
         marginTop: '5%',
         display: 'block',
 
-    }
+    },
+    ChartBox: {
+        minWidth: "200px",
+        minHeight: "200px",
+        margin: {left: -20, right: 20, top: 10},
+    },
 }));
 // Holds all the fragments for charts
 const ChartFragment = () => {
@@ -48,9 +53,9 @@ const ChartFragment = () => {
         const renderChart = (data, maxValue, ticks) => (
             // Responsivecontainer for flexible chart size
             <ResponsiveContainer width="100%" height="100%">
-                <AreaChart minWidth={200} minHeight={200}
+                <AreaChart className={classes.ChartBox}
                     //Negative margin below removes the space between YAxis and left side of chart
-                           margin={{left: -20, right: 20, top: 10}} data={data}>
+                           data={data}>
                     <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
                     <Area dataKey="y" fill="#0000FF"/>
                     <XAxis dataKey="x" padding={{right: 0}} allowDataOverflow={false}

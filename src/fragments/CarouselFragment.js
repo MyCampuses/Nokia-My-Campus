@@ -7,17 +7,16 @@ import RestaurantHeatMapView from "../views/restaurantHeatMap";
 
 const useStyle = makeStyles(() => ({
     Carousel: {
-        minHeight: "91vh",
+        minHeight: "90vh",
     },
     Frag: {
-        height:"100%", 
-
+        height: "85vh",
     },
 }));
 
 const CarouselFragment = (props) => {
     const classes = useStyle();
-    const {TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu} = TabFragments();
+    const {TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu, TabRestaurantWeek} = TabFragments();
 
     const Restaurant = () => {
         const [valueRestaurant] = useState(0);
@@ -30,11 +29,12 @@ const CarouselFragment = (props) => {
         return (
                 <Fragment>
                         <Carousel autoPlay={false} navButtonsAlwaysVisible={true}
-                                  animation="slide" className={classes.Carousel} noWrap={true}>
-                            <TabRestaurantMenu value={valueRestaurant} index={0}/>
-                            <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
-                            <RestaurantHeatMapView value={valueRestaurant} index={0}/>
-                            <TabRestaurantDonut value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>
+                                  animation="slide" noWrap={true}>
+                            <TabRestaurantMenu value={valueRestaurant} className={classes.Frag} index={0}/>
+                            <TabRestaurantWeek value={valueRestaurant} className={classes.Frag} index={0}/>
+                            <TabRestaurantChart value={valueRestaurant} className={classes.Frag} index={0} onDateChange={handleDateChange} date={date}/>
+                            <RestaurantHeatMapView value={valueRestaurant} className={classes.Frag} index={0}/>
+                            <TabRestaurantDonut value={valueRestaurant} className={classes.Frag} index={0} onDateChange={handleDateChange} date={date}/>
                         </Carousel>
                 </Fragment>
         );
