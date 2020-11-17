@@ -5,6 +5,7 @@ import API from '../hooks/ApiHooks';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
+import log from "d3-scale/src/log";
 
 const useStyle = makeStyles((theme) => ({
     MenuContainer:{
@@ -77,55 +78,61 @@ const WeeklyFragment = () => {
 
 
     const DialogF = (props) => {
-        const { onClose, selectedValue, open, data} = props;
+
+        const {onClose, open, data} = props;
 
         const handleClose = () => {
-            onClose(selectedValue);
-        };
-
-        const handleItemClick = (value) => {
-            onClose(value);
+            onClose();
         };
 
         return (
-            <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+            <Dialog aria-labelledby="simple-dialog-title" open={open} onClick={handleClose}>
                 <Box className={classes.menuContainer}>
 
-                    {data.map(key => (
-                        <div key={key} >
+                    {data.map(course => (
+                        <div key={course} >
+
+                            <h3>
+                                {course.date}
+                            </h3>
+
+                            {(Object.keys(course.courses) || []).map(key => (
+
+                            <div key={key} >
 
                             <p className={classes.TopP}>
-                                {key.courses.category}
+                                {course.courses[key].category}
                             </p>
+                                <Grid container direction="row" className={classes.overStyle}>
 
-                            <Grid container direction="row" className={classes.overStyle}>
+                                    <Grid item container direction="column" className={classes.menuStyle}>
 
-                                <Grid item container direction="column" className={classes.menuStyle}>
+                                        <Grid item>
 
-                                    <Grid item>
-
-                                        <Grid item className={classes.Card}>
-                                            <Grid container direction="row">
-                                                <Grid item className={classes.mItem}>
-                                                    <p>
-                                                        {key.courses.title_fi}
-                                                    </p>
-                                                </Grid>
-                                                <Grid item className={classes.mInfo}>
-                                                    <p>
-                                                        <p className={classes.properties}>
-                                                            {key.courses.properties}
-                                                        </p>
+                                            <Grid item className={classes.Card}>
+                                                <Grid container direction="row">
+                                                    <Grid item className={classes.mItem}>
                                                         <p>
-                                                            {key.courses.price}
+                                                            {course.courses[key].title_fi}
                                                         </p>
-                                                    </p>
+                                                    </Grid>
+                                                    <Grid item className={classes.mInfo}>
+                                                        <p>
+                                                            <p className={classes.properties}>
+                                                                {course.courses[key].properties}
+                                                            </p>
+                                                            <p>
+                                                                {course.courses[key].price}
+                                                            </p>
+                                                        </p>
+                                                    </Grid>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
+                            </div>
+                                ))}
                         </div>
                     ))}
                 </Box>
@@ -208,9 +215,8 @@ const WeeklyFragment = () => {
             setOpen(true);
         };
 
-        const handleClose = (value) => {
+        const handleClickClose = () => {
             setOpen(false);
-            setSelectedValue(value);
         };
 
         useEffect(() => {
@@ -226,8 +232,6 @@ const WeeklyFragment = () => {
         useEffect(() => {
 
         }, []);
-
-        console.log(dataForRender.mealdates[0].courses);
 
         return (
             <Fragment>
@@ -260,7 +264,8 @@ const WeeklyFragment = () => {
                                     </Grid>
                                 </Grid>
 
-                                <DialogF selectedValue={selectedValue} open={open} onClose={handleClose} data={dataForRender.mealdates}/>
+                                <DialogF selectedValue={selectedValue} open={open}
+                                         onClose={handleClickClose} data={dataForRender.mealdates}/>
                             </div>
                         ))}
                     </Box>
