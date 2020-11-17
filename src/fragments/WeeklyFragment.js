@@ -79,7 +79,9 @@ const WeeklyFragment = () => {
 
     const DialogF = (props) => {
 
-        const {onClose, open, data} = props;
+        const {selectedValue, onClose, open, data} = props;
+
+        console.log(selectedValue);
 
         const handleClose = () => {
             onClose();
@@ -90,7 +92,7 @@ const WeeklyFragment = () => {
                 <Box className={classes.menuContainer}>
 
                     {data.map(course => (
-                        <div key={course} >
+                        <div key={course}>
 
                             <h3>
                                 {course.date}
@@ -149,7 +151,7 @@ const WeeklyFragment = () => {
 
     const Week = (props) => {
 
-        const [selectedValue, setSelectedValue] = useState();
+        const [selectedValue, setSelectedValue] = useState([]);
         const [open, setOpen] = useState(false);
         const [temp, setTemp] = useState({
             timeperiod: "11.11. - 22.22.",
@@ -211,8 +213,9 @@ const WeeklyFragment = () => {
             ]
         });
 
-        const handleClickOpen = () => {
+        const handleClickOpen = (value) => {
             setOpen(true);
+            setSelectedValue(value)
         };
 
         const handleClickClose = () => {
@@ -242,7 +245,7 @@ const WeeklyFragment = () => {
                     <Box className={classes.menuContainer}>
 
                         {dataForRender.mealdates.map(key => (
-                            <div key={key} onClick={handleClickOpen}>
+                            <div key={key} onClick={() => handleClickOpen(key)}>
 
                                 <Grid item container direction="column" className={classes.WeeklyContainer}>
 
@@ -263,13 +266,12 @@ const WeeklyFragment = () => {
                                         </Grid>
                                     </Grid>
                                 </Grid>
-
-                                <DialogF selectedValue={selectedValue} open={open}
-                                         onClose={handleClickClose} data={dataForRender.mealdates}/>
                             </div>
                         ))}
                     </Box>
                 </Container>
+                <DialogF selectedValue={selectedValue} open={open}
+                         onClose={handleClickClose} data={dataForRender.mealdates}/>
             </Fragment>
         );
     };
