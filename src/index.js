@@ -12,6 +12,8 @@ import Data from './hooks/Data'
 import {applyMiddleware, createStore} from 'redux';
 import RootReducer from './hooks/RootReducer';
 import thunk from 'redux-thunk';
+
+
 const {SW_INIT, SW_UPDATE} = Data();
 const store = createStore(RootReducer,
     applyMiddleware(thunk));

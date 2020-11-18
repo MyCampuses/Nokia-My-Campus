@@ -28,9 +28,9 @@ const CarouselFragment = (props) => {
         };
 //
         return (
-                <Fragment>
+                <Fragment className={classes.Frag}>
                         <Carousel autoPlay={false} navButtonsAlwaysVisible={true}
-                                  animation="slide" className={classes.Carousel}>
+                                  animation="slide">
                             <TabRestaurantMenu value={valueRestaurant} index={0}/>
                             <TabRestaurantLines value={valueRestaurant} index={0}/>
                             <TabRestaurantChart value={valueRestaurant} index={0} onDateChange={handleDateChange} date={date}/>

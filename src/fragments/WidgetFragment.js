@@ -68,7 +68,7 @@ const Widgets = (props) => {
 
         return (
             <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-                <DialogTitle id="simple-dialog-title">{strings.dialogTitel}</DialogTitle>
+                <DialogTitle id="simple-dialog-title">{strings.dialogTitle}</DialogTitle>
                 <List>
                     {barWidgets.map((barWidget) => (
                         <ListItem button onClick={() => handleListItemClick(barWidget)} key={barWidget}>
@@ -110,8 +110,10 @@ const Widgets = (props) => {
           //Closes the dialog window and saves the value in selectedwidgets array
         const handleClose = (value) => {       
             setOpen(false);
-            setSelectedValue(value);
-            addSelectedWidgets(selectedWidgets.concat(value));
+            if(barWidgets.includes(value)){
+                setSelectedValue(value);
+                addSelectedWidgets(selectedWidgets.concat(value));
+            };
           };
 
         useEffect(() => {   

@@ -184,8 +184,8 @@ const MenuFragment = () =>{
 
             //size of queueTimes map
             let queueLength = queueTimes.size;
-            let tempy = new Map;
-            let tempp = new Map;
+            let tempy = new Map();
+            let tempp = new Map();
 
             // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
             if(check[2] !== undefined && stopper === undefined && queueLength === 8){

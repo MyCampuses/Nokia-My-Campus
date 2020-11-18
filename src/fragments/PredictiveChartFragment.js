@@ -53,7 +53,7 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 				point.x = formattedData[i].x;
 				point.y = formattedData[i].y;
 				maxY = Math.max(formattedData[i].y, maxY);
-				if (i == formattedData.length-1 && i < formattedExpectedData.length) {
+				if (i === formattedData.length-1 && i < formattedExpectedData.length) {
 					point.py = formattedData[i].y;
 				}
 			}

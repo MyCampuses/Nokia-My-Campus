@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
-import EditStyle from '../styles/editButtonStyle';
+//import EditStyle from '../styles/editButtonStyle';
+import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 
 /*
@@ -10,19 +11,48 @@ when a person has 1 or more widgets enabled on homepage
 */
 const EditButton = () =>  {
     const [buttonDisabled, setButtonDisabled] = useState(true);
-    const iconStyle = EditStyle();
+    const {del, read} = LocalStorageOperations();
+    const key = 'widgets';
+    const localData = read(key);  
+    //const iconStyle = EditStyle();
 
+    const WidgetData = ({selectedWidgets, addSelectedWidgets}) =>  {
+        if(selectedWidgets.length > 0){
+            EnabledButton();
+        } else {
+            DisableButton();
+        };
+    };
+
+    /*
+    Changes the state to false. The button is works with material UI 'disabled'
+    and a state that either sets disabled true or false. EnableButton changes the
+    state to false so the button can be clicked.
+    */
     const EnabledButton = () => {
-        setButtonDisabled(buttonDisabled => !buttonDisabled);
+        setButtonDisabled(false);
+    }
+
+    /*
+    Changes the state to true. The button is works with material UI 'disabled'
+    and a state that either sets disabled true or false. Disable changes the
+    state to true so the button can not be clicked.
+    */
+    const DisableButton = () => {
+        setButtonDisabled(true);
     };
 
-    const DisableButton = () => {
-        setButtonDisabled(buttonDisabled => !buttonDisabled);
+    const editOnClick = () => {
+        del(key);
     };
+
+    useEffect(() => {
+        //EnabledButton();
+    }, [buttonDisabled]);
 
     const EditIconButton = () => {
         return (
-            <IconButton disabled={buttonDisabled}>
+            <IconButton disabled={buttonDisabled} onClick={editOnClick}>
                 <EditIcon/>
             </IconButton>
         );
@@ -32,6 +62,7 @@ return {
     EditIconButton: EditIconButton,
     EnabledButton: EnabledButton,
     DisableButton: DisableButton,
+    WidgetData : WidgetData,
     };
 };
 
