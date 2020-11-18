@@ -7,42 +7,8 @@ import GlobalFunctions from '../hooks/GlobalFunctions';
 import {scaleTime} from 'd3-scale';
 import {utcHour} from 'd3-time';
 import format from 'date-fns/format'
+import useStyle from "../styles/restaurantStyles";
 
-const useStyle = makeStyles((theme) => ({
-    p5Box: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    p10Box: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    RestaurantBox: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    DonutContainer:{
-        textAlign: 'center',
-        width: '100%',
-        height: '45vh',
-        display: 'inline-block',
-    },
-    Donut: {
-        width: '100%',
-        height: '100%',
-        minWidth: "200px",
-        minHeight: "200px",
-    },
-}));
 // Holds all the fragments for charts
 const DonutFragment = () => {
         const classes = useStyle();

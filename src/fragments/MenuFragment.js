@@ -6,65 +6,7 @@ import Data from "../hooks/Data";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ApiUrls from "../hooks/ApiUrls";
-
-const useStyle = makeStyles((theme) => ({
-    MenuContainer:{
-        width: '100%',
-        height: '100%',
-        display: "inline-block",
-    },
-    overStyle: {
-        height:"100%",
-        width:"100%",
-        fontSize:"3vw",
-    },
-    menuStyle: {
-        color: "black",
-        height:"100%",
-        width:"75%",
-        fontSize:"3vw",
-    },
-    waitStyle: {
-        width:"25%",
-        height: "100%",
-        fontSize:"3vw",
-    },
-    TopP: {
-        color: "#124191",
-        textAlign: "left",
-    },
-    Card: {
-        boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
-        borderRadius: "5px",
-    },
-    mItem:{
-        width: "50%",
-        paddingLeft: "3%",
-        position: "relative",
-        display: "inline-block",
-    },
-    mInfo: {
-        width: "50%",
-        position: "relative",
-        display: "inline-block",
-    },
-    properties: {
-      color: "red",
-    },
-    stripe: {
-        width: "5%",
-    },
-    rightInfo: {
-        color: "#969696",
-        width: "50%",
-        textAlign: "right",
-    },
-    leftInfo: {
-        color: "#969696",
-        width: "50%",
-        textAlign: "left",
-    },
-}));
+import useStyle from "../styles/restaurantStyles";
 
 const MenuFragment = () =>{
 
@@ -144,18 +86,6 @@ const MenuFragment = () =>{
         const {getUsageDataNoProps} = API();
         const {restaurantQueueUrl} = ApiUrls();
 
-        const [temp, setTemp] = useState({
-            courses: {
-                1:{
-                title_fi: "",
-                title_en: "",
-                category: "",
-                price: "",
-                properties: "",
-                },
-            }
-        });
-
         const [dataForRender, setDataForRender] = useState({
             courses: {
                 1:{
@@ -168,30 +98,25 @@ const MenuFragment = () =>{
             }
         });
 
-
-
         const [stopper, setStopper] = useState(undefined);
         const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES 1']]));
-        const [testLines, setTestLines] = useState(new Map([[1, ['a', 'b']]]));
 
+        //get the menu for today and set it into dataForRender
         useEffect(() => {
             menuByDate(date)
-                .then(json => setTemp(json));
+                .then(json => setDataForRender(json));
         }, [props]);
-
-        useEffect(() => {
-            //eslint-disable-line
-            setDataForRender(temp);
-        }, [temp]);
 
         //stuff for lines
 
+        //get queue times and place them into the QueueTimes variable
         const getQueueTimes = async () => {
             for (let i = 1; i < 9; i++) {
                 getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueueTimes(new Map(queueTimes.set(i, result))))
             }
         };
 
+        //run the get queue times
         useEffect(() => {
             getQueueTimes().then()
         }, []);
@@ -227,8 +152,7 @@ const MenuFragment = () =>{
                         }
                     }
                 }
-                setUsedLines(tempy);
-                setTestLines(tempp);
+                setUsedLines(tempp);
                 //this is to stop this loop from rerunning
                 setStopper(1);
             }
@@ -246,7 +170,7 @@ const MenuFragment = () =>{
                             <Typography>Wait Time</Typography>
                         </Grid>
                     </Grid>
-                    {renderLines(testLines)}
+                    {renderLines(usedLines)}
                 </Container>
             </Fragment>
         );

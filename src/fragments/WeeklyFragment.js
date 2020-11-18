@@ -1,94 +1,20 @@
 
 import React, {Fragment, useEffect, useState} from 'react';
-import { Box, makeStyles, Container, Card, Dialog, DialogTitle, List, ListItem, ListItemText, CardContent  } from '@material-ui/core';
+import { Box, Container,Dialog} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
-
-const useStyle = makeStyles((theme) => ({
-    MenuContainer:{
-        width: '100%',
-        height: '100%',
-        display: "inline-block",
-    },
-    DialogContainer:{
-        width: '100%',
-        height: '100%',
-        display: "inline-block",
-        paddingLeft: "2%",
-        paddingRight: "2%",
-        paddingBottom: "3%",
-    },
-    WeeklyContainer:{
-        width: '100%',
-        height: '100%',
-        display: "inline-block",
-        paddingTop: "5%",
-    },
-    overStyle: {
-        height:"100%",
-        width:"100%",
-        fontSize:"3vw",
-    },
-    menuStyle: {
-        color: "black",
-        height:"100%",
-        width:"100%",
-        fontSize:"3vw",
-    },
-    waitStyle: {
-        width:"25%",
-        height: "100%",
-        fontSize:"3vw",
-    },
-    TopP: {
-        color: "#124191",
-        textAlign: "left",
-    },
-    Card: {
-        boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
-        borderRadius: "5px",
-    },
-    mItem:{
-        width: "50%",
-        paddingLeft: "3%",
-        position: "relative",
-        display: "inline-block",
-    },
-    mInfo: {
-        width: "50%",
-        position: "relative",
-        display: "inline-block",
-    },
-    mProperties:{
-        textAlign: "right",
-        paddingRight: "5%"
-    },
-    properties: {
-        color: "red",
-    },
-    stripe: {
-        width: "5%",
-    },
-    rightInfo: {
-        color: "#969696",
-        width: "50%",
-        textAlign: "right",
-    },
-    leftInfo: {
-        color: "#969696",
-        width: "50%",
-        textAlign: "left",
-    },
-}));
+import useStyle from "../styles/restaurantStyles";
 
 const WeeklyFragment = () => {
+
     const {menuByWeek} = API();
     const classes = useStyle();
 
-
+    //This creates the dialog that you see when you click an item in the weekly menu
     const DialogF = (props) => {
 
+        //selected value has the menu and date data for the element which was clicked
         const {selectedValue, onClose, open} = props;
 
         const handleClose = () => {
@@ -111,7 +37,7 @@ const WeeklyFragment = () => {
                             </p>
                                 <Grid container direction="row" className={classes.overStyle}>
 
-                                    <Grid item container direction="column" className={classes.menuStyle}>
+                                    <Grid item container direction="column" className={classes.overStyle}>
 
                                         <Grid item>
 
@@ -138,7 +64,7 @@ const WeeklyFragment = () => {
                                     </Grid>
                                 </Grid>
                             </div>
-                                ))}
+                    ))}
                 </Box>
             </Dialog>
         );
@@ -165,35 +91,6 @@ const WeeklyFragment = () => {
                     properties: "",
                 },
             },
-        },);
-        const [temp, setTemp] = useState({
-            timeperiod: "11.11. - 22.22.",
-            mealdates: [
-                {
-                date: "Funday",
-                courses: {
-                    1:{
-                        title_fi: "",
-                        title_en: "",
-                        category: "",
-                        price: "",
-                        properties: "",
-                    },
-                },
-            },
-                {
-                    date: "Funday",
-                    courses: {
-                        1:{
-                            title_fi: "",
-                            title_en: "",
-                            category: "",
-                            price: "",
-                            properties: "",
-                        },
-                    },
-                },
-            ]
         });
 
         const [dataForRender, setDataForRender] = useState({
@@ -211,50 +108,33 @@ const WeeklyFragment = () => {
                     },
                 },
             },
-                {
-                    date: "Funday",
-                    courses: {
-                        1:{
-                            title_fi: "",
-                            title_en: "",
-                            category: "",
-                            price: "",
-                            properties: "",
-                        },
-                    },
-                },
             ]
         });
 
+        //open clicked item
         const handleClickOpen = (value) => {
             setOpen(true);
             setSelectedValue(value)
         };
 
+        //close item
         const handleClickClose = () => {
             setOpen(false);
         };
 
+        //get weekly menu and st json to temp
         useEffect(() => {
             menuByWeek()
-                .then(json => setTemp(json));
+                .then(json => setDataForRender(json));
         }, [props]);
 
-        useEffect(() => {
-            //eslint-disable-line
-            setDataForRender(temp);
-        }, [temp]);
-
-        useEffect(() => {
-
-        }, []);
-
+        //The data for the menu of the day is stored in the created element, and sent to the dialog function by clicking the element
         return (
             <Fragment>
-                <h3>
-                    Weekly menu
-                </h3>
                 <Container className={classes.MenuContainer}>
+                    <h3>
+                        Weekly menu
+                    </h3>
                     <Box className={classes.menuContainer}>
 
                         {dataForRender.mealdates.map(key => (
