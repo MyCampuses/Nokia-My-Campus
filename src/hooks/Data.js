@@ -15,8 +15,8 @@ const Data = () => {
 
     //Colours to match the restaurant line wait times
     const colours = new Map([
-        [1, '#CFFFA7'], [2, '#ECFFAC'],
-        [3, '#FFF7A7'], [4, '#FFEAA5'], [5, '#FFD9A7']]);
+        [1, '#98ff12'], [2, '#e4ff78'],
+        [3, '#ffed4f'], [4, '#ffb236'], [5, '#ff3030']]);
 
     // Serviceworker state types, check Update.js for more information
     const SW_INIT = 'SW_INIT';

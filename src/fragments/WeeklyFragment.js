@@ -3,15 +3,21 @@ import React, {Fragment, useEffect, useState} from 'react';
 import { Box, makeStyles, Container, Card, Dialog, DialogTitle, List, ListItem, ListItemText, CardContent  } from '@material-ui/core';
 import API from '../hooks/ApiHooks';
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
-import log from "d3-scale/src/log";
 
 const useStyle = makeStyles((theme) => ({
     MenuContainer:{
         width: '100%',
         height: '100%',
         display: "inline-block",
+    },
+    DialogContainer:{
+        width: '100%',
+        height: '100%',
+        display: "inline-block",
+        paddingLeft: "2%",
+        paddingRight: "2%",
+        paddingBottom: "3%",
     },
     WeeklyContainer:{
         width: '100%',
@@ -54,6 +60,10 @@ const useStyle = makeStyles((theme) => ({
         position: "relative",
         display: "inline-block",
     },
+    mProperties:{
+        textAlign: "right",
+        paddingRight: "5%"
+    },
     properties: {
         color: "red",
     },
@@ -79,9 +89,7 @@ const WeeklyFragment = () => {
 
     const DialogF = (props) => {
 
-        const {selectedValue, onClose, open, data} = props;
-
-        console.log(selectedValue);
+        const {selectedValue, onClose, open} = props;
 
         const handleClose = () => {
             onClose();
@@ -89,21 +97,17 @@ const WeeklyFragment = () => {
 
         return (
             <Dialog aria-labelledby="simple-dialog-title" open={open} onClick={handleClose}>
-                <Box className={classes.menuContainer}>
+                <Box className={classes.DialogContainer}>
 
-                    {data.map(course => (
-                        <div key={course}>
+                    <h3>
+                        {selectedValue.date}
+                    </h3>
 
-                            <h3>
-                                {course.date}
-                            </h3>
+                    {(Object.keys(selectedValue.courses) || []).map(key => (
 
-                            {(Object.keys(course.courses) || []).map(key => (
-
-                            <div key={key} >
-
+                        <div key={key} >
                             <p className={classes.TopP}>
-                                {course.courses[key].category}
+                                {selectedValue.courses[key].category}
                             </p>
                                 <Grid container direction="row" className={classes.overStyle}>
 
@@ -115,16 +119,16 @@ const WeeklyFragment = () => {
                                                 <Grid container direction="row">
                                                     <Grid item className={classes.mItem}>
                                                         <p>
-                                                            {course.courses[key].title_fi}
+                                                            {selectedValue.courses[key].title_fi}
                                                         </p>
                                                     </Grid>
                                                     <Grid item className={classes.mInfo}>
-                                                        <p>
+                                                        <p className={classes.mProperties}>
                                                             <p className={classes.properties}>
-                                                                {course.courses[key].properties}
+                                                                {selectedValue.courses[key].properties}
                                                             </p>
                                                             <p>
-                                                                {course.courses[key].price}
+                                                                {selectedValue.courses[key].price}
                                                             </p>
                                                         </p>
                                                     </Grid>
@@ -135,8 +139,6 @@ const WeeklyFragment = () => {
                                 </Grid>
                             </div>
                                 ))}
-                        </div>
-                    ))}
                 </Box>
             </Dialog>
         );
@@ -151,8 +153,19 @@ const WeeklyFragment = () => {
 
     const Week = (props) => {
 
-        const [selectedValue, setSelectedValue] = useState([]);
         const [open, setOpen] = useState(false);
+        const [selectedValue, setSelectedValue] = useState({
+            date: "Funday",
+            courses: {
+                1:{
+                    title_fi: "",
+                    title_en: "",
+                    category: "",
+                    price: "",
+                    properties: "",
+                },
+            },
+        },);
         const [temp, setTemp] = useState({
             timeperiod: "11.11. - 22.22.",
             mealdates: [
@@ -271,7 +284,7 @@ const WeeklyFragment = () => {
                     </Box>
                 </Container>
                 <DialogF selectedValue={selectedValue} open={open}
-                         onClose={handleClickClose} data={dataForRender.mealdates}/>
+                         onClose={handleClickClose}/>
             </Fragment>
         );
     };
