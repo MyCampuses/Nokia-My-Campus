@@ -17,6 +17,7 @@ const ApiUrls = () => {
   const restaurantQueueUrl = apiUrl + 'restaurant/Midpoint/queue/';
   const dailyParkingUrl = apiUrl + 'parking/data/';
   const dailyRestaurantUrl = apiUrl + 'restaurant/Midpoint/daily?=date=';
+  const parkingStatusUrl = apiUrl + 'parking/status/';
   const parkingP5Url = apiUrl + 'parking/status/P5';
   const parkingP10Url = apiUrl + 'parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'parking/status/P10TOP';
@@ -36,6 +37,7 @@ const ApiUrls = () => {
     regUrl,
     apiUrl,
     restaurantUrl,
+	parkingStatusUrl,
     parkingP10Url,
     parkingP5Url,
     parkingP10TopUrl,
