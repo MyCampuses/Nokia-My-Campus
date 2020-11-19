@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
-import LocalStorageOperations from '../hooks/LocalStorageOperations';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment } from '../hooks/Actions';
 
@@ -19,7 +18,6 @@ const Widgets = (props) => {
     const {ProgressBar} = ProgressBarFragments();
     const {getUsageData} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-    const {create, read} = LocalStorageOperations();
 
 
     // States
@@ -169,7 +167,7 @@ const Widgets = (props) => {
     };
 
     return {
-        HomepageWidget: HomepageWidget
+        HomepageWidget
         };
 };
 

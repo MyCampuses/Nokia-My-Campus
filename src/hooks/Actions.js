@@ -15,9 +15,14 @@ export const decrement = (value) => {
 };
 
 export const selectValue = (value) => {
-
     return {
         type: 'SELECTVALUE',
         value
+    };
+};
+
+export const cleanState = () => {
+    return {
+        type: 'CLEANSTATE'
     };
 };

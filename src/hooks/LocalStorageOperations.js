@@ -1,3 +1,5 @@
+import { ReactReduxContext } from "react-redux";
+
 // Functions used with Local storage
 const LocalStorageOperations=()=> {
 
@@ -28,18 +30,18 @@ const LocalStorageOperations=()=> {
 
     const loadState = () => {
         try {
-            const serializedState = localStorage.getItem('widgets');
+            const serializedState = read('widgets');
             if (serializedState === null) return undefined;
-            return JSON.parse(serializedState);
+            return serializedState;
         } catch (err) {
             return undefined;
         };
     };
     
-    const saveState = (widgets) => {
+    const saveState = (state) => {
         try {
-            const serializedState = JSON.stringify(widgets);
-            localStorage.setItem('widgets', serializedState);
+            const serializedState = JSON.stringify(state);
+            create( serializedState, 'widgets');
         } catch(err) {
             console.log(err);
           }
