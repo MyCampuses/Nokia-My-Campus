@@ -1,6 +1,5 @@
-
 import React, {Fragment, useEffect, useState} from 'react';
-import { Box, Container,Dialog} from '@material-ui/core';
+import {Box, Container,Dialog} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
@@ -70,7 +69,6 @@ const WeeklyFragment = () => {
         );
     };
 
-
         DialogF.propTypes = {
         onClose: PropTypes.func.isRequired,
         open: PropTypes.bool.isRequired,
@@ -81,7 +79,7 @@ const WeeklyFragment = () => {
 
         const [open, setOpen] = useState(false);
         const [selectedValue, setSelectedValue] = useState({
-            date: "Funday",
+            date: "",
             courses: {
                 1:{
                     title_fi: "",
@@ -94,10 +92,10 @@ const WeeklyFragment = () => {
         });
 
         const [dataForRender, setDataForRender] = useState({
-            timeperiod: "11.11. - 22.22.",
+            timeperiod: "",
             mealdates: [
                 {
-                date: "Funday",
+                date: "",
                 courses: {
                     1:{
                         title_fi: "",
@@ -135,7 +133,7 @@ const WeeklyFragment = () => {
                     <h3>
                         Weekly menu
                     </h3>
-                    <Box className={classes.menuContainer}>
+                    <Box className={classes.MenuContainer}>
 
                         {dataForRender.mealdates.map(key => (
                             <div key={key} onClick={() => handleClickOpen(key)}>
@@ -153,7 +151,6 @@ const WeeklyFragment = () => {
                                                     <p className={classes.TopP}>
                                                         {key.date}
                                                     </p>
-
                                                 </Grid>
                                             </Grid>
                                         </Grid>

@@ -1,6 +1,6 @@
 
 import React, {Fragment, useEffect, useState} from 'react';
-import {Box, Container, makeStyles} from '@material-ui/core';
+import {Box, Container} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
 import Data from "../hooks/Data";
 import Grid from "@material-ui/core/Grid";
@@ -17,7 +17,7 @@ const MenuFragment = () =>{
     let date = new Date();
 
     const renderLines = (queueTimes) => (
-        <Box className={classes.menuContainer}>
+        <Box className={classes.MenuContainer}>
 
             {[...queueTimes.keys()].map(mapKey => (
                 <div key={mapKey} >
@@ -98,7 +98,6 @@ const MenuFragment = () =>{
             }
         });
 
-        const [stopper, setStopper] = useState(undefined);
         const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES 1']]));
 
         //get the menu for today and set it into dataForRender
@@ -129,11 +128,11 @@ const MenuFragment = () =>{
 
             //size of queueTimes map
             let queueLength = queueTimes.size;
-            let tempy = new Map;
-            let tempp = new Map;
+            //temporary map for data
+            let temp = new Map();
 
             // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
-            if(check[2] !== undefined && stopper === undefined && queueLength === 8){
+            if(check[2] !== undefined && queueLength === 8){
 
                 //run for each entry from sodexo
                 for (let i = 1; i < lengthy; i++) {
@@ -145,16 +144,13 @@ const MenuFragment = () =>{
                         if (check[i].category === lines.get(l)){
 
                             //set the values into the temporary Map
-                            tempy.set(l, queueTimes.get(l));
-                            tempp.set(
+                            temp.set(
                                 l, [ queueTimes.get(l), check[i] ]
                             );
                         }
                     }
                 }
-                setUsedLines(tempp);
-                //this is to stop this loop from rerunning
-                setStopper(1);
+                setUsedLines(temp);
             }
         }, [queueTimes]);
 

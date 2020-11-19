@@ -18,7 +18,7 @@ const CarouselFragment = (props) => {
 //
         return (
                 <Fragment>
-                        <Carousel autoPlay={false} navButtonsAlwaysVisible={true}
+                        <Carousel autoPlay={false} navButtonsAlwaysVisible={false}
                                   animation="slide" noWrap={true}>
                             <TabRestaurantMenu value={valueRestaurant} className={classes.Frag} index={0}/>
                             <TabRestaurantWeek value={valueRestaurant} className={classes.Frag} index={0}/>
