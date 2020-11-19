@@ -4,14 +4,15 @@ const WidgetReducer = (state = [], action) => {
 
     switch(action.type){
         case 'INCREMENT':
-            if(action.value !== []){
+            if(action.value !== [] & !state.includes(action.value)){
                 return state.concat(action.value)
             } else {
-                break
+                return state
             };
         
         case 'DECREMENT':
             return state.splice(state.length-1, 1);
+            
         default:
             return state
     };

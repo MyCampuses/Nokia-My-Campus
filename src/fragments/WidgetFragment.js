@@ -11,6 +11,8 @@ import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement} from '../hooks/Actions';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
@@ -96,13 +98,14 @@ const Widgets = (props) => {
         they can add something to the front page
     */
     const HomepageWidget = () => {
-        const [selectedWidgets, addSelectedWidgets] = useState([]);
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
         const key = 'widgets';
 
-            
+        const selectedWidgets = useSelector(state => state.WidgetReducer);
         
+        const dispatch = useDispatch();
+
         const handleClickOpen = () => {
             setOpen(true);
           };
@@ -112,22 +115,24 @@ const Widgets = (props) => {
             setOpen(false);
             if(barWidgets.includes(value)){
                 setSelectedValue(value);
-                addSelectedWidgets(selectedWidgets.concat(value));
+                dispatch(increment(value));
             };
           };
 
-        useEffect(() => {   
-            const localData = read(key);       
-            if(localData) {
-                addSelectedWidgets(localData);
-            } else {
-                addSelectedWidgets([]);
-            }
-        }, []);
+          //the empty bracket indicates that this useEffect is only ran once when the application is ran.
+        //  useEffect(() => {   
+        //     const localData = read(key);       
+        //      if(localData) {
+        //          if(!selectedWidgets.includes(localData)){
+        //             dispatch(increment(localData));
+        //          };
+        //      };
+        //  }, []);
 
-        useEffect(() => {
-            create(JSON.stringify(selectedWidgets), key)
-        }, [selectedWidgets]);
+        //When a change occures in selectedWidgets, add the state to localstorage 
+        //  useEffect(() => {
+        //      create(JSON.stringify(selectedWidgets), key)
+        //  }, [selectedWidgets]);
         
         
         /*
