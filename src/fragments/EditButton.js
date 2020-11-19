@@ -3,6 +3,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 //import EditStyle from '../styles/editButtonStyle';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 /*
@@ -13,10 +14,13 @@ const EditButton = () =>  {
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const {del, read} = LocalStorageOperations();
     const key = 'widgets';
-    const localData = read(key);  
+    const localData = read(key);
     //const iconStyle = EditStyle();
 
-    const WidgetData = ({selectedWidgets, addSelectedWidgets}) =>  {
+    //Redux state
+    const selectedWidgets = useSelector(state => state.WidgetReducer);
+
+    const WidgetData = ({selectedWidgets}) =>  {
         if(selectedWidgets.length > 0){
             EnabledButton();
         } else {

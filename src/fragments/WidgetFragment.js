@@ -12,7 +12,7 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import LocalStorageOperations from '../hooks/LocalStorageOperations';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement} from '../hooks/Actions';
+import { increment } from '../hooks/Actions';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
@@ -100,7 +100,6 @@ const Widgets = (props) => {
     const HomepageWidget = () => {
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
-        const key = 'widgets';
 
         const selectedWidgets = useSelector(state => state.WidgetReducer);
         
@@ -118,21 +117,6 @@ const Widgets = (props) => {
                 dispatch(increment(value));
             };
           };
-
-          //the empty bracket indicates that this useEffect is only ran once when the application is ran.
-        //  useEffect(() => {   
-        //     const localData = read(key);       
-        //      if(localData) {
-        //          if(!selectedWidgets.includes(localData)){
-        //             dispatch(increment(localData));
-        //          };
-        //      };
-        //  }, []);
-
-        //When a change occures in selectedWidgets, add the state to localstorage 
-        //  useEffect(() => {
-        //      create(JSON.stringify(selectedWidgets), key)
-        //  }, [selectedWidgets]);
         
         
         /*

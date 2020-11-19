@@ -12,11 +12,20 @@ import Data from './hooks/Data'
 import {applyMiddleware, createStore} from 'redux';
 import RootReducer from './hooks/RootReducer';
 import thunk from 'redux-thunk';
-
+import localStorageOperations from './hooks/LocalStorageOperations';
 
 const {SW_INIT, SW_UPDATE} = Data();
-const store = createStore(RootReducer,
+const { saveState, loadState} = localStorageOperations();
+const persistedState = loadState();
+
+const store = createStore(RootReducer, persistedState,
     applyMiddleware(thunk));
+
+store.subscribe(() => {
+    saveState(
+        store.getState()
+    );
+});
 
 ReactDOM.render(
     // Provider makes redux store available to any nested component

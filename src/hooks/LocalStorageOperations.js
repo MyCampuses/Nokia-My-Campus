@@ -26,11 +26,32 @@ const LocalStorageOperations=()=> {
       myStorage.clear();
     };
 
+    const loadState = () => {
+        try {
+            const serializedState = localStorage.getItem('widgets');
+            if (serializedState === null) return undefined;
+            return JSON.parse(serializedState);
+        } catch (err) {
+            return undefined;
+        };
+    };
+    
+    const saveState = (widgets) => {
+        try {
+            const serializedState = JSON.stringify(widgets);
+            localStorage.setItem('widgets', serializedState);
+        } catch(err) {
+            console.log(err);
+          }
+    };
+
     return {
         create,
         read,
         del,
-        clear
+        clear,
+        loadState,
+        saveState
     }
 };
 
