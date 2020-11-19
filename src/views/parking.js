@@ -67,10 +67,10 @@ const Parking = () => {
 				getUsageDataNoProps((apiUrl+'parking/status/'+zone.id)).then( usageData => {
 					usageData.count = Math.max(Math.min(usageData.capacity, usageData.count), 0);
 					data[aindex].zones.parking[zindex].usageData = usageData;
-					if (zone.id == 'P10TOP') {
+					if (zone.id === 'P10TOP') {
 						let p10ev = {count: Math.min(98, Math.floor(usageData.count * 2.1)), capacity: 98};
 						area.zones.ev_charging.forEach((evzone, evindex) => {
-							if (evzone.name == 'roof') {
+							if (evzone.name === 'roof') {
 								data[aindex].zones.ev_charging[evindex].usageData = p10ev;
 							}
 						});
