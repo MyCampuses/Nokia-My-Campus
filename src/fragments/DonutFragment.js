@@ -7,37 +7,8 @@ import GlobalFunctions from '../hooks/GlobalFunctions';
 import {scaleTime} from 'd3-scale';
 import {utcHour} from 'd3-time';
 import format from 'date-fns/format'
+import useStyle from "../styles/restaurantStyles";
 
-const useStyle = makeStyles((theme) => ({
-    p5Box: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    p10Box: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    RestaurantBox: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    DonutContainer:{
-        textAlign: 'center',
-        width: '100%',
-        height: '45vh',
-        display: 'block',
-        marginTop: '5%',
-    },
-}));
 // Holds all the fragments for charts
 const DonutFragment = () => {
         const classes = useStyle();
@@ -48,8 +19,8 @@ const DonutFragment = () => {
         //this renders a pie chart from the values in yKey
         const renderPie = (data, value) => (
             // Responsivecontainer for flexible chart size
-            <ResponsiveContainer width="100%" height="100%">
-                <PieChart minWidth={200} minHeight={200}>
+            <ResponsiveContainer className={classes.Donut}>
+                <PieChart>
                     <Pie
                         data={data}
                         name="usage"
@@ -205,6 +176,7 @@ const DonutFragment = () => {
 
             useEffect( () =>{
                 if(dataForRender !== undefined){
+                    console.log(dataForRender);
                     if(dataForRender.length !== 0) {
 
                         let key = dataForRender[dataForRender.length - 1].y;
@@ -216,8 +188,23 @@ const DonutFragment = () => {
                             {name: 'nonUsage', value: 100 - key, color: "#7A7A7A"}
                             ])
                     }
+                    else{
+                        //data from backend put into a format the donut chart can read
+                        setDataDonutFormat([
+                            {name: 'usage', value: yKey, color: "#519FF9"},
+                            {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
+                        ])
+                    }
+                }
+                else{
+                    //data from backend put into a format the donut chart can read
+                    setDataDonutFormat([
+                        {name: 'usage', value: yKey, color: "#519FF9"},
+                        {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
+                    ])
                 }
             }, [dataForRender]); //eslint-disable-line
+
 
             return (
                 <Fragment>
