@@ -1,11 +1,19 @@
-const WMenuReducer = (state=[], action) => {
+const WMenuReducer = (state = [], action) => {
 
-    if(state === []){
-        return state.concat(action.value)
-    }
-    else{
-        return state
+    switch(action.type){
+        case 'INCREMENT':
+            if(action.value !== [] && !state.includes(action.value)){
+                return state.concat(action.value);
+            } else {
+                return state ;
+            };
+
+        case 'DECREMENT':
+            return state.splice(state.length = 0);
+
+        default:
+            return state;
     }
 };
 
-export default WMenuReducer
+export default WMenuReducer;

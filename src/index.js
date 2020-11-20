@@ -15,7 +15,7 @@ import thunk from 'redux-thunk';
 import localStorageOperations from './hooks/LocalStorageOperations';
 
 const {SW_INIT, SW_UPDATE} = Data();
-const { saveState, loadState} = localStorageOperations();
+const {saveState, loadState} = localStorageOperations();
 const persistedState = loadState();
 
 const store = createStore(RootReducer, persistedState,
