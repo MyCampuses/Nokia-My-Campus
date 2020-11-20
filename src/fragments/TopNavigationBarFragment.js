@@ -3,51 +3,18 @@
     all the elements in the top bar are here, including menu items.
 */
 import React, {Fragment, useState} from 'react';
-import {AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
+import {AppBar, IconButton, Menu, MenuItem, Toolbar } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Logout from "../hooks/Logout";
 import strings from "../localization";
-
-//Styles for the Top Navigation Bar
-const useStyle = makeStyles((theme) => ({
-    frag: {
-        flexGrow: 1,
-    },
-    toolBar: {
-        alignItems: 'flex-start',
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-        flexGrow: 1
-    },
-    appBar: {
-        position: "static",
-        backgroundColor: '#124191',
-    },
-    iconButton: {
-        color: "white",
-    },
-    logo: {
-        flexGrow: 1,
-        marginRight: theme.spacing(2),
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-        maxWidth: 160
-    },
-    menu: {
-        color:"inherit",
-        edge: "end"
-    },
-    rightToolbar: {
-        marginLeft: 'auto',
-    },
-}));
+import style from "../styles/TopNavigationBarStyle";
 
 const NaviBar = () => {
 
     //Top navigation bar elements & menu bar elements
     const TopNavigationBar = () => {
-        const classes = useStyle();
+        const classes = style().topBar();
 
         const [anchorEl, setAnchorEl] = useState(null);
         const {onItemClickNavigate} = GlobalFunctions();
@@ -115,7 +82,7 @@ const NaviBar = () => {
         );
     };
     return {
-        TopNavigationBar: TopNavigationBar
+        TopNavigationBar
     };
 };
 export default NaviBar;

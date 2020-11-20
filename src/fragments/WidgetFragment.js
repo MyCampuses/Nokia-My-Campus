@@ -10,14 +10,14 @@ import PropTypes from 'prop-types';
 import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
-import LocalStorageOperations from '../hooks/LocalStorageOperations';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from '../hooks/Actions';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
     const {ProgressBar} = ProgressBarFragments();
     const {getUsageData} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-    const {create, read} = LocalStorageOperations();
 
 
     // States
@@ -68,7 +68,7 @@ const Widgets = (props) => {
 
         return (
             <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-                <DialogTitle id="simple-dialog-title">{strings.dialogTitel}</DialogTitle>
+                <DialogTitle id="simple-dialog-title">{strings.dialogTitle}</DialogTitle>
                 <List>
                     {barWidgets.map((barWidget) => (
                         <ListItem button onClick={() => handleListItemClick(barWidget)} key={barWidget}>
@@ -96,13 +96,13 @@ const Widgets = (props) => {
         they can add something to the front page
     */
     const HomepageWidget = () => {
-        const [selectedWidgets, addSelectedWidgets] = useState([]);
         const [selectedValue, setSelectedValue] = useState(defaultWidgetPicture);
         const [open, setOpen] = useState(false);
-        const key = 'widgets';
 
-            
+        const selectedWidgets = useSelector(state => state.WidgetReducer);
         
+        const dispatch = useDispatch();
+
         const handleClickOpen = () => {
             setOpen(true);
           };
@@ -110,22 +110,11 @@ const Widgets = (props) => {
           //Closes the dialog window and saves the value in selectedwidgets array
         const handleClose = (value) => {       
             setOpen(false);
-            setSelectedValue(value);
-            addSelectedWidgets(selectedWidgets.concat(value));
+            if(barWidgets.includes(value)){
+                setSelectedValue(value);
+                dispatch(increment(value));
+            };
           };
-
-        useEffect(() => {   
-            const localData = read(key);       
-            if(localData) {
-                addSelectedWidgets(localData);
-            } else {
-                addSelectedWidgets([]);
-            }
-        }, []);
-
-        useEffect(() => {
-            create(JSON.stringify(selectedWidgets), key)
-        }, [selectedWidgets]);
         
         
         /*
@@ -178,7 +167,7 @@ const Widgets = (props) => {
     };
 
     return {
-        HomepageWidget: HomepageWidget
+        HomepageWidget
         };
 };
 

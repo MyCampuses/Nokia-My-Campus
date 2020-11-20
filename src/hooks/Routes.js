@@ -13,6 +13,7 @@ import P5 from '../views/p5';
 import P10 from '../views/p10';
 import Parking from '../views/parking';
 import ParkingInfo from '../views/parkingInfo';
+import ParkingHistory from '../views/parkingHistory';
 import Restaurant from '../views/restaurant';
 import ForgotPassword from '../views/forgotPass'
 import Register from "../views/register";
@@ -37,6 +38,7 @@ const routes = {
   '/parking/P10': () => <ParkingInfo/>,
   '/parking/P10TOP': () => <ParkingInfo/>,
   '/parking/P10EV': () => <ParkingInfo/>,
+  '/parkinghistory': (zone, date) => <ParkingHistory zone={zone} date={date}/>,
   '/restaurant': () => <Restaurant/>,
   '/register': () => <Register/>,
   '/forgot_password': () => <ForgotPassword/>,

@@ -94,7 +94,7 @@ let strings = new LocalizedStrings({
         lines: "Lines",
         currentStatsAre: "Current campus statistics are:",
         newspage: "Campus News",
-        dialogTitel: "Choose your widgets!",
+        dialogTitle: "Choose your widgets!",
         donut: "pie",
     },
 
@@ -186,7 +186,7 @@ let strings = new LocalizedStrings({
         lines: "Linjasto",
         currentStatsAre:"Tämän hetken tilastot kampuksella:",
         newspage: "Campus Uutiset",
-        dialogTitel: "Valitse vempain",
+        dialogTitle: "Valitse vempain",
         donut: "piirakka",
     },
 
@@ -272,7 +272,7 @@ let strings = new LocalizedStrings({
         lines: "Linjer",
         currentStatsAre:"Nuvarande statistik på kampus:",
         newspage: "Campus nyheter", 
-        dialogTitel: "Välj din widget",
+        dialogTitle: "Välj din widget",
         donut: "Donits",
     }
 });

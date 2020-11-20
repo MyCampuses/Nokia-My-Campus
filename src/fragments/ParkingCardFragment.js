@@ -12,7 +12,6 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import {PieChart, Pie} from 'recharts';
 
 const ParkingCardFragment = (data) => {
-	
     const {onItemClickNavigate} = GlobalFunctions();
 	
 	const nameToLocalizedString = (name) => {

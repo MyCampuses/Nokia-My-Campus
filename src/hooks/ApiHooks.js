@@ -8,7 +8,7 @@ import LocalStorageOperations from './LocalStorageOperations';
 import ApiUrls from './ApiUrls'
 import GlobalFunctions from './GlobalFunctions';
 
-const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl, sodexoDailyUrl, sodexoWeeklyUrl } = ApiUrls();
+const { loginUrl,regUrl,forgotPassUrl,resetPassUrl,confirmUrl,resendVerificationUrl, sodexoDailyUrl, sodexoWeeklyUrl, dailyParkingUrl, parkingStatusUrl } = ApiUrls();
 const {convertTime, formattedDate, sodexoDate } = GlobalFunctions();
 // Basic Fetch template for post messages
 const fetchPostUrl = async (url,data) => {
@@ -108,6 +108,61 @@ const API = () => {
             }
         })
     };
+	
+	const getParkingStatus = (location) => {
+		//P10EV has no API endpoint, create data manually based on P10TOP
+		if (location === 'P10EV') {
+			const url = parkingStatusUrl + 'P10TOP'
+			return fetchGetUrl(url, 'user').then((json) => {
+				if (json) {
+					return {count: Math.min(98, Math.floor(json.count * 2.1)), capacity: 98};
+				} else {
+					throw Error("No Token, getParkingStatus")
+				}
+			})
+		} else {
+			const url = parkingStatusUrl + '/'+location
+			return fetchGetUrl(url, 'user').then((json) => {
+				if (json) {
+					return json
+				} else {
+					throw Error("No Token, getParkingStatus")
+				}
+			})
+		}
+	}
+
+	const getParkingData = (location, date) => {
+		const url = dailyParkingUrl
+		//P10EV has no API endpoint, create data manually based on P10TOP
+		if (location === 'P10EV') {
+			return getUsageData(url + 'P10TOP/' + date).then((json) => {
+				if (json) {
+					const convertToP10EV = (json) => {
+						let p10ev = [];
+						json.samples.forEach(sample => {
+							const newcount = Math.min(98, Math.floor(sample["count"] * 2.1));
+							p10ev.push({count: newcount, date: sample["date"], percent: Math.floor(newcount/98)});
+						});
+						json["samples"] = p10ev;
+						console.log(json);
+						return json;
+					}
+					return convertToP10EV(json);
+				} else {
+					throw Error("No Token, getParkingData")
+				}
+			});
+		} else {
+			return getUsageData(url + location + '/' + date).then((json) => {
+				if (json) {
+					return json
+				} else {
+					throw Error("No Token, getParkingData")
+				}
+			});
+		}
+	};
 
     const dataToChart = (json) => {
         if (json !== undefined) {
@@ -190,6 +245,8 @@ const API = () => {
         getUsageData,
         getUsageDataNoProps,
         getChartData,
+		getParkingStatus,
+		getParkingData,
         dataToChart,
         dataToChartRawCount,
         forgotPassAsync,

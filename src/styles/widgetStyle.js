@@ -47,8 +47,8 @@ const barTheme = makeStyles({
   });
 
 return {
-    widgetStyle: widgetStyle,
-    barTheme: barTheme,
+    widgetStyle,
+    barTheme,
     };
 };
 
