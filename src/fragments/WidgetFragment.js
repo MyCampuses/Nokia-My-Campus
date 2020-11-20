@@ -143,7 +143,7 @@ const Widgets = (props) => {
                             {ProgressBar(selectedWidget)}
                         </CardContent>
                     </Card>
-                ))};
+                ))}
 
                 <Card className={classes.card} onClick={handleClickOpen}>
                     <CardContent>
@@ -161,9 +161,9 @@ const Widgets = (props) => {
                             {ProgressBar(selectedWidget)}
                         </CardContent>
                     </Card>
-                ))};
+                ))}
             </Fragment>
-            )};
+            )}
     };
 
     return {
