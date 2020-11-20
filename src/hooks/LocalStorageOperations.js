@@ -44,7 +44,7 @@ const LocalStorageOperations=()=> {
             create( serializedState, 'widgets');
         } catch(err) {
             console.log(err);
-          }
+          };
     };
 
     return {

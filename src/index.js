@@ -22,9 +22,10 @@ const store = createStore(RootReducer, persistedState,
     applyMiddleware(thunk));
 
 store.subscribe(() => {
-    saveState(
-        store.getState()
-    );
+    saveState({
+
+        WidgetReducer : store.getState().WidgetReducer
+    });
 });
 
 ReactDOM.render(
