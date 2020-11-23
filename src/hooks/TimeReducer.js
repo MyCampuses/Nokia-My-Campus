@@ -1,16 +1,15 @@
-const MenuReducer = (state = [], action) => {
+const TimeReducer = (state = [], action) => {
 
     switch(action.type){
-        case 'MENU':
+        case 'TIME':
             if(action.value !== [] && !state.includes(action.value)){
                 return state.concat(action.value);
             } else {
                 return state;
             }
-
         default:
             return state;
     }
 };
 
-export default MenuReducer;
+export default TimeReducer;

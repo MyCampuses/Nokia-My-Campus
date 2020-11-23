@@ -23,7 +23,6 @@ const store = createStore(RootReducer, persistedState,
 
 store.subscribe(() => {
     saveState({
-
         WidgetReducer : store.getState().WidgetReducer
     });
 });

@@ -5,8 +5,8 @@ const WMenuReducer = (state = [], action) => {
             if(action.value !== [] && !state.includes(action.value)){
                 return state.concat(action.value);
             } else {
-                return state ;
-            };
+                return state;
+            }
 
         case 'DECREMENT':
             return state.splice(state.length = 0);
