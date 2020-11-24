@@ -14,11 +14,11 @@ import ParkingCardFragment from "../fragments/ParkingCardFragment";
 /*eslint-enable */
 
 const Parking = () => {
-	const {getChartData, dataToChart, chartEstData, dataToChartRestaurant, getUsageDataNoProps} = API();
+	const { getUsageDataNoProps} = API();
 	const {apiUrl} = ApiUrls();
 	
 	const [firstRender, setFirstRender] = useState(true);
-	const [updater, setUpdater] = useState(false);
+	const [updater] = useState(false);
 	
 	const [data, setData] = useState([{
 			"name": "P5",
@@ -54,10 +54,6 @@ const Parking = () => {
 			}
 		}
 	]);
-	
-	const rerender = () => {
-		setUpdater(!updater);
-	}
 		
 		
 	if (firstRender) {

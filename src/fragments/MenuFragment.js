@@ -1,5 +1,5 @@
 
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Box, Container} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
 import Data from "../hooks/Data";

@@ -9,22 +9,16 @@ import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import TextDataTable from "../fragments/TextDataTableFragment";
 import PredictiveChartFragment from "../fragments/PredictiveChartFragment";
 import API from '../hooks/ApiHooks';
-import ApiUrls from '../hooks/ApiUrls';
-import strings from '../localization';
 import GlobalFunctions from '../hooks/GlobalFunctions';
 
 /*eslint-enable */
 
 const ParkingInfo = () => {
 	const {getParkingStatus, getParkingData} = API();
-	const {apiUrl} = ApiUrls();
-	const {dailyParkingUrl} = ApiUrls();
-	const {formattedFullDate, onItemClickNavigate} = GlobalFunctions();
+	const {formattedFullDate} = GlobalFunctions();
     const {isLoggedIn} = Authentication();
 	
 	const [tableData, setTableData] = useState([["Total spaces", ""], ["Spaces in use", ""], ["Available spaces", ""]]);
