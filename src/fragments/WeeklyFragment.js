@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import useStyle from "../styles/restaurantStyles";
 import {useDispatch, useSelector} from "react-redux";
-import { increment } from '../hooks/Actions';
+import {wmenu} from '../hooks/Actions';
 
 const WeeklyFragment = () => {
 
@@ -110,7 +110,7 @@ const WeeklyFragment = () => {
         //get weekly menu and st json to temp
         if(reducerState.length === 0) {
             menuByWeek()
-                .then(json => dispatch(increment(json.mealdates)));
+                .then(json => dispatch(wmenu(json.mealdates)));
         }
 
 

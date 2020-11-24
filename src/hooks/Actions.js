@@ -14,6 +14,13 @@ export const decrement = (value) => {
     };
 };
 
+export const wmenu = (value) => {
+    return {
+        type: 'WMENU',
+        value
+    };
+};
+
 export const menu = (value) => {
     return {
         type: 'MENU',
@@ -27,6 +34,7 @@ export const time = (value) => {
         value
     };
 };
+
 
 export const selectValue = (value) => {
     return {
