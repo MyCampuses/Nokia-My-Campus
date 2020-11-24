@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ApiUrls from "../hooks/ApiUrls";
 import useStyle from "../styles/restaurantStyles";
-import {menu, time, cleanState} from "../hooks/Actions";
+import {menu, time} from "../hooks/Actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const MenuFragment = () =>{
@@ -87,7 +87,6 @@ const MenuFragment = () =>{
         const {getUsageDataNoProps} = API();
         const {restaurantQueueUrl} = ApiUrls();
         const menuState = useSelector(state => state.MenuReducer);
-        const timeState = useSelector(state => state.TimeReducer);
         const dispatch = useDispatch();
 
         const [stopper, setStopper] = useState(0);
@@ -100,26 +99,27 @@ const MenuFragment = () =>{
             let queue = new Map();
             for (let i = 1; i < 9; i++) {
                 getUsageDataNoProps(restaurantQueueUrl + i)
-                    .then(result => queue.set(i, result))
+                    .then(result => dispatch(time(queue.set(i, result))))
             }
-            console.log(queue)
         };
 
         if(menuState.length === 0) {
             getQueueTimes().then();
+        }
+        if(menuState.length === 1) {
             menuByDate(date)
                 .then(json => dispatch(menu(json.courses)));
         }
 
 
-        if(menuState.length !== 0) {
-            let check = menuState[0];
+        if(menuState.length === 2) {
+            let check = menuState[1];
 
             //length of dataForRender
             let lengthy = Object.keys(check).length + 1;
 
             //size of queueTimes map
-            let queueLength = timeState.size;
+            let queueLength = menuState[0].size;
 
             //temporary map for data
             let temp = new Map();
