@@ -72,9 +72,7 @@ const Widgets = (props) => {
                 <List>
                     {barWidgets.map((barWidget) => (
                         <ListItem button onClick={() => handleListItemClick(barWidget)} key={barWidget}>
-
                             <ListItemText secondary={barWidget.barLabel} />
-
                         </ListItem>
                     ))};
                 </List>

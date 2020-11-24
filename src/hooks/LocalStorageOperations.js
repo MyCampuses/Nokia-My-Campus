@@ -30,7 +30,7 @@ const LocalStorageOperations=()=> {
 
     const loadState = () => {
         try {
-            const serializedState = read('widgets');
+            const serializedState = read('states');
             if (serializedState === null) return undefined;
             return serializedState;
         } catch (err) {
@@ -41,7 +41,7 @@ const LocalStorageOperations=()=> {
     const saveState = (state) => {
         try {
             const serializedState = JSON.stringify(state);
-            create( serializedState, 'widgets');
+            create( serializedState, 'states');
         } catch(err) {
             console.log(err);
           };
