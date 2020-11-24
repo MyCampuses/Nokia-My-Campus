@@ -1,18 +1,15 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {Container, makeStyles} from '@material-ui/core';
+import {Container} from '@material-ui/core';
 import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import GlobalFunctions from '../hooks/GlobalFunctions';
-import {scaleTime} from 'd3-scale';
-import {utcHour} from 'd3-time';
-import format from 'date-fns/format'
 import useStyle from "../styles/restaurantStyles";
 
 // Holds all the fragments for charts
 const DonutFragment = () => {
         const classes = useStyle();
-        const {getChartData, dataToChart, chartEstData, dataToChartRestaurant, menuByDate} = API();
+        const {getChartData, dataToChart, chartEstData, dataToChartRestaurant} = API();
         const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
         const {formattedFullDate} = GlobalFunctions();
 
@@ -46,8 +43,6 @@ const DonutFragment = () => {
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
             const [dataForRender, setDataForRender] = useState(undefined);
-            const [ticksForRender, setTicksForRender] = useState(undefined);
-            const [max, setMax] = useState(undefined);
             const [dataDonutFormat, setDataDonutFormat] = useState([]);
             const [yKey, setYKey] = useState(0);
 
@@ -101,7 +96,6 @@ const DonutFragment = () => {
                     }
                 }
 
-                setMax(highest);
                 returnArray = array.concat(tempArray);
                 returnArray.sort(sortCompareFunction);
                 return returnArray;
@@ -159,15 +153,7 @@ const DonutFragment = () => {
                 if (chartData !== undefined) {
                     let tempChartData = chartData.filter(filterTime);
                     let fixTimesArray = fixTimes(tempChartData);
-                    let domain = [];
-                    let timeFormat = (time => format(time, "HH:mm"));
-                    if (fixTimesArray.length > 0) {
-                        domain = [new Date('1970/01/01 ' + fixTimesArray[0].x), new Date('1970/01/01 ' + fixTimesArray[fixTimesArray.length - 1].x)];
-                    }
-                    let scale = scaleTime().domain(domain);
-                    let ticks = scale.ticks(utcHour.every(2)).map(item => timeFormat(item));
                     tempChartData = fixTimesArray;
-                    setTicksForRender(ticks);
                     setDataForRender(tempChartData);
                 }
             }, [chartData]); //eslint-disable-line

@@ -20,8 +20,11 @@ const ParkingCardFragment = (data) => {
 				return strings.inside;
 			case "roof":
 				return strings.rooftop;
+			
+			default:
+				return name;
 		}
-		return name;
+		
 	};
 	
 	const categoryToLocalizedString = (name) => {
@@ -30,8 +33,10 @@ const ParkingCardFragment = (data) => {
 				return strings.parkingCategoryParking;
 			case "ev_charging":
 				return strings.parkingCategoryEV;
+
+			default:
+				return name;
 		}
-		return name;
 	};
 	
 	const areaPie = (count, capacity) => {

@@ -117,7 +117,7 @@ const MenuFragment = () =>{
 
         //run the get queue times
         useEffect(() => {
-            getQueueTimes().then()
+            getQueueTimes()
         }, []);
 
         useEffect(() => {
