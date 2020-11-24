@@ -80,6 +80,7 @@ const useStyle = makeStyles((theme) => ({
     },
     Frag: {
         height: "85vh",
+        overflow: "auto",
     },
     RestaurantBox: {
         width: '100%',

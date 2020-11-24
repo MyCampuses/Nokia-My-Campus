@@ -1,5 +1,5 @@
 
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Box, Container} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
 import Data from "../hooks/Data";
@@ -7,6 +7,8 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ApiUrls from "../hooks/ApiUrls";
 import useStyle from "../styles/restaurantStyles";
+import {menu, time} from "../hooks/Actions";
+import {useDispatch, useSelector} from "react-redux";
 
 const MenuFragment = () =>{
 
@@ -82,57 +84,48 @@ const MenuFragment = () =>{
 
     const Menu = (props) => {
 
-        const [queueTimes, setQueueTimes] = useState(new Map());
         const {getUsageDataNoProps} = API();
         const {restaurantQueueUrl} = ApiUrls();
+        const menuState = useSelector(state => state.MenuReducer);
+        const dispatch = useDispatch();
 
-        const [dataForRender, setDataForRender] = useState({
-            courses: {
-                1:{
-                    title_fi: "",
-                    title_en: "",
-                    category: "",
-                    price: "",
-                    properties: "",
-                },
-            }
-        });
+        const [stopper, setStopper] = useState(0);
 
-        const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES 1']]));
+        const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES']]));
 
         //get the menu for today and set it into dataForRender
-        useEffect(() => {
-            menuByDate(date)
-                .then(json => setDataForRender(json));
-        }, [props]);
 
-        //stuff for lines
-
-        //get queue times and place them into the QueueTimes variable
         const getQueueTimes = async () => {
+            let queue = new Map();
             for (let i = 1; i < 9; i++) {
-                getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueueTimes(new Map(queueTimes.set(i, result))))
+                getUsageDataNoProps(restaurantQueueUrl + i)
+                    .then(result => dispatch(time(queue.set(i, result))))
             }
         };
 
-        //run the get queue times
-        useEffect(() => {
-            getQueueTimes()
-        }, []);
+        if(menuState.length === 0) {
+            getQueueTimes().then();
+        }
+        if(menuState.length === 1) {
+            menuByDate(date)
+                .then(json => dispatch(menu(json.courses)));
+        }
 
-        useEffect(() => {
-            let check = dataForRender.courses;
+
+        if(menuState.length === 2) {
+            let check = menuState[1];
 
             //length of dataForRender
-            let lengthy = Object.keys(dataForRender.courses).length + 1;
+            let lengthy = Object.keys(check).length + 1;
 
             //size of queueTimes map
-            let queueLength = queueTimes.size;
+            let queueLength = menuState[0].size;
+
             //temporary map for data
             let temp = new Map();
 
             // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
-            if(check[2] !== undefined && queueLength === 8){
+            if(check[2] !== undefined && queueLength === 8 && stopper === 0){
 
                 //run for each entry from sodexo
                 for (let i = 1; i < lengthy; i++) {
@@ -145,14 +138,15 @@ const MenuFragment = () =>{
 
                             //set the values into the temporary Map
                             temp.set(
-                                l, [ queueTimes.get(l), check[i] ]
+                                l, [ menuState[0].get(l), check[i] ]
                             );
                         }
                     }
                 }
                 setUsedLines(temp);
+                setStopper(1);
             }
-        }, [queueTimes]);
+        }
 
         return (
             <Fragment>

@@ -14,6 +14,20 @@ export const decrement = (value) => {
     };
 };
 
+export const menu = (value) => {
+    return {
+        type: 'MENU',
+        value
+    };
+};
+
+export const time = (value) => {
+    return {
+        type: 'TIME',
+        value
+    };
+};
+
 export const selectValue = (value) => {
     return {
         type: 'SELECTVALUE',

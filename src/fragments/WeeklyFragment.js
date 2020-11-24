@@ -1,9 +1,11 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Box, Container,Dialog} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import useStyle from "../styles/restaurantStyles";
+import {useDispatch, useSelector} from "react-redux";
+import { increment } from '../hooks/Actions';
 
 const WeeklyFragment = () => {
 
@@ -77,6 +79,9 @@ const WeeklyFragment = () => {
 
     const Week = (props) => {
 
+        const reducerState = useSelector(state => state.WMenuReducer);
+        const dispatch = useDispatch();
+
         const [open, setOpen] = useState(false);
         const [selectedValue, setSelectedValue] = useState({
             date: "",
@@ -91,28 +96,10 @@ const WeeklyFragment = () => {
             },
         });
 
-        const [dataForRender, setDataForRender] = useState({
-            timeperiod: "",
-            mealdates: [
-                {
-                date: "",
-                courses: {
-                    1:{
-                        title_fi: "",
-                        title_en: "",
-                        category: "",
-                        price: "",
-                        properties: "",
-                    },
-                },
-            },
-            ]
-        });
-
         //open clicked item
         const handleClickOpen = (value) => {
             setOpen(true);
-            setSelectedValue(value)
+            setSelectedValue(value);
         };
 
         //close item
@@ -121,10 +108,11 @@ const WeeklyFragment = () => {
         };
 
         //get weekly menu and st json to temp
-        useEffect(() => {
+        if(reducerState.length === 0) {
             menuByWeek()
-                .then(json => setDataForRender(json));
-        }, [props]);
+                .then(json => dispatch(increment(json.mealdates)));
+        }
+
 
         //The data for the menu of the day is stored in the created element, and sent to the dialog function by clicking the element
         return (
@@ -135,7 +123,7 @@ const WeeklyFragment = () => {
                     </h3>
                     <Box className={classes.MenuContainer}>
 
-                        {dataForRender.mealdates.map(key => (
+                        {reducerState.map(key => (
                             <div key={key} onClick={() => handleClickOpen(key)}>
 
                                 <Grid item container direction="column" className={classes.WeeklyContainer}>
