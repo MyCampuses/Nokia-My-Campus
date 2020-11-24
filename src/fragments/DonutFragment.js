@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {Container, makeStyles} from '@material-ui/core';
+import {Container} from '@material-ui/core';
 import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
@@ -78,7 +78,7 @@ const DonutFragment = () => {
 
             //Looks at array and adds missing data points for certain hour marks.
             const fixTimes = (array) => {
-                let returnArray = [];
+                let returnArray;
                 let tempArray = [];
                 let highest = 0;
                 for (let i = 1; i < array.length; i++) {
