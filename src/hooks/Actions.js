@@ -40,3 +40,10 @@ export const cleanState = () => {
         type: 'CLEANSTATE'
     };
 };
+
+export const wmenu = (value) => {
+    return {
+        type: 'WMENU',
+        value
+    }
+};
