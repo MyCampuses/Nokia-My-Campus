@@ -17,6 +17,7 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import strings from '../localization';
 import GlobalFunctions from '../hooks/GlobalFunctions';
+import { navigate } from "hookrouter";
 
 /*eslint-enable */
 
@@ -31,14 +32,12 @@ const ParkingInfo = () => {
 	const [dataToday, setDataToday] = useState(null);
 	const [dataWeekAgo, setDataWeekAgo] = useState(null);
 	const [capacity, setCapacity] = useState(null);
-	const [firstRender, setFirstRender] = useState(true);
 	
 	const zone = window.location.pathname.split('/').pop();
 	
 	let expectedDataDate = new Date();
 	
-	if (firstRender) {
-		setFirstRender(false);
+	useEffect(()=>{
 		
 		getParkingStatus(zone).then( usageData => {
 			setTableData([["Total spaces", ""+usageData["capacity"]], ["Spaces in use", ""+usageData["count"]], ["Available spaces", ""+(usageData["capacity"]-usageData["count"])]]);
@@ -55,7 +54,7 @@ const ParkingInfo = () => {
 			setDataWeekAgo(json);
 		});
 		
-	}
+	}, []);
 	
     const ParkingInfoPage = () => {
 		const {TopNavigationBar} = NaviBar();
@@ -69,11 +68,15 @@ const ParkingInfo = () => {
 				<Box px={2}>
 					<TextDataTable data={tableData}/>
 					{PredictiveChartFragment(dataToday, dataWeekAgo, capacity)}
-					{/*<Grid container>
-						<Button variant="outlined" align="left" onClick={()=>onItemClickNavigate('/parkinghistory/'+this.state.zone)}>
+					<Grid container>
+						<Button variant="outlined" align="left" onClick={()=>{
+									const yesterday = new Date();
+									yesterday.setDate((yesterday.getDate() - 1));
+									navigate('/parkinghistory', false, {zone: zone});
+								}}>
 							{strings.history}
 						</Button>
-					</Grid>*/}
+					</Grid>
 				</Box>
 			</div>
 		);
