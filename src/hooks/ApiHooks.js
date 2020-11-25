@@ -209,6 +209,13 @@ const API = () => {
         }
     };
 
+    const dataForDonutChart = (json) => {
+        if(json !== undefined){
+            const last = json.length -1;
+            return json[last].fill_percent
+        }
+    };
+
     // If Selected is Electric Places charts the data with the given multiplier to calculate the estimated utilization
     const chartEstData = (json) =>{
         const multiplier = 2.1;
@@ -257,6 +264,7 @@ const API = () => {
         resendEmailAsync,
         menuByDate,
         menuByWeek,
+        dataForDonutChart,
     }
 
 };
