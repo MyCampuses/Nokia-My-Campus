@@ -1,19 +1,8 @@
 //Actions used by redux states
 
-export const increment = (value) =>  {
-    return{
-        type: 'INCREMENT',
-        value
-    }
-};
 
-export const decrement = (value) => {
-    return {
-        type: 'DECREMENT',
-        value
-    };
-};
 
+// Does what?
 export const menu = (value) => {
     return {
         type: 'MENU',
@@ -21,6 +10,7 @@ export const menu = (value) => {
     };
 };
 
+//Does what?
 export const time = (value) => {
     return {
         type: 'TIME',
@@ -28,6 +18,7 @@ export const time = (value) => {
     };
 };
 
+//Does what?
 export const selectValue = (value) => {
     return {
         type: 'SELECTVALUE',
@@ -35,15 +26,11 @@ export const selectValue = (value) => {
     };
 };
 
-export const cleanState = () => {
-    return {
-        type: 'CLEANSTATE'
-    };
-};
-
+//Does what
 export const wmenu = (value) => {
     return {
         type: 'WMENU',
         value
     }
 };
+
