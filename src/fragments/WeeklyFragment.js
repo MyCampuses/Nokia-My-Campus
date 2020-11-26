@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import useStyle from "../styles/restaurantStyles";
 import {useDispatch, useSelector} from "react-redux";
-import {wmenu} from '../hooks/Actions';
+import { wmenu } from '../Actions/RestaurantActions';
 
 const WeeklyFragment = () => {
 

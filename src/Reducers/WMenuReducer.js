@@ -10,7 +10,7 @@ const WMenuReducer = (state = [], action) => {
 
         default:
             return state;
-    }
+    };
 };
 
 export default WMenuReducer;

@@ -82,9 +82,9 @@ const ParkingCardFragment = (data) => {
 				}
 				let link;
 				if (area["linkId"] !== undefined) {
-					link = 'parking/'+area["linkId"];
+					link = area["linkId"];
 				} else {
-					link = 'parking/'+area["id"];
+					link = area["id"];
 				}
 				const areaItem = (
 					<ListItem button onClick={()=>onItemClickNavigate(link)}>

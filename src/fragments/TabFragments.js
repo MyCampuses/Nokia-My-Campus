@@ -329,7 +329,7 @@ const TabFragments = (props) => {
                  aria-labelledby={`tab-${index}`}
                  inputstyle={{textAlign: 'center'}}
                  {...other}>
-                <Donut date={selectedDate} location={"restaurant"}/>
+                <Donut date={selectedDate}/>
             </div>
         );
     }

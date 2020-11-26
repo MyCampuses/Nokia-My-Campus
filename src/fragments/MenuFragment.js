@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ApiUrls from "../hooks/ApiUrls";
 import useStyle from "../styles/restaurantStyles";
-import {menu, list} from "../hooks/Actions";
+import {menu} from "../Actions/RestaurantActions";
 import {useDispatch, useSelector} from "react-redux";
 
 const MenuFragment = () =>{

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { useSelector, useDispatch } from 'react-redux';
-import { cleanState } from '../hooks/Actions';
+import { cleanState } from '../Actions/WidgetActions';
+//import {editmode} from '../Actions/EditModeActions';
 
 
 /*
@@ -12,9 +13,9 @@ when a person has 1 or more widgets selected on the homepage.
 const EditButton = () =>  {
     const [buttonDisabled, setButtonDisabled] = useState(true);
     
-
-    //Redux state
+    //Redux states
     const selectedWidgets = useSelector(state => state.WidgetReducer);
+    //const editMode = useSelector(state => state.EditModeReducer)
 
     const dispatch = useDispatch();
 
@@ -31,6 +32,21 @@ const EditButton = () =>  {
     const RemoveAll = () => {
         dispatch(cleanState());
     };
+
+    // //Toggling between edit mode, true or false
+    // const toggleEditMode = () => {
+    //     dispatch(editmode(!editMode))
+    // };
+
+    // // Will remove selected state
+    // const removeSelectedItem = (item) => {
+    //     dispatch(decrement(item))
+    // };
+
+    // // move the selected widget
+    // const moveSelectedItem = (item) => {
+
+    // };
 
     useEffect(() => {
         toggleButton();
