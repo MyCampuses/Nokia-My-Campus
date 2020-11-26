@@ -1,6 +1,6 @@
 import ApiUrls from '../hooks/ApiUrls';
-import Data from './Data';
-import LocalStorageOperations from './LocalStorageOperations';
+import Data from '../hooks/Data';
+import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 export function fetchHeatMap() {
     const {FETCH_HEATMAP_BEGIN, FETCH_HEATMAP_SUCCESS, FETCH_HEATMAP_FAILURE} = Data();

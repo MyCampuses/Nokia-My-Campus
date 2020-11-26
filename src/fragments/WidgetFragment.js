@@ -11,7 +11,7 @@ import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment } from '../hooks/Actions';
+import { increment } from '../Actions/WidgetActions';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
@@ -38,15 +38,15 @@ const Widgets = (props) => {
 
   
   /*
-  barWidgets is the list which will be presented for SelectViewDialog and HomepageWidget.
+  widgets is the list which will be presented for SelectViewDialog and HomepageWidget.
   This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
-  const barWidgets = [
-    {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData},
-    {navigationUrl: '/p5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data},
-    {navigationUrl: '/p10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data},
-    {navigationUrl: '/p10', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData},
-    {navigationUrl: '/p10', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData},
+  const widgets = [
+    ProgressBar({navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData}),
+    ProgressBar({navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data}),
+    ProgressBar({navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data}),
+    ProgressBar({navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData}),
+    ProgressBar({navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData}),
   ];
 
   // This list contains only one picture, the symbol '+'
@@ -70,9 +70,9 @@ const Widgets = (props) => {
             <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
                 <DialogTitle id="simple-dialog-title">{strings.dialogTitle}</DialogTitle>
                 <List>
-                    {barWidgets.map((barWidget) => (
-                        <ListItem button onClick={() => handleListItemClick(barWidget)} key={barWidget}>
-                            <ListItemText secondary={barWidget.barLabel} />
+                    {widgets.map((widget) => (
+                        <ListItem button onClick={() => handleListItemClick(widget)} key={widget}>
+                            <ListItemText secondary={widget.props.label} />
                         </ListItem>
                     ))};
                 </List>
@@ -89,7 +89,7 @@ const Widgets = (props) => {
 
     /*
         The HomepageWidget gets a default value of selectedValue, which is a state,
-        the default value of the state will be first on the barWidgets list which is at the start of the code
+        the default value of the state will be first on the widgets list which is at the start of the code
         the default value should be plus_sign.png from src/assets folder so the first time users know
         they can add something to the front page
     */
@@ -108,7 +108,7 @@ const Widgets = (props) => {
           //Closes the dialog window and saves the value in selectedwidgets array
         const handleClose = (value) => {       
             setOpen(false);
-            if(barWidgets.includes(value)){
+            if(widgets.includes(value)){
                 setSelectedValue(value);
                 dispatch(increment(value));
             };
