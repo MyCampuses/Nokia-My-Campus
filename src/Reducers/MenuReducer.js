@@ -6,14 +6,7 @@ const MenuReducer = (state = [], action) => {
             if(action.value !== [] && !state.includes(action.value)){
                 return state.concat(action.value);
             } else {
-                return state;
-            }
-
-        case 'TIME':
-            if(action.value !== [] && !state.includes(action.value)){
-                return state.concat(action.value);
-            } else {
-                return state;
+                return state
             }
 
         default:
