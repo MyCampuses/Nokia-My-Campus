@@ -7,7 +7,6 @@ import { Card, Dialog, DialogTitle, List, ListItem, ListItemText, CardContent  }
 import strings from '../localization';
 import WidgetStyle from '../styles/widgetStyle';
 import PropTypes from 'prop-types';
-import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,10 +15,8 @@ import WidgetFunctions from '../fragments/WidgetFunctions'
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
-    const {ProgressBar} = ProgressBarFragments();
     const {getUsageData} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-
 
     // States
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -43,12 +40,13 @@ const Widgets = (props) => {
   This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
   const widgets = [
-    {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, dataType: 'progressBar'},
+    {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, dataType: 'donutChart'},
     {navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data, dataType: 'progressBar'},
     {navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data, dataType: 'progressBar'},
     {navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, dataType: 'progressBar'},
     {navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, dataType: 'progressBar'},
   ];
+
 
   // This list contains only one picture, the symbol '+'
   const defaultWidgetPicture = [

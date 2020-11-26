@@ -40,7 +40,9 @@ const DonutFragment = () => {
 
         // Common chart to be used, needs a date and location(path)
         const Donut = (props) => {
-            const propsDate = formattedFullDate(props.date);
+            console.log(props);
+            const propsDate = formattedFullDate(props);
+            console.log(propsDate);
             const [chartData, setChartData] = useState(undefined);
             const [dataDonutFormat, setDataDonutFormat] = useState([]);
             const [yKey, setYKey] = useState(0);
