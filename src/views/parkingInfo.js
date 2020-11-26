@@ -9,9 +9,12 @@ import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import TextDataTable from "../fragments/TextDataTableFragment";
 import PredictiveChartFragment from "../fragments/PredictiveChartFragment";
 import API from '../hooks/ApiHooks';
+import strings from '../localization';
 import GlobalFunctions from '../hooks/GlobalFunctions';
 import { navigate } from "hookrouter";
 
@@ -48,7 +51,7 @@ const ParkingInfo = () => {
 			setDataWeekAgo(json);
 		});
 		
-	}, []);
+	}, [expectedDataDate, formattedFullDate, getParkingData, getParkingStatus, zone]);
 	
     const ParkingInfoPage = () => {
 		const {TopNavigationBar} = NaviBar();

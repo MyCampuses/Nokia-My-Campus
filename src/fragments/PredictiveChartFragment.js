@@ -98,7 +98,6 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 	
 	let dataWithPrediction = finalizeDataForRender(createPrediction(formattedData, formattedExpectedData));
 	console.log(dataWithPrediction);
-	let tickdomain;
 	let ticks = ["6:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"];
 	
 	console.log(maxY);

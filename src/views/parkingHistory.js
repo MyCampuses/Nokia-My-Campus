@@ -1,18 +1,22 @@
 /* eslint-disable no-unused-vars */
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../styles/App.css';
 import '../styles/p10Style.css';
 import 'date-fns';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import PredictiveChartFragment from "../fragments/PredictiveChartFragment";
 import API from '../hooks/ApiHooks';
 import GlobalFunctions from '../hooks/GlobalFunctions';
 import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import { useQueryParams} from "hookrouter";
+import {useQueryParams} from "hookrouter";
 
 /*eslint-enable */
 
@@ -42,14 +46,11 @@ const ParkingHistory = () => {
 		getParkingStatus(zone).then(json => {
 			setCapacity(json.capacity);
 		});
-	}, [selectedDate]);
-	
-	
-	
+	}, [selectedDate, formattedFullDate, getParkingData, getParkingStatus, zone]);
 	
     const ParkingHistoryPage = () => {
 		const {TopNavigationBar} = NaviBar();
-		const {onItemClickNavigate} = GlobalFunctions();
+		//const {onItemClickNavigate} = GlobalFunctions();
 		return (
 			<div>
 				{TopNavigationBar()}
