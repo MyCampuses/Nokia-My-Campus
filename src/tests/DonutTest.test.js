@@ -5,6 +5,7 @@ import Enzyme, {shallow, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {shallowToJson, renderToJson, mountToJson} from "enzyme-to-json";
 import Restaurant from "../views/restaurant";
+import CarouselFragment from "../fragments/CarouselFragment";
 import DonutFragment from "../fragments/DonutFragment";
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -16,6 +17,7 @@ describe('Restaurant', () =>{
     beforeAll( () =>{
         mount = createMount();
         shallow = createShallow();
+        shallow = createShallow();
     });
 
     afterAll( () =>{
@@ -24,13 +26,14 @@ describe('Restaurant', () =>{
     });
 
     it('renders', () =>{
-        const wrapper = mount(<Restaurant/>);
-        expect(wrapper.exists).toBeTruthy();
+        const wrapper = shallow(<Restaurant/>);
+        expect(wrapper).toMatchSnapshot();
     });
 
     it('Finds a specific div', () =>{
-        const wrapper = shallow(<DonutFragment />);
+        const wrapper = shallow(<Restaurant><DonutFragment/></Restaurant>);
         const fragment = wrapper.instance().render();
-        expect(shallow(fragment).getElement()).toMatchSnapshot();
+        console.log(wrapper.debug());
+        expect(shallowToJson(fragment).getElement()).toMatchSnapshot();
     });
 });

@@ -3,25 +3,22 @@
     Each components have a bit more explanation what they are.
 */
 
-import React, {Fragment, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import ChartFragment from "./ChartFragments";
 import DonutFragment from "./DonutFragment";
 import MenuFragment from "./MenuFragment";
-import LineFragment from "./LineFragment";
+import WeeklyFragment from "./WeeklyFragment";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {Box, Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
+import {Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
 import MenuItem from "@material-ui/core/MenuItem";
-import Data from "../hooks/Data";
-import Typography from "@material-ui/core/Typography";
 import blue from '@material-ui/core/colors/blue';
 import {ThemeProvider} from '@material-ui/core';
-import Carousel from "react-material-ui-carousel";
 
 const {parkingP5Url} = ApiUrls();
 
@@ -29,7 +26,7 @@ const TabFragments = (props) => {
     const {Chart} = ChartFragment();
     const {Donut} = DonutFragment();
     const {Menu} = MenuFragment();
-    const {Lines} = LineFragment();
+    const {Week} = WeeklyFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
 
@@ -281,22 +278,6 @@ const TabFragments = (props) => {
         );
     }
 
-    // Renders the restaurant lines page that shows individual lines and their wait times
-    function TabRestaurantLines(props) {
-        const {children, value, index, ...other} = props;
-
-        return (
-            <div role="tabfragment"
-                 hidden={value !== index}
-                 id={`tabfragment-${index}`}
-                 aria-labelledby={`tab-${index}`}
-                 inputstyle={{textAlign: 'center'}}
-                 {...other}>
-                <h3 className={barTheme.headLine}>{strings.restaurantPageTitle}</h3>
-                <Lines location={"restaurant"}/>
-            </div>
-        )
-    }
 
     // Renders the restaurant chart page with a date picker and chart
     function TabRestaurantChart(props) {
@@ -367,15 +348,29 @@ const TabFragments = (props) => {
         );
     }
 
+    function TabRestaurantWeek(props) {
+        const {children, value, index, ...other} = props;
+        return (
+            <div role="tabfragment"
+                 hidden={value !== index}
+                 id={`tabfragment-${index}`}
+                 aria-labelledby={`tab-${index}`}
+                 inputstyle={{textAlign: 'center'}}
+                 {...other}>
+                <Week location={"restaurant"}/>
+            </div>
+        );
+    }
+
     return {
         TabFragmentHistory: TabFragmentHistory,
         TabFragmentLive: TabFragmentLive,
         TabFragmentLiveP5: TabFragmentLiveP5,
         TabFragmentHistoryP5: TabFragmentHistoryP5,
-        TabRestaurantLines: TabRestaurantLines,
         TabRestaurantChart: TabRestaurantChart,
         TabRestaurantDonut: TabRestaurantDonut,
         TabRestaurantMenu: TabRestaurantMenu,
+        TabRestaurantWeek: TabRestaurantWeek,
     };
 
 };

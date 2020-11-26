@@ -1,8 +1,7 @@
 
-import React, {Fragment, useState} from 'react';
+import React from 'react';
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import strings from '../localization';
@@ -10,11 +9,9 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';
+import {PieChart, Pie} from 'recharts';
 
 const ParkingCardFragment = (data) => {
-	
     const {onItemClickNavigate} = GlobalFunctions();
 	
 	const nameToLocalizedString = (name) => {
@@ -23,8 +20,11 @@ const ParkingCardFragment = (data) => {
 				return strings.inside;
 			case "roof":
 				return strings.rooftop;
+			
+			default:
+				return name;
 		}
-		return name;
+		
 	};
 	
 	const categoryToLocalizedString = (name) => {
@@ -33,8 +33,10 @@ const ParkingCardFragment = (data) => {
 				return strings.parkingCategoryParking;
 			case "ev_charging":
 				return strings.parkingCategoryEV;
+
+			default:
+				return name;
 		}
-		return name;
 	};
 	
 	const areaPie = (count, capacity) => {
@@ -78,9 +80,14 @@ const ParkingCardFragment = (data) => {
 						utilizationString = strings.parkingUtilization.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
 					}
 				}
-				
+				let link;
+				if (area["linkId"] !== undefined) {
+					link = 'parking/'+area["linkId"];
+				} else {
+					link = 'parking/'+area["id"];
+				}
 				const areaItem = (
-					<ListItem button onClick={()=>onItemClickNavigate('parking/'+area["id"])}>
+					<ListItem button onClick={()=>onItemClickNavigate(link)}>
 						<ListItemAvatar>
 							<PieChart width={40} height={40}>
 								{(area.loading ? areaPie(0, 1) : areaPie(area.usageData.count, area.usageData.capacity))}

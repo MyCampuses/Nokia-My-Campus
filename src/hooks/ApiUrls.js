@@ -17,6 +17,7 @@ const ApiUrls = () => {
   const restaurantQueueUrl = apiUrl + 'restaurant/Midpoint/queue/';
   const dailyParkingUrl = apiUrl + 'parking/data/';
   const dailyRestaurantUrl = apiUrl + 'restaurant/Midpoint/daily?=date=';
+  const parkingStatusUrl = apiUrl + 'parking/status/';
   const parkingP5Url = apiUrl + 'parking/status/P5';
   const parkingP10Url = apiUrl + 'parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'parking/status/P10TOP';
@@ -24,6 +25,10 @@ const ApiUrls = () => {
 
   const sodexoDailyUrl = (date) => {
     return sodexoUrl + 'daily_json/80/' + date;
+  };
+
+  const sodexoWeeklyUrl = () =>{
+    return sodexoUrl + 'weekly_json/80';
   };
 
   // Const used with Api fetch, define location and date
@@ -36,6 +41,7 @@ const ApiUrls = () => {
     regUrl,
     apiUrl,
     restaurantUrl,
+	parkingStatusUrl,
     parkingP10Url,
     parkingP5Url,
     parkingP10TopUrl,
@@ -49,6 +55,7 @@ const ApiUrls = () => {
     confirmUrl,
     heatMapUrl,
     sodexoDailyUrl,
+    sodexoWeeklyUrl,
   };
 };
 export default ApiUrls;

@@ -1,54 +1,23 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {Container, makeStyles} from '@material-ui/core';
+import {Container} from '@material-ui/core';
 import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import GlobalFunctions from '../hooks/GlobalFunctions';
-import {scaleTime} from 'd3-scale';
-import {utcHour} from 'd3-time';
-import format from 'date-fns/format'
+import useStyle from "../styles/restaurantStyles";
 
-const useStyle = makeStyles((theme) => ({
-    p5Box: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    p10Box: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    RestaurantBox: {
-        width: '100%',
-        height: '45vh',
-        marginTop: '5%',
-        display: 'block',
-
-    },
-    DonutContainer:{
-        textAlign: 'center',
-        width: '100%',
-        height: '45vh',
-        display: 'block',
-    },
-}));
 // Holds all the fragments for charts
 const DonutFragment = () => {
         const classes = useStyle();
-        const {getChartData, dataToChart, chartEstData, dataToChartRestaurant, menuByDate} = API();
+        const {getChartData, dataToChart, chartEstData, dataToChartRestaurant} = API();
         const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
         const {formattedFullDate} = GlobalFunctions();
 
         //this renders a pie chart from the values in yKey
         const renderPie = (data, value) => (
             // Responsivecontainer for flexible chart size
-            <ResponsiveContainer width="100%" height="100%">
-                <PieChart minWidth={200} minHeight={200}>
+            <ResponsiveContainer className={classes.Donut}>
+                <PieChart>
                     <Pie
                         data={data}
                         name="usage"
@@ -74,8 +43,8 @@ const DonutFragment = () => {
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
             const [dataForRender, setDataForRender] = useState(undefined);
-            const [ticksForRender, setTicksForRender] = useState(undefined);
-            const [max, setMax] = useState(undefined);
+            const [dataDonutFormat, setDataDonutFormat] = useState([]);
+            const [yKey, setYKey] = useState(0);
 
             useEffect(() => {
                 if (props.location === "restaurant") {
@@ -127,34 +96,10 @@ const DonutFragment = () => {
                     }
                 }
 
-                setMax(highest);
                 returnArray = array.concat(tempArray);
                 returnArray.sort(sortCompareFunction);
                 return returnArray;
             };
-
-            //check that the info from the backend is received before trying to create the variable
-            //this prevents the app from crashing
-            let yKey;
-
-            if(dataForRender !== undefined){
-                if(dataForRender.length !== 0) {
-                    yKey = dataForRender[dataForRender.length - 1].y;
-                }
-                else{
-                    yKey = 0;
-                }
-            }
-            else{
-                yKey = 0;
-                console.log('data is fucked');
-            }
-
-            //data from backend put into a format the donut chart can read
-            const dataDonutFormat =[
-                {name: 'usage', value: yKey, color: "#519FF9"},
-                {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
-            ];
 
             //Return an average of two values
             const getAverage = (x1, x2) => {
@@ -208,18 +153,44 @@ const DonutFragment = () => {
                 if (chartData !== undefined) {
                     let tempChartData = chartData.filter(filterTime);
                     let fixTimesArray = fixTimes(tempChartData);
-                    let domain = [];
-                    let timeFormat = (time => format(time, "HH:mm"));
-                    if (fixTimesArray.length > 0) {
-                        domain = [new Date('1970/01/01 ' + fixTimesArray[0].x), new Date('1970/01/01 ' + fixTimesArray[fixTimesArray.length - 1].x)];
-                    }
-                    let scale = scaleTime().domain(domain);
-                    let ticks = scale.ticks(utcHour.every(2)).map(item => timeFormat(item));
                     tempChartData = fixTimesArray;
-                    setTicksForRender(ticks);
                     setDataForRender(tempChartData);
                 }
             }, [chartData]); //eslint-disable-line
+
+            //check that the info from the backend is received before trying to create the variable
+
+            useEffect( () =>{
+                if(dataForRender !== undefined){
+                    console.log(dataForRender);
+                    if(dataForRender.length !== 0) {
+
+                        let key = dataForRender[dataForRender.length - 1].y;
+                        setYKey(key);
+
+                        //data from backend put into a format the donut chart can read
+                        setDataDonutFormat([
+                            {name: 'usage', value: key, color: "#519FF9"},
+                            {name: 'nonUsage', value: 100 - key, color: "#7A7A7A"}
+                            ])
+                    }
+                    else{
+                        //data from backend put into a format the donut chart can read
+                        setDataDonutFormat([
+                            {name: 'usage', value: yKey, color: "#519FF9"},
+                            {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
+                        ])
+                    }
+                }
+                else{
+                    //data from backend put into a format the donut chart can read
+                    setDataDonutFormat([
+                        {name: 'usage', value: yKey, color: "#519FF9"},
+                        {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
+                    ])
+                }
+            }, [dataForRender]); //eslint-disable-line
+
 
             return (
                 <Fragment>

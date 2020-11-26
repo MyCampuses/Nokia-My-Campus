@@ -10,11 +10,11 @@ import {
     Container,
     ThemeProvider,
     Typography,
-    TextField, Checkbox, Grid, Link,
+    TextField,  Grid, Link,
 } from '@material-ui/core';
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
-import {navigate,useQueryParams} from 'hookrouter';
+import {useQueryParams} from 'hookrouter';
 import LocalStorageOperations from "../hooks/LocalStorageOperations";
 
 const AccountVerification = (props) =>{
@@ -23,7 +23,7 @@ const AccountVerification = (props) =>{
     const [email, setEmail] = useState('');
     const [token, setToken] = useState('');
     const {confirmAccountAsync,resendEmailAsync} = API();
-    const {create, read, clear, del} = LocalStorageOperations();
+    const {create} = LocalStorageOperations();
     const [queryParams] = useQueryParams();
 
 

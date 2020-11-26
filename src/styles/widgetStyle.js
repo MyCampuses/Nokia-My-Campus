@@ -10,17 +10,11 @@ const widgetStyle = makeStyles((theme) => ({
     },
     card: {
         position: 'center',
-        maxHeight: '20%',
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        marginTop: '6%',
+        marginBottom: '6%',
     },
-    logo: {
-        height: 100,
-    },
-    header: {
-        fontSize: 'large',
-        textColor: 'black',
-      },
       plus: {
         maxHeight: '40%',
         maxWidth: '40%'
@@ -53,8 +47,8 @@ const barTheme = makeStyles({
   });
 
 return {
-    widgetStyle: widgetStyle,
-    barTheme: barTheme,
+    widgetStyle,
+    barTheme,
     };
 };
 
