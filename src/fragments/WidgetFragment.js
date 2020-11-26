@@ -11,7 +11,7 @@ import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment } from '../Actions/WidgetActions';
+import { increment } from '../actions/WidgetActions';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
@@ -42,11 +42,11 @@ const Widgets = (props) => {
   This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
   const widgets = [
-    ProgressBar({navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData}),
-    ProgressBar({navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data}),
-    ProgressBar({navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data}),
-    ProgressBar({navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData}),
-    ProgressBar({navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData}),
+    {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData},
+    {navigationUrl: '/P5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data},
+    {navigationUrl: '/P10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data},
+    {navigationUrl: '/P10TOP', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData},
+    {navigationUrl: '/P10EV', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData},
   ];
 
   // This list contains only one picture, the symbol '+'
@@ -61,6 +61,7 @@ const Widgets = (props) => {
         const handleClose = () => {
             onClose(selectedValue);
        };
+       console.log(widgets.pro)
    
        const handleListItemClick = (value) => {
            onClose(value);
@@ -72,9 +73,9 @@ const Widgets = (props) => {
                 <List>
                     {widgets.map((widget) => (
                         <ListItem button onClick={() => handleListItemClick(widget)} key={widget}>
-                            <ListItemText secondary={widget.props.label} />
+                            <ListItemText secondary={widget.barLabel} />
                         </ListItem>
-                    ))};
+                    ))}
                 </List>
             </Dialog>
         );
