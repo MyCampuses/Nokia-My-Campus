@@ -34,11 +34,19 @@ const routes = {
   '/p5': () => <P5/>,
   '/p10': () => <P10/>,
   '/parking': () => <Parking/>,
+<<<<<<< HEAD
   '/P5': () => <ParkingInfo/>,
   '/P10': () => <ParkingInfo/>,
   '/P10TOP': () => <ParkingInfo/>,
   '/P10EV': () => <ParkingInfo/>,
   '/parkinghistory': (zone, date) => <ParkingHistory zone={zone} date={date}/>,
+=======
+  '/parking/P5': () => <ParkingInfo/>,
+  '/parking/P10': () => <ParkingInfo/>,
+  '/parking/P10TOP': () => <ParkingInfo/>,
+  '/parking/P10EV': () => <ParkingInfo/>,
+  '/parkinghistory': (zone) => <ParkingHistory zone={zone}/>,
+>>>>>>> 564dd35d3faa988adddcc6ef786d12e8035b707f
   '/restaurant': () => <Restaurant/>,
   '/register': () => <Register/>,
   '/forgot_password': () => <ForgotPassword/>,
