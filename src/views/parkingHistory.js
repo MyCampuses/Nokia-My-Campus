@@ -46,7 +46,7 @@ const ParkingHistory = () => {
 		getParkingStatus(zone).then(json => {
 			setCapacity(json.capacity);
 		});
-	}, [selectedDate, formattedFullDate, getParkingData, getParkingStatus, zone]);
+	}, [selectedDate]);
 	
     const ParkingHistoryPage = () => {
 		const {TopNavigationBar} = NaviBar();
