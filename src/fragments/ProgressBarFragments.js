@@ -13,7 +13,7 @@ import WidgetStyle from '../styles/widgetStyle';
 const ProgressBarFragments = (props) => {
     const barTheme = WidgetStyle().barTheme();
     //Progressbar with props
-    function HomeProgressBar(props) {
+    const HomeProgressBar = (props) => {
         return (
             <LinearProgress variant="determinate" value={props.value}/>
         );

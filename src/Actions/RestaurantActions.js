@@ -21,10 +21,3 @@ export const time = (value) => {
         value
     };
 };
-
-export const selectValue = (value) => {
-    return {
-        type: 'SELECTVALUE',
-        value
-    };
-};

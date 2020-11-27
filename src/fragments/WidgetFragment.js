@@ -58,6 +58,7 @@ const Widgets = (props) => {
         const handleClose = () => {
             onClose(selectedValue);
        };
+       console.log(widgets.pro)
    
        const handleListItemClick = (value) => {
            onClose(value);

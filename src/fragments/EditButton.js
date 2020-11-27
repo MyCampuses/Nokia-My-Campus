@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { useSelector, useDispatch } from 'react-redux';
-import { cleanState } from '../Actions/WidgetActions';
-//import {editmode} from '../Actions/EditModeActions';
+import { cleanState } from '../actions/WidgetActions';
+//import {editmode} from '../actions/EditModeActions';
 
 
 /*
@@ -33,17 +33,17 @@ const EditButton = () =>  {
         dispatch(cleanState());
     };
 
-    // //Toggling between edit mode, true or false
+    // //Toggling between edit mode, true or false under construction
     // const toggleEditMode = () => {
     //     dispatch(editmode(!editMode))
     // };
 
-    // // Will remove selected state
+    // // Will remove selected state under construction
     // const removeSelectedItem = (item) => {
     //     dispatch(decrement(item))
     // };
 
-    // // move the selected widget
+    // // move the selected widget under construction
     // const moveSelectedItem = (item) => {
 
     // };
