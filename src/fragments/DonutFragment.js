@@ -40,9 +40,7 @@ const DonutFragment = () => {
 
         // Common chart to be used, needs a date and location(path)
         const Donut = (props) => {
-            console.log(props);
             const propsDate = formattedFullDate(props);
-            console.log(propsDate);
             const [chartData, setChartData] = useState(undefined);
             const [dataDonutFormat, setDataDonutFormat] = useState([]);
             const [yKey, setYKey] = useState(0);
@@ -54,7 +52,6 @@ const DonutFragment = () => {
             }, [props]); // eslint-disable-line
 
             //check that the info from the backend is received before trying to create the variable
-
             useEffect( () =>{
                     if(chartData !== undefined) {
                         setYKey(chartData);

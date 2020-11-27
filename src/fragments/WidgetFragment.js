@@ -34,7 +34,6 @@ const Widgets = (props) => {
     getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
   },[]); //eslint-disable-line
 
-  
   /*
   widgets is the list which will be presented for SelectViewDialog and HomepageWidget.
   This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
@@ -46,7 +45,6 @@ const Widgets = (props) => {
     {navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, dataType: 'progressBar'},
     {navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, dataType: 'progressBar'},
   ];
-
 
   // This list contains only one picture, the symbol '+'
   const defaultWidgetPicture = [
