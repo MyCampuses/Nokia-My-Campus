@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ApiUrls from "../hooks/ApiUrls";
 import useStyle from "../styles/restaurantStyles";
-import {menu, time} from "../Actions/RestaurantActions";
+import {menu} from "../actions/RestaurantActions";
 import {useDispatch, useSelector} from "react-redux";
 
 const MenuFragment = () =>{
@@ -86,12 +86,10 @@ const MenuFragment = () =>{
 
         const {getUsageDataNoProps} = API();
         const {restaurantQueueUrl} = ApiUrls();
+        const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES']]));
+        const [stopper, setStopper] = useState(0);
         const menuState = useSelector(state => state.MenuReducer);
         const dispatch = useDispatch();
-
-        const [stopper, setStopper] = useState(0);
-
-        const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES']]));
 
         //get the menu for today and set it into dataForRender
 
@@ -99,7 +97,7 @@ const MenuFragment = () =>{
             let queue = new Map();
             for (let i = 1; i < 9; i++) {
                 getUsageDataNoProps(restaurantQueueUrl + i)
-                    .then(result => dispatch(time(queue.set(i, result))))
+                    .then(result => dispatch(menu(queue.set(i, result))))
             }
         };
 
@@ -125,7 +123,7 @@ const MenuFragment = () =>{
             let temp = new Map();
 
             // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
-            if(check[2] !== undefined && queueLength === 8 && stopper === 0){
+            if(queueLength === 8 && stopper === 0){
 
                 //run for each entry from sodexo
                 for (let i = 1; i < lengthy; i++) {

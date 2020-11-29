@@ -8,9 +8,6 @@ const WMenuReducer = (state = [], action) => {
                 return state;
             }
 
-        case 'DECREMENT':
-            return state.splice(state.length = 0);
-
         default:
             return state;
     };

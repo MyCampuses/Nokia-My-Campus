@@ -9,10 +9,14 @@ import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import TextDataTable from "../fragments/TextDataTableFragment";
 import PredictiveChartFragment from "../fragments/PredictiveChartFragment";
 import API from '../hooks/ApiHooks';
+import strings from '../localization';
 import GlobalFunctions from '../hooks/GlobalFunctions';
+import { navigate } from "hookrouter";
 
 /*eslint-enable */
 
@@ -25,14 +29,12 @@ const ParkingInfo = () => {
 	const [dataToday, setDataToday] = useState(null);
 	const [dataWeekAgo, setDataWeekAgo] = useState(null);
 	const [capacity, setCapacity] = useState(null);
-	const [firstRender, setFirstRender] = useState(true);
 	
 	const zone = window.location.pathname.split('/').pop();
 	
 	let expectedDataDate = new Date();
 	
-	if (firstRender) {
-		setFirstRender(false);
+	useEffect(()=>{
 		
 		getParkingStatus(zone).then( usageData => {
 			setTableData([["Total spaces", ""+usageData["capacity"]], ["Spaces in use", ""+usageData["count"]], ["Available spaces", ""+(usageData["capacity"]-usageData["count"])]]);
@@ -49,7 +51,7 @@ const ParkingInfo = () => {
 			setDataWeekAgo(json);
 		});
 		
-	}
+	}, [expectedDataDate, formattedFullDate, getParkingData, getParkingStatus, zone]);
 	
     const ParkingInfoPage = () => {
 		const {TopNavigationBar} = NaviBar();
@@ -63,11 +65,15 @@ const ParkingInfo = () => {
 				<Box px={2}>
 					<TextDataTable data={tableData}/>
 					{PredictiveChartFragment(dataToday, dataWeekAgo, capacity)}
-					{/*<Grid container>
-						<Button variant="outlined" align="left" onClick={()=>onItemClickNavigate('/parkinghistory/'+this.state.zone)}>
+					<Grid container>
+						<Button variant="outlined" align="left" onClick={()=>{
+									const yesterday = new Date();
+									yesterday.setDate((yesterday.getDate() - 1));
+									navigate('/parkinghistory', false, {zone: zone});
+								}}>
 							{strings.history}
 						</Button>
-					</Grid>*/}
+					</Grid>
 				</Box>
 			</div>
 		);

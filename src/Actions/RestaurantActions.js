@@ -1,7 +1,3 @@
-//Actions used by redux states
-
-
-
 // Does what?
 export const menu = (value) => {
     return {

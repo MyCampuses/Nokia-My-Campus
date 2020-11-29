@@ -9,8 +9,8 @@ import useStyle from "../styles/restaurantStyles";
 // Holds all the fragments for charts
 const DonutFragment = () => {
         const classes = useStyle();
-        const {getChartData, dataToChart, chartEstData, dataToChartRestaurant} = API();
-        const {dailyParkingUrl, dailyRestaurantUrl} = ApiUrls();
+        const {getChartData, dataForDonutChart} = API();
+        const {dailyRestaurantUrl} = ApiUrls();
         const {formattedFullDate} = GlobalFunctions();
 
         //this renders a pie chart from the values in yKey
@@ -42,155 +42,29 @@ const DonutFragment = () => {
         const Donut = (props) => {
             const propsDate = formattedFullDate(props.date);
             const [chartData, setChartData] = useState(undefined);
-            const [dataForRender, setDataForRender] = useState(undefined);
             const [dataDonutFormat, setDataDonutFormat] = useState([]);
             const [yKey, setYKey] = useState(0);
 
             useEffect(() => {
-                if (props.location === "restaurant") {
                     getChartData(dailyRestaurantUrl, '', propsDate)
-                        .then(json => dataToChartRestaurant(json))
+                        .then(json => dataForDonutChart(json))
                         .then(json => setChartData(json))
-
-                } else if (props.location === "electric") {
-                    getChartData(dailyParkingUrl, 'P10TOP/', propsDate)
-                        .then(json => chartEstData(json.samples))
-                        .then(json => setChartData(json))
-
-                } else {
-                    getChartData(dailyParkingUrl, props.location, propsDate)
-                        .then(json => dataToChart(json.samples))
-                        .then(json => setChartData(json))
-                }
             }, [props]); // eslint-disable-line
-
-            //Filters data to only have datapoints between 06:00 and 18:00
-            const filterTime = (element) => {
-                if (element.x >= "06:00" && element.x <= "18:00") {
-                    return element;
-                }
-            };
-
-            //Sort function for time.
-            const sortCompareFunction = (a, b) => {
-                return (new Date('1970/01/01 ' + a.x) - new Date('1970/01/01 ' + b.x));
-            };
-
-            //Looks at array and adds missing data points for certain hour marks.
-            const fixTimes = (array) => {
-                let returnArray = [];
-                let tempArray = [];
-                let highest = 0;
-                for (let i = 1; i < array.length; i++) {
-                    let dataObject = undefined;
-                    if (props.location === "restaurant") {
-                        dataObject = (checkIfMissingTimeRestaurant(i, array.length - 1, array[i - 1], array[i]));
-                    } else {
-                        dataObject = (checkIfMissingTime(i, array.length - 1, array[i - 1], array[i]));
-                    }
-                    if (array[i].y > highest) {
-                        highest = array[i].y;
-                    }
-                    if (dataObject !== -1 && dataObject !== undefined) {
-                        tempArray.push(dataObject);
-                    }
-                }
-
-                returnArray = array.concat(tempArray);
-                returnArray.sort(sortCompareFunction);
-                return returnArray;
-            };
-
-            //Return an average of two values
-            const getAverage = (x1, x2) => {
-                return (x1 + x2) / 2;
-            };
-
-            //Returns a data point for possible missing hour mark
-            const checkIfMissingTime = (index, lastIndex, prevElement, element) => {
-                if (index === 1 && prevElement.x > "06:00") {
-                    return {x: "06:00", y: prevElement.y, pv: 100};
-                } else if (prevElement.x < "08:00" && element.x > "08:00") {
-                    let yValue = getAverage(prevElement.y, element.y);
-                    return {x: "08:00", y: yValue, pv: 100};
-                } else if (prevElement.x < "10:00" && element.x > "10:00") {
-                    let yValue = getAverage(prevElement.y, element.y);
-                    return {x: "10:00", y: yValue, pv: 100};
-                } else if (prevElement.x < "12:00" && element.x > "12:00") {
-                    let yValue = getAverage(prevElement.y, element.y);
-                    return {x: "12:00", y: yValue, pv: 100};
-                } else if (prevElement.x < "14:00" && element.x > "14:00") {
-                    let yValue = getAverage(prevElement.y, element.y);
-                    return {x: "14:00", y: yValue, pv: 100};
-                } else if (prevElement.x < "16:00" && element.x > "16:00") {
-                    let yValue = getAverage(prevElement.y, element.y);
-                    return {x: "16:00", y: yValue, pv: 100};
-                } else if (index === lastIndex && element.x < "18:00" && prevElement.x > "17:50") {
-                    return {x: "18:00", y: element.y, pv: 100};
-                } else return -1;
-            };
-
-            //Returns a data point for possible missing hour mark. Intended for restaurant data.
-            const checkIfMissingTimeRestaurant = (index, lastIndex, prevElement, element) => {
-                if (element.x < "08:30" && index === 1 && prevElement.x > "08:00") {
-                    return {x: "08:00", y: element.y, pv: 100};
-                } else if (prevElement.x < "10:00" && element.x > "10:00") {
-                    let yValue = getAverage(prevElement.y, element.y);
-                    return {x: "10:00", y: yValue, pv: 100};
-                } else if (prevElement.x < "12:00" && element.x > "12:00") {
-                    let yValue = getAverage(prevElement.y, element.y);
-                    return {x: "12:00", y: yValue, pv: 100};
-                } else if (prevElement.x < "14:00" && element.x > "14:00") {
-                    let yValue = getAverage(prevElement.y, element.y);
-                    return {x: "14:00", y: yValue, pv: 100};
-                } else if (index === lastIndex && element.x < "16:00" && prevElement.x > "15:50") {
-                    return {x: "16:00", y: element.y, pv: 100};
-                } else return -1;
-            };
-
-            //Parses retrieved data to only points between 06:00 and 18:00, saves highest utilization point from those data points as well
-            useEffect(() => {
-                if (chartData !== undefined) {
-                    let tempChartData = chartData.filter(filterTime);
-                    let fixTimesArray = fixTimes(tempChartData);
-                    tempChartData = fixTimesArray;
-                    setDataForRender(tempChartData);
-                }
-            }, [chartData]); //eslint-disable-line
 
             //check that the info from the backend is received before trying to create the variable
 
             useEffect( () =>{
-                if(dataForRender !== undefined){
-                    console.log(dataForRender);
-                    if(dataForRender.length !== 0) {
-
-                        let key = dataForRender[dataForRender.length - 1].y;
-                        setYKey(key);
-
-                        //data from backend put into a format the donut chart can read
-                        setDataDonutFormat([
-                            {name: 'usage', value: key, color: "#519FF9"},
-                            {name: 'nonUsage', value: 100 - key, color: "#7A7A7A"}
-                            ])
+                    if(chartData !== undefined) {
+                        setYKey(chartData);
                     }
-                    else{
-                        //data from backend put into a format the donut chart can read
-                        setDataDonutFormat([
-                            {name: 'usage', value: yKey, color: "#519FF9"},
-                            {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
-                        ])
-                    }
-                }
-                else{
-                    //data from backend put into a format the donut chart can read
-                    setDataDonutFormat([
-                        {name: 'usage', value: yKey, color: "#519FF9"},
-                        {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
-                    ])
-                }
-            }, [dataForRender]); //eslint-disable-line
+            }, [chartData]); //eslint-disable-line
 
+            useEffect( () =>{
+                setDataDonutFormat([
+                    {name: 'usage', value: yKey, color: "#519FF9"},
+                    {name: 'nonUsage', value: 100 - yKey, color: "#7A7A7A"}
+                ])
+            }, [yKey]);
 
             return (
                 <Fragment>
@@ -202,7 +76,6 @@ const DonutFragment = () => {
             );
         };
 
-// Chart for Restaurant History
         /*eslint-disable */
         return {
             Donut: Donut,

@@ -320,7 +320,8 @@ const TabFragments = (props) => {
     // Renders the restaurant donut chart page
     function TabRestaurantDonut(props) {
         const {children, value, index, ...other} = props;
-        const [selectedDate, setSelectedDate] = useState(new Date(props.date));
+        const selectedDate= new Date(props.date);
+
         return (
             <div role="tabfragment"
                  hidden={value !== index}

@@ -38,7 +38,7 @@ const routes = {
   '/P10': () => <ParkingInfo/>,
   '/P10TOP': () => <ParkingInfo/>,
   '/P10EV': () => <ParkingInfo/>,
-  '/parkinghistory': (zone, date) => <ParkingHistory zone={zone} date={date}/>,
+  '/parkinghistory': (zone) => <ParkingHistory zone={zone}/>,
   '/restaurant': () => <Restaurant/>,
   '/register': () => <Register/>,
   '/forgot_password': () => <ForgotPassword/>,

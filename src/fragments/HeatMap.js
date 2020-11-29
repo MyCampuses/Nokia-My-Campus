@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {fetchHeatMap} from '../Actions/HeatMapActions';
+import {fetchHeatMap} from '../actions/HeatMapActions';
 
 const HeatMap = (props) => {
     // set props for each of the heatmap parts

@@ -9,7 +9,10 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
         if (raw !== undefined) {
             const out = [];
             for (let key in raw) {
-                out.push({x: raw[key].date, y: (maximum == null ? raw[key].count/maximum*100 : raw[key].count/maximum*100)});
+				//Use percentage from API if maximum capacity is not known, otherwise calculate a more accurate value
+				let d = new Date(raw[key].date);
+				console.log();
+                out.push({x: raw[key].date, timeString: d.getHours()+':'+('00'+d.getMinutes()).slice(-2), y: (maximum === null ? raw[key].percent : raw[key].count/maximum*100)});
             }
             return out;
         }
@@ -51,6 +54,7 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 			let point = {};
 			if (i < formattedData.length) {
 				point.x = formattedData[i].x;
+				point.timeString = formattedData[i].timeString;
 				point.y = formattedData[i].y;
 				maxY = Math.max(formattedData[i].y, maxY);
 				if (i === formattedData.length-1 && i < formattedExpectedData.length) {
@@ -60,12 +64,31 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 			else if (i < formattedExpectedData.length) {
 				point.py = formattedExpectedData[i].y;
 				point.x = formattedExpectedData[i].x;
+				point.timeString = formattedExpectedData[i].timeString;
 				maxY = Math.max(formattedExpectedData[i].y, maxY);
 			}
 			newData.push(point);
 		}
-		maxY = Math.floor(Math.min(maxY*1.25, 100));
+		maxY = Math.floor(Math.min(maxY*1.25+3, 100));
 		return newData;
+	}
+	
+	const finalizeDataForRender = (data) => {
+		let out = []
+		let nextHour = 6;
+		data.forEach(point => {
+			const timeString = ('0'+point.timeString).slice(-5);
+			if (timeString < "05:00" || timeString > "19:00") {
+				return;
+			}
+			if (timeString > ('0'+nextHour).slice(-2)) {
+				point.timeString = ''+nextHour+':00';
+				console.log(nextHour);
+				nextHour++;
+			}
+			out.push(point);
+		});
+		return out;
 	}
 	
 	
@@ -73,14 +96,9 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 	let formattedData = formatData(data);
 	let formattedExpectedData = formatData(expectedData);
 	
-	let dataWithPrediction = createPrediction(formattedData, formattedExpectedData);
+	let dataWithPrediction = finalizeDataForRender(createPrediction(formattedData, formattedExpectedData));
 	console.log(dataWithPrediction);
-	let tickdomain;
 	let ticks = ["6:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"];
-	
-	console.log(ticks);
-	
-    
 	
 	console.log(maxY);
 	return (
@@ -89,7 +107,7 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 				<CartesianGrid strokeDasharray="3 3" />
 				<Area dataKey="py" stroke="#000" strokeOpacity={0.25} strokeWidth={2} fillOpacity={0}/>
 				<Area dataKey="y" stroke="#124191" fill="#124191" strokeOpacity={1} strokeWidth={2} fillOpacity={0.5}/>
-				<XAxis dataKey="x" ticks={ticks} domain={tickdomain}/>
+				<XAxis dataKey="timeString" ticks={ticks} interval={0} />
 				<YAxis fill="#8884d8" type="number" domain={[0, maxY]} unit={"%"} allowDataOverflow={true}/>
 			</AreaChart>
 		</ResponsiveContainer>

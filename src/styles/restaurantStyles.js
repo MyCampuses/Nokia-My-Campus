@@ -92,14 +92,12 @@ const useStyle = makeStyles((theme) => ({
     DonutContainer:{
         textAlign: 'center',
         width: '100%',
-        height: '45vh',
+        height: '25vh',
         display: 'inline-block',
     },
     Donut: {
         width: '100%',
         height: '100%',
-        minWidth: "200px",
-        minHeight: "200px",
     },
 }));
 
