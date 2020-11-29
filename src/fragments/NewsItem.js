@@ -65,7 +65,7 @@ const NewsItem = (props) => {
         />
         <CardHeader
           className={classes.header}
-          titleTypographyProps={{ variant: "h4" }}
+          titleTypographyProps={{ variant: "h5" }}
           title={data.articleData.title}
         />
         <CardContent>

@@ -7,56 +7,85 @@ const NewsHooks = () => {
     jobtitle: "Campus Communication trainee",
   };
 
-  const highlightItem = {
-    title:
-      "Joulupuu - Christmas Tree Campaign 2020 at Espoo Campus until Dec 7",
+  const highlightItem =  {
+    title: "Welcome to Nokia Finland Christmas Session on December 10",
     author: author,
     highlight: true,
     description:
-      "The aim of the Joulupuu campaign is to collect presents for those children who might not get one from anyone else.\r\nJoulupuu (Christmas Tree) campaign has started again and this year it’s needed maybe more than ever before because of the increased need for help due to COVID-19.\r\nWe aim to collect presents for all ages (between 0-17 years) who are within child welfare care in Finland.\r\nIn Finland, there are thousands of underprivileged children, who will not be able to celebrate Christmas with their families.\r\nOn Christmas Eve, every child hopes to find a present under the Christmas tree.",
+      "Welcome to Christmas Session with stand-up comedian & TV host Jaakko Saariluoma on Dec 10",
     timestamp: "2020-11-27",
-    bannerImgUrl: require("../assets/joulupuu.jpg"),
-    bannerImgTitle: "Christmas tree campaign",
+    bannerImgUrl: require("../assets/christmas_session.jpg"),
+    bannerImgTitle: "Open internal positions in Espoo",
     paragraphs: {
       1: {
         text:
-          "On Christmas Eve, every child hopes to find a present under the Christmas tree. Joulupuu (Christmas Tree) campaign has started again and this year it’s needed maybe more than ever before because of the increased need for help due to COVID-19. Unfortunately quite a few will be disappointed. In Finland, there are thousands of underprivileged children, who will not be able to celebrate Christmas with their families. There are over 10 000 children under child welfare care in capital area alone, and the number is increasing. The aim of the Joulupuu campaign is to collect presents for those children who might not get one from anyone else.",
+          "Dear colleagues,",
         imgUrl: null,
         imgTitle: null,
       },
-
       2: {
         text:
-          "On Christmas Eve, every child hopes to find a present under the Christmas tree. Joulupuu (Christmas Tree) campaign has started again and this year it’s needed maybe more than ever before because of the increased need for help due to COVID-19. Unfortunately quite a few will be disappointed. In Finland, there are thousands of underprivileged children, who will not be able to celebrate Christmas with their families. There are over 10 000 children under child welfare care in capital area alone, and the number is increasing. The aim of the Joulupuu campaign is to collect presents for those children who might not get one from anyone else.",
+          "Many things have changed this year due to COVID-19, and so have our plans for the traditional local Christmas parties in Finland. This year we offer you something else. We invite you all to experience something fun together virtually, just before the year end.",
         imgUrl: null,
         imgTitle: null,
       },
       3: {
-        text: `Collection points at Espoo Campus on Nov 16 – Dec 7
-              •	Bring a new or a self-made present ready-wrapped to Nokia’s Joulupuu collection point:
-              •	Karakaari 7A reception lobby
-              •	Karaportti 4 Dreams Café
-              •	Please attach a label card (available at the collection point) with ready marked gender and age (e.g."Boy 15 years" or "Girl 6 years") to your present. Then just add a short description of the content to the card.
-              •	Note. Please don’t wrap any used time-worn/broken items as your gift may be the only Christmas present the child gets.
-              •	Contact persons for the campaign: Pirjo Nurminen (Karakaari 7A); Laura Kemppilä (Karaportti 4, Dreams Café)
-              `,
+        text: "Welcome to a relaxed session with actor, stand-up comedian and television host Jaakko Saariluoma. He´s a quick thinker, sharp and fun – always a step ahead of everyone. Take your seats and get ready to be entertained!",
         imgUrl: null,
         imgTitle: null,
       },
       4: {
-        text: `Other ways to participate in the Christmas Tree campaign:
-              •	You can participate also at any of the other official Joulupuu collection points. You can find the list of the collections points here, the list will be updated during November.
-              •	You can also participate by purchasing a gift via the Minunlahjani.fi website, in which case the gift will be delivered to the recipient ready-wrapped. The wrapping cost is 2.50€ and is automatically added to the shopping cart per product. The Minunlahjani.fi online store will deliver the collected Christmas gifts in 2020 to children in Turku, Tampere, Jyväskylä and the Helsinki metropolitan area.
-              •	You can also participate by making a monetary donation. Detailed information about how to make a monetary donation will be updated to joulupuu.org/ website during November.
-              `,
+        text:
+          "The session will be hosted by one of Finland’s leading business speakers and writers André Noël Chaker. As an entrepreneur, André has been a leading force in many science, technology, gaming and sports related start-up ventures.",
         imgUrl: null,
         imgTitle: null,
       },
       5: {
-        text: `The campaign is organized together with the Junior Chambers who are co-ordinating the project. All presents will be delivered to the local social welfare authority who will take care of distributing the presents to the right addresses well before Christmas.
-              Thank you in advance and enjoy the holiday spirit!
-              Nokia Finland Volunteering team
-              `,
+        text: `***
+        Opening by André Noël Chaker
+        
+        Nokia’s season’s greetings
+        by Country Senior Officer Tommi Uitto and
+        Site Heads Vesa Kohtamäki, Erja Sankari and Petri Ahokas
+        André’s take on Finns & Christmas
+        by André Noël Chaker
+        Christmas music from Nokia sites in Finland
+        by Nokia employees
+        Stand-up show by Jaakko Saariluoma
+        Take a sneak peek on Jaakko’s greetings to our Nokia employees here.
+         
+                                                                                           ***
+        `,
+        imgUrl: null,
+        imgTitle: null,
+      },
+      6: {
+        text:
+          "This is an internal event dedicated for Nokia employees in Finland. Join us for a fun and relaxed session!",
+        imgUrl: null,
+        imgTitle: null,
+      },
+    7: {
+        text:
+          "Welcome!",
+        imgUrl: null,
+        imgTitle: null,
+      },
+    8: {
+        text:
+          "Tip! You may want to consider arranging your own virtual Christmas get-together with your team right after this show.",
+        imgUrl: null,
+        imgTitle: null,
+      },
+      9: {
+        text:
+          "Br,",
+        imgUrl: null,
+        imgTitle: null,
+      },
+      10: {
+        text:
+          "Finland Communications",
         imgUrl: null,
         imgTitle: null,
       },
@@ -578,84 +607,56 @@ const NewsHooks = () => {
         },
       },
       {
-        title: "Welcome to Nokia Finland Christmas Session on December 10",
+        title: "We challenge you, Espoo Campus Nokia employee, to a Step challenge!",
         author: author,
-        highlight: true,
+        highlight: false,
         description:
-          "Welcome to Christmas Session with stand-up comedian & TV host Jaakko Saariluoma on Dec 10",
+        "In December we are encouraging all of you to take part in the Step Challenge!\r\nWe challenge you, Espoo Campus Nokia employee, to a Step challenge!",
         timestamp: "2020-11-27",
-        bannerImgUrl: require("../assets/christmas_session.jpg"),
-        bannerImgTitle: "Open internal positions in Espoo",
+        bannerImgUrl: require("../assets/step_challenge.jpg"),
+        bannerImgTitle: "Step Challenge 2020",
         paragraphs: {
           1: {
             text:
-              "Dear colleagues,",
+              "In December we are encouraging all of you to take part in the Step Challenge! The duration is the full month of December and there will be three categories:",
             imgUrl: null,
             imgTitle: null,
           },
           2: {
             text:
-              "Many things have changed this year due to COVID-19, and so have our plans for the traditional local Christmas parties in Finland. This year we offer you something else. We invite you all to experience something fun together virtually, just before the year end.",
+              `1)	Take 7000+ steps per day to earn a point per day. Therefore, the maximum is 31 points as there are 31 days in December. If there are more than five participants reaching the 31 points, we will organize a draw and five lucky ones will be rewarded.
+              2)	Collect the most steps during December and
+              3)	Simply take 7000+ steps at least on one day in December to be included in the final lucky draw.
+              `,
             imgUrl: null,
             imgTitle: null,
           },
           3: {
-            text: "Welcome to a relaxed session with actor, stand-up comedian and television host Jaakko Saariluoma. He´s a quick thinker, sharp and fun – always a step ahead of everyone. Take your seats and get ready to be entertained!",
+            text: "By participating you have the possibility to win a Nokia phone (Nokia 4.2 or Nokia 8110), ergo equipment, sport equipment, safety equipment, delicates, etc.. ",
             imgUrl: null,
             imgTitle: null,
           },
           4: {
             text:
-              "The session will be hosted by one of Finland’s leading business speakers and writers André Noël Chaker. As an entrepreneur, André has been a leading force in many science, technology, gaming and sports related start-up ventures.",
+            "The challenge will be launched on December 1 - make sure you are in! Provide your input via this STEP DIARY either by recording your steps daily or by recording all your steps at once at the end of the month",
             imgUrl: null,
             imgTitle: null,
           },
           5: {
-            text: `***
-            Opening by André Noël Chaker
-            
-            Nokia’s season’s greetings
-            by Country Senior Officer Tommi Uitto and
-            Site Heads Vesa Kohtamäki, Erja Sankari and Petri Ahokas
-            André’s take on Finns & Christmas
-            by André Noël Chaker
-            Christmas music from Nokia sites in Finland
-            by Nokia employees
-            Stand-up show by Jaakko Saariluoma
-            Take a sneak peek on Jaakko’s greetings to our Nokia employees here.
-             
-                                                                                               ***
+            text: `To count the steps, the participants can use any application on their phones or on their smart watches. The steps need to be transferred into the STEP DIARY manually.                                                          ***
             `,
             imgUrl: null,
             imgTitle: null,
           },
           6: {
             text:
-              "This is an internal event dedicated for Nokia employees in Finland. Join us for a fun and relaxed session!",
+              "We will calculate the results on January 5, 2021, so make sure to record all your steps from December by then. The form will be closed on January 4 at 18:00. The winners will be contacted personally and announced in the January Campus Newsletter.",
             imgUrl: null,
             imgTitle: null,
           },
         7: {
             text:
-              "Welcome!",
-            imgUrl: null,
-            imgTitle: null,
-          },
-        8: {
-            text:
-              "Tip! You may want to consider arranging your own virtual Christmas get-together with your team right after this show.",
-            imgUrl: null,
-            imgTitle: null,
-          },
-          9: {
-            text:
-              "Br,",
-            imgUrl: null,
-            imgTitle: null,
-          },
-          10: {
-            text:
-              "Finland Communications",
+              "Image source: Nokia employee’s travel photo",
             imgUrl: null,
             imgTitle: null,
           },
