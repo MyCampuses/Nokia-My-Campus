@@ -15,12 +15,12 @@ const NewsArticle = () => {
   const [articleData, setArticleData] = useState({
     title: "",
     description: "",
+    author: {},
     highlight: false,
     timestamp: "",
-    imgUrl: "",
-    imgTitle: "",
+    bannerImgUrl: "",
+    bannerImgTitle: "",
     paragraphs: {},
-    paragraphImg: {},
   });
   
   // Hook triggering the state change
@@ -32,12 +32,12 @@ const NewsArticle = () => {
     setArticleData({
       title: article.title,
       description: article.description,
+      author: article.author,
       highlight: article.highlight,
       timestamp: article.timestamp,
-      imgUrl: article.imgUrl,
-      imgTitle: article.imgTitle,
-      paragraphs: article.paragraphs,
-      paragraphImg: article.paragraphImg,
+      bannerImgUrl: article.bannerImgUrl,
+      bannerImgTitle: article.bannerImgTitle,
+      paragraphs: article.paragraphs,  
     });
     
   }, [queryParams]);

@@ -40,10 +40,10 @@ const NewsBrowseGrid = (props) => {
       <div className={classes.root}>
         <GridList className={classes.gridList} cols={2.5}>
           {props.tileData.map((tile) => (
-            <GridListTile key={tile.imgUrl}  onClick={() => {console.log(`navigating to article ${tile.title}`)
+            <GridListTile key={tile.bannerImgUrl}  onClick={() => {console.log(`navigating to article ${tile.title}`)
             navigate("/news_article",false, {article: tile})
             }}>
-              <img src={tile.imgUrl} alt={tile.title} />
+              <img src={tile.bannerImgUrl} alt={tile.title} />
               <GridListTileBar
                 title={tile.title}
                 classes={{

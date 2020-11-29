@@ -64,8 +64,8 @@ const HighlightItem = (props) => {
           />
           <CardMedia
             className={classes.media}
-            image={props.highlight.imgUrl}
-            title={props.highlight.imgTitle}
+            image={props.highlight.bannerImgUrl}
+            title={props.highlight.bannerImgTitle}
           />
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
