@@ -14,6 +14,9 @@ import { blue, green, red } from "@material-ui/core/colors";
 import { PropTypes } from "prop-types";
 import { navigate } from "hookrouter";
 
+import { useDispatch } from 'react-redux';
+import { currentItem } from './../actions/NewsActions';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 1000,
@@ -45,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const HighlightItem = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -54,7 +58,8 @@ const HighlightItem = (props) => {
             console.log(
               `navigating to highlight article ${props.highlight.title}`
             );
-            navigate("/news_article", false, { article: props.highlight });
+            dispatch(currentItem(props.highlight))
+            navigate("/news_article", false);
           }}
         >
           <CardHeader

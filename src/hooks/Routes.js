@@ -46,7 +46,7 @@ const routes = {
   '/p5map': ()=> <P5MapView/>,
   '/p10map': () => <P10MapView/>,
   '/news': () => <News/>,
-  '/news_article': (article) => <ArticlePage article={article}/>,
+  '/news_article': (article) => <ArticlePage/>,
   '/reset_password': (email) => <ResetPassword email={email}/>,
   '/verify_account': (email)=> <AccountVerification email={email}/>
 };

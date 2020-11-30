@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
 import { navigate } from 'hookrouter';
 import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { currentItem } from './../actions/NewsActions';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,14 +36,14 @@ const useStyles = makeStyles((theme) => ({
 const NewsBrowseGrid = (props) => {
 
     const classes = useStyles();
-
-  
+    const dispatch = useDispatch();
     return (
       <div className={classes.root}>
         <GridList className={classes.gridList} cols={2.5}>
           {props.tileData.map((tile) => (
             <GridListTile key={tile.bannerImgUrl}  onClick={() => {console.log(`navigating to article ${tile.title}`)
-            navigate("/news_article",false, {article: tile})
+            dispatch(currentItem(tile));
+            navigate("/news_article",false)
             }}>
               <img src={tile.bannerImgUrl} alt={tile.title} />
               <GridListTileBar

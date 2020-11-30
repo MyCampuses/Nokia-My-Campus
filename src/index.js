@@ -13,6 +13,7 @@ import {applyMiddleware, createStore} from 'redux';
 import RootReducer from './reducers/RootReducer';
 import thunk from 'redux-thunk';
 import localStorageOperations from './hooks/LocalStorageOperations';
+import NewsReducer from './reducers/NewsReducer';
 
 const {SW_INIT, SW_UPDATE} = Data();
 const {saveState, loadState} = localStorageOperations();
@@ -23,7 +24,8 @@ const store = createStore(RootReducer, persistedState,
 
 store.subscribe(() => {
     saveState({
-        WidgetReducer : store.getState().WidgetReducer
+        WidgetReducer : store.getState().WidgetReducer,
+        NewsReducer : store.getState().NewsReducer
     });
 });
 

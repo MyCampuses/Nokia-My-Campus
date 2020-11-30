@@ -49,7 +49,7 @@ const NewsItem = (props) => {
     const classes = useStyles();
     var data = props;
     console.log(data)
-
+    // ADD NULL CHECK OR ALTERNATIVE COMPONENT FOR RENDER, FOR CARDCONTENT.
     return (
     <>
       <ThemeProvider> 
