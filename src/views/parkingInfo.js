@@ -21,23 +21,25 @@ import { navigate } from "hookrouter";
 /*eslint-enable */
 
 const ParkingInfo = () => {
-	const {getParkingStatus, getParkingData} = API();
+	const {getParkingStatus, getParkingData, getParkingAreaName} = API();
 	const {formattedFullDate} = GlobalFunctions();
     const {isLoggedIn} = Authentication();
 	
-	const [tableData, setTableData] = useState([["Total spaces", ""], ["Spaces in use", ""], ["Available spaces", ""]]);
+	const [tableData, setTableData] = useState([[strings.parkingTotalSpaces, ""], [strings.parkingUsedSpaces, ""], [strings.parkingAvailableSpaces, ""]]);
 	const [dataToday, setDataToday] = useState(null);
 	const [dataWeekAgo, setDataWeekAgo] = useState(null);
 	const [capacity, setCapacity] = useState(null);
 	
 	const zone = window.location.pathname.split('/').pop();
+	const name = getParkingAreaName(zone);
 	
-	let expectedDataDate = new Date();
+	const expectedDataDate = new Date();
+	expectedDataDate.setDate(expectedDataDate.getDate() - 7);
 	
 	useEffect(()=>{
 		
 		getParkingStatus(zone).then( usageData => {
-			setTableData([["Total spaces", ""+usageData["capacity"]], ["Spaces in use", ""+usageData["count"]], ["Available spaces", ""+(usageData["capacity"]-usageData["count"])]]);
+			setTableData([[strings.parkingTotalSpaces, ""+usageData["capacity"]], [strings.parkingUsedSpaces, ""+usageData["count"]], [strings.parkingAvailableSpaces, ""+(usageData["capacity"]-usageData["count"])]]);
 			setCapacity(usageData["capacity"]);
 		});
 		
@@ -46,12 +48,11 @@ const ParkingInfo = () => {
 			setDataToday(json);
 		});
 		
-		expectedDataDate.setDate(expectedDataDate.getDate() - 7);
 		getParkingData(zone, formattedFullDate(expectedDataDate)).then(json => {
 			setDataWeekAgo(json);
 		});
-		
-	}, [expectedDataDate, formattedFullDate, getParkingData, getParkingStatus, zone]);
+	// eslint-disable-next-line	react-hooks/exhaustive-deps
+	}, []);
 	
     const ParkingInfoPage = () => {
 		const {TopNavigationBar} = NaviBar();
@@ -59,8 +60,8 @@ const ParkingInfo = () => {
 		return (
 			<div>
 				{TopNavigationBar()}
-				<Box height="48px" display="flex" alignItems="center" padding="16px">
-					<Typography variant="subtitle2" component="h1" align="left">Parking info</Typography>
+				<Box p={16} display="flex" alignItems="center" padding="16px">
+					<Typography variant="subtitle2" component="h1" align="left">{name}</Typography>
 				</Box>
 				<Box px={2}>
 					<TextDataTable data={tableData}/>

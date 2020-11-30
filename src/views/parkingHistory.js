@@ -17,12 +17,17 @@ import GlobalFunctions from '../hooks/GlobalFunctions';
 import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import {useQueryParams} from "hookrouter";
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import strings from '../localization';
 
 /*eslint-enable */
 
 const ParkingHistory = () => {
 	const { isLoggedIn } = Authentication();
-	const {getParkingStatus, getParkingData} = API();
+	const {getParkingStatus, getParkingData, getParkingAreaName} = API();
 	const {formattedFullDate} = GlobalFunctions();
 	
 	const [data, setData] = useState(null);
@@ -46,7 +51,8 @@ const ParkingHistory = () => {
 		getParkingStatus(zone).then(json => {
 			setCapacity(json.capacity);
 		});
-	}, [selectedDate, formattedFullDate, getParkingData, getParkingStatus, zone]);
+	// eslint-disable-next-line	react-hooks/exhaustive-deps
+	}, [selectedDate]);
 	
     const ParkingHistoryPage = () => {
 		const {TopNavigationBar} = NaviBar();
@@ -54,19 +60,22 @@ const ParkingHistory = () => {
 		return (
 			<div>
 				{TopNavigationBar()}
-				<Box height="48px" display="flex" alignItems="center" padding="16px">
-					<Typography variant="subtitle2" component="h1" align="left">Parking history</Typography>
+				<Box p={16} display="flex" alignItems="center" padding="16px">
+					<Typography variant="subtitle2" component="h1" align="left">{strings.history+": "+getParkingAreaName(zone)}</Typography>
 				</Box>
 				<Box px={2}>
 					{PredictiveChartFragment(data, null, capacity)}
-					<Grid container justify="space-between">
-						<Button variant="outlined" align="left" onClick={()=>{
+				</Box>
+				<Divider/>
+				<Box px={2}>
+					<Grid container align="center" justify="space-between">
+						<IconButton my={4} align="left" onClick={()=>{
 									selectedDate.setDate(selectedDate.getDate()-1);
 									setData(null);
 									setSelectedDate(new Date(selectedDate));
 								}}>
-							&lt;
-						</Button>
+							<NavigateBeforeIcon/>
+						</IconButton>
 						<MuiPickersUtilsProvider utils={DateFnsUtils}>
 							<DatePicker
 								style={{color: "black"}}
@@ -81,13 +90,13 @@ const ParkingHistory = () => {
 								}}
 							/>
 						</MuiPickersUtilsProvider>
-						<Button variant="outlined" align="right" onClick={()=>{
+						<IconButton align="right" onClick={()=>{
 									selectedDate.setDate(selectedDate.getDate()+1);
 									setData(null);
 									setSelectedDate(new Date(selectedDate));
 								}}>
-							&gt;
-						</Button>
+							<NavigateNextIcon/>
+						</IconButton>
 					</Grid>
 				</Box>
 			</div>
