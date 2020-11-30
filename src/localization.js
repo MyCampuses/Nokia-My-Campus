@@ -96,6 +96,7 @@ let strings = new LocalizedStrings({
         newspage: "Campus News",
         dialogTitle: "Choose your widgets!",
         donut: "pie",
+        browsenews: "Browse news"
     },
 
     fi:{
@@ -188,6 +189,7 @@ let strings = new LocalizedStrings({
         newspage: "Campus Uutiset",
         dialogTitle: "Valitse vempain",
         donut: "piirakka",
+        browsenews: "Selaa uutisia"
     },
 
     se:{
@@ -274,6 +276,7 @@ let strings = new LocalizedStrings({
         newspage: "Campus nyheter", 
         dialogTitle: "Välj din widget",
         donut: "Donits",
+        browsenews: "Bläddra nyheter"
     }
 });
 
