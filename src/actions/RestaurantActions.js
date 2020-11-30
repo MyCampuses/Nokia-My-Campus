@@ -1,4 +1,12 @@
-// Does what?
+//Actions used by redux states
+
+export const wmenu = (value) => {
+    return {
+        type: 'WMENU',
+        value
+    };
+};
+
 export const menu = (value) => {
     return {
         type: 'MENU',
@@ -13,20 +21,3 @@ export const time = (value) => {
         value
     };
 };
-
-//Does what?
-export const selectValue = (value) => {
-    return {
-        type: 'SELECTVALUE',
-        value
-    };
-};
-
-//Does what
-export const wmenu = (value) => {
-    return {
-        type: 'WMENU',
-        value
-    }
-};
-

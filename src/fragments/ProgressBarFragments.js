@@ -17,7 +17,7 @@ const ProgressBarFragments = (props) => {
         return (
             <LinearProgress variant="determinate" value={props.value}/>
         );
-    }
+    };
     const {onItemClickNavigate} = GlobalFunctions();
     /*eslint-enable */
 
@@ -44,7 +44,7 @@ const ProgressBarFragments = (props) => {
                         <Grid item container alignItems="flex-start"
                               className={barTheme.labelLocation} xs={4}>
                             <Typography className="alignLeft">
-                                {barData.barLabel}
+                                {barData.label}
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>

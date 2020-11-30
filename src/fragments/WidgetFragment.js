@@ -8,19 +8,16 @@ import { Card, Dialog, DialogTitle, List, ListItem, ListItemText, CardContent  }
 import strings from '../localization';
 import WidgetStyle from '../styles/widgetStyle';
 import PropTypes from 'prop-types';
-import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment } from '../actions/WidgetActions';
-//import Hidden from '@material-ui/core/Hidden';
+import WidgetFunctions from '../fragments/WidgetFunctions'
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
-    const {ProgressBar} = ProgressBarFragments();
     const {getUsageData} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-
 
     // States
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -38,17 +35,16 @@ const Widgets = (props) => {
     getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
   }, []); //eslint-disable-line
 
-  
   /*
   widgets is the list which will be presented for SelectViewDialog and HomepageWidget.
   This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
   const widgets = [
-    {navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData},
-    {navigationUrl: '/P5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data},
-    {navigationUrl: '/P10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data},
-    {navigationUrl: '/P10TOP', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData},
-    {navigationUrl: '/P10EV', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData},
+    {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, dataType: 'donutChart', InR: 35, OuR: 50},
+    {navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data, dataType: 'progressBar'},
+    {navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data, dataType: 'progressBar'},
+    {navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, dataType: 'progressBar'},
+    {navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, dataType: 'progressBar'},
   ];
 
   // This list contains only one picture, the symbol '+'
@@ -63,7 +59,6 @@ const Widgets = (props) => {
         const handleClose = () => {
             onClose(selectedValue);
        };
-       
    
        const handleListItemClick = (value) => {
            onClose(value);
@@ -75,7 +70,7 @@ const Widgets = (props) => {
                 <List>
                     {widgets.map((widget) => (
                         <ListItem button onClick={() => handleListItemClick(widget)} key={widget}>
-                            <ListItemText secondary={widget.barLabel} />
+                            <ListItemText secondary={widget.label} />
                         </ListItem>
                     ))}
                 </List>
@@ -87,7 +82,7 @@ const Widgets = (props) => {
     SelectViewDialog.propTypes = {
         onClose: PropTypes.func.isRequired,
         open: PropTypes.bool.isRequired,
-        selectedValue: PropTypes.string.isRequired,
+        selectedValue: PropTypes.string.isRequired
       };
 
     /*
@@ -116,8 +111,7 @@ const Widgets = (props) => {
                 dispatch(increment(value));
             };
           };
-        
-        
+
         /*
         The returned fragment is here, it get the values from above function SelectViewDialog
         the returned value depends on the length of selectedWidgets array and what state selectedValue has
@@ -135,13 +129,13 @@ const Widgets = (props) => {
                 <SelectViewDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
             </Fragment>
         )
-       }  else if (selectedWidgets.length < 3 & selectedWidgets.length > 0) {
+       }  else if (selectedWidgets.length < 3 && selectedWidgets.length > 0) {
         return (
             <Fragment>
                 {selectedWidgets.map((selectedWidget) => (
                     <Card className={classes.card} onClick={handleClickOpen}>
                         <CardContent>
-                            {ProgressBar(selectedWidget)}
+                            {WidgetFunctions(selectedWidget)}
                         </CardContent>
                     </Card>
                 ))}
@@ -159,7 +153,7 @@ const Widgets = (props) => {
                 {selectedWidgets.map((selectedWidget) => (
                     <Card className={classes.card} onClick={handleClickOpen}>
                         <CardContent>
-                            {ProgressBar(selectedWidget)}
+                            {WidgetFunctions(selectedWidget)}
                         </CardContent>
                     </Card>
                 ))}

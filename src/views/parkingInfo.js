@@ -37,6 +37,7 @@ const ParkingInfo = () => {
 	expectedDataDate.setDate(expectedDataDate.getDate() - 7);
 	
 	
+	
 	useEffect(()=>{
 		
 		getParkingStatus(zone).then( usageData => {

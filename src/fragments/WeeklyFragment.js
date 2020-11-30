@@ -46,7 +46,7 @@ const WeeklyFragment = () => {
                                                 <Grid container direction="row">
                                                     <Grid item className={classes.mItem}>
                                                         <p>
-                                                            {selectedValue.courses[key].title_fi}
+                                                            {selectedValue.courses[key].title_en}
                                                         </p>
                                                     </Grid>
                                                     <Grid item className={classes.mInfo}>

@@ -20,7 +20,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import blue from '@material-ui/core/colors/blue';
 import {ThemeProvider} from '@material-ui/core';
 
-const {parkingP5Url} = ApiUrls();
+const {parkingP5Url, restaurantUrl} = ApiUrls();
 
 const TabFragments = (props) => {
     const {Chart} = ChartFragment();
@@ -320,7 +320,13 @@ const TabFragments = (props) => {
     // Renders the restaurant donut chart page
     function TabRestaurantDonut(props) {
         const {children, value, index, ...other} = props;
-        const selectedDate= new Date(props.date);
+        const selectedDate = new Date(props.date);
+        const {getUsageData} = API();
+        const [restaurantData, setRestaurantData] = useState(undefined);
+
+        useEffect(() =>{
+            getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
+        },[]);
 
         return (
             <div role="tabfragment"
@@ -329,7 +335,7 @@ const TabFragments = (props) => {
                  aria-labelledby={`tab-${index}`}
                  inputstyle={{textAlign: 'center'}}
                  {...other}>
-                <Donut date={selectedDate} location={"restaurant"}/>
+                <Donut date={selectedDate} data={restaurantData} InR={60} OuR={80}/>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import {makeStyles} from "@material-ui/core";
 
 const useStyle = makeStyles((theme) => ({
+
     MenuContainer:{
         width: '100%',
         height: '100%',
@@ -93,8 +94,9 @@ const useStyle = makeStyles((theme) => ({
         textAlign: 'center',
         width: '100%',
         height: '25vh',
-        display: 'inline-block',
+        display: 'block',
     },
+
     Donut: {
         width: '100%',
         height: '100%',
