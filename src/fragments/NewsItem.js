@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
 const NewsItem = (props) => {
     const classes = useStyles();
     var data = props;
-
+    console.log(data)
+    // ADD NULL CHECK OR ALTERNATIVE COMPONENT FOR RENDER, FOR CARDCONTENT.
     return (
     <>
       <ThemeProvider> 
@@ -59,23 +60,25 @@ const NewsItem = (props) => {
         </CardActions>
         <CardMedia
           className={classes.media}
-          image={data.articleData.imgUrl}
-          title={data.articleData.imgTitle}
+          image={data.articleData.bannerImgUrl}
+          title={data.articleData.bannerImgTitle}
         />
         <CardHeader
           className={classes.header}
-          titleTypographyProps={{ variant: "h4" }}
+          titleTypographyProps={{ variant: "h5" }}
           title={data.articleData.title}
         />
         <CardContent>
           {(Object.keys(data.articleData.paragraphs) || {}).map(paragraph => (
-           <>
-            {data.articleData.paragraphImg[paragraph] &&
+            <>
+            {data.articleData.paragraphs[paragraph].imgUrl &&
             <CardMedia
                 className={classes.media}
-                image={data.articleData.paragraphImg[paragraph]}
+                image={data.articleData.paragraphs[paragraph].imgUrl}
             />}
-            <Typography className = {classes.typography} key={paragraph} variant="body2" color="textSecondary" component="p">{data.articleData.paragraphs[paragraph]}</Typography>
+            {data.articleData.paragraphs[paragraph].imgTitle &&
+            <Typography className = {classes.typography} key={paragraph} variant="body2" color="textSecondary" component="p">{data.articleData.paragraphs[paragraph].imgTitle}</Typography>}
+            <Typography className = {classes.typography} key={paragraph} variant="body2" color="textSecondary" component="p">{data.articleData.paragraphs[paragraph].text}</Typography>
             </>
           ))}
         </CardContent>

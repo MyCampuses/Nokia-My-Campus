@@ -5,6 +5,7 @@ import WidgetReducer from './WidgetReducer';
 import WMenuReducer from "./WMenuReducer";
 import MenuReducer from "./MenuReducer";
 import EditModeRecuder from "./EditModeReducer";
+import NewsReducer from "./NewsReducer";
 
 // combines update, widget and heatmap reducers
 const RootReducer = combineReducers({
@@ -14,6 +15,7 @@ const RootReducer = combineReducers({
     WMenuReducer,
     MenuReducer,
     EditModeRecuder,
+    NewsReducer,
 });
 
 export default RootReducer

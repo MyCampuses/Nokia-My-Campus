@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
 import { navigate } from 'hookrouter';
 import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { currentItem } from './../actions/NewsActions';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
       transform: "translateZ(0)",
     },
     title: {
-      color: theme.palette.primary.light,
+      color: theme.palette.primary.white,
     },
     titleBar: {
       background:
@@ -34,16 +36,16 @@ const useStyles = makeStyles((theme) => ({
 const NewsBrowseGrid = (props) => {
 
     const classes = useStyles();
-
-  
+    const dispatch = useDispatch();
     return (
       <div className={classes.root}>
         <GridList className={classes.gridList} cols={2.5}>
           {props.tileData.map((tile) => (
-            <GridListTile key={tile.imgUrl}  onClick={() => {console.log(`navigating to article ${tile.title}`)
-            navigate("/news_article",false, {article: tile})
+            <GridListTile key={tile.bannerImgUrl}  onClick={() => {console.log(`navigating to article ${tile.title}`)
+            dispatch(currentItem(tile));
+            navigate("/news_article",false)
             }}>
-              <img src={tile.imgUrl} alt={tile.title} />
+              <img src={tile.bannerImgUrl} alt={tile.title} />
               <GridListTileBar
                 title={tile.title}
                 classes={{

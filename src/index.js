@@ -23,7 +23,8 @@ const store = createStore(RootReducer, persistedState,
 
 store.subscribe(() => {
     saveState({
-        WidgetReducer : store.getState().WidgetReducer
+        WidgetReducer : store.getState().WidgetReducer,
+        NewsReducer : store.getState().NewsReducer
     });
 });
 
