@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { useSelector, useDispatch } from 'react-redux';
-import { cleanState } from '../actions/WidgetActions';
+import { cleanState } from '../Actions/WidgetActions';
 //import {editmode} from '../actions/EditModeActions';
 
 

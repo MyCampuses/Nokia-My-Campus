@@ -109,40 +109,54 @@ const MenuFragment = () =>{
                 .then(json => dispatch(menu(json.courses)));
         }
 
-
         if(menuState.length === 2) {
-            let check = menuState[1];
 
-            //length of dataForRender
-            let lengthy = Object.keys(check).length + 1;
+            if(menuState[1] !== null) {
 
-            //size of queueTimes map
-            let queueLength = menuState[0].size;
+                let check = menuState[1];
 
-            //temporary map for data
-            let temp = new Map();
+                //length of dataForRender
+                let lengthy = Object.keys(check).length + 1;
 
-            // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
-            if(queueLength === 8 && stopper === 0){
+                //size of queueTimes map
+                let queueLength = menuState[0].size;
 
-                //run for each entry from sodexo
-                for (let i = 1; i < lengthy; i++) {
+                //temporary map for data
+                let temp = new Map();
 
-                    // run for each entry in Data.js
-                    for (let l = 1; l < 9; l++) {
+                // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
+                if (queueLength === 8 && stopper === 0) {
 
-                        //check for matching values
-                        if (check[i].category === lines.get(l)){
+                    //run for each entry from sodexo
+                    for (let i = 1; i < lengthy; i++) {
 
-                            //set the values into the temporary Map
-                            temp.set(
-                                l, [ menuState[0].get(l), check[i] ]
-                            );
+                        // run for each entry in Data.js
+                        for (let l = 1; l < 9; l++) {
+
+                            //check for matching values
+                            if (check[i].category === lines.get(l)) {
+
+                                //set the values into the temporary Map
+                                temp.set(
+                                    l, [menuState[0].get(l), check[i]]
+                                );
+                            }
                         }
                     }
+                    setUsedLines(temp);
+                    setStopper(1);
                 }
-                setUsedLines(temp);
-                setStopper(1);
+            }
+            else {
+                if(stopper === 0) {
+                    let nullCase = new Map();
+                    nullCase.set(
+                        1, [{restaurant: "Midpoint", queue: "1", queueTime: "1", ppl_counter: "0", timestamp: 0},
+                            {title_fi: "No data for this date", properties: "", price: "", category: ""}]
+                    );
+                    setUsedLines(nullCase);
+                    setStopper(1);
+                }
             }
         }
 

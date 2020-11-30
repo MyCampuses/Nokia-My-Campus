@@ -17,7 +17,7 @@ const ProgressBarFragments = (props) => {
         return (
             <LinearProgress variant="determinate" value={props.value}/>
         );
-    }
+    };
     const {onItemClickNavigate} = GlobalFunctions();
     /*eslint-enable */
 

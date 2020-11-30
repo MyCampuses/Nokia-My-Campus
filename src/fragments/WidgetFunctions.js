@@ -3,14 +3,13 @@ import DonutFragment from "./DonutFragment";
 
 const CombinedFunctions = (object) => {
 
-    const currentDate = new Date();
     const {ProgressBar} = ProgressBarFragments();
     const {Donut} = DonutFragment();
 
     const type = object.dataType;
     const cases = new Map([
         ['progressBar', ProgressBar(object)],
-        ['donutChart', Donut(currentDate)],
+        ['donutChart', Donut(object)],
         ['menu', 'ExampleFunction2(object)'],
     ]);
 

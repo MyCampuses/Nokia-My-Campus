@@ -233,7 +233,6 @@ const API = () => {
         }
     };
 
-    //
     const menuByDate = (date) =>{
          const menu = fetch(sodexoDailyUrl(sodexoDate(date)))
              .then(res => res.json());
