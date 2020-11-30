@@ -11,6 +11,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import MuiThemes from "../styles/muiThemes";
+import strings from '../localization';
 
 // Importing items fragments
 import HighlightItem from "../fragments/NewsHighlight";
@@ -18,6 +19,7 @@ import NewsBrowseGrid from "../fragments/NewsBrowseGrid";
 
 // Importing hooks
 import NewsHooks from './../hooks/NewsHooks';
+
 
 /*eslint-enable */
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +55,7 @@ const News = () => {
           component="h3"
           className={classes.header2}
         >
-          {"Selaa Uutisia"}
+          {strings.browsenews}
         </Typography>
         <NewsBrowseGrid tileData={tileData} />
       </ThemeProvider>
