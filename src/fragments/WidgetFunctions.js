@@ -10,7 +10,6 @@ const CombinedFunctions = (object) => {
     const cases = new Map([
         ['progressBar', ProgressBar(object)],
         ['donutChart', Donut(object)],
-        ['menu', 'ExampleFunction2(object)'],
     ]);
 
     return cases.get(type);

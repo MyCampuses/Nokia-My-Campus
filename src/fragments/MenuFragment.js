@@ -39,7 +39,7 @@ const MenuFragment = () =>{
                                     <Grid container direction="row">
                                         <Grid item className={classes.mItem}>
                                             <p>
-                                                {queueTimes.get(mapKey)[1].title_fi}
+                                                {queueTimes.get(mapKey)[1].title_en}
                                             </p>
                                         </Grid>
                                         <Grid item className={classes.mInfo}>

@@ -10,7 +10,8 @@ const DonutFragment = (props) => {
 
         const Donut = (DonutData) => {
 
-            console.log(DonutData);
+            const IR = DonutData.InR;
+            const OR = DonutData.OuR;
 
             const [dataDonutFormat, setDataDonutFormat] = useState([{value: "no data"}]);
 
@@ -26,13 +27,13 @@ const DonutFragment = (props) => {
             return (
                 <Fragment>
                     <Container className={classes.DonutContainer}>
-                        <ResponsiveContainer className={classes.Donut}>
+                        <ResponsiveContainer>
                             <PieChart>
                                 <Pie
                                     data={dataDonutFormat}
                                     name="usage"
-                                    innerRadius={60}
-                                    outerRadius={80}
+                                    innerRadius={IR}
+                                    outerRadius={OR}
                                     startAngle={90}
                                     endAngle={-270}
                                     fill="#8884d8"
