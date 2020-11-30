@@ -34,6 +34,7 @@ const ParkingInfo = () => {
 	
 	let expectedDataDate = new Date();
 	
+	
 	useEffect(()=>{
 		
 		getParkingStatus(zone).then( usageData => {
@@ -50,8 +51,9 @@ const ParkingInfo = () => {
 		getParkingData(zone, formattedFullDate(expectedDataDate)).then(json => {
 			setDataWeekAgo(json);
 		});
-		
-	}, [expectedDataDate, formattedFullDate, getParkingData, getParkingStatus, zone]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	
 	
     const ParkingInfoPage = () => {
 		const {TopNavigationBar} = NaviBar();

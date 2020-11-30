@@ -2,6 +2,7 @@
     This function holds all the widgets for the app
     like Homepage 
 */
+
 import React, { Fragment, useState, useEffect } from 'react';
 import { Card, Dialog, DialogTitle, List, ListItem, ListItemText, CardContent  } from '@material-ui/core';
 import strings from '../localization';
@@ -12,6 +13,7 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment } from '../actions/WidgetActions';
+//import Hidden from '@material-ui/core/Hidden';
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
@@ -34,7 +36,7 @@ const Widgets = (props) => {
     getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
     getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
     getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
-  },[]); //eslint-disable-line
+  }, []); //eslint-disable-line
 
   
   /*
@@ -61,7 +63,7 @@ const Widgets = (props) => {
         const handleClose = () => {
             onClose(selectedValue);
        };
-       console.log(widgets.pro)
+       
    
        const handleListItemClick = (value) => {
            onClose(value);

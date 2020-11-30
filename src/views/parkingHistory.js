@@ -46,7 +46,8 @@ const ParkingHistory = () => {
 		getParkingStatus(zone).then(json => {
 			setCapacity(json.capacity);
 		});
-	}, [selectedDate, formattedFullDate, getParkingData, getParkingStatus, zone]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [selectedDate]);
 	
     const ParkingHistoryPage = () => {
 		const {TopNavigationBar} = NaviBar();

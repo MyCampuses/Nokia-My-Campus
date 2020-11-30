@@ -38,13 +38,13 @@ const Home = (props) => {
           <Container>
             <Grid container spacing={1}
                   justify="space-between">
-              <Grid item xs={12}>
-               <h3 className={barTheme.headLine}>
-                 {strings.currentStatsAre}
-               </h3>
-              </Grid>
-              <Grid>
-                {EditIconButton()}
+              <Grid item xs={10}>
+              {EditIconButton()}
+                <Grid item xs>
+                  <h3 className={barTheme.headLine}>
+                    {strings.currentStatsAre}
+                  </h3>
+                </Grid>
               </Grid>
               {HomepageWidget()}
             </Grid>
