@@ -13,7 +13,6 @@ import {applyMiddleware, createStore} from 'redux';
 import RootReducer from './reducers/RootReducer';
 import thunk from 'redux-thunk';
 import localStorageOperations from './hooks/LocalStorageOperations';
-import NewsReducer from './reducers/NewsReducer';
 
 const {SW_INIT, SW_UPDATE} = Data();
 const {saveState, loadState} = localStorageOperations();
