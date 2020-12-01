@@ -12,7 +12,7 @@ import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment } from '../actions/WidgetActions';
-import WidgetFunctions from '../fragments/WidgetFunctions'
+import WidgetFunctions from '../widgets/WidgetFunctions'
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
@@ -40,11 +40,12 @@ const Widgets = (props) => {
   This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
   const widgets = [
-    {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, dataType: 'donutChart', InR: 35, OuR: 50},
+    {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, dataType: 'progressBar'},
     {navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data, dataType: 'progressBar'},
     {navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data, dataType: 'progressBar'},
     {navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, dataType: 'progressBar'},
     {navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, dataType: 'progressBar'},
+    {label: strings.newspage, dataType: 'news'}
   ];
 
   // This list contains only one picture, the symbol '+'

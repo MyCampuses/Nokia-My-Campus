@@ -1,5 +1,6 @@
 import ProgressBarFragments from '../fragments/ProgressBarFragments';
-import DonutFragment from "./DonutFragment";
+import DonutFragment from "../fragments/DonutFragment";
+import NewsWidget from './NewsWidget';
 
 const CombinedFunctions = (object) => {
 
@@ -10,6 +11,7 @@ const CombinedFunctions = (object) => {
     const cases = new Map([
         ['progressBar', ProgressBar(object)],
         ['donutChart', Donut(object)],
+        ['news', NewsWidget()],
     ]);
 
     return cases.get(type);
