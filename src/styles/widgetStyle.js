@@ -12,12 +12,12 @@ const widgetStyle = makeStyles((theme) => ({
         position: 'center',
         alignItems: 'center',
         width: '100%',
-        marginTop: '6%',
-        marginBottom: '6%',
+        marginTop: '3%',
+        marginBottom: '3%',
     },
       plus: {
-        maxHeight: '40%',
-        maxWidth: '40%'
+        maxHeight: '30%',
+        maxWidth: '30%'
       },
 }));
 

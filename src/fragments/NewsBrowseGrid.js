@@ -13,7 +13,7 @@ const NewsBrowseGrid = (props) => {
     
     return (
       <div className={classes.root}>
-        <GridList className={classes.gridList} cols={2.5}>
+        <GridList cellHeight={120} className={classes.gridList} cols={2.5}>
           {props.tileData.map((tile) => (
             <GridListTile key={tile.bannerImgUrl}  onClick={() => {console.log(`navigating to article ${tile.title}`)
             dispatch(currentItem(tile));

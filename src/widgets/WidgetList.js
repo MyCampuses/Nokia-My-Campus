@@ -1,14 +1,12 @@
-import ProgressBarFragments from '../fragments/ProgressBarFragments';
+
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
-import React, {  useState, useEffect } from 'react';
+import {  useState, useEffect } from 'react';
 import strings from '../localization';
 
 const WidgetList = (props) =>  {
-    const {ProgressBar} = ProgressBarFragments();
     const {getUsageData} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
-
 
     // States
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -27,11 +25,12 @@ const WidgetList = (props) =>  {
   },[]); //eslint-disable-line
 
     const widgetList = [
-        ProgressBar({navigationUrl: '/restaurant', barLabel: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData}),
-        ProgressBar({navigationUrl: '/P5', barLabel: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data}),
-        ProgressBar({navigationUrl: '/P10', barLabel: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data}),
-        ProgressBar({navigationUrl: '/P10TOP', barLabel: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData}),
-        ProgressBar({navigationUrl: '/P10EV', barLabel: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData}),
+      {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, dataType: 'progressBar'},
+      {navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data, dataType: 'progressBar'},
+      {navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data, dataType: 'progressBar'},
+      {navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, dataType: 'progressBar'},
+      {navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, dataType: 'progressBar'},
+      {label: strings.newspage, dataType: 'news'}
     ];
 
     return widgetList

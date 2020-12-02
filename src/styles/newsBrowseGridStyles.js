@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
       color: theme.palette.primary.white,
+      fontSize: 12,
     },
     titleBar: {
       background:
