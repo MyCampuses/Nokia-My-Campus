@@ -25,14 +25,14 @@ const Widgets = (props) => {
   const [parkingP10Data, setParking10Data] = useState(undefined);
   const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
   const [parkingP10ElectricData, setParkingP10ElectricData] = useState(undefined);
-  const multiplier = 2;
+  const multiplier = 2.1;
 
   /*eslint-enable */
   useEffect(()=> {
-    getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result.percent));
+    getUsageData(parkingP5Url, props).then(result => setParkingP5Data(result));
     getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
-    getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
-    getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
+    getUsageData(parkingP10Url, props).then(result => setParking10Data(result));
+    getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result); setParkingP10ElectricData({count: Math.min(98, Math.floor(result.count * multiplier)), capacity: 98})});
   }, []); //eslint-disable-line
 
   /*
@@ -41,10 +41,10 @@ const Widgets = (props) => {
   */
   const widgets = [
     {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, dataType: 'progressBar'},
-    {navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data, dataType: 'progressBar'},
-    {navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data, dataType: 'progressBar'},
-    {navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, dataType: 'progressBar'},
-    {navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, dataType: 'progressBar'},
+    {label: strings.p5inside, dataType: 'parking', zone: 'P5', data: parkingP5Data},
+    {label: strings.p10inside, dataType: 'parking', zone: 'P10', data: parkingP10Data},
+	{label: strings.p10rooftop, dataType: 'parking', zone: 'P10TOP', data: parkingP10TopData},
+    {label: strings.p10electric, dataType: 'parking', zone: 'P10EV', data: parkingP10ElectricData},
     {label: strings.newspage, dataType: 'news'}
   ];
 
