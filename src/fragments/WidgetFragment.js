@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import WidgetList from '../widgets/WidgetList';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment } from '../actions/WidgetActions';
-import WidgetFunctions from '../widgets/WidgetFunctions'
+import WidgetFunctions from '../widgets/WidgetFunctions';
 
 const Widgets = () => {
     const classes = WidgetStyle().widgetStyle();
