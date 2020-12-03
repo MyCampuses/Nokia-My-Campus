@@ -2,6 +2,7 @@ import ProgressBarFragments from '../fragments/ProgressBarFragments';
 import DonutFragment from "../fragments/DonutFragment";
 import NewsBrowseWidget from './NewsWidget';
 import RestaurantWidget from './RestaurantWidget';
+import ParkingWidget from './ParkingWidget';
 
 const CombinedFunctions = (object) => {
 
@@ -20,6 +21,9 @@ const CombinedFunctions = (object) => {
                 return RestaurantFeed(object);
             case 'news':
                 return NewsBrowseWidget();
+            case 'parking':
+                ParkingWidget(object);
+            break;
             default:
                 return undefined;
         }

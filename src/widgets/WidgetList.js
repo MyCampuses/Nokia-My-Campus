@@ -33,7 +33,11 @@ const WidgetList = (props) =>  {
       {navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, dataType: 'progressBar'},
       {navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData, dataType: 'progressBar'},
       {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: menuData, size: "15", dataType: 'menuData', InR: 35, OuR: 50},
-      {label: strings.newspage, dataType: 'news'},
+      //{label: strings.newspage, dataType: 'news'},
+      //{label: strings.p5inside, dataType: 'parking', zone: 'P5', data: parkingP5Data},
+      //{label: strings.p10inside, dataType: 'parking', zone: 'P10', data: parkingP10Data},
+	    //{label: strings.p10rooftop, dataType: 'parking', zone: 'P10TOP', data: parkingP10TopData},
+      //{label: strings.p10electric, dataType: 'parking', zone: 'P10EV', data: parkingP10ElectricData},
     ];
 
     return widgetList

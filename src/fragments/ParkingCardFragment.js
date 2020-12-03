@@ -11,7 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import {PieChart, Pie} from 'recharts';
 
-const ParkingCardFragment = (data) => {
+const ParkingCardFragment = () => {
     const {onItemClickNavigate} = GlobalFunctions();
 	
 	const nameToLocalizedString = (name) => {
@@ -58,6 +58,40 @@ const ParkingCardFragment = (data) => {
 		);
 	}
 	
+	const createAreaItem = (area) => {
+		if (area.usageData == null) {
+			area.loading = true;
+		} else {
+			area.loading = false;
+		}
+		let utilizationString;
+		if (area.loading) {
+			utilizationString = strings.loading;
+		} else {
+			if (area.estimate) {
+				utilizationString = strings.parkingUtilizationEstimate.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
+			} else {
+				utilizationString = strings.parkingUtilization.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
+			}
+		}
+		let link;
+		if (area["linkId"] !== undefined) {
+			link = area["linkId"];
+		} else {
+			link = area["id"];
+		}
+		return (
+			<ListItem button onClick={()=>onItemClickNavigate(link)}>
+				<ListItemAvatar>
+					<PieChart width={40} height={40}>
+						{(area.loading ? areaPie(0, 1) : areaPie(area.usageData.count, area.usageData.capacity))}
+					</PieChart>
+				</ListItemAvatar>
+				<ListItemText primary={nameToLocalizedString(area["name"])} secondary={utilizationString} />
+			</ListItem>
+		);
+	}
+	
 	const zones = (zoneData, category) => {
 		if (category in zoneData) {
 			let out = (
@@ -65,38 +99,7 @@ const ParkingCardFragment = (data) => {
 					<Typography variant="subtitle2" component="h2" align="left">{categoryToLocalizedString(category)}</Typography>
 				</Box>);
 			zoneData[category].forEach(area => {
-				if (area.usageData == null) {
-					area.loading = true;
-				} else {
-					area.loading = false;
-				}
-				let utilizationString;
-				if (area.loading) {
-					utilizationString = strings.loading;
-				} else {
-					if (area.estimate) {
-						utilizationString = strings.parkingUtilizationEstimate.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
-					} else {
-						utilizationString = strings.parkingUtilization.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
-					}
-				}
-				let link;
-				if (area["linkId"] !== undefined) {
-					link = area["linkId"];
-				} else {
-					link = area["id"];
-				}
-				const areaItem = (
-					<ListItem button onClick={()=>onItemClickNavigate(link)}>
-						<ListItemAvatar>
-							<PieChart width={40} height={40}>
-								{(area.loading ? areaPie(0, 1) : areaPie(area.usageData.count, area.usageData.capacity))}
-							</PieChart>
-						</ListItemAvatar>
-						<ListItemText primary={nameToLocalizedString(area["name"])} secondary={utilizationString} />
-					</ListItem>
-				);
-				out = [out, areaItem];
+				out = [out, createAreaItem(area)];
 			});
 			return out;
 		}
@@ -114,19 +117,29 @@ const ParkingCardFragment = (data) => {
 		});
 		return out;
 	}
-	return (
-		<Box m={2} mb={0}>
-			<Card>
-				<Box height="56px" display="flex" alignItems="center" padding="16px">
-					<Typography variant="h6" component="h1" align="left">
-						{data["name"]}
-					</Typography>
-				</Box>
-				<Divider/>
-				{zoneList(data["zones"])}
-			</Card>
-		</Box>
-	);
+	const fullCard = (data) => {
+		return (
+			<Box m={2} mb={0}>
+				<Card>
+					<Box height="56px" display="flex" alignItems="center" padding="16px">
+						<Typography variant="h6" component="h1" align="left">
+							{data["name"]}
+						</Typography>
+					</Box>
+					<Divider/>
+					{zoneList(data["zones"])}
+				</Card>
+			</Box>
+		);
+	}
+	const singleAreaWidget = (data) => {
+		console.log(data);
+		return createAreaItem(data);
+	}
+	return {
+		fullCard,
+		singleAreaWidget
+	}
 };
 
 export default ParkingCardFragment;
