@@ -22,7 +22,8 @@ const Home = (props) => {
   const {EditIconButton} = EditButton();
   
   const HomePage = () => {
-    const colorB = blue[500]
+
+    const colorB = blue[500];
 
     const barTheme = makeStyles({
       headLine: {

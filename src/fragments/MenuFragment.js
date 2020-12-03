@@ -91,14 +91,19 @@ const MenuFragment = () =>{
         const menuState = useSelector(state => state.MenuReducer);
         const dispatch = useDispatch();
 
-        //get the menu for today and set it into dataForRender
+        /*
+        if(menuState.length > 0){
+            setStopper(1)
+        }
+        */
 
+        //get the menu for today and set it into dataForRender
         const getQueueTimes = async () => {
             let queue = new Map();
-            for (let i = 1; i < 9; i++) {
-                getUsageDataNoProps(restaurantQueueUrl + i)
-                    .then(result => dispatch(menu(queue.set(i, result))))
-            }
+                for (let i = 1; i < 9; i++) {
+                    getUsageDataNoProps(restaurantQueueUrl + i)
+                        .then(result => dispatch(menu(queue.set(i, result))))
+                }
         };
 
         if(menuState.length === 0) {
@@ -144,9 +149,10 @@ const MenuFragment = () =>{
                         }
                     }
                     setUsedLines(temp);
-                    setStopper(1);
+                    setStopper(2);
                 }
             }
+
             else {
                 if(stopper === 0) {
                     let nullCase = new Map();

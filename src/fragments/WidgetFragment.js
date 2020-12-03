@@ -16,8 +16,9 @@ import WidgetFunctions from '../fragments/WidgetFunctions'
 
 const Widgets = (props) => {
     const classes = WidgetStyle().widgetStyle();
-    const {getUsageData} = API();
+    const {getUsageData, menuByDate} = API();
     const {parkingP5Url, restaurantUrl, parkingP10Url, parkingP10TopUrl} = ApiUrls();
+    const date = new Date();
 
     // States
   const [restaurantData, setRestaurantData] = useState(undefined);
@@ -25,6 +26,7 @@ const Widgets = (props) => {
   const [parkingP10Data, setParking10Data] = useState(undefined);
   const [parkingP10TopData, setParkingP10TopData] = useState(undefined);
   const [parkingP10ElectricData, setParkingP10ElectricData] = useState(undefined);
+  const [menuData, setMenuData] = useState(undefined);
   const multiplier = 2;
 
   /*eslint-enable */
@@ -33,14 +35,16 @@ const Widgets = (props) => {
     getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
     getUsageData(parkingP10Url, props).then(result => setParking10Data(result.percent));
     getUsageData(parkingP10TopUrl, props).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
+    menuByDate(date).then(result => setMenuData(result));
   }, []); //eslint-disable-line
 
   /*
   widgets is the list which will be presented for SelectViewDialog and HomepageWidget.
   This list is supposed to contain all widgets that are shown on the list when clicking the '+' symbol
   */
+
   const widgets = [
-    {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: restaurantData, size: "15", dataType: 'donutChart', InR: 35, OuR: 50},
+    {navigationUrl: '/restaurant', label: strings.topBarMenuItemRestaurant, utilization: strings.liveUtilization, data: menuData, size: "15", dataType: 'menuData', InR: 35, OuR: 50},
     {navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data, dataType: 'progressBar'},
     {navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data, dataType: 'progressBar'},
     {navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData, dataType: 'progressBar'},
@@ -54,6 +58,7 @@ const Widgets = (props) => {
   
     // Creates a item of every widget for the Dialog on front page
     const SelectViewDialog = (props) => {
+
         const { onClose, selectedValue, open } = props;
 
         const handleClose = () => {
