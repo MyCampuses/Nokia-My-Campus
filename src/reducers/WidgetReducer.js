@@ -1,11 +1,12 @@
 //REDUCERS
 //Widget cases, either add or remove widget
-const WidgetReducer = (state = [], action) => {
+const WidgetReducer = (state = [] , action) => {
 
     switch(action.type){
         case 'INCREMENT':
-            if(action.value !== [] && !state.includes(action.value)){
-                return state.concat(action.value);
+            
+            if(!state.includes(action.value)){
+                return state.concat(action.value); 
             } else {
                 return state;
             }

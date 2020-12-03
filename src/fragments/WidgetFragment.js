@@ -79,6 +79,7 @@ const Widgets = () => {
             if(widgets.includes(value)){
                 setSelectedValue(value);
                 dispatch(increment(value));
+                console.log(selectedWidgets);
             };
           };
 
