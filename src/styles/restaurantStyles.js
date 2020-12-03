@@ -83,6 +83,10 @@ const useStyle = makeStyles((theme) => ({
         height: "85vh",
         overflow: "auto",
     },
+    Widget: {
+        height: "15vh",
+        overflow: "auto",
+    },
     RestaurantBox: {
         width: '100%',
         height: '45vh',

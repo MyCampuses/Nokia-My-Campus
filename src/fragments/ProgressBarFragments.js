@@ -11,6 +11,7 @@ import '../styles/progressBar.css';
 import WidgetStyle from '../styles/widgetStyle';
 
 const ProgressBarFragments = (props) => {
+
     const barTheme = WidgetStyle().barTheme();
     //Progressbar with props
     const HomeProgressBar = (props) => {

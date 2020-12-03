@@ -24,6 +24,7 @@ const Widgets = () => {
   
     // Creates a item of every widget for the Dialog on front page
     const SelectViewDialog = (props) => {
+
         const { onClose, selectedValue, open } = props;
 
         const handleClose = () => {

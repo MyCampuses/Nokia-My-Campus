@@ -1,17 +1,12 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Container} from '@material-ui/core';
 import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';
-import useStyle from "../styles/restaurantStyles";
 
 // Holds all the fragments for charts
 const DonutFragment = (props) => {
-        const classes = useStyle();
         // Common chart to be used, needs a date and location(path)
 
         const Donut = (DonutData) => {
-
-            const IR = DonutData.InR;
-            const OR = DonutData.OuR;
 
             const [dataDonutFormat, setDataDonutFormat] = useState([{value: "no data"}]);
 
@@ -26,14 +21,14 @@ const DonutFragment = (props) => {
 
             return (
                 <Fragment>
-                    <Container className={classes.DonutContainer}>
+                    <Container style={{height: DonutData.size + "vh", width: "100%", textAlign: 'center', display: 'block'}}>
                         <ResponsiveContainer>
                             <PieChart>
                                 <Pie
                                     data={dataDonutFormat}
                                     name="usage"
-                                    innerRadius={IR}
-                                    outerRadius={OR}
+                                    innerRadius={DonutData.InR}
+                                    outerRadius={DonutData.OuR}
                                     startAngle={90}
                                     endAngle={-270}
                                     fill="#8884d8"
