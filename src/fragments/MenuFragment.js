@@ -91,11 +91,6 @@ const MenuFragment = () =>{
         const menuState = useSelector(state => state.MenuReducer);
         const dispatch = useDispatch();
 
-        /*
-        if(menuState.length > 0){
-            setStopper(1)
-        }
-        */
 
         //get the menu for today and set it into dataForRender
         const getQueueTimes = async () => {
@@ -165,6 +160,7 @@ const MenuFragment = () =>{
                 }
             }
         }
+        console.log(menuState);
 
         return (
             <Fragment>
