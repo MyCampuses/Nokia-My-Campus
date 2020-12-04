@@ -75,13 +75,12 @@ const Widgets = () => {
           };
         
           //Closes the dialog window and saves the value in selectedwidgets array
-        const handleClose = (value) => {       
+        const handleClose = (value) => {
             setOpen(false);
             if(widgets.includes(value)){
                 setSelectedValue(value);
                 dispatch(increment(value));
-                console.log(selectedWidgets);
-            };
+            }
           };
 
         /*

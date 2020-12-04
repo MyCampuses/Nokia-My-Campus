@@ -22,8 +22,7 @@ const CombinedFunctions = (object) => {
             case 'news':
                 return NewsBrowseWidget();
             case 'parking':
-                ParkingWidget(object);
-            break;
+                return ParkingWidget(object);
             default:
                 return undefined;
         }
