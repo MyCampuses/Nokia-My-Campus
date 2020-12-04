@@ -49,7 +49,7 @@ const DonutFragment = (props) => {
 
         /*eslint-disable */
         return {
-            Donut: Donut,
+            Donut,
         };
     };
 

@@ -129,11 +129,6 @@ const MuiThemes = () => {
                     backgroundColor: LightBlue
                 }
             },
-            MuiTypography:{
-              body1:{
-                  color:"white"
-              }
-            },
             MuiGrid: {
                 root: {
                     display: 'flex',

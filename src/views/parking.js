@@ -84,7 +84,7 @@ const Parking = () => {
 	const ParkingPage = () => {
 		let cards = [];
 		data.forEach(area => {
-			cards.push(ParkingCardFragment(area));
+			cards.push(ParkingCardFragment().fullCard(area));
 		});
 		return (
 			<div>

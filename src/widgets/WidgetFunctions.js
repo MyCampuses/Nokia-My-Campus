@@ -1,6 +1,8 @@
 import ProgressBarFragments from '../fragments/ProgressBarFragments';
-import DonutFragment from "./DonutFragment";
-import RestaurantWidget from "../widgets/RestaurantWidget"
+import DonutFragment from "../fragments/DonutFragment";
+import NewsBrowseWidget from './NewsWidget';
+import RestaurantWidget from './RestaurantWidget';
+import ParkingWidget from './ParkingWidget';
 
 const CombinedFunctions = (object) => {
 
@@ -17,19 +19,15 @@ const CombinedFunctions = (object) => {
                 return Donut(object);
             case 'menuData':
                 return RestaurantFeed(object);
-
+            case 'news':
+                return NewsBrowseWidget();
+            case 'parking':
+                ParkingWidget(object);
+            break;
             default:
                 return undefined;
         }
-    /*
-    const cases = new Map([
-        ['progressBar', ProgressBar(object)],
-        ['donutChart', Donut(object)],
-        ['menuData', RestaurantFeed(object)],
-    ]);
-
-    return cases.get(type)
-     */
+   
 };
 
 export default CombinedFunctions

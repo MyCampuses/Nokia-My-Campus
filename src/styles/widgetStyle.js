@@ -4,7 +4,7 @@ import blue from '@material-ui/core/colors/blue';
 const WidgetStyle = () => {
     const colorB = blue[500]
 
-const widgetStyle = makeStyles((theme) => ({
+const widgetStyle = makeStyles(() => ({
     frag: {
         flexGrow: 1,
     },
@@ -12,12 +12,12 @@ const widgetStyle = makeStyles((theme) => ({
         position: 'center',
         alignItems: 'center',
         width: '100%',
-        marginTop: '6%',
-        marginBottom: '6%',
+        marginTop: '5%',
+        marginBottom: '5%',
     },
       plus: {
-        maxHeight: '40%',
-        maxWidth: '40%'
+        maxHeight: '30%',
+        maxWidth: '30%'
       },
 }));
 
