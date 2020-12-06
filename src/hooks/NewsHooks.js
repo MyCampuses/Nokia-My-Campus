@@ -1,3 +1,29 @@
+import LocalStorageOperations from './LocalStorageOperations';
+
+
+const fetchGetUrl = async (url, userKey) => {
+  const {read} = LocalStorageOperations();
+  const userToken = read(userKey);
+  if (userToken) {
+      const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+              authorization: userToken.token,
+          },
+      });
+      if (response) {
+          return await response.json()
+      } else {
+          throw Error("No token, fetchGetUrl")
+      }
+  } else {
+      throw Error("No user, No usertoken. fetchGetUrl")
+  }
+};
+
+
+
+
 const NewsHooks = () => {
   const author = {
     id: 1,
@@ -7,7 +33,7 @@ const NewsHooks = () => {
     jobtitle: "Campus Communication trainee",
   };
 
-  const highlightItem = {
+  /*const highlightItem = {
     title: "Welcome to Nokia Finland Christmas Session on December 10",
     author: author,
     highlight: true,
@@ -88,7 +114,7 @@ const NewsHooks = () => {
       },
     },
   };
-
+  */
   const newsItems = [
     {
       title:
@@ -662,11 +688,19 @@ const NewsHooks = () => {
   ];
 
   const getNewsItems = () => {
-    return newsItems;
+    const items = fetchGetUrl("http://127.0.0.1:5000/newsitems","user")
+    /*let items = []
+    for(let item in fetchedNewsItems) {
+      items.push(item)
+    }*/
+    console.log(items)
+    return items;
   };
 
   const getHighlightItem = () => {
-    return highlightItem;
+    const fetchedHighlightItem = fetchGetUrl("http://127.0.0.1:5000/highlight","user")
+    console.log(fetchedHighlightItem)
+    return fetchedHighlightItem;
   };
 
   return {

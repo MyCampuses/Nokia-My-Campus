@@ -11,15 +11,15 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import MuiThemes from "../styles/muiThemes";
-import strings from '../localization';
+import strings from "../localization";
 
 // Importing items fragments
 import HighlightItem from "../fragments/NewsHighlight";
 import NewsBrowseGrid from "../fragments/NewsBrowseGrid";
 
 // Importing hooks
-import NewsHooks from './../hooks/NewsHooks';
-
+import NewsHooks from "./../hooks/NewsHooks";
+import { useEffect, useState } from "react";
 
 /*eslint-enable */
 const useStyles = makeStyles((theme) => ({
@@ -38,10 +38,33 @@ const News = () => {
   const { isLoggedIn } = Authentication();
   const { TopNavigationBar } = NaviBar();
   const classes = useStyles();
+  //const [rendered, setRendered] = useState(false);
+  const [highlight, setHighlight] = useState({});
+  const [tileData, setTileData] = useState(null);
+  
+  const updateHighlight = async () => {
+    const highlightItem = await getHighlightItem()
+    console.log(highlightItem)
+    setHighlight(highlightItem);
+  }
 
+  const updateNews = async () => {
+    const newsItems = await getNewsItems()
+    console.log(newsItems)
+    setTileData(newsItems)
+  };
+  
   // Getting data
-  const highlight = getHighlightItem();
-  const tileData = getNewsItems();
+  
+  useEffect(() => {
+    
+    updateHighlight()
+    updateNews()
+      //setRendered(true)
+      
+    },[]
+  )
+  
 
   const NewsPage = () => {
     return (
@@ -57,7 +80,7 @@ const News = () => {
         >
           {strings.browsenews}
         </Typography>
-        <NewsBrowseGrid tileData={tileData} />
+        {tileData && <NewsBrowseGrid tileData={tileData} />}
       </ThemeProvider>
     );
   };

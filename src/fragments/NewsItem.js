@@ -51,7 +51,7 @@ const NewsItem = (props) => {
     console.log(data)
     // ADD NULL CHECK OR ALTERNATIVE COMPONENT FOR RENDER, FOR CARDCONTENT.
     return (
-    <>
+    <>  
       <ThemeProvider> 
       <Paper elevation = {0} className={classes.root}>
         <CardActions disableSpacing className = {classes.cardactions}>
@@ -60,8 +60,8 @@ const NewsItem = (props) => {
         </CardActions>
         <CardMedia
           className={classes.media}
-          image={data.articleData.bannerImgUrl}
-          title={data.articleData.bannerImgTitle}
+          image={data.articleData.headerImgUrl}
+          title={data.articleData.headerImgTitle}
         />
         <CardHeader
           className={classes.header}

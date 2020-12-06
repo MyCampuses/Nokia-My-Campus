@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const HighlightItem = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  console.log(props.highlight)
 
   return (
     <>
@@ -58,7 +59,7 @@ const HighlightItem = (props) => {
             console.log(
               `navigating to highlight article ${props.highlight.title}`
             );
-            dispatch(currentItem(props.highlight))
+            dispatch(currentItem(props.highlight));
             navigate("/news_article", false);
           }}
         >
@@ -69,8 +70,8 @@ const HighlightItem = (props) => {
           />
           <CardMedia
             className={classes.media}
-            image={props.highlight.bannerImgUrl}
-            title={props.highlight.bannerImgTitle}
+            image={props.highlight.headerImgUrl}
+            title={props.highlight.headerImgTitle}
           />
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">

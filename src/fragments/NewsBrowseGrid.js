@@ -37,17 +37,18 @@ const NewsBrowseGrid = (props) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
+    console.log(props.tileData)
     return (
       <div className={classes.root}>
-        <GridList className={classes.gridList} cols={2.5}>
-          {props.tileData.map((tile) => (
-            <GridListTile key={tile.bannerImgUrl}  onClick={() => {console.log(`navigating to article ${tile.title}`)
-            dispatch(currentItem(tile));
+        {props.tileData && <GridList className={classes.gridList} cols={2.5}>
+          {Object.keys(props.tileData).map((tile) => (
+            <GridListTile key={props.tileData[tile]}  onClick={() => {console.log(`navigating to article ${props.tileData[tile].title}`)
+            dispatch(currentItem(props.tileData[tile]));
             navigate("/news_article",false)
             }}>
-              <img src={tile.bannerImgUrl} alt={tile.title} />
+              <img src={props.tileData[tile].headerImgUrl} alt={props.tileData[tile].title} />
               <GridListTileBar
-                title={tile.title}
+                title={props.tileData[tile].title}
                 classes={{
                   root: classes.titleBar,
                   title: classes.title,
@@ -55,13 +56,13 @@ const NewsBrowseGrid = (props) => {
               />
             </GridListTile>
           ))}
-        </GridList>
+        </GridList>}
       </div>
     );
   };
 
   NewsBrowseGrid.propTypes = {
-    tileData: PropTypes.array,
+    tileData: PropTypes.object,
   };
 
   export default NewsBrowseGrid;
