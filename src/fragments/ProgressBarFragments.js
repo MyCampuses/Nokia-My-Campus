@@ -31,6 +31,23 @@ const ProgressBarFragments = (props) => {
             data: parkingP10Data,                  -> Actual data the bar will use
             barTheme                               -> The theme for the bar. Theme must contain stuff like labelLocation & progressLabel
         };
+
+        if you want the name of the progressbar label in the left uppercorner of progressbar
+        
+        replace  :
+        <Grid item container alignItems="flex-start"
+            className={barTheme.labelLocation} xs={4}>
+        </Grid>
+
+        with: 
+
+        <Grid item container alignItems="flex-start"
+            className={barTheme.labelLocation} xs={4}>
+                <Typography className="alignLeft">
+                    {barData.label}
+                </Typography>
+        </Grid>
+        
     */
     const ProgressBar = (barData) =>{
         return (
@@ -44,9 +61,6 @@ const ProgressBarFragments = (props) => {
                           xs={12}>
                         <Grid item container alignItems="flex-start"
                               className={barTheme.labelLocation} xs={4}>
-                            <Typography className="alignLeft">
-                                {barData.label}
-                            </Typography>
                         </Grid>
                         <Grid item xs={4}>
                             <Typography>
