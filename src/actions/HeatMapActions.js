@@ -23,24 +23,26 @@ export function fetchHeatMap() {
 
     const {heatMapUrl} = ApiUrls();
 
-    return dispatch => {
+    return async dispatch => {
         const userToken = read('user');
 
         dispatch(fetchHeatMapBegin());
 
-        return fetch(heatMapUrl, {
-            method: 'GET',
-            headers: {
-                authorization: userToken.token
-            }
-        }).then(json => {
+        try {
+            const json = await fetch(heatMapUrl, {
+                method: 'GET',
+                headers: {
+                    authorization: userToken.token
+                }
+            });
             handleErrors(json);
-            return json.blob();
-        }).then(res => {
-            const mapURL = URL.createObjectURL(res);
+            const res_1 = await json.blob();
+            const mapURL = URL.createObjectURL(res_1);
             dispatch(fetchHeatMapSuccess(mapURL));
             return mapURL;
-        }).catch(error => dispatch(fetchHeatMapFailure(error)));
+        } catch (error) {
+            return dispatch(fetchHeatMapFailure(error));
+        }
     };
 
     function handleErrors(res) {

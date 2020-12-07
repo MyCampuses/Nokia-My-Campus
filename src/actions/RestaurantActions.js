@@ -1,4 +1,4 @@
-//Actions used by redux states
+//Actions used by redux states, does what? used where? whats the point of each of these?
 
 export const wmenu = (value) => {
     return {
