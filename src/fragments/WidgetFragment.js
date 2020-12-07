@@ -1,6 +1,6 @@
 /*
-    This function holds all the widgets for the app
-    like Homepage 
+    This function returns a view depending on the widget(s) selected and the dialog that is seen
+    when you press the '+' sign and select a widget.
 */
 
 import React, { Fragment, useState } from 'react';

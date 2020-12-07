@@ -1,3 +1,8 @@
+/*
+This function is only progressbar widgets, where it fetches all the needed information
+for the progressbars.
+*/
+
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import {  useState, useEffect } from 'react';
@@ -28,6 +33,7 @@ const ProgressBarWidget = (obj) =>  {
 
     const objName = obj.barType;
 
+    //The switch case gets its' value from WidgetList where there's an object with barType engraved.
     switch (objName) {
         case 'p5':
             return ProgressBar({navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data});

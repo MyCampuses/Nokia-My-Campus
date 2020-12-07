@@ -1,3 +1,7 @@
+/*
+This function is only a switch case. Where it selects the selected widget on Homepage and calls
+the widget function.
+*/
 import DonutFragment from "../fragments/DonutFragment";
 import NewsBrowseWidget from './NewsWidget';
 import RestaurantWidget from './RestaurantWidget';

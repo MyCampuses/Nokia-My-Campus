@@ -1,3 +1,7 @@
+/*
+The function returns the element NewsBrowseGrid and the data needed for it.
+*/
+
 import React from 'react';
 import NewsBrowseGrid from "../fragments/NewsBrowseGrid";
 import NewsHooks from '../hooks/NewsHooks';

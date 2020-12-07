@@ -1,3 +1,7 @@
+/*
+ This function should never have any actual functionallity, it is supposed to only have a list of existing widgets
+ the saved data should be in in the widgets own file, where it can 'live' update the data with useEffect
+*/
 
 import API from '../hooks/ApiHooks';
 import {  useState, useEffect } from 'react';
@@ -7,8 +11,7 @@ const WidgetList = (props) =>  {
     const { menuByDate} = API();
     const date = new Date();
 
-    // States
-  //const [restaurantData, setRestaurantData] = useState(undefined);
+  // States
   const [menuData, setMenuData] = useState(undefined);
  
 

@@ -6,23 +6,6 @@ export const increment = (value) =>  {
     }
 };
 
-//Still not used for anything
-export const decrement = (value) => {
-    return {
-        type: 'DECREMENT',
-        value
-    };
-};
-
-
-//updates widget
-export const updateWidget = (widget) => {
-    return {
-        type:'UPDATE',
-        widget
-    };
-};
-
 // Removes all widgets, used in WidgetReducer
 export const cleanState = () => {
     return {
