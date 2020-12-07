@@ -1,5 +1,6 @@
 //Actions used by redux states, does what? used where? whats the point of each of these?
 
+// Expectation: Weekly Menu, it gets some value
 export const wmenu = (value) => {
     return {
         type: 'WMENU',
@@ -7,6 +8,7 @@ export const wmenu = (value) => {
     };
 };
 
+//que? -> food menu?
 export const menu = (value) => {
     return {
         type: 'MENU',
@@ -14,7 +16,7 @@ export const menu = (value) => {
     };
 };
 
-//Does what?
+//Does what? what time?
 export const time = (value) => {
     return {
         type: 'TIME',
