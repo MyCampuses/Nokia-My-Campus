@@ -32,6 +32,13 @@ const useStyle = makeStyles((theme) => ({
         width:"75%",
         fontSize:"3vw",
     },
+    wMenuStyle: {
+        color: "black",
+        height:"100%",
+        width:"100%",
+        fontSize:"3vw",
+        justifyContent: "flex-start",
+    },
     waitStyle: {
         width:"25%",
         height: "100%",
@@ -41,9 +48,24 @@ const useStyle = makeStyles((theme) => ({
         color: "#124191",
         textAlign: "left",
     },
+    TopC: {
+        color: "#124191",
+        textAlign: "left",
+        display: "inline-block",
+        position: "relative",
+        width: "100%",
+        paddingLeft: "5%"
+    },
     Card: {
         boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
         borderRadius: "5px",
+        width: "90%",
+    },
+    wItem:{
+        width: "100%",
+        paddingLeft: "3%",
+        position: "relative",
+        display: "inline-block",
     },
     mItem:{
         width: "50%",
@@ -85,7 +107,7 @@ const useStyle = makeStyles((theme) => ({
     },
     Widget: {
         height: "15vh",
-        overflow: "auto",
+        width: "100%",
     },
     RestaurantBox: {
         width: '100%',

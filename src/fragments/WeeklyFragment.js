@@ -22,6 +22,7 @@ const WeeklyFragment = () => {
             onClose();
         };
 
+        //this is used to render the dialog for the weekly menu items
         return (
             <Dialog aria-labelledby="simple-dialog-title" open={open} onClick={handleClose}>
                 <Box className={classes.DialogContainer}>
@@ -81,7 +82,6 @@ const WeeklyFragment = () => {
 
         const reducerState = useSelector(state => state.WMenuReducer);
         const dispatch = useDispatch();
-
         const [open, setOpen] = useState(false);
         const [selectedValue, setSelectedValue] = useState({
             date: "",
@@ -96,7 +96,7 @@ const WeeklyFragment = () => {
             },
         });
 
-        //open clicked item
+        //open clicked item and set the value from the item
         const handleClickOpen = (value) => {
             setOpen(true);
             setSelectedValue(value);
@@ -107,7 +107,7 @@ const WeeklyFragment = () => {
             setOpen(false);
         };
 
-        //get weekly menu and st json to temp
+        //get weekly menu and st json to temp if the redux state has no data
         if(reducerState.length === 0) {
             menuByWeek()
                 .then(json => dispatch(wmenu(json.mealdates)));

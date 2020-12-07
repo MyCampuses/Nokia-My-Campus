@@ -37,11 +37,13 @@ const barTheme = makeStyles({
       height: '14vh',
       maxWidth: '1152px',
       width: '90%',
+        color: 'white',
     },
     labelLocation: {
       maxHeight: '100px',
       height: '15vh',
       justifyContent: 'flex-start',
+        color: 'white',
     }, 
 
   });

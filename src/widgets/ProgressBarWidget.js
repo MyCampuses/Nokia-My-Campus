@@ -10,7 +10,7 @@ import strings from '../localization';
 import  ProgressBars  from '../fragments/ProgressBarFragments';
 
 const ProgressBarWidget = (obj) =>  {
-    const {ProgressBar} = ProgressBars()
+    const {ProgressBar} = ProgressBars();
     const {getUsageData } = API();
     const {parkingP5Url, parkingP10Url, parkingP10TopUrl} = ApiUrls();
 
@@ -28,7 +28,6 @@ const ProgressBarWidget = (obj) =>  {
     //getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
     getUsageData(parkingP10Url).then(result => setParking10Data(result.percent));
     getUsageData(parkingP10TopUrl).then((result) => {setParkingP10TopData(result.percent); setParkingP10ElectricData(result.percent*multiplier)});
-    console.log('useEffectProgressbar');
   },[]); //eslint-disable-line
 
     const objName = obj.barType;

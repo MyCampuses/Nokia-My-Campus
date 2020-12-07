@@ -6,6 +6,7 @@ import strings from '../localization';
 import GlobalFunctions from '../hooks/GlobalFunctions';
 
 const ParkingWidget = (data) =>  {
+
     const {onItemClickNavigate} = GlobalFunctions();
 	if (data.dataType !== 'parking') {
 		return;
