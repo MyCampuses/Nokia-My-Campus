@@ -6,11 +6,20 @@ export const increment = (value) =>  {
     }
 };
 
-//Still not used for anything, used in WidgetReducer
+//Still not used for anything
 export const decrement = (value) => {
     return {
         type: 'DECREMENT',
         value
+    };
+};
+
+
+//updates widget
+export const updateWidget = (widget) => {
+    return {
+        type:'UPDATE',
+        widget
     };
 };
 
