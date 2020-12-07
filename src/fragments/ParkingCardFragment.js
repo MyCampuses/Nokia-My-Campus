@@ -59,6 +59,7 @@ const ParkingCardFragment = () => {
 	}
 	
 	const createAreaItem = (area) => {
+		console.log(area);
 		if (area.usageData == null) {
 			area.loading = true;
 		} else {
