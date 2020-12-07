@@ -2,9 +2,6 @@
  This function should never have any actual functionallity, it is supposed to only have a list of existing widgets
  the saved data should be in in the widgets own file, where it can 'live' update the data with useEffect
 */
-
-import API from '../hooks/ApiHooks';
-import {  useState, useEffect } from 'react';
 import strings from '../localization';
 
 const WidgetList = (props) =>  {

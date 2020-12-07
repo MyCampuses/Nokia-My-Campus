@@ -46,7 +46,6 @@ const ProgressBarWidget = (obj) =>  {
         case 'p10E':
             return ProgressBar({navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData});
             
-
         default:
             return undefined;
     };

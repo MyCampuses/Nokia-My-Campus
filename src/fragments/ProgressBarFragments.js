@@ -32,8 +32,8 @@ const ProgressBarFragments = (props) => {
             barTheme                               -> The theme for the bar. Theme must contain stuff like labelLocation & progressLabel
         };
 
-        if you want the name of the progressbar label in the left uppercorner of progressbar
-        
+        if you want the name of the progressbar in the left uppercorner of progressbar
+
         replace  :
         <Grid item container alignItems="flex-start"
             className={barTheme.labelLocation} xs={4}>
@@ -43,9 +43,9 @@ const ProgressBarFragments = (props) => {
 
         <Grid item container alignItems="flex-start"
             className={barTheme.labelLocation} xs={4}>
-                <Typography className="alignLeft">
-                    {barData.label}
-                </Typography>
+            <Typography className="alignLeft">
+                {barData.label}
+            </Typography>
         </Grid>
         
     */
@@ -78,7 +78,7 @@ const ProgressBarFragments = (props) => {
     };
 
     return {
-        ProgressBar:ProgressBar
+        ProgressBar
     };
 };
 

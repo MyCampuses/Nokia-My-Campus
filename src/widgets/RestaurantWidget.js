@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import {Box} from "@material-ui/core";
 import useStyle from "../styles/restaurantStyles";
 import API from "../hooks/ApiHooks";
-import ApiUrls from "../hooks/ApiUrls";
 import strings from "../localization";
 import Carousel from "react-material-ui-carousel";
 

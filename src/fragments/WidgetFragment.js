@@ -104,7 +104,7 @@ const Widgets = () => {
         return (
             <Fragment>
                 {selectedWidgets.map((selectedWidget) => (
-                    <Card className={classes.card} onClick={handleClickOpen}>
+                    <Card className={classes.card}>
                         <CardContent>
                             {selectedWidget.label}
                             {WidgetFunctions(selectedWidget)}
@@ -123,7 +123,7 @@ const Widgets = () => {
             return (
             <Fragment>
                 {selectedWidgets.map((selectedWidget) => (
-                    <Card className={classes.card} onClick={handleClickOpen}>
+                    <Card className={classes.card}>
                         <CardContent>
                             {selectedWidget.label}
                             {WidgetFunctions(selectedWidget)}
