@@ -1,6 +1,6 @@
 /*
-    This class holds the style for the top navigation bar and
-    all the elements in the top bar are here, including menu items.
+    This function holds the style for the top navigation bar and
+    all the elements in the top bar, including menu items.
 */
 import React, {Fragment, useState} from 'react';
 import {AppBar, IconButton, Menu, MenuItem, Toolbar } from "@material-ui/core";

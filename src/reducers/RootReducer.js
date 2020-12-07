@@ -1,3 +1,6 @@
+/*
+The root reducer where all redux reducers are combined and then called in index.js
+*/
 import { combineReducers } from 'redux';
 import HeatMapReducer from './HeatMapReducer'
 import UpdateReducer from './UpdateReducer'

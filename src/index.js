@@ -21,6 +21,7 @@ const persistedState = loadState();
 const store = createStore(RootReducer, persistedState,
     applyMiddleware(thunk));
 
+    //The localstorage save, everytime the state changes it's saved in local storage.
 store.subscribe(() => {
     saveState({
         WidgetReducer : store.getState().WidgetReducer,

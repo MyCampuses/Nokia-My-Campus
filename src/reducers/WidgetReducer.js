@@ -1,5 +1,5 @@
 //REDUCERS
-//Widget cases, either add or remove widget
+//Widget cases, either add or remove all widget
 const WidgetReducer = (state = [] , action) => {
 
     switch(action.type){
@@ -10,9 +10,6 @@ const WidgetReducer = (state = [] , action) => {
             } else {
                 return state;
             }
-        
-        case 'DECREMENT':
-            return state.splice(state.length-1, 1);
 
         case 'CLEANSTATE':
             return state = [];

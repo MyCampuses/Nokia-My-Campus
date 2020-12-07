@@ -17,7 +17,6 @@ describe('Restaurant', () =>{
     beforeAll( () =>{
         mount = createMount();
         shallow = createShallow();
-        shallow = createShallow();
     });
 
     afterAll( () =>{
