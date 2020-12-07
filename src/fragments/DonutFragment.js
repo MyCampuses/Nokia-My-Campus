@@ -2,16 +2,20 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {Container} from '@material-ui/core';
 import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';
 
-// Holds all the fragments for charts
+//This function holds the functions needed to make a donut chart
 const DonutFragment = (props) => {
-        // Common chart to be used, needs a date and location(path)
 
+    //This function makes a donut chart from the data it is given in DonutData as props
         const Donut = (DonutData) => {
 
+            //this state has temporary data to prevent the function from crashing because of undefined data
             const [dataDonutFormat, setDataDonutFormat] = useState([{value: "no data"}]);
 
+            //This use effect runs every time the data given to the function changes
             useEffect( () =>{
+                //check that the data is usable
                 if(DonutData !== undefined) {
+                    //set data from the given DonutData for the used percentage, and calculate not used percentage
                     setDataDonutFormat([
                         {name: 'usage', value: DonutData.data, color: "#519FF9"},
                         {name: 'nonUsage', value: 100 - DonutData.data, color: "#7A7A7A"}
@@ -19,6 +23,7 @@ const DonutFragment = (props) => {
                 }
             }, [DonutData]);
 
+            //this renders the donut chart to wherever the function is called
             return (
                 <Fragment>
                     <Container style={{height: DonutData.size + "vh", width: "100%", textAlign: 'center', display: 'block'}}>

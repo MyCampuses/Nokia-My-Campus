@@ -14,10 +14,10 @@ const MenuFragment = () =>{
 
     const {menuByDate} = API();
     const {lines, times, colours} = Data();
-
     const classes = useStyle();
     let date = new Date();
 
+    //this renders the menu
     const renderLines = (queueTimes) => (
         <Box className={classes.MenuContainer}>
 
@@ -88,43 +88,50 @@ const MenuFragment = () =>{
         const {restaurantQueueUrl} = ApiUrls();
         const [usedLines, setUsedLines] = useState(new Map([[1, 'FAVORITES']]));
         const [stopper, setStopper] = useState(0);
+        //stuff for redux
         const menuState = useSelector(state => state.MenuReducer);
         const dispatch = useDispatch();
 
 
         //get the menu for today and set it into dataForRender
         const getQueueTimes = async () => {
+            //create a new map to get the data in the state in right format
             let queue = new Map();
+            //run 8 times, once for each queue time
                 for (let i = 1; i < 9; i++) {
                     getUsageDataNoProps(restaurantQueueUrl + i)
                         .then(result => dispatch(menu(queue.set(i, result))))
                 }
         };
 
+        //this checks that the redux state has no data
         if(menuState.length === 0) {
             getQueueTimes().then();
         }
+        //checks that the redux state has an entry, which in this case is queue times
         if(menuState.length === 1) {
             menuByDate(date)
                 .then(json => dispatch(menu(json.courses)));
         }
 
+        //checks that redux state has 2 entries
         if(menuState.length === 2) {
 
+            //null case since there is no menu data on weekends
             if(menuState[1] !== null) {
 
                 let check = menuState[1];
 
-                //length of dataForRender
+                //this gives us the amount of menu entries there are
                 let lengthy = Object.keys(check).length + 1;
 
-                //size of queueTimes map
+                //amount of queue times
                 let queueLength = menuState[0].size;
 
-                //temporary map for data
+                //map for data
                 let temp = new Map();
 
-                // Check that dataForRender has been set, that this useEffect didn't run already, and that queueTimes has all entries
+                // Check that queueTimes has all entries, and that this part of the program didnt run already
                 if (queueLength === 8 && stopper === 0) {
 
                     //run for each entry from sodexo
@@ -136,32 +143,38 @@ const MenuFragment = () =>{
                             //check for matching values
                             if (check[i].category === lines.get(l)) {
 
-                                //set the values into the temporary Map
+                                //set the values into the Map
                                 temp.set(
                                     l, [menuState[0].get(l), check[i]]
                                 );
                             }
                         }
                     }
+                    //set the Map as the value for state
                     setUsedLines(temp);
+                    //stop this from running again until the page is refreshed
                     setStopper(2);
                 }
             }
 
+            //this gives some data for the page in case there is no data from Sodexo, like for example on weekends
             else {
                 if(stopper === 0) {
                     let nullCase = new Map();
+                    //set some data in the Map
                     nullCase.set(
                         1, [{restaurant: "Midpoint", queue: "1", queueTime: "1", ppl_counter: "0", timestamp: 0},
                             {title_fi: "No data for this date", properties: "", price: "", category: ""}]
                     );
+                    //set the data in the state
                     setUsedLines(nullCase);
-                    setStopper(1);
+                    //stop this from running again
+                    setStopper(2);
                 }
             }
         }
-        console.log(menuState);
 
+        //render rest of the page and run the render for the menu with given data
         return (
             <Fragment>
                 <Container className={classes.MenuContainer}>
