@@ -8,8 +8,6 @@ import strings from '../localization';
 const WidgetList = (props) =>  {
 
     const widgetList = [
-      //{ label: 'Parking Inside', dataType: 'progressBar', barType: 'parkingInside' },
-      //{ label: 'Parking Roof', dataType: 'progressBar', barType: 'parkingRoof' },
       //{ label: strings.p10inside, dataType: 'progressBar', barType: 'p10I' },
       //{ label: strings.p10rooftop, dataType: 'progressBar', barType: 'p10R' },
       //{ label: strings.p10electric, dataType: 'progressBar', barType: 'p10E' },

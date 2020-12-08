@@ -55,7 +55,6 @@ const ParkingWidget = (data) =>  {
 	}
 	console.log(elements);
 	return elements;
-	
 };
 
 export default ParkingWidget;
