@@ -1,6 +1,6 @@
 /*
-This function is only a switch case. Where it selects the selected widget on Homepage and calls
-the widget function.
+Made by Xyphnos
+This is a function to call the correct function based on data from props to render the selected widget
 */
 import DonutFragment from "../fragments/DonutFragment";
 import NewsBrowseWidget from './NewsWidget';

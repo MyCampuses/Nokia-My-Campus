@@ -1,3 +1,10 @@
+/*
+Made by Xyphnos
+This function gets the menu for the current week from sodexo, and creates clickable elements for the days
+that open the menu for the clicked day by getting the menu data that has been stored in the element when
+it's created
+*/
+
 import React, {Fragment, useState} from 'react';
 import {Box, Container,Dialog} from '@material-ui/core';
 import API from '../hooks/ApiHooks';
