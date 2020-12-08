@@ -1,4 +1,5 @@
 /*
+    Swedish by: Atholos
     This file contains all the localized strings in the app.
     Current Languages: Fi, En, Se.
 */
@@ -102,7 +103,7 @@ let strings = new LocalizedStrings({
         toConfirmation: "Account Confirmation",
         toPasswordReset: "To password reset",
         lines: "Lines",
-        currentStatsAre: "Current campus statistics are:",
+        currentStatsAre: "Tervetuloa!",
         newspage: "Campus News",
         dialogTitle: "Choose your widgets!",
         donut: "pie",
@@ -206,7 +207,7 @@ let strings = new LocalizedStrings({
         toConfirmation:"Tilin vahvistus",
         toPasswordReset: "Salasanan palautukseen",
         lines: "Linjasto",
-        currentStatsAre:"Tämän hetken tilastot kampuksella:",
+        currentStatsAre:"Welcome to MyCampus!",
         newspage: "Campus Uutiset",
         dialogTitle: "Valitse vempain",
         donut: "piirakka",
@@ -294,7 +295,7 @@ let strings = new LocalizedStrings({
         toConfirmation:"Konto Konfirmation",
         toPasswordReset: "Till lösenord återställning",
         lines: "Linjer",
-        currentStatsAre:"Nuvarande statistik på kampus:",
+        currentStatsAre:"Välkommen till MyCampus!",
         newspage: "Campus nyheter", 
         dialogTitle: "Välj din widget",
         donut: "Donits",
