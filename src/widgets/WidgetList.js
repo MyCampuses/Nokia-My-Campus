@@ -10,14 +10,13 @@ const WidgetList = (props) =>  {
     const widgetList = [
       { label: strings.topBarMenuItemRestaurant, size: "15", dataType: 'menuData', InR: 35, OuR: 50 },
       { label: strings.newspage, dataType: 'news' },
-      { label: strings.newspage, dataType: 'news' },
+      { label: strings.parking, dataType: 'parking', zones: ['P5', 'P10', 'P10TOP', 'P10EV'], gridLayout: true },
       { label: strings.p5inside, dataType: 'parking', zones: ['P5'], showAllButton: true },
       { label: strings.p10inside, dataType: 'parking', zones: ['P10'], showAllButton: true },
 	    { label: strings.p10rooftop, dataType: 'parking', zones: ['P10TOP'], showAllButton: true },
       { label: strings.p10electric, dataType: 'parking', zones: ['P10EV'], showAllButton: true },
-      { label: strings.parking, dataType: 'parking', zones: ['P5', 'P10', 'P10TOP', 'P10EV'], gridLayout: true },
+      
     ];
-
     return widgetList
 };
 

@@ -8,10 +8,9 @@ import Grid from '@material-ui/core/Grid';
 
 const ParkingWidget = (data) =>  {
 
-		const [parkingStatus, setParkingStatus] = useState({});
-		const small = ("gridLayout" in data && data.gridLayout === true);
+	const [parkingStatus, setParkingStatus] = useState({});
+	const small = ("gridLayout" in data && data.gridLayout === true);
 
-	
 	useEffect(() => {
 		console.log(data);
 		if ("zones" in data) {
@@ -21,7 +20,7 @@ const ParkingWidget = (data) =>  {
 					setParkingStatus({...parkingStatus});
 				});
 			});
-		}
+		};
 
 	}, []); //eslint-disable-line
 
@@ -43,16 +42,16 @@ const ParkingWidget = (data) =>  {
 	
 	if ("showAllButton" in data && data.showAllButton === true) {
 		elements.push(<Button onClick={()=>onItemClickNavigate('/parking')}>{strings.parkingViewAll}</Button>);
-	}
+	};
 	
 	if (small) {
 		elements.forEach((element, index, array) => {
 			array[index] = (<Grid item xs={6}>{element}</Grid>);
 		});
 		elements = (<Grid container>{elements}</Grid>);
-	}
+	};
+
 	return elements;
-	
-}
+};
 
 export default ParkingWidget;
