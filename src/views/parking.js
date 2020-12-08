@@ -1,4 +1,7 @@
-/* eslint-disable no-unused-vars */
+/*
+	Made by KiskoHorst
+	Parking page
+*/
 
 import React, {useState} from 'react';
 import '../styles/App.css';
@@ -18,8 +21,8 @@ const Parking = () => {
 	const {apiUrl} = ApiUrls();
 	
 	const [firstRender, setFirstRender] = useState(true);
-	const [updater] = useState(false);
 	
+	//This data is used to generate the page layout, modify it to add new areas, zones etc.
 	const [data, setData] = useState([{
 			"name": "P5",
 			"zones": {
@@ -55,7 +58,7 @@ const Parking = () => {
 		}
 	]);
 		
-		
+	//Go through the data and load usage data from API
 	if (firstRender) {
 		setFirstRender(false);
 		data.forEach((area, aindex) => {
@@ -88,7 +91,6 @@ const Parking = () => {
 		});
 		return (
 			<div>
-				{updater}
 				{TopNavigationBar()}
 				{cards}
 			</div>

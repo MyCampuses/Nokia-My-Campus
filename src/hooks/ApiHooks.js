@@ -146,7 +146,6 @@ const API = () => {
 							p10ev.push({count: newcount, date: sample["date"], percent: Math.floor(newcount/98)});
 						});
 						json["samples"] = p10ev;
-						console.log(json);
 						return json;
 					}
 					return convertToP10EV(json);

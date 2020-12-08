@@ -1,4 +1,7 @@
-
+/*
+	Made by KiskoHorst
+	Text data table, used by parking history & info but could be used elsewhere
+*/
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -14,7 +17,6 @@ const TextDataTable = (data) => {
 	}
 	
 	let out = [];
-	console.log(data.data);
 	data.data.forEach(row => {
 		out.push(createRow(row));
 	});
