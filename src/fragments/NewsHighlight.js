@@ -1,3 +1,4 @@
+// News by Rockronnie
 import React from "react";
 import {
   makeStyles,
@@ -10,6 +11,7 @@ import {
   CardActionArea,
   Chip,
 } from "@material-ui/core";
+
 import { blue, green, red } from "@material-ui/core/colors";
 import { PropTypes } from "prop-types";
 import { navigate } from "hookrouter";
@@ -45,20 +47,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
 }));
-
+// News highlight item, takes the curren highlight item as props, used in news
 const HighlightItem = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  // When navigating we're adding the item to redux/localstorage state so when user refreshes it doesn't lose the currently selected article and show an empty page
   return (
     <>
       <Paper elevation={0} className={classes.root}>
         <CardActionArea
           onClick={() => {
-            console.log(
-              `navigating to highlight article ${props.highlight.title}`
-            );
-            dispatch(currentItem(props.highlight))
+            dispatch(currentItem(props.highlight));
             navigate("/news_article", false);
           }}
         >
@@ -67,10 +66,10 @@ const HighlightItem = (props) => {
             titleTypographyProps={{ variant: "h5" }}
             title={props.highlight.title}
           />
-          <CardMedia
+         <CardMedia
             className={classes.media}
-            image={props.highlight.bannerImgUrl}
-            title={props.highlight.bannerImgTitle}
+            image={props.highlight.headerImgUrl ? props.highlight.headerImgUrl : require("../assets/default.jpg")}
+            title={props.highlight.headerImgTitle}
           />
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">

@@ -193,7 +193,7 @@ const MenuFragment = () =>{
         );
     };
     return {
-        Menu: Menu,
+        Menu,
     };
 };
 

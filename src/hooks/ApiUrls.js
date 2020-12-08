@@ -11,9 +11,12 @@ const ApiUrls = () => {
   const resetPassUrl = 'https://mycampus-server.karage.fi/auth/reset_password';
   const confirmUrl = 'https://mycampus-server.karage.fi/auth/confirmation';
   const sodexoUrl = 'https://www.sodexo.fi/en/ruokalistat/output/';
+  const newsUrl = 'https://mycampusnewsapi.azurewebsites.net/'
 
   const restaurantUrl = apiUrl +
       'restaurant/Midpoint?select=fill_percent';
+  const newsitemsUrl = newsUrl+'newsitems'
+  const highlightnewsUrl = newsUrl+'highlight'
   const restaurantQueueUrl = apiUrl + 'restaurant/Midpoint/queue/';
   const dailyParkingUrl = apiUrl + 'parking/data/';
   const dailyRestaurantUrl = apiUrl + 'restaurant/Midpoint/daily?=date=';
@@ -56,6 +59,9 @@ const ApiUrls = () => {
     heatMapUrl,
     sodexoDailyUrl,
     sodexoWeeklyUrl,
+    newsUrl,
+    newsitemsUrl,
+    highlightnewsUrl,
   };
 };
 export default ApiUrls;

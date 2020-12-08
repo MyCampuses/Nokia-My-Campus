@@ -209,7 +209,7 @@ const ChartFragment = () => {
 // Chart for Restaurant History
         /*eslint-disable */
         return {
-            Chart: Chart,
+            Chart,
         };
     }
 ;

@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const newsBrowseGridStyle = makeStyles((theme) => ({
     root: {
       display: "flex",
       flexWrap: "wrap",
@@ -27,4 +27,4 @@ const useStyles = makeStyles((theme) => ({
    
   }));
 
-export default useStyles;
+export default newsBrowseGridStyle;

@@ -1,3 +1,4 @@
+// News by Rockronnie
 import React from "react";
 import NaviBar from "../fragments/TopNavigationBarFragment";
 import Authentication from "../hooks/Authentication";
