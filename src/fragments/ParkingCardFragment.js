@@ -14,7 +14,10 @@ import {PieChart, Pie} from 'recharts';
 const ParkingCardFragment = () => {
     const {onItemClickNavigate} = GlobalFunctions();
 	
-	const nameToLocalizedString = (name) => {
+	const nameToLocalizedString = (name, shortName) => {
+		if (shortName) {
+			return strings[name+"Short"];
+		}
 		switch (name) {
 			case "inside":
 				return strings.inside;
@@ -58,7 +61,8 @@ const ParkingCardFragment = () => {
 		);
 	}
 	
-	const createAreaItem = (area) => {
+
+	const createAreaItem = (area, small) => {
 		if (area.usageData == null) {
 			area.loading = true;
 		} else {
@@ -68,11 +72,17 @@ const ParkingCardFragment = () => {
 		if (area.loading) {
 			utilizationString = strings.loading;
 		} else {
-			if (area.estimate) {
-				utilizationString = strings.parkingUtilizationEstimate.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
-			} else {
-				utilizationString = strings.parkingUtilization.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
+			if (small) {
+				utilizationString = ""+Math.round(area.usageData.count/area.usageData.capacity*100)+"%";
 			}
+			else {
+				if (area.estimate) {
+				utilizationString = strings.parkingUtilizationEstimate.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
+				} else {
+					utilizationString = strings.parkingUtilization.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
+				}
+			}
+			
 		}
 		let link;
 		if (area["linkId"] !== undefined) {
@@ -80,6 +90,15 @@ const ParkingCardFragment = () => {
 		} else {
 			link = area["id"];
 		}
+		
+		let name;
+		if (small) {
+			name = nameToLocalizedString(area["id"], true);
+		}
+		else {
+			name = area["name"];
+		}
+		
 		return (
 			<ListItem button onClick={()=>onItemClickNavigate(link)}>
 				<ListItemAvatar>
@@ -87,7 +106,7 @@ const ParkingCardFragment = () => {
 						{(area.loading ? areaPie(0, 1) : areaPie(area.usageData.count, area.usageData.capacity))}
 					</PieChart>
 				</ListItemAvatar>
-				<ListItemText primary={nameToLocalizedString(area["name"])} secondary={utilizationString} />
+				<ListItemText primary={name} secondary={utilizationString} />
 			</ListItem>
 		);
 	};
@@ -99,7 +118,7 @@ const ParkingCardFragment = () => {
 					<Typography variant="subtitle2" component="h2" align="left">{categoryToLocalizedString(category)}</Typography>
 				</Box>);
 			zoneData[category].forEach(area => {
-				out = [out, createAreaItem(area)];
+				out = [out, createAreaItem(area, false)];
 			});
 			return out;
 		}
@@ -133,9 +152,13 @@ const ParkingCardFragment = () => {
 		);
 	};
 
+	const singleAreaWidget = (data, small) => {
+		return createAreaItem(data, small);
+	};
+
 	return {
 		fullCard,
-		createAreaItem
+		singleAreaWidget,
 	}
 };
 
