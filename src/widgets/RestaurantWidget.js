@@ -1,9 +1,13 @@
+/*
+Made by Xyphnos
+This widget creates a carousel of menu items from Sodexo with only the correct wait line and the menu item.
+ */
+
 import React, {Fragment, useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import {Box} from "@material-ui/core";
 import useStyle from "../styles/restaurantStyles";
 import API from "../hooks/ApiHooks";
-import ApiUrls from "../hooks/ApiUrls";
 import strings from "../localization";
 import Carousel from "react-material-ui-carousel";
 
@@ -61,7 +65,7 @@ const RWidget = (props) =>{
                                                 </Grid>
                                                 <Grid item className={classes.wItem}>
                                                     <p>
-                                                        {item[mapKey].title_en}
+                                                        {item[mapKey].title_fi}
                                                     </p>
                                                 </Grid>
                                             </Grid>

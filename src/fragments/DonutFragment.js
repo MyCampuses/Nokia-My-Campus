@@ -1,3 +1,12 @@
+/*
+Made by Xyphnos
+This fragments manin function is Donut, which takes in props as data to create a donut chart using recharts.
+The props have to have a size for the created chart as a string that has a number, for example size: "15"
+creates a donut chart with a 15vh high window for the chart to show up, I don't know why % does not work.
+Props also need to contain InRR and OuR which are inner ring and outer ring, this defines how thick the colored
+ring on the outside is (since the chart is just a circle on top of a piechart), and how large the chart is overall.
+*/
+
 import React, {Fragment, useEffect, useState} from 'react';
 import {Container} from '@material-ui/core';
 import {PieChart, Pie, Cell, Label, ResponsiveContainer} from 'recharts';

@@ -1,3 +1,8 @@
+/*
+Made by Xyphnos
+This fragment creates a carousel view for the restaurant from the other fragments that are imported from tabfragments
+ */
+
 import TabFragments from "./TabFragments";
 import React, {Fragment, useState} from "react";
 import Carousel from "react-material-ui-carousel";

@@ -71,10 +71,10 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 		}
 		maxY = Math.floor(Math.min(maxY*1.25+3, 100));
 		return newData;
-	}
+	};
 	
 	const finalizeDataForRender = (data) => {
-		let out = []
+		let out = [];
 		let nextHour = 6;
 		data.forEach(point => {
 			const timeString = ('0'+point.timeString).slice(-5);
@@ -89,7 +89,7 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 			out.push(point);
 		});
 		return out;
-	}
+	};
 	
 	
 	let maxY = 0;
@@ -112,6 +112,6 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 			</AreaChart>
 		</ResponsiveContainer>
 	);
-}
+};
 
 export default PredictiveChartFragment;

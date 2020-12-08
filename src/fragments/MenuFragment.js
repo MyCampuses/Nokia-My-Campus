@@ -1,3 +1,10 @@
+/*
+Made by Xyphnos
+This function gets the menu for the current day from Sodexo and the restaurant usage data from Levitezer.
+Code maps the usage data and sends the current usage to a redux state, and then fetches the menu data and
+adds it to the same redux state. After these a function matches the correct line with the correct usage using
+Data.js, and then renders the page
+*/
 
 import React, {Fragment, useState} from 'react';
 import {Box, Container} from '@material-ui/core';
