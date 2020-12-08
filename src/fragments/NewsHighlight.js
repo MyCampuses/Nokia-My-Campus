@@ -1,3 +1,4 @@
+// News by Rockronnie
 import React from "react";
 import {
   makeStyles,
@@ -45,20 +46,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
 }));
-
+// News highlight item, takes the curren highlight item as props, used in news
 const HighlightItem = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  console.log(props.highlight)
-
+  // When navigating we're adding the item to redux/localstorage state so when user refreshes it doesn't lose the currently selected article and show an empty page
   return (
     <>
       <Paper elevation={0} className={classes.root}>
         <CardActionArea
           onClick={() => {
-            console.log(
-              `navigating to highlight article ${props.highlight.title}`
-            );
             dispatch(currentItem(props.highlight));
             navigate("/news_article", false);
           }}

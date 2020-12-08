@@ -1,3 +1,4 @@
+// News by Rockronnie
 import React from "react";
 import { makeStyles } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
@@ -32,17 +33,17 @@ const useStyles = makeStyles((theme) => ({
     },
    
   }));
-
+// News browse grid. takes 10 most recent news as props used in view/news and as a widget
 const NewsBrowseGrid = (props) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
-    console.log(props.tileData)
+    // for every key in props we generate a tile that holds one of the objects. when we navigate we add the object to redux/localstorage state so if user refreshes the newsitem remains
     return (
       <div className={classes.root}>
         {props.tileData && <GridList className={classes.gridList} cols={2.5}>
           {Object.keys(props.tileData).map((tile) => (
-            <GridListTile key={props.tileData[tile]}  onClick={() => {console.log(`navigating to article ${props.tileData[tile].title}`)
+            <GridListTile key={props.tileData[tile].id}  onClick={() => {console.log(`navigating to article ${props.tileData[tile].title}`)
             dispatch(currentItem(props.tileData[tile]));
             navigate("/news_article",false)
             }}>

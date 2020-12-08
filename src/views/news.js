@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-
+// News by Rockronnie
 import React from "react";
 import NaviBar from "../fragments/TopNavigationBarFragment";
 import Authentication from "../hooks/Authentication";
@@ -32,46 +32,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Main news page. Renders news highlight item and browse news component fragments. Also responsible for state management
 const News = () => {
   const { PageTheme } = MuiThemes();
   const { getHighlightItem, getNewsItems } = NewsHooks();
   const { isLoggedIn } = Authentication();
   const { TopNavigationBar } = NaviBar();
   const classes = useStyles();
-  //const [rendered, setRendered] = useState(false);
   const [highlight, setHighlight] = useState({});
   const [tileData, setTileData] = useState(null);
-  
+
+  // fetching highlight news
   const updateHighlight = async () => {
-    const highlightItem = await getHighlightItem()
-    console.log(highlightItem)
+    const highlightItem = await getHighlightItem();
+    console.log(highlightItem);
     setHighlight(highlightItem);
-  }
-
-  const updateNews = async () => {
-    const newsItems = await getNewsItems()
-    console.log(newsItems)
-    setTileData(newsItems)
   };
-  
-  // Getting data
-  
-  useEffect(() => {
-    
-    updateHighlight()
-    updateNews()
-      //setRendered(true)
-      
-    },[]
-  )
-  
 
+  // fetching 10 freshed news
+  const updateNews = async () => {
+    const newsItems = await getNewsItems();
+    console.log(newsItems);
+    setTileData(newsItems);
+  };
+
+  // fetching news every time page is rendered
+  useEffect(() => {
+    updateHighlight();
+    updateNews();
+  }, []);
+
+  // newspage, highlight and browsegrids render when the values have been fetched.
   const NewsPage = () => {
     return (
       <ThemeProvider Theme={PageTheme} className={classes.main}>
         <CssBaseline />
         {TopNavigationBar()}
-        <HighlightItem highlight={highlight} />
+        {highlight && <HighlightItem highlight={highlight} />}
         <Typography
           variant="h5"
           color="textSecondary"
@@ -84,7 +81,7 @@ const News = () => {
       </ThemeProvider>
     );
   };
-
+  // Checking if the user is logged in
   const AuthNews = () => {
     //eslint-disable-line
     if (isLoggedIn()) {

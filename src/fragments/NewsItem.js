@@ -1,3 +1,4 @@
+// News by Rockronnie
 import React from "react";
 import { ThemeProvider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -44,12 +45,10 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-
+// Newsitem takes a single article object as props
 const NewsItem = (props) => {
     const classes = useStyles();
     var data = props;
-    console.log(data)
-    // ADD NULL CHECK OR ALTERNATIVE COMPONENT FOR RENDER, FOR CARDCONTENT.
     return (
     <>  
       <ThemeProvider> 
