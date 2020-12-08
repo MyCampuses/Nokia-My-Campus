@@ -105,6 +105,10 @@ const useStyle = makeStyles((theme) => ({
         height: "85vh",
         overflow: "auto",
     },
+    wFrag: {
+        height: "14vh",
+        overflow: "auto",
+    },
     Widget: {
         height: "15vh",
         width: "100%",
