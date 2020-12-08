@@ -1,3 +1,8 @@
+/*
+Made by Atholos
+This file holds all the functionality that editbutton has
+Include or remove functionality as you see fit.
+*/
 import React, { useEffect, useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';

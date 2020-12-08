@@ -23,7 +23,7 @@ const Widgets = () => {
       require('../assets/plus_sign.png')
     ];
   
-    // Creates a item of every widget for the Dialog on front page
+    // Creates a item of every widget for the Dialog 
     const SelectViewDialog = (props) => {
 
         const { onClose, selectedValue, open } = props;
@@ -50,7 +50,7 @@ const Widgets = () => {
         );
     };
 
-    //Handling selecViewDialogs' closing, opening and saves the selected value
+    //proptypes for selecViewDialogs' closing, opening and saves the selected value
     SelectViewDialog.propTypes = {
         onClose: PropTypes.func.isRequired,
         open: PropTypes.bool.isRequired,
@@ -88,7 +88,7 @@ const Widgets = () => {
         The returned fragment is here, it get the values from above function SelectViewDialog
         the returned value depends on the length of selectedWidgets array and what state selectedValue has
         with .map one can forEach every array element, which is why the fragment returns as many widgets
-        as are saved onto selectedWidgets state
+        as there are saved into selectedWidgets state
         */
        if(selectedWidgets.length === 0) {
         return (

@@ -8,8 +8,8 @@ const newsBrowseGridStyle = makeStyles((theme) => ({
       overflow: "hidden",
       backgroundColor: theme.palette.background.paper,
       margin: "2%",
-      maxWidth: 1000,
-      maxHeight: 1000,
+      maxWidth: 500,
+      maxHeight: 100,
     },
     gridList: {
       flexWrap: "nowrap",
@@ -24,7 +24,6 @@ const newsBrowseGridStyle = makeStyles((theme) => ({
       background:
         "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
     },
-   
   }));
 
 export default newsBrowseGridStyle;

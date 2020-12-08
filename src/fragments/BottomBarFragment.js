@@ -1,5 +1,5 @@
 /*
-        This class holds all the bottom tabs for restaurant, p5 & p10.
+        This file holds all the bottom tabs for restaurant, p5 & p10.
         The page views are passed when clicked on the tab.
  */
 import Tab from "@material-ui/core/Tab";

@@ -1,5 +1,7 @@
-//REDUCERS
-//Widget cases, either add or remove all widget
+/*
+Made by Atholos
+Widget cases, either add or remove all widget
+*/
 const WidgetReducer = (state = [] , action) => {
 
     switch(action.type){
