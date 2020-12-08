@@ -47,7 +47,7 @@ const NewsBrowseGrid = (props) => {
             dispatch(currentItem(props.tileData[tile]));
             navigate("/news_article",false)
             }}>
-              <img src={props.tileData[tile].headerImgUrl} alt={props.tileData[tile].title} />
+              <img src={props.tileData[tile].headerImgUrl ? props.tileData[tile].headerImgUrl : require("../assets/default.jpg")} alt={props.tileData[tile].title} />
               <GridListTileBar
                 title={props.tileData[tile].title}
                 classes={{

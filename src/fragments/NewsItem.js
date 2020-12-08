@@ -59,7 +59,7 @@ const NewsItem = (props) => {
         </CardActions>
         <CardMedia
           className={classes.media}
-          image={data.articleData.headerImgUrl}
+          image={data.articleData.headerImgUrl ? data.articleData.headerImgUrl : require("../assets/default.jpg")}
           title={data.articleData.headerImgTitle}
         />
         <CardHeader

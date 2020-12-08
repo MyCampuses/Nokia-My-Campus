@@ -11,6 +11,7 @@ import {
   CardActionArea,
   Chip,
 } from "@material-ui/core";
+
 import { blue, green, red } from "@material-ui/core/colors";
 import { PropTypes } from "prop-types";
 import { navigate } from "hookrouter";
@@ -67,10 +68,9 @@ const HighlightItem = (props) => {
           />
          <CardMedia
             className={classes.media}
-            image={props.highlight.headerImgUrl}
+            image={props.highlight.headerImgUrl ? props.highlight.headerImgUrl : require("../assets/default.jpg")}
             title={props.highlight.headerImgTitle}
           />
-
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
               {props.highlight.description}
