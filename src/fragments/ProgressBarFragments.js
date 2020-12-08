@@ -1,6 +1,6 @@
 /*
-        This class contains the the progress bar fragment which renders the progress bar and all the texts in it
-        for p5, P10 and restaurant
+    This class contains the the progress bar fragment which renders the progress bar and all the texts in it
+    for p5, P10 and restaurant
  */
 import {LinearProgress} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -16,7 +16,7 @@ const ProgressBarFragments = (props) => {
     //Progressbar with props
     const HomeProgressBar = (props) => {
         return (
-            <LinearProgress variant="determinate" value={props.value}/>
+            <LinearProgress variant="determinate" value={props.value} className={barTheme.progressBarSize}/>
         );
     };
     const {onItemClickNavigate} = GlobalFunctions();
@@ -54,17 +54,16 @@ const ProgressBarFragments = (props) => {
             <Fragment>
                 <Grid item xs={12}
                       onClick={() => {onItemClickNavigate(barData.navigationUrl)}}>
-                    <Grid item container className={barTheme.progressLabel}
-                          direction="row"
-                          justify="space-between"
-                          alignItems="center"
-                          xs={12}>
+                    <Grid item container className={barTheme.progressLabel}>
                         <Grid item container alignItems="flex-start"
-                              className={barTheme.labelLocation} xs={4}>
+                            className={barTheme.labelLocation} xs={4}>
+                            <Typography className="alignLeft">
+                                {barData.label}
+                            </Typography>
                         </Grid>
                         <Grid item xs={4}>
                             <Typography>
-                                {barData.utilization}: {barData.data}%
+                                {barData.data}%
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>

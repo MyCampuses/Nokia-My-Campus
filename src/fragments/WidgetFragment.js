@@ -1,4 +1,5 @@
 /*
+    Made by Atholos
     This function returns a view depending on the widget(s) selected and the dialog that is seen
     when you press the '+' sign and select a widget.
 */

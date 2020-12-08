@@ -6,7 +6,8 @@ import DonutFragment from "../fragments/DonutFragment";
 import NewsBrowseWidget from './NewsWidget';
 import RestaurantWidget from './RestaurantWidget';
 import ParkingWidget from './ParkingWidget';
-import ProgressBarWidgets from './ProgressBarWidget';
+//import ProgressBarWidgets from './ProgressBarWidget';
+import ProgBarParkingWidget from './ProgBarParkingWidget';
 
 //this function determines which function to run using the data given in props in widgetFragment
 const CombinedFunctions = (object) => {
@@ -18,7 +19,7 @@ const CombinedFunctions = (object) => {
         //this switch case checks the datatype of the object, and so decides which type of function to run for it
         switch (type) {
             case 'progressBar':
-                return ProgressBarWidgets(object);
+                return ProgBarParkingWidget(object);
             case 'donutChart':
                 return Donut(object);
             case 'menuData':

@@ -1,16 +1,17 @@
 /*
+Made by Atholos
 This function is only progressbar widgets, where it fetches all the needed information
 for the progressbars.
-Made by Atholos
 */
-
+import React from 'react';
 import API from '../hooks/ApiHooks';
 import ApiUrls from '../hooks/ApiUrls';
 import {  useState, useEffect } from 'react';
 import strings from '../localization';
 import  ProgressBars  from '../fragments/ProgressBarFragments';
+import { Grid } from '@material-ui/core';
 
-const ProgressBarWidget = (obj) =>  {
+const ProgBarParkingWidget = (obj) =>  {
     const {ProgressBar} = ProgressBars();
     const {getUsageData } = API();
     const {parkingP5Url, parkingP10Url, parkingP10TopUrl} = ApiUrls();
@@ -35,21 +36,39 @@ const ProgressBarWidget = (obj) =>  {
 
     //The switch case gets its' value from WidgetList where there's an object with barType engraved.
     switch (objName) {
-        case 'p5':
-            return ProgressBar({navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data});
+        case 'parkingInside':
+
+            return (
+                <div>
+                    
+                    <Grid item xs spacing={2}>
+                        {ProgressBar({navigationUrl: '/P5', label: strings.p5inside, utilization: strings.liveUtilization, data: parkingP5Data})}
+                    </Grid> 
+                    <Grid spacing={2}>
+                        {ProgressBar({navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data})}
+                    </Grid>
+                    
+                </div>
+            )
             
-        case 'p10I':
-            return ProgressBar({navigationUrl: '/P10', label: strings.p10inside, utilization: strings.liveUtilization, data: parkingP10Data},);
-            
-        case 'p10R':
-            return ProgressBar({navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData});
-           
-        case 'p10E':
-            return ProgressBar({navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData});
-            
+        case 'parkingRoof':
+            return (
+                <div >
+                    
+                    <Grid item xs spacing={2}>
+                        {ProgressBar({navigationUrl: '/P10TOP', label: strings.p10rooftop, utilization: strings.liveUtilization, data: parkingP10TopData})}
+                    </Grid>
+
+                    <Grid spacing={2}>
+                        {ProgressBar({navigationUrl: '/P10EV', label: strings.p10electric, utilization: strings.liveUtilization, data: parkingP10ElectricData})}
+                    </Grid>
+                    
+                </div>
+            )            
+
         default:
             return undefined;
     };
 };
 
-export default ProgressBarWidget;
+export default ProgBarParkingWidget;

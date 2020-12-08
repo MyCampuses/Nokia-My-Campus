@@ -38,7 +38,7 @@ const ProgressBarStyle = () => {
                     alignItems: 'center',
                 },
                 'spacing-xs-1-115': {
-                    padding: '0',
+                    padding: '1',
                     paddingTop: "4px",
                     paddingBottom: "4px",
                     margin: '0px',
@@ -56,8 +56,7 @@ const ProgressBarStyle = () => {
     });
 
     return{
-        P5P10ProgressBar:P5P10ProgressBar,
-
+        P5P10ProgressBar,
     }
 };
 
