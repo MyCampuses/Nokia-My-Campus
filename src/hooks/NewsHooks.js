@@ -27,16 +27,16 @@ const fetchGetUrl = async (url, userKey) => {
 
 const NewsHooks = () => {
 
-  const {newsUrl, newsitemsUrl, highlightnewsUrl} = ApiUrls()
+  const {newsitemsUrl, highlightnewsUrl} = ApiUrls()
 
   // Fetching 10 newest newsitems
   const getNewsItems = () => {
-    const items = fetchGetUrl("https://mycampusnewsapi.azurewebsites.net/newsitems","user")
+    const items = fetchGetUrl(newsitemsUrl,"user")
     return items;
   };
   // Fetching the daily highlightitem
   const getHighlightItem = () => {
-    const fetchedHighlightItem = fetchGetUrl("https://mycampusnewsapi.azurewebsites.net/highlight","user")
+    const fetchedHighlightItem = fetchGetUrl(highlightnewsUrl,"user")
     return fetchedHighlightItem;
   };
 
