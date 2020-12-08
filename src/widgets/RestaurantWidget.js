@@ -47,7 +47,7 @@ const RWidget = (props) =>{
                               animation="slide" noWrap={true}>
 
                     {(Object.keys(item) || []).map(mapKey => (
-                        <div key={mapKey} >
+                        <div key={mapKey} className={classes.wFrag}>
 
                                 <Grid item container direction="column" className={classes.wMenuStyle}>
 

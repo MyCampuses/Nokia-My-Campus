@@ -61,6 +61,7 @@ const ParkingCardFragment = () => {
 		);
 	}
 	
+
 	const createAreaItem = (area, small) => {
 		if (area.usageData == null) {
 			area.loading = true;
@@ -108,7 +109,7 @@ const ParkingCardFragment = () => {
 				<ListItemText primary={name} secondary={utilizationString} />
 			</ListItem>
 		);
-	}
+	};
 	
 	const zones = (zoneData, category) => {
 		if (category in zoneData) {
@@ -121,7 +122,7 @@ const ParkingCardFragment = () => {
 			});
 			return out;
 		}
-	}
+	};
 	const zoneList = (zoneData) => {
 		let i = 0;
 		let out;
@@ -134,7 +135,7 @@ const ParkingCardFragment = () => {
 			}
 		});
 		return out;
-	}
+	};
 	const fullCard = (data) => {
 		return (
 			<Box m={2} mb={0}>
@@ -149,13 +150,15 @@ const ParkingCardFragment = () => {
 				</Card>
 			</Box>
 		);
-	}
+	};
+
 	const singleAreaWidget = (data, small) => {
 		return createAreaItem(data, small);
-	}
+	};
+
 	return {
 		fullCard,
-		singleAreaWidget
+		singleAreaWidget,
 	}
 };
 

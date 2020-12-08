@@ -7,27 +7,25 @@ import GlobalFunctions from '../hooks/GlobalFunctions';
 import Grid from '@material-ui/core/Grid';
 
 const ParkingWidget = (data) =>  {
-	console.log(data);
-	const [parkingStatus, setParkingStatus] = useState({});
-	const small = ("gridLayout" in data && data.gridLayout === true);
-	
+
+		const [parkingStatus, setParkingStatus] = useState({});
+		const small = ("gridLayout" in data && data.gridLayout === true);
+
 	
 	useEffect(() => {
 		console.log(data);
 		if ("zones" in data) {
 			(data.zones).forEach((zone) => {
 				getParkingStatus(zone).then( status => {
-					console.log(parkingStatus);
 					parkingStatus[zone] = status;
 					setParkingStatus({...parkingStatus});
 				});
 			});
 		}
-		
+
 	}, []); //eslint-disable-line
-	
-	console.log(parkingStatus);
-	
+
+
     const {onItemClickNavigate} = GlobalFunctions();
 	const {getParkingAreaName, getParkingStatus} = API();
 	
@@ -39,8 +37,8 @@ const ParkingWidget = (data) =>  {
 		const name = getParkingAreaName(zone);
 		const estimated = zone === 'P10EV';
 		const loading = parkingStatus[zone] !== undefined;
-		console.log({id: zone, name: name, usageData: parkingStatus[zone], estimate: estimated, loading: loading});
 		elements.push(ParkingCardFragment().singleAreaWidget({id: zone, name: name, usageData: parkingStatus[zone], estimate: estimated, loading: loading}, small));
+
 	});
 	
 	if ("showAllButton" in data && data.showAllButton === true) {
@@ -53,8 +51,8 @@ const ParkingWidget = (data) =>  {
 		});
 		elements = (<Grid container>{elements}</Grid>);
 	}
-	console.log(elements);
 	return elements;
-};
+	
+}
 
 export default ParkingWidget;
