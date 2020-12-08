@@ -65,11 +65,12 @@ const HighlightItem = (props) => {
             titleTypographyProps={{ variant: "h5" }}
             title={props.highlight.title}
           />
-          <CardMedia
+         <CardMedia
             className={classes.media}
             image={props.highlight.headerImgUrl}
             title={props.highlight.headerImgTitle}
           />
+
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
               {props.highlight.description}
