@@ -1,3 +1,7 @@
+/*
+	Made by KiskoHorst
+	Predictive chart, used by parking info and history but designed to be usable elsewhere too
+*/
 
 import React from 'react';
 import {AreaChart, XAxis, YAxis, CartesianGrid, Area, ResponsiveContainer} from 'recharts';
@@ -11,7 +15,6 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
             for (let key in raw) {
 				//Use percentage from API if maximum capacity is not known, otherwise calculate a more accurate value
 				let d = new Date(raw[key].date);
-				console.log();
                 out.push({x: raw[key].date, timeString: d.getHours()+':'+('00'+d.getMinutes()).slice(-2), y: (maximum === null ? raw[key].percent : raw[key].count/maximum*100)});
             }
             return out;
@@ -19,12 +22,9 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
     };
 	
 	const formatData = (rawData) => {
-		console.log(rawData);
 		if (rawData == null) {
 			return [];
 		}
-		
-		console.log(maximum);
 		return dataToChart(rawData.samples, maximum);
 	}
 	
@@ -33,16 +33,12 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 		let maxLength = Math.max(formattedData.length, formattedExpectedData.length);
 		let predictionScalePoint = formattedData.length-1;
 		let predictionScaleFactor = 1;
-		console.log(formattedData);
 		if (data != null && formattedData.length > 0) {
 			//Calculate prediction scale factor and scale the prediction
 			if (formattedData.length < formattedExpectedData.length 
 			&& formattedData[predictionScalePoint].y > 1 
 			&& formattedExpectedData[predictionScalePoint].y > 1) {
-				console.log("Prediction");
-				console.log(""+formattedData[predictionScalePoint].y+" "+formattedExpectedData[predictionScalePoint].y);
 				predictionScaleFactor = formattedData[predictionScalePoint].y / formattedExpectedData[predictionScalePoint].y;
-				console.log(predictionScaleFactor);
 				formattedExpectedData.forEach((item, index, array) => {
 					item.y = Math.min(100, item.y*predictionScaleFactor);
 					array[index] = item;
@@ -83,7 +79,6 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 			}
 			if (timeString > ('0'+nextHour).slice(-2)) {
 				point.timeString = ''+nextHour+':00';
-				console.log(nextHour);
 				nextHour++;
 			}
 			out.push(point);
@@ -97,10 +92,8 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 	let formattedExpectedData = formatData(expectedData);
 	
 	let dataWithPrediction = finalizeDataForRender(createPrediction(formattedData, formattedExpectedData));
-	console.log(dataWithPrediction);
 	let ticks = ["6:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"];
 	
-	console.log(maxY);
 	return (
 		<ResponsiveContainer width="100%" height={300}>
 			<AreaChart data={dataWithPrediction} margin={{left: -20, top: 20}}>

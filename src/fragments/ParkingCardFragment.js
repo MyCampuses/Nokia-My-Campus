@@ -1,6 +1,11 @@
+/*
+	Made by KiskoHorst
+	Parking card, used by parking widgets and the parking page
+*/
 
 import React from 'react';
 import GlobalFunctions from "../hooks/GlobalFunctions";
+import API from '../hooks/ApiHooks';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -13,11 +18,16 @@ import {PieChart, Pie} from 'recharts';
 
 const ParkingCardFragment = () => {
     const {onItemClickNavigate} = GlobalFunctions();
+	const {getParkingAreaName} = API();
 	
-	const nameToLocalizedString = (name, shortName) => {
+	const idToLocalizedString = (id, shortName) => {
 		if (shortName) {
-			return strings[name+"Short"];
+			return strings[id+"Short"];
 		}
+		return getParkingAreaName(id);
+	}
+	
+	const nameToLocalizedString = (name) => {
 		switch (name) {
 			case "inside":
 				return strings.inside;
@@ -62,51 +72,54 @@ const ParkingCardFragment = () => {
 	}
 	
 
-	const createAreaItem = (area, small) => {
-		if (area.usageData == null) {
-			area.loading = true;
+	const createZoneItem = (zone, small) => {
+		if (zone.usageData == null) {
+			zone.loading = true;
 		} else {
-			area.loading = false;
+			zone.loading = false;
 		}
 		let utilizationString;
-		if (area.loading) {
+		if (zone.loading) {
 			utilizationString = strings.loading;
 		} else {
 			if (small) {
-				utilizationString = ""+Math.round(area.usageData.count/area.usageData.capacity*100)+"%";
+				utilizationString = ""+Math.round(zone.usageData.count/zone.usageData.capacity*100)+"%";
 			}
 			else {
-				if (area.estimate) {
-				utilizationString = strings.parkingUtilizationEstimate.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
+				if (zone.estimate) {
+					utilizationString = strings.parkingUtilizationEstimate
 				} else {
-					utilizationString = strings.parkingUtilization.replace("{0}", (area.usageData.capacity-area.usageData.count)).replace("{1}", area.usageData.capacity);
+					utilizationString = strings.parkingUtilization
 				}
+				utilizationString = utilizationString.replace("{0}", (zone.usageData.capacity-zone.usageData.count)).replace("{1}", zone.usageData.capacity);
 			}
 			
 		}
+		
 		let link;
-		if (area["linkId"] !== undefined) {
-			link = area["linkId"];
+		if (zone["linkId"] !== undefined) {
+			link = zone["linkId"];
 		} else {
-			link = area["id"];
+			link = zone["id"];
 		}
 		
-		let name;
-		if (small) {
-			name = nameToLocalizedString(area["id"], true);
-		}
-		else {
-			name = area["name"];
+		//Name is a short description of a zone, like "roof", intended to be seen with other zones from the same area
+		//ID based titles can be shown with no context, like "P10 Rooftop Parking"
+		let title;
+		if ("name" in zone) {
+			title = nameToLocalizedString(zone["name"]);
+		} else {
+			title = idToLocalizedString(zone["id"], small);
 		}
 		
 		return (
 			<ListItem button onClick={()=>onItemClickNavigate(link)}>
 				<ListItemAvatar>
 					<PieChart width={40} height={40}>
-						{(area.loading ? areaPie(0, 1) : areaPie(area.usageData.count, area.usageData.capacity))}
+						{(zone.loading ? areaPie(0, 1) : areaPie(zone.usageData.count, zone.usageData.capacity))}
 					</PieChart>
 				</ListItemAvatar>
-				<ListItemText primary={name} secondary={utilizationString} />
+				<ListItemText primary={title} secondary={utilizationString} />
 			</ListItem>
 		);
 	};
@@ -118,7 +131,7 @@ const ParkingCardFragment = () => {
 					<Typography variant="subtitle2" component="h2" align="left">{categoryToLocalizedString(category)}</Typography>
 				</Box>);
 			zoneData[category].forEach(area => {
-				out = [out, createAreaItem(area, false)];
+				out = [out, createZoneItem(area, false)];
 			});
 			return out;
 		}
@@ -136,6 +149,7 @@ const ParkingCardFragment = () => {
 		});
 		return out;
 	};
+	
 	const fullCard = (data) => {
 		return (
 			<Box m={2} mb={0}>
@@ -153,7 +167,7 @@ const ParkingCardFragment = () => {
 	};
 
 	const singleAreaWidget = (data, small) => {
-		return createAreaItem(data, small);
+		return createZoneItem(data, small);
 	};
 
 	return {

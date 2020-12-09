@@ -1,4 +1,7 @@
-/* eslint-disable no-unused-vars */
+/*
+	Made by KiskoHorst
+	Parking info page
+*/
 
 import React, {useState, useEffect} from 'react';
 import '../styles/App.css';
@@ -33,6 +36,7 @@ const ParkingInfo = () => {
 	const zone = window.location.pathname.split('/').pop();
 	const name = getParkingAreaName(zone);
 	
+	//Data from one week ago will be used to predict usage for today
 	const expectedDataDate = new Date();
 	expectedDataDate.setDate(expectedDataDate.getDate() - 7);
 	
@@ -46,7 +50,6 @@ const ParkingInfo = () => {
 		});
 		
 		getParkingData(zone, formattedFullDate(new Date())).then(json => {
-			console.log(json)
 			setDataToday(json);
 		});
 		
@@ -58,7 +61,6 @@ const ParkingInfo = () => {
 	
     const ParkingInfoPage = () => {
 		const {TopNavigationBar} = NaviBar();
-		//const {onItemClickNavigate} = GlobalFunctions();
 		return (
 			<div>
 				{TopNavigationBar()}

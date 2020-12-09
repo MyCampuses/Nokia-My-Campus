@@ -1,4 +1,7 @@
-/* eslint-disable no-unused-vars */
+/*
+	Made by KiskoHorst
+	Parking history view
+*/
 
 import React, {useState, useEffect} from 'react';
 import '../styles/App.css';
@@ -10,7 +13,6 @@ import AuthLoading from './authLoading';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import PredictiveChartFragment from "../fragments/PredictiveChartFragment";
 import API from '../hooks/ApiHooks';
 import GlobalFunctions from '../hooks/GlobalFunctions';
@@ -39,13 +41,11 @@ const ParkingHistory = () => {
 	});
 	
 	const params = useQueryParams();
-	console.log(params);
 	
 	const zone = params[0].zone;
 	
 	useEffect(() => {
 		getParkingData(zone, formattedFullDate(selectedDate)).then(json => {
-			console.log(json)
 			setData(json);
 		});
 		getParkingStatus(zone).then(json => {
