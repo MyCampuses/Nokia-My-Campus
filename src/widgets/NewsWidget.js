@@ -1,4 +1,5 @@
 /*
+Made by Atholos
 The function returns the element NewsBrowseGrid and the data needed for it.
 */
 

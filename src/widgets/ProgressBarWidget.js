@@ -1,7 +1,7 @@
 /*
+Made by Atholos
 This function is only progressbar widgets, where it fetches all the needed information
 for the progressbars.
-Made by Atholos
 */
 
 import API from '../hooks/ApiHooks';
