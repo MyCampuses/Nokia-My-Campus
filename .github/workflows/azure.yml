@@ -51,7 +51,7 @@ jobs:
           # Container registry server url
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}  
     - run: |
-          
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }}
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
+          # building creating a new image tags for version control
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
