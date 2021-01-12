@@ -13,7 +13,12 @@ import P5MapView from "../views/p5MapView";
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
+<<<<<<< HEAD
+    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5, TabRestaurantLines, TabRestaurantChart} = TabFragments();
+    
+=======
     const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5} = TabFragments();
+>>>>>>> 02c3e5aae1d20e772a7218f7ac536cb89e9f3b4c
 
     //P10 bottom tab
     const P10BottomTab = () => {

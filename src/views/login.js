@@ -61,7 +61,7 @@ const Login = (props) => {
   return (
       <ThemeProvider theme={FormTheme}>
         <Container component='main' maxWidth="xs">
-          <div className="form">
+          <div className="form" id='form'>
             <form noValidate onSubmit={handleSubmit}>
               <img src={require('../assets/logo_mycampus.webp')}
                    alt={strings.logoAlt} className="logoImg"/>

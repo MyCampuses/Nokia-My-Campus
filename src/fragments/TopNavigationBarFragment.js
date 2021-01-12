@@ -1,7 +1,12 @@
 /*
+<<<<<<< HEAD
+    This class holds the style for the top navigation bar and
+    all the elements in it, including menu items.
+=======
     Made by Atholos
     This function holds the style for the top navigation bar and
     all the elements in the top bar, including menu items.
+>>>>>>> 02c3e5aae1d20e772a7218f7ac536cb89e9f3b4c
 */
 import React, {Fragment, useState} from 'react';
 import {AppBar, IconButton, Menu, MenuItem, Toolbar } from "@material-ui/core";
@@ -12,7 +17,6 @@ import strings from "../localization";
 import style from "../styles/TopNavigationBarStyle";
 
 const NaviBar = () => {
-
     //Top navigation bar elements & menu bar elements
     const TopNavigationBar = () => {
         const classes = style().topBar();

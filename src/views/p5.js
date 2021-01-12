@@ -12,8 +12,7 @@ const P5 = (props) => {
     const {TopNavigationBar} = NaviBar();
     const {isLoggedIn} = Authentication();
     const {P5BottomTab} = BottomBarTabFragment();
-    const {P5P10ProgressBar} = ProgressBarStyle()
-
+    const {P5P10ProgressBar} = ProgressBarStyle();
 
     const P5Page = () => {
         return (

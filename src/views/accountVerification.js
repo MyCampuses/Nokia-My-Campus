@@ -43,12 +43,12 @@ const AccountVerification = (props) =>{
         setEmail(queryParams.email)
     },[queryParams.email]); // eslint-disable-line
 
-
     const handleSubmit = () =>{
         const submitData = {
             email: email,
             token:token
         };
+        
         confirmAccountAsync(submitData).then((result)=>{
             if (result.status===200){
                 alert("Account confirmation was successful!");
@@ -61,7 +61,6 @@ const AccountVerification = (props) =>{
                 alert("Confirmation Failed")
             }
         });
-
     };
 
     const resendEmail = () => {

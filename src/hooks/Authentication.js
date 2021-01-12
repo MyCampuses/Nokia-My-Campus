@@ -16,7 +16,7 @@ const Authentication = (props) => {
   };
   // Checks if the user is logged in and navigates to home or login accordingly
   const checkIfLogged = () =>{
-    const login = read("user");
+    const login = read('user');
     if (login!==null){
       window.location.href = '/home'
     } else {

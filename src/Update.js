@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import Data from './hooks/Data';
 import UpdateApp from './hooks/UpdateServiceWorker';
 

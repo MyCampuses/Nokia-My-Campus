@@ -64,10 +64,10 @@ const TabFragments = (props) => {
             paddingLeft: "5px"
         },
     }));
-    const barTheme = useStyles();
 
     // Renders the P10 Live page with rooftop(electric), rooftop and inside progress bars
     function TabFragmentLive(props) {
+        const barTheme = useStyles();
         const {children, value, index, ...other} = props;
         const {parkingP10Url, parkingP10TopUrl} = ApiUrls();
         const {getUsageData} = API();
