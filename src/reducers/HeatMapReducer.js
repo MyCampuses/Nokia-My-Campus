@@ -1,4 +1,4 @@
-import Data from './Data';
+import Data from '../hooks/Data';
 
 const { FETCH_HEATMAP_BEGIN, FETCH_HEATMAP_SUCCESS, FETCH_HEATMAP_FAILURE } = Data();
 

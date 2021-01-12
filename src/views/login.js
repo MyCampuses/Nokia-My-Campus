@@ -49,6 +49,7 @@ const Login = (props) => {
       if (!result.errors) { // Check if the result contains errors
           let json = {username: result.username, token: result.token};
           create(JSON.stringify(json), 'user'); // Saves the users information as a json string inside LocalStorage
+          //navigate('/home',false);
           window.location.href = '/home';
       } else {
         const errors = result.errors;

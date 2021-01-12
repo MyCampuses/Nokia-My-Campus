@@ -14,7 +14,7 @@ const MuiThemes = () => {
     // Background image behaviour is buggy atm so using a solid color instead for now
     const setBackgroundBlue = () => {
         let root = document.getElementById('root-body');
-        root.style.backgroundColor="#0d47a1"
+        root.style.backgroundColor="#0d47a1";
         root.style.backgroundSize = "cover";
         root.style.backgroundRepeat = "no-repeat";
     };
@@ -27,6 +27,12 @@ const MuiThemes = () => {
             secondary: {
                 main: blue[50],
             },
+            background: {
+                default: "#222222"
+              },
+              text: {
+                primary: "#ffffff"
+              }
         },
         typography: {
             fontSize: 12,
@@ -97,6 +103,12 @@ const MuiThemes = () => {
     // MUI theme for Home, Restaurant, P5 & P10
     const PageTheme = createMuiTheme({
         flexGrow: 1,
+        palette: {
+            background: {
+                default: "#e4f0e2"
+              }
+
+        },
         overrides: {
 
             h3:{
@@ -116,11 +128,6 @@ const MuiThemes = () => {
                 barColorPrimary:{
                     backgroundColor: LightBlue
                 }
-            },
-            MuiTypography:{
-              body1:{
-                  color:"white"
-              }
             },
             MuiGrid: {
                 root: {
@@ -142,7 +149,6 @@ const MuiThemes = () => {
             },
         },
     });
-
 
     return{
         PageTheme: PageTheme,

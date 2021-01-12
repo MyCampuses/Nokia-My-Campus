@@ -5,9 +5,9 @@ const Data = () => {
 
     //Mathces received line id number to string
     const lines = new Map([
-        [1, 'Favourites 1'], [2, 'Favourites 2'],
-        [3, 'Pizza'], [4, 'Round Table'], [5, 'Bowl'],
-        [6, 'Vege'], [7, 'Cafe Pickup Line'], [8, 'Salad/Nokia Coffee']]);
+        [1, 'FAVORITES'], [2, 'FAVORITES 2.0'],
+        [3, 'PIZZA'], [4, 'Round Table'], [5, 'Keitto ja lisäkesalaatti / Soup and side salad'],
+        [6, 'VEGE'], [7, 'CAFE PICKUP LINE'], [8, 'Green corner']]);
 
     //Wait time map, matching received wait time value to string
     const times = new Map([[1, strings.waitTime1], [2, strings.waitTime2],
@@ -15,8 +15,8 @@ const Data = () => {
 
     //Colours to match the restaurant line wait times
     const colours = new Map([
-        [1, '#CFFFA7'], [2, '#ECFFAC'],
-        [3, '#FFF7A7'], [4, '#FFEAA5'], [5, '#FFD9A7']]);
+        [1, '#98ff12'], [2, '#e4ff78'],
+        [3, '#ffed4f'], [4, '#ffb236'], [5, '#ff3030']]);
 
     // Serviceworker state types, check Update.js for more information
     const SW_INIT = 'SW_INIT';

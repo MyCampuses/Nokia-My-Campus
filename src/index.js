@@ -10,11 +10,24 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import Data from './hooks/Data'
 import {applyMiddleware, createStore} from 'redux';
-import RootReducer from './hooks/RootReducer';
+import RootReducer from './reducers/RootReducer';
 import thunk from 'redux-thunk';
+import localStorageOperations from './hooks/LocalStorageOperations';
+
 const {SW_INIT, SW_UPDATE} = Data();
-const store = createStore(RootReducer,
+const {saveState, loadState} = localStorageOperations();
+const persistedState = loadState();
+
+const store = createStore(RootReducer, persistedState,
     applyMiddleware(thunk));
+
+    //The localstorage save, everytime the state changes it's saved in local storage.
+store.subscribe(() => {
+    saveState({
+        WidgetReducer : store.getState().WidgetReducer,
+        NewsReducer : store.getState().NewsReducer
+    });
+});
 
 ReactDOM.render(
     // Provider makes redux store available to any nested component
@@ -33,4 +46,3 @@ serviceWorker.register({
   onUpdate: registration => store.dispatch(
       {type: SW_UPDATE, payload: registration}),
 });
-

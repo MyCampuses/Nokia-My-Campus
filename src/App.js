@@ -14,8 +14,8 @@ const App = () => {
   // routeResult handles the navigation using hookrouter, check Routes.js for editing
   return (
       <div className="App">
-        <Update/>
-        {routeResult}
+          <Update/>
+          {routeResult}
       </div>
   );
 };

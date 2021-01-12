@@ -10,16 +10,29 @@ const ApiUrls = () => {
   const resendVerificationUrl = 'https://mycampus-server.karage.fi/auth/resend';
   const resetPassUrl = 'https://mycampus-server.karage.fi/auth/reset_password';
   const confirmUrl = 'https://mycampus-server.karage.fi/auth/confirmation';
+  const sodexoUrl = 'https://www.sodexo.fi/en/ruokalistat/output/';
+  const newsUrl = 'https://mycampusnewsapi.azurewebsites.net/'
 
   const restaurantUrl = apiUrl +
       'restaurant/Midpoint?select=fill_percent';
+  const newsitemsUrl = newsUrl+'newsitems'
+  const highlightnewsUrl = newsUrl+'highlight'
   const restaurantQueueUrl = apiUrl + 'restaurant/Midpoint/queue/';
   const dailyParkingUrl = apiUrl + 'parking/data/';
   const dailyRestaurantUrl = apiUrl + 'restaurant/Midpoint/daily?=date=';
+  const parkingStatusUrl = apiUrl + 'parking/status/';
   const parkingP5Url = apiUrl + 'parking/status/P5';
   const parkingP10Url = apiUrl + 'parking/status/P10';
   const parkingP10TopUrl = apiUrl + 'parking/status/P10TOP';
   const heatMapUrl = apiUrl + 'restaurant/Midpoint/heatmapImage';
+
+  const sodexoDailyUrl = (date) => {
+    return sodexoUrl + 'daily_json/80/' + date;
+  };
+
+  const sodexoWeeklyUrl = () =>{
+    return sodexoUrl + 'weekly_json/80';
+  };
 
   // Const used with Api fetch, define location and date
   const selectDate = (locUrl, loc, date) => {
@@ -31,6 +44,7 @@ const ApiUrls = () => {
     regUrl,
     apiUrl,
     restaurantUrl,
+	parkingStatusUrl,
     parkingP10Url,
     parkingP5Url,
     parkingP10TopUrl,
@@ -42,7 +56,12 @@ const ApiUrls = () => {
     resendVerificationUrl,
     resetPassUrl,
     confirmUrl,
-    heatMapUrl
+    heatMapUrl,
+    sodexoDailyUrl,
+    sodexoWeeklyUrl,
+    newsUrl,
+    newsitemsUrl,
+    highlightnewsUrl,
   };
 };
 export default ApiUrls;

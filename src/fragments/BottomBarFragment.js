@@ -1,5 +1,5 @@
 /*
-        This class holds all the bottom tabs for restaurant, p5 & p10.
+        This file holds all the bottom tabs for restaurant, p5 & p10.
         The page views are passed when clicked on the tab.
  */
 import Tab from "@material-ui/core/Tab";
@@ -10,12 +10,15 @@ import commonStyles from "../styles/commonStyles";
 import TabFragments from "./TabFragments";
 import P10MapView from "../views/p10MapView";
 import P5MapView from "../views/p5MapView";
-import RestaurantHeatMapView from "../views/restaurantHeatMap";
 
 const BottomBarTabFragment = (props) => {
     const commonClasses = commonStyles();
+<<<<<<< HEAD
     const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5, TabRestaurantLines, TabRestaurantChart} = TabFragments();
     
+=======
+    const {TabFragmentHistory, TabFragmentLive, TabFragmentLiveP5, TabFragmentHistoryP5} = TabFragments();
+>>>>>>> 02c3e5aae1d20e772a7218f7ac536cb89e9f3b4c
 
     //P10 bottom tab
     const P10BottomTab = () => {
@@ -103,43 +106,9 @@ const BottomBarTabFragment = (props) => {
         );
     };
 
-    //Restaurant bottom tab
-    const RestaurantBottomTab = () => {
-        const [valueRestaurant, setValueRestaurant] = useState(0);
-        const [date, setDate] = useState(new Date());
-
-        const handleChange = (event, newValue) => {
-            setValueRestaurant(newValue);
-        };
-
-        const handleDateChange = (data) => {
-            setDate(data);
-        };
-//
-        return (
-            <div style={{paddingBottom:"50px"}}>
-                <TabRestaurantLines value={valueRestaurant} index={0}/>
-                <TabRestaurantChart value={valueRestaurant} index={1} onDateChange={handleDateChange} date={date}/>
-                <RestaurantHeatMapView value={valueRestaurant} index={2}/>
-                <Tabs
-                    value={valueRestaurant}
-                    onChange={handleChange}
-                    className={commonClasses.bottomTabs}
-                    variant="fullWidth"
-                    indicatorColor="primary"
-                >
-                    <Tab id="lines" label={strings.lines}/>
-                    <Tab id="graph" label={strings.live+ " "+strings.graph}/>
-                    <Tab id="restaurantHeatMap" label={"Heatmap"}/>
-                </Tabs>
-            </div>
-        );
-    };
-
     return {
         P10BottomTab: P10BottomTab,
         P5BottomTab: P5BottomTab,
-        RestaurantBottomTab: RestaurantBottomTab,
     };
 };
 

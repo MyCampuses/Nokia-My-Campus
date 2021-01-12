@@ -3,26 +3,30 @@
     Each components have a bit more explanation what they are.
 */
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import ChartFragment from "./ChartFragments";
+import DonutFragment from "./DonutFragment";
+import MenuFragment from "./MenuFragment";
+import WeeklyFragment from "./WeeklyFragment";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProgressBarFragments from '../fragments/ProgressBarFragments'
-import {Box, Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
+import {Container, createMuiTheme, FormControl, InputLabel, makeStyles, Select} from "@material-ui/core";
 import strings from "../localization";
 import API from "../hooks/ApiHooks";
 import ApiUrls from "../hooks/ApiUrls";
 import MenuItem from "@material-ui/core/MenuItem";
-import Data from "../hooks/Data";
-import Typography from "@material-ui/core/Typography";
 import blue from '@material-ui/core/colors/blue';
 import {ThemeProvider} from '@material-ui/core';
 
-const {parkingP5Url} = ApiUrls();
+const {parkingP5Url, restaurantUrl} = ApiUrls();
 
 const TabFragments = (props) => {
     const {Chart} = ChartFragment();
+    const {Donut} = DonutFragment();
+    const {Menu} = MenuFragment();
+    const {Week} = WeeklyFragment();
     const p5Loc = 'P5/';
     const {ProgressBar} = ProgressBarFragments();
 
@@ -274,66 +278,6 @@ const TabFragments = (props) => {
         );
     }
 
-    // Renders the restaurant lines page that shows individual lines and their wait times
-    function TabRestaurantLines(props) {
-        const {children, value, index, ...other} = props;
-        const [queueTimes, setQueueTimes] = useState(new Map());
-        const {getUsageDataNoProps} = API();
-        const {restaurantQueueUrl} = ApiUrls();
-        const {lines, times, colours} = Data();
-
-        const getQueueTimes = async () => {
-            for (let i = 1; i < 9; i++) {
-                getUsageDataNoProps(restaurantQueueUrl + i).then(result => setQueueTimes(new Map(queueTimes.set(i, result))))
-            }
-        };
-
-        useEffect(() => {
-            getQueueTimes().then()
-        }, []);// eslint-disable-line
-
-        return (
-            <div role="tabfragment"
-                 hidden={value !== index}
-                 id={`tabfragment-${index}`}
-                 aria-labelledby={`tab-${index}`}
-                 inputstyle={{textAlign: 'center'}}
-                 {...other}>
-                <h3 className={barTheme.headLine}>{strings.restaurantPageTitle}</h3>
-                <Box>
-                    {[...lines.keys()].map(mapKey => (
-                        <div key={mapKey}>
-                            {queueTimes.get(mapKey) != null &&
-                            <Box className="lineDiv"
-                                 border={1}
-                                 p={1}
-                                 m={1}
-                                 bgcolor={colours.get(parseInt(queueTimes.get(mapKey).queue_time))}
-                                 borderColor="#E9E9E9">
-                                <Grid container direction="row"
-                                      justify="space-between"
-                                      alignItems="center">
-                                    <Grid>
-                                        <Typography>
-                                            {lines.get(mapKey)}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid>
-                                        {queueTimes.get(mapKey) != null &&
-                                        <Typography>
-                                            {times.get(parseInt(queueTimes.get(mapKey).queue_time))}
-                                        </Typography>
-                                        }
-                                    </Grid>
-                                </Grid>
-                            </Box>
-                            }
-                        </div>
-                    ))}
-                </Box>
-            </div>
-        )
-    }
 
     // Renders the restaurant chart page with a date picker and chart
     function TabRestaurantChart(props) {
@@ -373,13 +317,67 @@ const TabFragments = (props) => {
         );
     }
 
+    // Renders the restaurant donut chart page
+    function TabRestaurantDonut(props) {
+        const {children, value, index, ...other} = props;
+        const selectedDate = new Date(props.date);
+        const {getUsageData} = API();
+        const [restaurantData, setRestaurantData] = useState(undefined);
+
+        useEffect(() =>{
+            getUsageData(restaurantUrl, props).then(result => setRestaurantData(result.fill_percent));
+        },[]);
+
+        return (
+            <div role="tabfragment"
+                 hidden={value !== index}
+                 id={`tabfragment-${index}`}
+                 aria-labelledby={`tab-${index}`}
+                 inputstyle={{textAlign: 'center'}}
+                 {...other}>
+                <Donut date={selectedDate} data={restaurantData} InR={60} OuR={80} size={"25"}/>
+            </div>
+        );
+    }
+
+    // Renders the restaurant Menu
+    function TabRestaurantMenu(props) {
+        const {children, value, index, ...other} = props;
+        return (
+            <div role="tabfragment"
+                 hidden={value !== index}
+                 id={`tabfragment-${index}`}
+                 aria-labelledby={`tab-${index}`}
+                 inputstyle={{textAlign: 'center'}}
+                 {...other}>
+                <Menu location={"restaurant"}/>
+            </div>
+        );
+    }
+
+    function TabRestaurantWeek(props) {
+        const {children, value, index, ...other} = props;
+        return (
+            <div role="tabfragment"
+                 hidden={value !== index}
+                 id={`tabfragment-${index}`}
+                 aria-labelledby={`tab-${index}`}
+                 inputstyle={{textAlign: 'center'}}
+                 {...other}>
+                <Week location={"restaurant"}/>
+            </div>
+        );
+    }
+
     return {
         TabFragmentHistory: TabFragmentHistory,
         TabFragmentLive: TabFragmentLive,
         TabFragmentLiveP5: TabFragmentLiveP5,
         TabFragmentHistoryP5: TabFragmentHistoryP5,
-        TabRestaurantLines: TabRestaurantLines,
         TabRestaurantChart: TabRestaurantChart,
+        TabRestaurantDonut: TabRestaurantDonut,
+        TabRestaurantMenu: TabRestaurantMenu,
+        TabRestaurantWeek: TabRestaurantWeek,
     };
 
 };

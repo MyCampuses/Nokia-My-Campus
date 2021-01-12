@@ -1,6 +1,6 @@
 /*
-        This class contains the the progress bar fragment which renders the progress bar and all the texts in it
-        for p5, P10 and restaurant
+    This class contains the the progress bar fragment which renders the progress bar and all the texts in it
+    for p5, P10 and restaurant
  */
 import {LinearProgress} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -8,14 +8,17 @@ import React, {Fragment} from 'react';
 import GlobalFunctions from "../hooks/GlobalFunctions";
 import Typography from "@material-ui/core/Typography";
 import '../styles/progressBar.css';
+import WidgetStyle from '../styles/widgetStyle';
 
 const ProgressBarFragments = (props) => {
+
+    const barTheme = WidgetStyle().barTheme();
     //Progressbar with props
-    function HomeProgressBar(props) {
+    const HomeProgressBar = (props) => {
         return (
-            <LinearProgress variant="determinate" value={props.value}/>
+            <LinearProgress variant="determinate" value={props.value} className={barTheme.progressBarSize}/>
         );
-    }
+    };
     const {onItemClickNavigate} = GlobalFunctions();
     /*eslint-enable */
 
@@ -28,26 +31,39 @@ const ProgressBarFragments = (props) => {
             data: parkingP10Data,                  -> Actual data the bar will use
             barTheme                               -> The theme for the bar. Theme must contain stuff like labelLocation & progressLabel
         };
+
+        if you want the name of the progressbar in the left uppercorner of progressbar
+
+        replace  :
+        <Grid item container alignItems="flex-start"
+            className={barTheme.labelLocation} xs={4}>
+        </Grid>
+
+        with: 
+
+        <Grid item container alignItems="flex-start"
+            className={barTheme.labelLocation} xs={4}>
+            <Typography className="alignLeft">
+                {barData.label}
+            </Typography>
+        </Grid>
+        
     */
     const ProgressBar = (barData) =>{
         return (
             <Fragment>
                 <Grid item xs={12}
                       onClick={() => {onItemClickNavigate(barData.navigationUrl)}}>
-                    <Grid item container className={barData.barTheme.progressLabel}
-                          direction="row"
-                          justify="space-between"
-                          alignItems="center"
-                          xs={12}>
+                    <Grid item container className={barTheme.progressLabel}>
                         <Grid item container alignItems="flex-start"
-                              className={barData.barTheme.labelLocation} xs={4}>
+                            className={barTheme.labelLocation} xs={4}>
                             <Typography className="alignLeft">
-                                {barData.barLabel}
+                                {barData.label}
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
                             <Typography>
-                                {barData.utilization}: {barData.data}%
+                                {barData.data}%
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
@@ -61,8 +77,8 @@ const ProgressBarFragments = (props) => {
     };
 
     return {
-        ProgressBar:ProgressBar
+        ProgressBar
     };
-}
+};
 
 export default ProgressBarFragments;
