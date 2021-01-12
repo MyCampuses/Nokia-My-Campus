@@ -17,9 +17,9 @@
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     
 env:
     NODE_VERSION: '14.15.4'                # set this to the node version to use
@@ -40,7 +40,7 @@ jobs:
         # deploy to Azure Web App.
         npm install
         npm run build --if-present
-        npm run test --if-present
+      #  npm run test --if-present
     - name: Azure Container Registry Login
       uses: Azure/docker-login@v1
       with:
@@ -51,7 +51,7 @@ jobs:
           # Container registry server url
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}  
     - run: |
-            # building creating a new image tags for version control
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }}
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
+          # building creating a new image tags for version control
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
