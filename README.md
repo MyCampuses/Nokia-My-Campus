@@ -9,8 +9,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Other Tools:
 - Material UI
 - Postman (API testing)
-- Travis CI, Lightouse CI, Netlify (CI/CD Pipeline)
-- WebStorm IDE
+- Travis CI, Lightouse CI, GitHub Actions for CI/CD Pipeline (old VC = Netlify (CI/CD Pipeline))
+- WebStorm IDE / Visual Studio Code
 - Chrome DevTools 
 - Languages: Javascript (React), Css, Html
 - Scrum
